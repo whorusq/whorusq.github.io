@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="这是之前在学习、工作过程中整理的笔记，完整的记录了以源码方式编译、配置 LNMP 环境的步骤，虽然也小范围用于生产环境的服务构建，但建议只把它拿来学习用，因为有些细节和优化项并不完善。 生产环境，强烈建议使用以下两个相对成熟、稳定的脚本工具：  https:&#x2F;&#x2F;oneinstack.com https:&#x2F;&#x2F;lnmp.org">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 CentOS6.x 源码编译安装 LNMP 环境">
+<meta property="og:url" content="https://sqiang.net/post/3800214565.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="这是之前在学习、工作过程中整理的笔记，完整的记录了以源码方式编译、配置 LNMP 环境的步骤，虽然也小范围用于生产环境的服务构建，但建议只把它拿来学习用，因为有些细节和优化项并不完善。 生产环境，强烈建议使用以下两个相对成熟、稳定的脚本工具：  https:&#x2F;&#x2F;oneinstack.com https:&#x2F;&#x2F;lnmp.org">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-29T11:13:46.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:01.997Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="LNMP">
+<meta property="article:tag" content="Nginx">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/3800214565.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;3800214565.html&quot;,&quot;path&quot;:&quot;post&#x2F;3800214565.html&quot;,&quot;title&quot;:&quot;基于 CentOS6.x 源码编译安装 LNMP 环境&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>基于 CentOS6.x 源码编译安装 LNMP 环境 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%87%86%E5%A4%87%E7%AF%87"><span class="nav-text">1. 准备篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%8E%A8%E8%8D%90%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">1.1. 推荐目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E4%B8%8B%E8%BD%BD%E6%BA%90%E7%A0%81%E5%8C%85"><span class="nav-text">1.2. 下载源码包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E9%98%B2%E7%81%AB%E5%A2%99%E5%BC%80%E6%94%BE80-3306%E7%AB%AF%E5%8F%A3"><span class="nav-text">1.3. 防火墙开放80&#x2F;3306端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E5%85%B3%E9%97%AD-SELinux"><span class="nav-text">1.4. 关闭 SELinux</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91%E6%97%B6%E6%89%80%E9%9C%80%E4%BE%9D%E8%B5%96"><span class="nav-text">1.5. 安装编译时所需依赖</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85-MySQL"><span class="nav-text">2. 安装 MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7"><span class="nav-text">2.1. 创建用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%A7%A3%E5%8E%8B%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-text">2.2. 解压、配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%95%B0%E6%8D%AE"><span class="nav-text">2.3. 初始化数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E4%BF%AE%E6%94%B9%E8%AE%BE%E7%BD%AE%E5%B9%B6%E5%90%AF%E5%8A%A8%E6%9C%8D%E5%8A%A1"><span class="nav-text">2.4. 修改设置并启动服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-text">2.5. 设置开机自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-%E9%85%8D%E7%BD%AEMySQL%E5%91%BD%E4%BB%A4%E5%85%A8%E5%B1%80%E4%BD%BF%E7%94%A8"><span class="nav-text">2.6. 配置MySQL命令全局使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-7-%E7%99%BB%E5%BD%95%E6%B5%8B%E8%AF%95%EF%BC%8C%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4%E7%AE%A1%E7%90%86%E5%91%98%E5%AF%86%E7%A0%81"><span class="nav-text">2.7. 登录测试，更改默认管理员密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-%E6%B8%85%E7%90%86%E6%B2%A1%E6%9C%89%E7%94%A8%E7%9A%84%E7%94%A8%E6%88%B7%E5%8F%8A%E5%BA%93"><span class="nav-text">2.8. 清理没有用的用户及库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%89%E8%A3%85-Nginx"><span class="nav-text">3. 安装 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="nav-text">3.1. 安装依赖包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="nav-text">3.2. 添加用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%AE%89%E8%A3%85"><span class="nav-text">3.3. 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E5%90%AF%E5%8A%A8"><span class="nav-text">3.4. 启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E6%B7%BB%E5%8A%A0%E5%BF%AB%E6%8D%B7%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-text">3.5. 添加快捷启动脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-text">3.6. 设置开机自启动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%AE%89%E8%A3%85-PHP"><span class="nav-text">4. 安装 PHP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E6%A3%80%E6%9F%A5-MySQL%E3%80%81Nginx%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="nav-text">4.1. 检查 MySQL、Nginx是否正常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%A3%80%E6%9F%A5%E5%AE%89%E8%A3%85-PHP-%E6%89%80%E9%9C%80%E7%9A%84-lib-%E5%BA%93"><span class="nav-text">4.2. 检查安装 PHP 所需的 lib 库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E5%AE%89%E8%A3%85"><span class="nav-text">4.3. 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E9%85%8D%E7%BD%AE-PHP-%E6%9C%8D%E5%8A%A1%EF%BC%88php-fpm-%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="nav-text">4.4. 配置 PHP 服务（php-fpm 方式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E9%85%8D%E7%BD%AE-Nginx-%E6%94%AF%E6%8C%81-PHP-%E7%A8%8B%E5%BA%8F%E8%AF%B7%E6%B1%82%E8%AE%BF%E9%97%AE"><span class="nav-text">4.5. 配置 Nginx 支持 PHP 程序请求访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%99%84%E5%BD%95%EF%BC%88%E8%BD%AF%E4%BB%B6%E4%B8%8B%E8%BD%BD%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="nav-text">5. 附录（软件下载连接）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-MySQL"><span class="nav-text">5.1. MySQL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-Nginx"><span class="nav-text">5.2. Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-PHP"><span class="nav-text">5.3. PHP</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3800214565.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 CentOS6.x 源码编译安装 LNMP 环境
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-29 19:13:46" itemprop="dateCreated datePublished" datetime="2020-02-29T19:13:46+08:00">2020-02-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:01" itemprop="dateModified" datetime="2021-05-06T09:39:01+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>这是之前在学习、工作过程中整理的笔记，完整的记录了以源码方式编译、配置 LNMP 环境的步骤，虽然也小范围用于生产环境的服务构建，但建议只把它拿来学习用，因为有些细节和优化项并不完善。</p>
+<p>生产环境，强烈建议使用以下两个相对成熟、稳定的脚本工具：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://oneinstack.com/">https://oneinstack.com</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lnmp.org/">https://lnmp.org</a></li>
+</ul>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-准备篇"><a href="#1-准备篇" class="headerlink" title="1. 准备篇"></a>1. 准备篇</h3><h4 id="1-1-推荐目录结构"><a href="#1-1-推荐目录结构" class="headerlink" title="1.1. 推荐目录结构"></a>1.1. 推荐目录结构</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /lnmp/server /lnmp/www /lnmp/<span class="built_in">log</span>/mysql /lnmp/<span class="built_in">log</span>/nginx /lnmp/<span class="built_in">log</span>/php</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注：完整的服务配置好后的目录结构类似如下</span></span><br><span class="line">/lnmp/</span><br><span class="line">├── <span class="built_in">log</span></span><br><span class="line">│   ├── mysql</span><br><span class="line">│   ├── nginx</span><br><span class="line">│   └── php</span><br><span class="line">├── server</span><br><span class="line">│   ├── mysql -&gt; /lnmp/server/mysql-5.x.xx</span><br><span class="line">│   ├── mysql-5.x.xx</span><br><span class="line">│   ├── nginx -&gt; /lnmp/server/nginx-1.4.4</span><br><span class="line">│   ├── nginx-1.4.4</span><br><span class="line">│   ├── php -&gt; /lnmp/server/php-5.x.xx</span><br><span class="line">│   └── php-5.x.xx</span><br><span class="line">├── info.log</span><br><span class="line">└── www</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  chown -R www:www /lnmp/<span class="built_in">log</span></span><br><span class="line">➜  chmod -R 755 /lnmp/<span class="built_in">log</span></span><br><span class="line">➜  chown -R www:www /lnmp/www</span><br><span class="line">➜  chmod -R 755 /lnmp/www</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-下载源码包"><a href="#1-2-下载源码包" class="headerlink" title="1.2. 下载源码包"></a>1.2. 下载源码包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 源码包下载存放目录</span></span><br><span class="line">➜  mkdir -p /root/src &amp;&amp; <span class="built_in">cd</span> /root/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它版本及备用下载地址参见附录</span></span><br><span class="line">➜  wget http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.50-linux2.6-x86_64.tar.gz</span><br><span class="line">➜  wget http://nginx.org/download/nginx-1.6.3.tar.gz</span><br><span class="line">➜  wget http://cn2.php.net/distributions/php-5.5.36.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-防火墙开放80-3306端口"><a href="#1-3-防火墙开放80-3306端口" class="headerlink" title="1.3. 防火墙开放80/3306端口"></a>1.3. 防火墙开放80/3306端口</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前防火墙状态</span></span><br><span class="line">➜  /etc/init.d/iptables status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑防火墙配置文件</span></span><br><span class="line">➜  vim /etc/sysconfig/iptables</span><br><span class="line">.....</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT     &lt;------- 开放80</span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT   &lt;------- 开放3306</span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">COMMIT</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启防火墙</span></span><br><span class="line">➜  /etc/init.d/iptables restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-关闭-SELinux"><a href="#1-4-关闭-SELinux" class="headerlink" title="1.4. 关闭 SELinux"></a>1.4. 关闭 SELinux</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 对于 Linux 新手，建议直接关闭，以免出现不知所然的问题</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;s/SELINUX=enforcing/SELINUX=disabled/&#x27;</span> /etc/selinux/config</span><br><span class="line">➜  shutdown -r now</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-安装编译时所需依赖"><a href="#1-5-安装编译时所需依赖" class="headerlink" title="1.5. 安装编译时所需依赖"></a>1.5. 安装编译时所需依赖</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum -y install gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-安装-MySQL"><a href="#2-安装-MySQL" class="headerlink" title="2. 安装 MySQL"></a>2. 安装 MySQL</h3><h4 id="2-1-创建用户"><a href="#2-1-创建用户" class="headerlink" title="2.1. 创建用户"></a>2.1. 创建用户</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  groupadd mysql</span><br><span class="line">➜  useradd -s /sbin/nologin -g mysql -M mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 也可以只使用下面这一条命令替代</span></span><br><span class="line">➜  useradd mysql -s /sbin/nologin -M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查用户是否创建成功</span></span><br><span class="line">➜  tail -1 /etc/passwd</span><br><span class="line">mysql:x:501:501::/home/mysql:/sbin/nologin</span><br><span class="line">➜  id mysql</span><br><span class="line">uid=501(mysql) gid=501(mysql) groups=501(mysql)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-解压、配置"><a href="#2-2-解压、配置" class="headerlink" title="2.2. 解压、配置"></a>2.2. 解压、配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /root/src</span><br><span class="line">➜  tar -zxvf mysql-5.5.50-linux2.6-x86_64.tar.gz</span><br><span class="line">➜  mv mysql-5.5.50-linux2.6-x86_64 /lnmp/server/mysql-5.5.50 &amp;&amp; <span class="built_in">cd</span> /lnmp/server</span><br><span class="line">➜  ls -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立具体版本的软连接</span></span><br><span class="line">➜  ln -s /lnmp/server/mysql-5.5.50/ mysql</span><br><span class="line">➜  ls -l</span><br><span class="line">➜  <span class="built_in">cd</span> mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有配置样例</span></span><br><span class="line">➜  ls -l support-files/*.cnf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 /bin/cp 直接覆盖重名文件，不提示</span></span><br><span class="line">➜  /bin/cp support-files/my-large.cnf /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-初始化数据"><a href="#2-3-初始化数据" class="headerlink" title="2.3. 初始化数据"></a>2.3. 初始化数据</h4><p> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个单独的目录，存放物理数据文件</span></span><br><span class="line">➜  mkdir -p /data/mysql</span><br><span class="line">➜  chown -R mysql:mysql /data/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行初始化脚本</span></span><br><span class="line">➜  ./scripts/mysql_install_db --basedir=/lnmp/server/mysql --datadir=/data/mysql --user=mysql</span><br><span class="line">...</span><br><span class="line">Installing MySQL system tables...</span><br><span class="line">160529 18:23:19 [Note] /lnmp/server/mysql/bin/mysqld (mysqld 5.5.50) starting as process 33182 ...</span><br><span class="line">OK</span><br><span class="line">Filling <span class="built_in">help</span> tables...</span><br><span class="line">160529 18:23:20 [Note] /lnmp/server/mysql/bin/mysqld (mysqld 5.5.50) starting as process 33189 ...</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">To start mysqld at boot time you have to copy</span><br><span class="line">support-files/mysql.server to the right place <span class="keyword">for</span> your system</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注意：如上出现两个 OK，则表示初始化成功；否则失败，需解决初始化错误。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-修改设置并启动服务"><a href="#2-4-修改设置并启动服务" class="headerlink" title="2.4. 修改设置并启动服务"></a>2.4. 修改设置并启动服务</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  cp ./support-files/mysql.server /etc/init.d/mysqld</span><br><span class="line">➜  chmod 755 /etc/init.d/mysqld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 替换二进制包的默认MySQL安装路径</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;s#/usr/local/mysql#/lnmp/server/mysql#g&#x27;</span> /lnmp/server/mysql/bin/mysqld_safe /etc/init.d/mysqld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 basedir 和 datadir</span></span><br><span class="line">➜  vim /etc/init.d/mysqld</span><br><span class="line">basedir=/lnmp/server/mysql</span><br><span class="line">datadir=/data/mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">➜  /etc/init.d/mysqld start</span><br><span class="line">Starting MySQL... SUCCESS!</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 3306 是否启动：</span></span><br><span class="line">➜  netstat -tlunp|grep mysql</span><br><span class="line">tcp        0      0 0.0.0.0:3306     0.0.0.0:*      LISTEN      33457/mysqld</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-设置开机自启动"><a href="#2-5-设置开机自启动" class="headerlink" title="2.5. 设置开机自启动"></a>2.5. 设置开机自启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  chkconfig --add mysqld</span><br><span class="line">➜  chkconfig mysqld on</span><br><span class="line">➜  chkconfig --list|grep mysqld</span><br><span class="line">mysqld          0:off   1:off   2:on    3:on    4:on    5:on    6:off</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-配置MySQL命令全局使用"><a href="#2-6-配置MySQL命令全局使用" class="headerlink" title="2.6. 配置MySQL命令全局使用"></a>2.6. 配置MySQL命令全局使用</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export PATH=/lnmp/server/mysql/bin:$PATH&#x27;</span> &gt;&gt;/etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查写入文件</span></span><br><span class="line">➜  tail -1 /etc/profile</span><br><span class="line"><span class="built_in">export</span> PATH=/lnmp/server/mysql/bin:<span class="variable">$PATH</span></span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查最终设置结果</span></span><br><span class="line">➜  <span class="built_in">echo</span> <span class="variable">$PATH</span></span><br><span class="line">/lnmp/server/mysql/bin:/usr/<span class="built_in">local</span>/bin:/bin:/usr/bin:/usr/<span class="built_in">local</span>/sbin:/usr/sbin:/sbin:/home/whoru/bin</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-7-登录测试，更改默认管理员密码"><a href="#2-7-登录测试，更改默认管理员密码" class="headerlink" title="2.7. 登录测试，更改默认管理员密码"></a>2.7. 登录测试，更改默认管理员密码</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输入 mysql 可以直接登录，安装好后默认密码为空</span></span><br><span class="line">➜  mysql</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">.....</span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;quit;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改 root 默认的空密码</span></span><br><span class="line">➜  mysqladmin -u root password <span class="string">&#x27;whoru123&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新连接测试</span></span><br><span class="line">➜  mysql</span><br><span class="line">ERROR 1045 (28000): Access denied <span class="keyword">for</span> user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> (using password: NO)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 必须使用用户名和密码登录</span></span><br><span class="line">➜  mysql -uroot -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">.....</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-清理没有用的用户及库"><a href="#2-8-清理没有用的用户及库" class="headerlink" title="2.8. 清理没有用的用户及库"></a>2.8. 清理没有用的用户及库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; select user,host from mysql.user;</span><br><span class="line">+------+-----------+</span><br><span class="line">| user | host      |</span><br><span class="line">+------+-----------+</span><br><span class="line">| root | 127.0.0.1 |</span><br><span class="line">| root | ::1       |</span><br><span class="line">|      | localhost |</span><br><span class="line">| root | localhost |</span><br><span class="line">|      | web1      |</span><br><span class="line">| root | web1      |</span><br><span class="line">+------+-----------+</span><br><span class="line">6 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; drop user <span class="string">&quot;root&quot;</span>@<span class="string">&quot;::1&quot;</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; drop user <span class="string">&quot;&quot;</span>@<span class="string">&quot;localhost&quot;</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; drop user <span class="string">&quot;&quot;</span>@<span class="string">&quot;web1&quot;</span>;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; drop user <span class="string">&quot;root&quot;</span>@<span class="string">&quot;web1&quot;</span>;</span><br><span class="line">Query OK, 0 rows affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select user,host from mysql.user;</span><br><span class="line">+------+-----------+</span><br><span class="line">| user | host      |</span><br><span class="line">+------+-----------+</span><br><span class="line">| root | 127.0.0.1 |</span><br><span class="line">| root | localhost |</span><br><span class="line">+------+-----------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装-Nginx"><a href="#3-安装-Nginx" class="headerlink" title="3. 安装 Nginx"></a>3. 安装 Nginx</h3><h4 id="3-1-安装依赖包"><a href="#3-1-安装依赖包" class="headerlink" title="3.1. 安装依赖包"></a>3.1. 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查所依赖的包是否已经安装</span></span><br><span class="line"><span class="comment"># 其中 pcre 用于 nginx 的 rewrite 模块</span></span><br><span class="line">➜  rpm -qa pcre* openssl* zlib*</span><br><span class="line">zlib-1.2.3-29.el6.x86_64</span><br><span class="line">openssl-1.0.1e-48.el6_8.1.x86_64</span><br><span class="line">pcre-7.8-7.el6.x86_64</span><br><span class="line"></span><br><span class="line">➜  yum -y install pcre-devel openssl-devel zlib-devel</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-添加用户"><a href="#3-2-添加用户" class="headerlink" title="3.2. 添加用户"></a>3.2. 添加用户</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  useradd www -s /sbin/nologin -M</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-安装"><a href="#3-3-安装" class="headerlink" title="3.3. 安装"></a>3.3. 安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /root/src</span><br><span class="line">➜  tar -zxvf nginx-1.6.3.tar.gz &amp;&amp; <span class="built_in">cd</span> nginx-1.6.3</span><br><span class="line">➜  ./configure \</span><br><span class="line">--prefix=/lnmp/server/nginx-1.6.3 \</span><br><span class="line">--error-log-path=/lnmp/<span class="built_in">log</span>/nginx/error.log \</span><br><span class="line">--http-log-path=/lnmp/<span class="built_in">log</span>/nginx/access.log \</span><br><span class="line">--user=www \</span><br><span class="line">--group=www \</span><br><span class="line">--with-http_realip_module \</span><br><span class="line">--with-http_sub_module \</span><br><span class="line">--with-http_ssl_module \</span><br><span class="line">--with-http_stub_status_module \</span><br><span class="line">--with-http_gzip_static_module \</span><br><span class="line">--with-pcre</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br><span class="line">➜  <span class="built_in">cd</span> /lnmp/server</span><br><span class="line">➜  ln -s /lnmp/server/nginx-1.6.3/ nginx</span><br><span class="line">➜  ls -l</span><br></pre></td></tr></table></figure>
+
+<p>提示：编译安装过程中可以使用命令 <code># echo $?</code> 检 <code>configure</code> / <code>make</code> 的执行结果，<code>0</code> 表示成功.</p>
+<h4 id="3-4-启动"><a href="#3-4-启动" class="headerlink" title="3.4. 启动"></a>3.4. 启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检查配置文件语法</span></span><br><span class="line">➜  /lnmp/server/nginx/sbin/nginx -t</span><br><span class="line">nginx: the configuration file /lnmp/server/nginx-1.6.3//conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /lnmp/server/nginx-1.6.3//conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">➜  /lnmp/server/nginx/sbin/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查</span></span><br><span class="line">➜  lsof -i :80</span><br><span class="line">COMMAND   PID  USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span><br><span class="line">nginx   38366  root    6u  IPv4  93417      0t0  TCP *:http (LISTEN)</span><br><span class="line">nginx   38367 nginx    6u  IPv4  93417      0t0  TCP *:http (LISTEN)</span><br><span class="line">➜  netstat -tlunp|grep 80</span><br><span class="line">tcp        0      0 0.0.0.0:80    0.0.0.0:*        LISTEN      38366/nginx</span><br><span class="line">➜  wget 127.0.0.1</span><br><span class="line">➜  curl 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：当浏览器无法访问时，尝试修改 SELinux、iptables</p>
+</blockquote>
+<h4 id="3-5-添加快捷启动脚本"><a href="#3-5-添加快捷启动脚本" class="headerlink" title="3.5. 添加快捷启动脚本"></a>3.5. 添加快捷启动脚本</h4><p>，之后可以通过 service nginx xxx 方式控制</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 文件内容见附件 nginx.sh</span></span><br><span class="line">➜  vim /etc/init.d/nginx</span><br><span class="line">➜  chmod 755 /etc/init.d/nginx</span><br><span class="line">➜  service nginx</span><br><span class="line">Usage: /etc/init.d/nginx &#123;start|stop|reload|restart|configtest&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置文件检查</span></span><br><span class="line">➜  service nginx configtest</span><br><span class="line">nginx: the configuration file /lnmp/server/nginx/conf/nginx.conf syntax is ok</span><br><span class="line">nginx: configuration file /lnmp/server/nginx/conf/nginx.conf <span class="built_in">test</span> is successful</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动</span></span><br><span class="line">➜  service nginx start</span><br><span class="line">Starting Nginx:                                            [  OK  ]</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-设置开机自启动"><a href="#3-6-设置开机自启动" class="headerlink" title="3.6. 设置开机自启动"></a>3.6. 设置开机自启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  chkconfig --add nginx</span><br><span class="line">➜  chkconfig nginx on</span><br><span class="line">➜  chkconfig --list|grep nginx</span><br><span class="line">nginx          0:off   1:off   2:on    3:on    4:on    5:on    6:off</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-安装-PHP"><a href="#4-安装-PHP" class="headerlink" title="4. 安装 PHP"></a>4. 安装 PHP</h3><h4 id="4-1-检查-MySQL、Nginx是否正常"><a href="#4-1-检查-MySQL、Nginx是否正常" class="headerlink" title="4.1. 检查 MySQL、Nginx是否正常"></a>4.1. 检查 MySQL、Nginx是否正常</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  netstat -tlunp</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-检查安装-PHP-所需的-lib-库"><a href="#4-2-检查安装-PHP-所需的-lib-库" class="headerlink" title="4.2. 检查安装 PHP 所需的 lib 库"></a>4.2. 检查安装 PHP 所需的 lib 库</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  rpm -qa zlib-devel libxm2-devel libjpeg-turbo-devel libpng-devel gd-devel libcurl-devel libxslt-devel freetype-devel</span><br><span class="line">zlib-devel-1.2.3-29.el6.x86_64</span><br><span class="line">➜  yum -y install zlib-devel libxm2-devel libjpeg-turbo-devel libpng-devel gd-devel libcurl-devel libxslt-devel freetype-devel</span><br></pre></td></tr></table></figure>
+
+<p>⚠️ 注意：默认 yum 源没有 <code>libiconv-devel</code> 这个包，需要按照下面的步骤单独编译安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /root/src</span><br><span class="line">➜  wget http://ftp.gnu.org/gnu/libiconv/libiconv-1.14.tar.gz</span><br><span class="line">➜  tar -zxvf libiconv-1.14.tar.gz &amp;&amp; <span class="built_in">cd</span> libiconv-1.14</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/libiconv</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装其它额外库</span></span><br><span class="line">➜  wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo</span><br><span class="line">➜  yum -y install libmcrypt-devel mhash mcrypt</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-安装"><a href="#4-3-安装" class="headerlink" title="4.3. 安装"></a>4.3. 安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /root/src</span><br><span class="line">➜  tar zxvf php-5.5.36.tar.gz &amp;&amp; <span class="built_in">cd</span> php-5.5.36</span><br><span class="line">➜  ./configure \</span><br><span class="line">--prefix=/lnmp/server/php5.5.36 \</span><br><span class="line">--with-config-file-path=/lnmp/server/php5.5.36/etc \</span><br><span class="line">--enable-inline-optimization \</span><br><span class="line">--disable-debug \</span><br><span class="line">--disable-rpath \</span><br><span class="line">--enable-shared \</span><br><span class="line">--enable-fpm \</span><br><span class="line">--with-fpm-user=www \</span><br><span class="line">--with-fpm-group=www \</span><br><span class="line">--with-mysql=mysqlnd \</span><br><span class="line">--with-mysqli=mysqlnd \</span><br><span class="line">--with-pdo-mysql=mysqlnd \</span><br><span class="line">--enable-exif \</span><br><span class="line">--with-gd \</span><br><span class="line">--enable-gd-native-ttf \</span><br><span class="line">--with-jpeg-dir \</span><br><span class="line">--with-png-dir \</span><br><span class="line">--with-freetype-dir \</span><br><span class="line">--with-gettext \</span><br><span class="line">--with-iconv-dir=/usr/<span class="built_in">local</span>/libiconv \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--with-mcrypt \</span><br><span class="line">--with-mhash \</span><br><span class="line">--with-openssl \</span><br><span class="line">--enable-bcmath \</span><br><span class="line">--enable-pcntl  \</span><br><span class="line">--enable-shmop \</span><br><span class="line">--enable-sysvsem \</span><br><span class="line">--enable-soap \</span><br><span class="line">--with-libxml-dir \</span><br><span class="line">--enable-sockets \</span><br><span class="line">--with-curl \</span><br><span class="line">--enable-ftp \</span><br><span class="line">--with-zlib-dir \</span><br><span class="line">--enable-zip \</span><br><span class="line">--with-pear</span><br><span class="line"></span><br><span class="line">➜  ln -s /lnmp/server/php5.5.36/ /lnmp/server/php</span><br><span class="line">➜  ll php.ini*</span><br><span class="line">-rw-r--r-- 1 1001 1001 69236 5月  25 17:36 php.ini-development   &lt;------- 开发模式，更多开启日志、调试信息</span><br><span class="line">-rw-r--r-- 1 1001 1001 69266 5月  25 17:36 php.ini-production    &lt;------- 生产模式</span><br><span class="line">➜  cp php.ini-production /lnmp/server/php/etc/php.ini</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-4-配置-PHP-服务（php-fpm-方式）"><a href="#4-4-配置-PHP-服务（php-fpm-方式）" class="headerlink" title="4.4. 配置 PHP 服务（php-fpm 方式）"></a>4.4. 配置 PHP 服务（php-fpm 方式）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /lnmp/server/php/etc/</span><br><span class="line">➜  ls</span><br><span class="line">pear.conf  php-fpm.conf.default</span><br><span class="line">➜  cp php-fpm.conf.default php-fpm.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 php-fmp 服务</span></span><br><span class="line">➜  /lnmp/server/php/sbin/php-fpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 php-fpm 启动进程</span></span><br><span class="line">➜  ps -ef|grep php-fpm</span><br><span class="line">root       2270      1  0 00:39 ?        00:00:00 php-fpm: master process (/lnmp/server/php5.5.36/etc/php-fpm.conf)</span><br><span class="line">www        2271   2270  0 00:39 ?        00:00:00 php-fpm: pool www</span><br><span class="line">www        2272   2270  0 00:39 ?        00:00:00 php-fpm: pool www</span><br><span class="line">root       2274   2227  0 00:39 pts/0    00:00:00 grep php-fpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 php-fpm 默认端口</span></span><br><span class="line">➜  lsof -i :9000</span><br><span class="line">COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME</span><br><span class="line">php-fpm 2270 root    7u  IPv4  12844      0t0  TCP localhost:cslistener (LISTEN)</span><br><span class="line">php-fpm 2271  www    0u  IPv4  12844      0t0  TCP localhost:cslistener (LISTEN)</span><br><span class="line">php-fpm 2272  www    0u  IPv4  12844      0t0  TCP localhost:cslistener (LISTEN)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 php-fpm 启动脚本</span></span><br><span class="line">➜  vim /etc/init.d/php-fpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制 php-fpm.sh 中的内容进去</span></span><br><span class="line">➜  chmod 755 /etc/init.d/php-fpm</span><br><span class="line">➜  service php-fpm start|stop|restart|reload|configtest</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-5-配置-Nginx-支持-PHP-程序请求访问"><a href="#4-5-配置-Nginx-支持-PHP-程序请求访问" class="headerlink" title="4.5. 配置 Nginx 支持 PHP 程序请求访问"></a>4.5. 配置 Nginx 支持 PHP 程序请求访问</h4><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line">    <span class="attribute">root</span>   /lnmp/www/;</span><br><span class="line">    <span class="attribute">index</span>  index.html index.htm index.php;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ .*\.(php|php5)?$</span> &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>   <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">        <span class="attribute">fastcgi_index</span>  index.php;</span><br><span class="line">        <span class="attribute">include</span>        fastcgi.conf;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-附录（软件下载连接）"><a href="#5-附录（软件下载连接）" class="headerlink" title="5. 附录（软件下载连接）"></a>5. 附录（软件下载连接）</h3><h4 id="5-1-MySQL"><a href="#5-1-MySQL" class="headerlink" title="5.1. MySQL"></a>5.1. MySQL</h4><ul>
+<li>5.1：<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://dev.mysql.com/get/Downloads/MySQL-5.1/mysql-5.1.73-linux-x86_64-glibc23.tar.gz">http://dev.mysql.com/get/Downloads/MySQL-5.1/mysql-5.1.73-linux-x86_64-glibc23.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.73-linux-x86_64-glibc23.tar.gz">http://mirrors.sohu.com/mysql/MySQL-5.1/mysql-5.1.73-linux-x86_64-glibc23.tar.gz</a></li>
+</ul>
+</li>
+<li>5.5：<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.50-linux2.6-x86_64.tar.gz">http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.50-linux2.6-x86_64.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.50-linux2.6-x86_64.tar.gz">http://mirrors.sohu.com/mysql/MySQL-5.5/mysql-5.5.50-linux2.6-x86_64.tar.gz</a></li>
+</ul>
+</li>
+<li>5.6：<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.31-linux-glibc2.5-x86_64.tar.gz">http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.31-linux-glibc2.5-x86_64.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.31-linux-glibc2.5-x86_64.tar.gz">http://mirrors.sohu.com/mysql/MySQL-5.6/mysql-5.6.31-linux-glibc2.5-x86_64.tar.gz</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="5-2-Nginx"><a href="#5-2-Nginx" class="headerlink" title="5.2. Nginx"></a>5.2. Nginx</h4><ul>
+<li>1.4.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://nginx.org/download/nginx-1.4.7.tar.gz">http://nginx.org/download/nginx-1.4.7.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/nginx/nginx-1.4.7.tar.gz">http://mirrors.sohu.com/nginx/nginx-1.4.7.tar.gz</a></li>
+</ul>
+</li>
+<li>1.6.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://nginx.org/download/nginx-1.6.3.tar.gz">http://nginx.org/download/nginx-1.6.3.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/nginx/nginx-1.6.3.tar.gz">http://mirrors.sohu.com/nginx/nginx-1.6.3.tar.gz</a></li>
+</ul>
+</li>
+<li>1.8.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://nginx.org/download/nginx-1.8.1.tar.gz">http://nginx.org/download/nginx-1.8.1.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/nginx/nginx-1.8.1.tar.gz">http://mirrors.sohu.com/nginx/nginx-1.8.1.tar.gz</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="5-3-PHP"><a href="#5-3-PHP" class="headerlink" title="5.3. PHP"></a>5.3. PHP</h4><ul>
+<li>5.4.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://cn2.php.net/distributions/php-5.4.45.tar.gz">http://cn2.php.net/distributions/php-5.4.45.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/php/php-5.4.45.tar.gz">http://mirrors.sohu.com/php/php-5.4.45.tar.gz</a></li>
+</ul>
+</li>
+<li>5.5.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://cn2.php.net/distributions/php-5.5.36.tar.gz">http://cn2.php.net/distributions/php-5.5.36.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/php/php-5.5.36.tar.xz">http://mirrors.sohu.com/php/php-5.5.36.tar.xz</a></li>
+</ul>
+</li>
+<li>5.6.x<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://cn2.php.net/distributions/php-5.6.22.tar.gz">http://cn2.php.net/distributions/php-5.6.22.tar.gz</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://mirrors.sohu.com/php/php-5.6.22.tar.gz">http://mirrors.sohu.com/php/php-5.6.22.tar.gz</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/3800214565.html" title="基于 CentOS6.x 源码编译安装 LNMP 环境">https://sqiang.net/post/3800214565.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/LNMP/" rel="tag"># LNMP</a>
+              <a href="/tags/Nginx/" rel="tag"># Nginx</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/600047155.html" rel="prev" title="Linux系统切换阿里云软件更新源">
+                  <i class="fa fa-chevron-left"></i> Linux系统切换阿里云软件更新源
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/525717070.html" rel="next" title="基于 Hexo 快速构建个人静态博客系统">
+                  基于 Hexo 快速构建个人静态博客系统 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;089c897b90e46d397816182c916e3f48&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

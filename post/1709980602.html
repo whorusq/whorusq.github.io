@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="1. 创建版本库 单版本库与多版本库各有优点和缺点，主要根据具体项目情况进行选择。  1.1. 多库模式 创建  ➜  mkdir -p &#x2F;home&#x2F;repos➜  svnadmin create &#x2F;home&#x2F;repos&#x2F;resume➜  svnadmin create &#x2F;home&#x2F;repos&#x2F;blog➜  cd &#x2F;home&#x2F;repos➜  tree -L 2.|-- blog|   |-- RE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svn 服务端配置">
+<meta property="og:url" content="https://sqiang.net/post/1709980602.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="1. 创建版本库 单版本库与多版本库各有优点和缺点，主要根据具体项目情况进行选择。  1.1. 多库模式 创建  ➜  mkdir -p &#x2F;home&#x2F;repos➜  svnadmin create &#x2F;home&#x2F;repos&#x2F;resume➜  svnadmin create &#x2F;home&#x2F;repos&#x2F;blog➜  cd &#x2F;home&#x2F;repos➜  tree -L 2.|-- blog|   |-- RE">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-19T14:07:26.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.020Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="版本管理">
+<meta property="article:tag" content="svn">
+<meta property="article:tag" content="Subversion">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1709980602.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;1709980602.html&quot;,&quot;path&quot;:&quot;post&#x2F;1709980602.html&quot;,&quot;title&quot;:&quot;svn 服务端配置&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>svn 服务端配置 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E7%89%88%E6%9C%AC%E5%BA%93"><span class="nav-text">1. 创建版本库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%A4%9A%E5%BA%93%E6%A8%A1%E5%BC%8F"><span class="nav-text">1.1. 多库模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%8D%95%E5%BA%93%E6%A8%A1%E5%BC%8F"><span class="nav-text">1.2. 单库模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%90%AF%E5%8A%A8"><span class="nav-text">2. 启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E8%AE%BF%E9%97%AE"><span class="nav-text">3. 访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%81%9C%E6%AD%A2%E6%9C%8D%E5%8A%A1"><span class="nav-text">4. 停止服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E5%AE%83"><span class="nav-text">5. 其它</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E5%88%9B%E5%BB%BA%E9%80%9A%E7%94%A8%E7%89%88%E6%9C%AC%E5%BA%93%E5%B8%83%E5%B1%80"><span class="nav-text">5.1. 创建通用版本库布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-x-%E5%8F%82%E7%85%A7%E8%B5%84%E6%96%99"><span class="nav-text">5.x. 参照资料</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1709980602.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          svn 服务端配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-19 22:07:26" itemprop="dateCreated datePublished" datetime="2020-01-19T22:07:26+08:00">2020-01-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><blockquote>
+<p>单版本库与多版本库各有优点和缺点，主要根据具体项目情况进行选择。</p>
+</blockquote>
+<h4 id="1-1-多库模式"><a href="#1-1-多库模式" class="headerlink" title="1.1. 多库模式"></a>1.1. 多库模式</h4><ol>
+<li><p>创建</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /home/repos</span><br><span class="line">➜  svnadmin create /home/repos/resume</span><br><span class="line">➜  svnadmin create /home/repos/blog</span><br><span class="line">➜  <span class="built_in">cd</span> /home/repos</span><br><span class="line">➜  tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- blog</span><br><span class="line">|   |-- README.txt</span><br><span class="line">|   |-- conf</span><br><span class="line">|   |-- db</span><br><span class="line">|   |-- format</span><br><span class="line">|   |-- hooks</span><br><span class="line">|   `-- locks</span><br><span class="line">`-- resume</span><br><span class="line">    |-- README.txt</span><br><span class="line">    |-- conf</span><br><span class="line">    |-- db</span><br><span class="line">    |-- format</span><br><span class="line">    |-- hooks</span><br><span class="line">    `-- locks</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>公用一份 authz 和 passwd 文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mv blog/conf/authz ./</span><br><span class="line">➜  mv blog/conf/passwd ./</span><br><span class="line">➜  rm -rf resume/conf/authz resume/conf/passwd</span><br></pre></td></tr></table></figure></li>
+<li><p>分别设置每个库的 <strong>svnserve.conf</strong> 文件</p>
+<p> 以 blog 为例 <code>vim /home/repos/blog/conf/svnserve.conf</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名用户只读(read或none)</span></span><br><span class="line">anon-access = none</span><br><span class="line"></span><br><span class="line"><span class="comment"># 认证用户可写</span></span><br><span class="line">auth-access = write</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 passwd 文件的位置</span></span><br><span class="line">password-db = ../../passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 authz 文件的位置</span></span><br><span class="line">authz-db = ../../authz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仓库的文件名(具体在客户端更新下载的时候能看到仓库名字)</span></span><br><span class="line">realm = blog</span><br></pre></td></tr></table></figure></li>
+<li><p>修改公用的 <strong>passwd</strong> 设置用户名、密码</p>
+<p> <code># vim /home/repos/passwd</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[users]</span><br><span class="line">admin = admin</span><br><span class="line">lisi = pwdls</span><br><span class="line">zhansan = pwdzs</span><br></pre></td></tr></table></figure></li>
+<li><p>修改公用的 <strong>authz</strong> 设置用户访问权限</p>
+<p> <code>vim /home/repos/authz</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">blog_rw = zhangsan</span><br><span class="line">resume_rw = lisi</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[blog:/]</span><br><span class="line">@blog_rw = rw</span><br><span class="line"></span><br><span class="line">[resume:/]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
+
+<p> 说明：admin 可以读写 blog、resume；zhangsan 只能读写 blog；lisi 只能读写 resume。</p>
+</li>
+</ol>
+<h4 id="1-2-单库模式"><a href="#1-2-单库模式" class="headerlink" title="1.2. 单库模式"></a>1.2. 单库模式</h4><blockquote>
+<p>单库方式比较简单，只针对于单一项目的开发管理，并且在单库方式下一台服务器只能创建一个样本库，限制较大！</p>
+</blockquote>
+<p>创建一个新的单库 cms</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p /home/repos2</span><br><span class="line">➜ svnadmin create /home/repos2/cms</span><br></pre></td></tr></table></figure>
+
+<p>单库模式下，配置文件在 <code>/home/repos2/cms/conf</code> 下，其中 svnserv.conf 和 passwd 的配置方式与多库相似，authz 的配置有较大区别，如下：</p>
+<p><code>vim /home/repos2/cms/conf/authz</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">dev = wanger</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line">@dev = rw</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-启动"><a href="#2-启动" class="headerlink" title="2. 启动"></a>2. 启动</h3><blockquote>
+<p>注意：svn 默认监听端口 TCP 3690，如果开启了防火墙需提前加入可访问列表；或者在启动时候，使用参数 <code>--listen-port</code>。</p>
+</blockquote>
+<p>多库 <code>svnserve -d -r /home/repos</code></p>
+<p>单库 <code>svnserve -d -r /home/repos/cms</code></p>
+<ul>
+<li><code>-d</code> 以守护模式运行</li>
+<li><code>-r</code> 指定 svn 服务的根目录</li>
+<li><code>--listen-port</code> 指定 svn 服务监听的端口号</li>
+</ul>
+<h3 id="3-访问"><a href="#3-访问" class="headerlink" title="3. 访问"></a>3. 访问</h3><p>多库模式需要指定具体的库名，如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1/blog</span><br><span class="line">➜  svn co svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure>
+
+<p>单库模式只需要输入ip或域名地址，如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-停止服务"><a href="#4-停止服务" class="headerlink" title="4. 停止服务"></a>4. 停止服务</h3><p><code>killall svnserve</code></p>
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ps -aux|grep svnserv</span><br><span class="line">➜  <span class="built_in">kill</span> -9 <span class="variable">$pid</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h3><h4 id="5-1-创建通用版本库布局"><a href="#5-1-创建通用版本库布局" class="headerlink" title="5.1. 创建通用版本库布局"></a>5.1. 创建通用版本库布局</h4><p>在开发过程中，推荐创建如下布局文件：</p>
+<ul>
+<li>trunk</li>
+<li>branches</li>
+<li>tags</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li><p>创建目录布局临时文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /tmp/repos_layout/&#123;trunk,branches,tags&#125;</span><br><span class="line">➜  tree /tmp/repos_layout/</span><br><span class="line">/tmp/repos_layout/</span><br><span class="line">|-- branches</span><br><span class="line">|-- tags</span><br><span class="line">`-- trunk</span><br></pre></td></tr></table></figure></li>
+<li><p>导入到版本库中</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/repos_layout svn://192.168.0.1/resume -m <span class="string">&#x27;init&#x27;</span></span><br><span class="line">Adding         /tmp/repos_layout/branches</span><br><span class="line">Adding         /tmp/repos_layout/tags</span><br><span class="line">Adding         /tmp/repos_layout/trunk</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 1.</span><br></pre></td></tr></table></figure>
+
+<p> 查看是否导入成功</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list --verbose svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure></li>
+<li><p>修改权限</p>
+<p> 编辑权限文件 <code>vim /home/repos/authz</code>，设置普通用户访问 trunk，管理员访问版本库根目录 trunk、branches、tags，如下：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[resume:/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[resume:/trunk]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：权限是继承的，管理员既然能访问根目录，那么根下的子目录也是有权限访问的；而普通用户一般设置较小的权限集，只能访问指定的目录，比如这里的 trunk。</p>
+</blockquote>
+</li>
+<li><p>访问</p>
+<p> 普通用户 <code>svn co svn://192.168.1.1/resume/trunk</code></p>
+<p> 管理员 <code>svn co svn://192.168.1.1/resume/</code></p>
+</li>
+</ol>
+<h4 id="5-x-参照资料"><a href="#5-x-参照资料" class="headerlink" title="5.x. 参照资料"></a>5.x. 参照资料</h4><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html">https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://wangying.sinaapp.com/archives/1352">http://wangying.sinaapp.com/archives/1352</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.runoob.com/svn/svn-tutorial.html">http://www.runoob.com/svn/svn-tutorial.html</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1709980602.html" title="svn 服务端配置">https://sqiang.net/post/1709980602.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"># 开发工具</a>
+              <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
+              <a href="/tags/svn/" rel="tag"># svn</a>
+              <a href="/tags/Subversion/" rel="tag"># Subversion</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1634855012.html" rel="prev" title="svn 常用操作命令及问题处理">
+                  <i class="fa fa-chevron-left"></i> svn 常用操作命令及问题处理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2026663390.html" rel="next" title="如何在 CentOS 6.x/7.x 上安装 Git 及最新版">
+                  如何在 CentOS 6.x/7.x 上安装 Git 及最新版 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;5f4e21dcbeb7bd6d94b6d0786fba5bd0&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

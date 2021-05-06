@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="Composer 是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。  0. 相关资源及概述 Composer官网 https:&#x2F;&#x2F;getcomposer.org  Composer Github 地址 https:&#x2F;&#x2F;github.com&#x2F;composer&#x2F;composer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 PHP 中安装、使用 Composer 包管理工具">
+<meta property="og:url" content="https://sqiang.net/post/462910674.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="Composer 是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。  0. 相关资源及概述 Composer官网 https:&#x2F;&#x2F;getcomposer.org  Composer Github 地址 https:&#x2F;&#x2F;github.com&#x2F;composer&#x2F;composer">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-18T13:26:01.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.001Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="Composer">
+<meta property="article:tag" content="包管理工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/462910674.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;462910674.html&quot;,&quot;path&quot;:&quot;post&#x2F;462910674.html&quot;,&quot;title&quot;:&quot;在 PHP 中安装、使用 Composer 包管理工具&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>在 PHP 中安装、使用 Composer 包管理工具 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90%E5%8F%8A%E6%A6%82%E8%BF%B0"><span class="nav-text">0. 相关资源及概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-text">1. 安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E4%B8%8B%E8%BD%BD-composer-phar"><span class="nav-text">1.1. 下载 composer.phar</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E9%85%8D%E7%BD%AE"><span class="nav-text">1.2. 配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">2. 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="nav-text">2.1. 安装依赖包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BD%BF%E7%94%A8%E5%AE%89%E8%A3%85%E7%9A%84%E5%8C%85"><span class="nav-text">2.2. 使用安装的包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">3. 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-composer-init"><span class="nav-text">3.1. composer init</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-composer-install"><span class="nav-text">3.2. composer install</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-composer-update"><span class="nav-text">3.3. composer update</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-composer-config"><span class="nav-text">3.4. composer config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-composer-create-project"><span class="nav-text">3.5. composer create-project</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-composer-require"><span class="nav-text">3.6. composer require</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-self-update"><span class="nav-text">3.7. self-update</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/462910674.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在 PHP 中安装、使用 Composer 包管理工具
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-18 21:26:01" itemprop="dateCreated datePublished" datetime="2020-01-18T21:26:01+08:00">2020-01-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Composer 是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。</p>
+</blockquote>
+<h3 id="0-相关资源及概述"><a href="#0-相关资源及概述" class="headerlink" title="0. 相关资源及概述"></a>0. 相关资源及概述</h3><ul>
+<li><p>Composer官网 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://getcomposer.org/">https://getcomposer.org</a></p>
+</li>
+<li><p>Composer Github 地址 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/composer/composer">https://github.com/composer/composer</a></p>
+</li>
+<li><p>Composer中国镜像 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.phpcomposer.com/">http://www.phpcomposer.com</a></p>
+</li>
+<li><p>阿里云全量镜像（👍 <strong>推荐</strong>）：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.aliyun.com/composer">https://developer.aliyun.com/composer</a></p>
+</li>
+<li><p><strong>Packagist</strong></p>
+<p>  官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://packagist.org/">https://packagist.org</a></p>
+<p>  它是 Composer 主要的一个包信息存储库，包开发者将具体代码托管到 Github 上，将包信息提交到 Packagist 上，这样使用者就可以通过 Composer 去使用。它的执行顺序如下：</p>
+<ul>
+<li>首先，Composer 根据本地定义的 <code>composer.json</code> 信息去查询 Packagist；</li>
+<li>其次，Packagist 根据 <code>composer.json/package.json</code> 信息解析，最终对应到Github 仓库；</li>
+<li>最后，Composer 基于 Github 仓库上的 <code>composer.json</code> 下载代码到本地。</li>
+</ul>
+</li>
+<li><p><strong>composer.json</strong></p>
+<p>  这是 Composer 的核心，主要用来配置 Composer 的执行规则。</p>
+</li>
+<li><p><strong>自动加载</strong></p>
+<p>  Composer 基于 PHP 命名空间和 PSR-4 标准开发、集成了一个自动加载器。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="1-安装配置"><a href="#1-安装配置" class="headerlink" title="1. 安装配置"></a>1. 安装配置</h3><h4 id="1-1-下载-composer-phar"><a href="#1-1-下载-composer-phar" class="headerlink" title="1.1. 下载 composer.phar"></a>1.1. 下载 composer.phar</h4><ul>
+<li><p>Linux / Unix / OSX</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上面的 curl 命令出错或无法使用，可用 php 命令代替</span></span><br><span class="line">➜ php -r <span class="string">&quot;readfile(&#x27;https://getcomposer.org/installer&#x27;);&quot;</span> | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 下面是其它的一些参数 -----</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --install-dir 指定下载目录</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --install-dir=bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># --filename 指定下载成功存放的 composer 文件名</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --filename=composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># --version 下载指定版本的 composer</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --version=1.0.0-alpha8</span><br></pre></td></tr></table></figure></li>
+<li><p>Windows</p>
+<p>方式一：使用安装器 👍</p>
+<p>下载、运行 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a> ，将自动下载 composer 并配置好相关环境变量，之后可直接使用命令 composer</p>
+<p>方式二：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://getcomposer.org/composer.phar">点击这里</a>手动下载</p>
+</li>
+</ul>
+<h4 id="1-2-配置"><a href="#1-2-配置" class="headerlink" title="1.2. 配置"></a>1.2. 配置</h4><p>下载得到 composer.phar 文件后，我们就可以通过如下命令来使用了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 Composer 版本</span></span><br><span class="line">➜ php composer.phar -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Composer 帮助</span></span><br><span class="line">➜ php composer.phar</span><br></pre></td></tr></table></figure>
+
+<p>为了更好的使用 Composer，在 Linux 系统下，我们可以通过如下方式简化命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line">➜ sudo chmod+x /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在可以直接使用 composer 来操作了</span></span><br><span class="line">➜ composer -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> ⚠️ <strong>注意</strong>：如果提示找不到命令之类，需检查系统环境变量设置中是否包含路径 <strong>/usr/local/bin</strong></p>
+</blockquote>
+<h3 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h3><p>这里以安装一个二维码组件为例，包的标识为 <code>endroid/qrcode</code></p>
+<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><ul>
+<li><p>方式一：使用 composer require 命令</p>
+<p>  格式： composer require 包的标识（厂商名/包名）</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p ~/www/composer_demo</span><br><span class="line">➜ <span class="built_in">cd</span> ~/www/composer_demo</span><br><span class="line">➜ composer require endroid/qrcode</span><br></pre></td></tr></table></figure></li>
+<li><p>方式二：使用 composer install 命令</p>
+<p>  在项目根目录下编辑 composer.json 文件，通过 require 配置项目依赖的包，如下：</p>
+  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;endroid/qrcode&quot;</span>: <span class="string">&quot;^2.2&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  然后使用以下命令进行安装</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer install</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>包安装好之后，目录结构如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ tree -L 2</span><br><span class="line">.</span><br><span class="line">├── composer.json  -----&gt; 项目通过 composer 设置的配置信息</span><br><span class="line">├── composer.lock  -----&gt; 锁定项目，只使用其列出的具体版本的包</span><br><span class="line">└── vendor  -----&gt; 组件本源码存放位置</span><br><span class="line">    ├── autoload.php</span><br><span class="line">    ├── bacon</span><br><span class="line">    ├── composer</span><br><span class="line">    ├── endroid</span><br><span class="line">    ├── khanamiryan</span><br><span class="line">    ├── myclabs</span><br><span class="line">    ├── paragonie</span><br><span class="line">    └── symfony</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-使用安装的包"><a href="#2-2-使用安装的包" class="headerlink" title="2.2. 使用安装的包"></a>2.2. 使用安装的包</h4><p>在需要使用包的 PHP 文件头部添加以下代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/audoload.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>现在参考组件的说明文档，开始使用吧！</p>
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><p>更多详细命令介绍请<a target="_blank" rel="noopener external nofollow noreferrer" href="http://docs.phpcomposer.com/03-cli.html">访问这里</a>或直接执行 <code>composer commands help</code></p>
+<h4 id="3-1-composer-init"><a href="#3-1-composer-init" class="headerlink" title="3.1. composer init"></a>3.1. composer init</h4><p>以命令行交互方式创建 composer.json 并初始化项目的依赖、描述等信息，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer init</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This <span class="built_in">command</span> will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [sunqiang/<span class="built_in">test</span>]: company/package1</span><br><span class="line">Description []:</span><br><span class="line">Author [whorusq &lt;whorusq@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []:</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []:</span><br><span class="line">License []:</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;company/package1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authors&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;whorusq&quot;</span>,</span><br><span class="line">            <span class="string">&quot;email&quot;</span>: <span class="string">&quot;whorusq@gmail.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;require&quot;</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]? yes</span><br><span class="line">➜ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--  1 user1  staff   170B  9  4 13:45 composer.json</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-composer-install"><a href="#3-2-composer-install" class="headerlink" title="3.2. composer install"></a>3.2. composer install</h4><p>这是最常用的命令，Composer 会根据本地的 <code>composer.json</code> 安装需要的依赖包。</p>
+<p>下载下来的包放入项目下的 <code>vendor</code> 目录中，同时将安装时候的包版本信息放入到 <code>composer.lock</code> 文件，以便锁定版本。</p>
+<blockquote>
+<p><strong>⚠️ 注意</strong>：</p>
+<ul>
+<li><p>如果当前目录下存在 <code>composer.lock</code> 文件，它会从此文件读取依赖版本，而不是根据 <code>composer.json</code> 文件去获取依赖。这确保了该库的每个使用者都能得到相同的依赖版本。</p>
+</li>
+<li><p>如果没有 <code>composer.lock</code> 文件，composer 将在处理完依赖关系后创建它。</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="3-3-composer-update"><a href="#3-3-composer-update" class="headerlink" title="3.3. composer update"></a>3.3. composer update</h4><p>为了获取依赖的最新版本，并且升级 <code>composer.lock</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 项目目录（composer.json 所在位置）下执行</span></span><br><span class="line">➜ composer update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你只是想更新几个包，你可以像这样分别列出它们：</span></span><br><span class="line">➜ composer update vendor/package vendor/package2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你还可以使用通配符进行批量更新：</span></span><br><span class="line">➜ composer update vendor/*</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-4-composer-config"><a href="#3-4-composer-config" class="headerlink" title="3.4. composer config"></a>3.4. composer config</h4><p>用以编辑 Composer 的一些基本设置</p>
+<ul>
+<li>全局配置：<code>COMPOSER_HOME/config.json</code></li>
+<li>非全局配置：当前项目的目录下 <code>composer.json</code></li>
+</ul>
+<h4 id="3-5-composer-create-project"><a href="#3-5-composer-create-project" class="headerlink" title="3.5. composer create-project"></a>3.5. composer create-project</h4><p>从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
+<p>此命令有几个常见的用途：</p>
+<ul>
+<li>快速的部署你的应用。</li>
+<li>检出任何资源包，并开发它的补丁。</li>
+<li>多人开发项目，可以用它来加快应用的初始化。</li>
+</ul>
+<p><strong>默认情况下，这个命令会在 <a href="packagist.org">packagist.org</a> 上查找你指定的包。</strong></p>
+<p>示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过 Composer 下载、初始化 ThinkPHP5.x</span></span><br><span class="line">➜ composer create-project topthink/think tp5  --prefer-dist</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-composer-require"><a href="#3-6-composer-require" class="headerlink" title="3.6. composer require"></a>3.6. composer require</h4><p>增加新的依赖包到当前目录的 <code>composer.json</code> 文件中，并且在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认交互模式</span></span><br><span class="line">➜ composer require</span><br><span class="line">Search <span class="keyword">for</span> a package: gearman</span><br><span class="line"></span><br><span class="line">Found 15 packages matching gearman</span><br><span class="line"></span><br><span class="line">   [0] mhlavac/gearman</span><br><span class="line">   [1] silverstripe-australia/gearman</span><br><span class="line">   [2] dmank/gearman</span><br><span class="line">   [3] pafelin/gearman</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">Enter package <span class="comment"># to add, or the complete package name if it is not listed: 0</span></span><br><span class="line">Enter the version constraint to require (or leave blank to use the latest version):</span><br><span class="line">Using version ^0.1.0 <span class="keyword">for</span> mhlavac/gearman</span><br><span class="line">Search <span class="keyword">for</span> a package: ^C</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非交互模式，直接指定需要的包名</span></span><br><span class="line">➜ composer require mhlavac/gearman</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-self-update"><a href="#3-7-self-update" class="headerlink" title="3.7. self-update"></a>3.7. self-update</h4><p>将 Composer 自身升级到最新版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer self-update</span><br><span class="line">You are already using composer version 1.5.1 (stable channel).</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/462910674.html" title="在 PHP 中安装、使用 Composer 包管理工具">https://sqiang.net/post/462910674.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+              <a href="/tags/Composer/" rel="tag"># Composer</a>
+              <a href="/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" rel="tag"># 包管理工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/954645501.html" rel="prev" title="PHP 之命令行模式">
+                  <i class="fa fa-chevron-left"></i> PHP 之命令行模式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/806379323.html" rel="next" title="Composer 很慢怎么办？">
+                  Composer 很慢怎么办？ <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;40720002f9af0a98098969c80b039a2a&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

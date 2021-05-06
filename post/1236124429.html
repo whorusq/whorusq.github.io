@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="rsync 是 Unix &#x2F; Linux 系统下一个快速、灵活的的文件同步和复制工具，，支持本地复制和远程复制与同步，基于协议  GNU General Public License 开源 。rsync 工具广泛用于备份和镜像，且作为一种改进的复制命令。 官网：https:&#x2F;&#x2F;rsync.samba.org 最新稳定版本：v3.1.2 (更新于 2015年12月21日)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rsync 的基本使用入门">
+<meta property="og:url" content="https://sqiang.net/post/1236124429.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="rsync 是 Unix &#x2F; Linux 系统下一个快速、灵活的的文件同步和复制工具，，支持本地复制和远程复制与同步，基于协议  GNU General Public License 开源 。rsync 工具广泛用于备份和镜像，且作为一种改进的复制命令。 官网：https:&#x2F;&#x2F;rsync.samba.org 最新稳定版本：v3.1.2 (更新于 2015年12月21日)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-18T02:42:21.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:01.995Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="rsync">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1236124429.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;1236124429.html&quot;,&quot;path&quot;:&quot;post&#x2F;1236124429.html&quot;,&quot;title&quot;:&quot;rsync 的基本使用入门&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>rsync 的基本使用入门 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE"><span class="nav-text">2. 安装配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8"><span class="nav-text">3. 客户端使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%9F%BA%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="nav-text">3.1. 基本格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%85%B6%E5%AE%83%E5%B8%B8%E7%94%A8%E9%80%89%E9%A1%B9"><span class="nav-text">3.2. 其它常用选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%90%8C%E6%AD%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%97%B6%E5%85%8D%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81"><span class="nav-text">3.3. 同步远程服务器时免登录密码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1236124429.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          rsync 的基本使用入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-18 10:42:21" itemprop="dateCreated datePublished" datetime="2020-02-18T10:42:21+08:00">2020-02-18</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:01" itemprop="dateModified" datetime="2021-05-06T09:39:01+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>rsync</strong> 是 Unix / Linux 系统下一个快速、灵活的的文件同步和复制工具，，支持本地复制和远程复制与同步，基于协议  <a target="_blank" rel="noopener external nofollow noreferrer" href="https://rsync.samba.org/GPL.html">GNU General Public License</a> 开源 。rsync 工具广泛用于备份和镜像，且作为一种改进的复制命令。</p>
+<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://rsync.samba.org/">https://rsync.samba.org</a></p>
+<p>最新稳定版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://download.samba.org/pub/rsync/src/rsync-3.1.2-NEWS">v3.1.2</a> (更新于 2015年12月21日)</p>
+<span id="more"></span>
+
+<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>特性：</p>
+<ul>
+<li>可以镜像保存整个目录树和文件系统。</li>
+<li>可以很容易做到保持原来文件的权限、时间、软硬链接等。</li>
+<li>无须特殊权限即可运行。</li>
+<li>快速：<ul>
+<li>第一次同步时 rsync 会复制全部内容，但在下一次只传输修改过的文件。</li>
+<li>rsync 在传输数据的过程中可以实行压缩及解压缩操作，因此可以使用更少的带宽。</li>
+</ul>
+</li>
+<li>安全：可以使用 scp、ssh 等方式来传输文件，当然也可以通过直接的 socket 连接。</li>
+<li>支持匿名传输，以方便进行网站镜象。</li>
+</ul>
+<h3 id="2-安装配置"><a href="#2-安装配置" class="headerlink" title="2. 安装配置"></a>2. 安装配置</h3><blockquote>
+<p>在类 Unix 环境下，rsync 都是默认安装的。</p>
+</blockquote>
+<p>检查是否安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rsync --version</span><br><span class="line">rsync  version 3.0.9  protocol version 30</span><br><span class="line">Copyright (C) 1996-2011 by Andrew Tridgell, Wayne Davison, and others.</span><br><span class="line">Web site: http://rsync.samba.org/</span><br><span class="line">Capabilities:</span><br><span class="line">    64-bit files, 64-bit inums, 64-bit timestamps, 64-bit long ints,</span><br><span class="line">    socketpairs, hardlinks, symlinks, IPv6, batchfiles, inplace,</span><br><span class="line">    append, ACLs, xattrs, iconv, symtimes</span><br><span class="line"></span><br><span class="line">rsync comes with ABSOLUTELY NO WARRANTY.  This is free software, and you</span><br><span class="line">are welcome to redistribute it under certain conditions.  See the GNU</span><br><span class="line">General Public Licence <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+
+<p>如果提示未找到命令，则通过如下命令进一步检查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ rpm -qa | grep rsync</span><br><span class="line">rsync-3.0.9-17.el7.x86_64</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ dpkg -l | grep rsync</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum install rsync</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install rsync</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-客户端使用"><a href="#3-客户端使用" class="headerlink" title="3. 客户端使用"></a>3. 客户端使用</h3><h4 id="3-1-基本格式"><a href="#3-1-基本格式" class="headerlink" title="3.1. 基本格式"></a>3.1. 基本格式</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rsync [options] <span class="built_in">source</span> destination</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中 source / destination 可以是<strong>本地</strong>，也可以是<strong>远程</strong>，文件传输方向为从 source 到 destination。</p>
+<ul>
+<li><p>如果是远程的话，需要追加参数登录用户名、远程服务器地址、位置，格式如：username@ip:path</p>
+</li>
+<li><p>如果具体到目录下的文件名，则可以只同步单个文件。</p>
+</li>
+</ul>
+</blockquote>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将本地目录 project1 下的文件同步到另一台机器上对应的目录</span></span><br><span class="line">$ rsync -avz ~/www/project1/ dev@192.168.1.149:/Home/dev/www/project1</span><br></pre></td></tr></table></figure>
+<p>选项：</p>
+<ul>
+<li><code>-a</code> 保留符号链接、权限信息、时间戳，以及 owner &amp; group 信息。</li>
+<li><code>-v</code> 显示更多打印信息。</li>
+<li><code>-z</code> 打开压缩功能。</li>
+</ul>
+<h4 id="3-2-其它常用选项"><a href="#3-2-其它常用选项" class="headerlink" title="3.2. 其它常用选项"></a>3.2. 其它常用选项</h4><ul>
+<li><p><code>-P</code> 或 <code>--progress</code></p>
+<blockquote>
+<p>查看传输进度。</p>
+</blockquote>
+</li>
+<li><p><code>-i</code></p>
+<blockquote>
+<p>查看 source / destination 之间的差异。</p>
+</blockquote>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rsync -avzi thegeekstuff@192.168.200.10:/var/lib/rpm/ /root/temp/</span><br><span class="line">Password:</span><br><span class="line">receiving file list ... <span class="keyword">done</span></span><br><span class="line">&gt;f.st.... Basenames</span><br><span class="line">.f....og. Dirnames</span><br><span class="line"></span><br><span class="line">sent 48 bytes  received 2182544 bytes  291012.27 bytes/sec</span><br><span class="line">total size is 45305958  speedup is 20.76</span><br></pre></td></tr></table></figure>
+
+<p>  说明：</p>
+<ul>
+<li>f 标识是一个文件</li>
+<li>s 标识文件大小发生了变化</li>
+<li>t 标识时间戳发生了变化</li>
+<li>o 标识文件属主 owner 发了变化</li>
+<li>g 标识文件属组 group 发了变化</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>-d</code></p>
+<blockquote>
+<p>只同步目录树结构，不同步文件。</p>
+</blockquote>
+</li>
+<li><p><code>--delete</code></p>
+<blockquote>
+<p>存在于目标位置的文件，如果源位置不存在则删除。</p>
+</blockquote>
+</li>
+<li><p><code>--existing</code></p>
+<blockquote>
+<p>只同步在目标位置已经存在的文件，源位置如果有新增的文件，在目标位置不创建。</p>
+</blockquote>
+</li>
+<li><p><code>-e &#39;ssh -p 10010&#39;</code></p>
+<blockquote>
+<p>指定远程 shell 来保证安全连接。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><code>-u</code></p>
+<blockquote>
+<p>不覆盖在目标位置被修改过的文件。</p>
+</blockquote>
+</li>
+<li><p><code>--include &#39;*.html&#39; --exclude &#39;*.conf&#39;</code></p>
+<blockquote>
+<p>包含文件，包含多条使用 <code>--include-from=include.list</code></p>
+<p>排除文件，排除多条使用 <code>--exclude-from=exclude.list</code></p>
+<p>在文件 exclude.list 或 include.list 中，每行指定一个要包含或排除的文件、目录，使用 <strong>/</strong> 标识源路径。</p>
+</blockquote>
+<p>  比如下面的 exclude.list 文件内容：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/index.php</span><br><span class="line">/Application/Common/Conf/</span><br><span class="line">/Application/Runtime/</span><br><span class="line">/Uploads</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li><p><code>--max-size=&#39;100K&#39;</code></p>
+<blockquote>
+<p>限制传输的文件大小，可用单位 K / M / G 等。</p>
+</blockquote>
+</li>
+<li><p><code>-W</code></p>
+<blockquote>
+<p>传输整个源位置（source）的文件</p>
+</blockquote>
+<p>  该选项不再对 <strong>source</strong> 和 <strong>destination</strong> 做差异比较，直接传输整个文件，将大大提高 rsync 的处理速度。</p>
+<p>  注意：</p>
+<blockquote>
+<p>此选项适合网络带宽不是问题的场景，如果你的网络带宽不理想，尤其是有丢包现象的，还是推荐默认的增量更新方式，避免使用此选项。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="3-3-同步远程服务器时免登录密码"><a href="#3-3-同步远程服务器时免登录密码" class="headerlink" title="3.3. 同步远程服务器时免登录密码"></a>3.3. 同步远程服务器时免登录密码</h4><p>生成本机公钥</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):</span><br><span class="line">Enter same passphrase again:</span><br></pre></td></tr></table></figure>
+
+<p>将公钥拷贝到远程服务器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 10010 <span class="built_in">test</span>@192.168.1.149</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: attempting to <span class="built_in">log</span> <span class="keyword">in</span> with the new key(s), to filter out any that are already installed</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- <span class="keyword">if</span> you are prompted now it is to install the new keys</span><br><span class="line"><span class="built_in">test</span>@192.168.1.149<span class="string">&#x27;s password:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Number of key(s) added: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Now try logging into the machine, with:   &quot;ssh -p &#x27;</span>10010<span class="string">&#x27; &#x27;</span><span class="built_in">test</span>@192.168.1.149<span class="string">&#x27;&quot;</span></span><br><span class="line"><span class="string">and check to make sure that only the key(s) you wanted were added.</span></span><br></pre></td></tr></table></figure>
+
+<p>检查远程服务器是否添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ~/.ssh/authorized_keys</span><br><span class="line">ssh-rsa AAAAB3xxxxxxxxxxxxxxxxx0xuysQjs6bcmGvIsGJZS8J/gouy9AjjfaQqsYLBdHo5bXGTMN3fQ1TntSluB4lfINtzCYf4+VP55WLEzMNTeJnHtVBQen6yNYckcxxxxxxxxxxxxxxxxxG+IAxVS/ugI9kfiOrltxZKn5VUE4hRqwqLIeu9CMhFrPNtTNCLQuqI8FQRz+MixZjFPdsY0OrzxxxxxxxxxxxxxxxxxQeIK/BPOxwolg5xNO29sEw8p5T7al6VxxxxxxxxxxxxxxxxxuLZ8jkv/uMqmyXxxxxxxxxxxxxxxxxxwfMJT4UfdOzr root@localhost.localdomain</span><br></pre></td></tr></table></figure>
+
+<p>上面的秘钥信息就是我本机对应的公钥，再次执行 rsync 命令就不需要输入登录密码了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1236124429.html" title="rsync 的基本使用入门">https://sqiang.net/post/1236124429.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/rsync/" rel="tag"># rsync</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2551733328.html" rel="prev" title="tmux 基本配置及使用">
+                  <i class="fa fa-chevron-left"></i> tmux 基本配置及使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2208464112.html" rel="next" title="curl 命令速查">
+                  curl 命令速查 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;8ff66d184aa000c94d33730d39a62e6c&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

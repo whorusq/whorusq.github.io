@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="本文主要介绍了在数据库结构设计过程中需要考虑的一些问题，来源于以往工作、项目经历以及网络资料等，如果有不准确的地方，欢迎指正交流。  在数据库结构的设计过程中，务必注意以下两点：  减少数据冗余，节约数据库存储空间； 尽量避免在数据维护过程中出现更新、插入、删除异常。  一般我们按照如下步骤开始：  需求分析：全面了解产品设计的存储需求，保证数据的安全性和完整性 逻辑设计：设计数据的逻辑存储结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL之数据库结构设计">
+<meta property="og:url" content="https://sqiang.net/post/2048329622.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="本文主要介绍了在数据库结构设计过程中需要考虑的一些问题，来源于以往工作、项目经历以及网络资料等，如果有不准确的地方，欢迎指正交流。  在数据库结构的设计过程中，务必注意以下两点：  减少数据冗余，节约数据库存储空间； 尽量避免在数据维护过程中出现更新、插入、删除异常。  一般我们按照如下步骤开始：  需求分析：全面了解产品设计的存储需求，保证数据的安全性和完整性 逻辑设计：设计数据的逻辑存储结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-06T10:37:46.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.032Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="数据库结构">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/2048329622.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;2048329622.html&quot;,&quot;path&quot;:&quot;post&#x2F;2048329622.html&quot;,&quot;title&quot;:&quot;MySQL之数据库结构设计&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>MySQL之数据库结构设计 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%89%A9%E7%90%86%E8%AE%BE%E8%AE%A1"><span class="nav-text">1. 如何进行物理设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%AD%97%E6%AE%B5%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83"><span class="nav-text">1.1. 定义数据库、表、字段的命名规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-text">1.2. 选择合适的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-0-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9"><span class="nav-text">1.2.0. 如何选择</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-1-MyISAM"><span class="nav-text">1.2.1. MyISAM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-2-InnoDB"><span class="nav-text">1.2.2. InnoDB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-3-CSV"><span class="nav-text">1.2.3. CSV</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-4-ARCHIVE"><span class="nav-text">1.2.4. ARCHIVE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-5-MEMORY"><span class="nav-text">1.2.5. MEMORY</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-6-FEDERATED-%EF%BC%9F"><span class="nav-text">1.2.6. FEDERATED ？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E4%B8%BA%E8%A1%A8%E4%B8%AD%E5%AD%97%E6%AE%B5%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3. 为表中字段选择合适的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-1-%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="nav-text">1.3.1. 基本原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-2-%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3.2. 整数类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-3-%E5%AE%9E%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3.3. 实数类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3.4. 字符串类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-3-5-%E6%97%A5%E6%9C%9F%E7%B1%BB%E5%9E%8B"><span class="nav-text">1.3.5. 日期类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E5%BB%BA%E7%AB%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84"><span class="nav-text">1.4. 建立数据库结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B3%E4%BA%8E%E8%8C%83%E5%BC%8F%E5%8C%96"><span class="nav-text">2. 关于范式化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E8%8C%83%E5%BC%8F"><span class="nav-text">2.1. 什么是三范式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8D%E8%8C%83%E5%BC%8F%E5%8C%96"><span class="nav-text">2.2. 什么是反范式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9"><span class="nav-text">2.3. 如何选择</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2048329622.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL之数据库结构设计
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-07-06 18:37:46" itemprop="dateCreated datePublished" datetime="2020-07-06T18:37:46+08:00">2020-07-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文主要介绍了在数据库结构设计过程中需要考虑的一些问题，来源于以往工作、项目经历以及网络资料等，如果有不准确的地方，欢迎指正交流。</p>
+</blockquote>
+<p>在数据库结构的设计过程中，务必注意以下两点：</p>
+<ul>
+<li>减少数据冗余，节约数据库存储空间；</li>
+<li>尽量避免在数据维护过程中出现更新、插入、删除异常。</li>
+</ul>
+<p>一般我们按照如下步骤开始：</p>
+<ol>
+<li><strong>需求分析</strong>：全面了解产品设计的存储需求，保证数据的安全性和完整性</li>
+<li><strong>逻辑设计</strong>：设计数据的逻辑存储结构，处理数据实体之间的逻辑关系，解决数据冗余和数据维护异常</li>
+<li><strong>物理设计</strong>：根据具体所使用数据库的特点进行表结构设计</li>
+<li><strong>维护优化</strong>：根据实际情况，对索引、存储结构等进行优化</li>
+</ol>
+<p>其中 1、2 是确立大方向；3 是对 1、2 的具体实施（本文会介绍一些注意事项和建议，详见下文）；4 是后期的迭代优化。</p>
+<span id="more"></span>
+
+<h3 id="1-如何进行物理设计"><a href="#1-如何进行物理设计" class="headerlink" title="1. 如何进行物理设计"></a>1. 如何进行物理设计</h3><h4 id="1-1-定义数据库、表、字段的命名规范"><a href="#1-1-定义数据库、表、字段的命名规范" class="headerlink" title="1.1. 定义数据库、表、字段的命名规范"></a>1.1. 定义数据库、表、字段的命名规范</h4><ul>
+<li>可读性</li>
+<li>表意性</li>
+<li>长名</li>
+</ul>
+<h4 id="1-2-选择合适的存储引擎"><a href="#1-2-选择合适的存储引擎" class="headerlink" title="1.2. 选择合适的存储引擎"></a>1.2. 选择合适的存储引擎</h4><h5 id="1-2-0-如何选择"><a href="#1-2-0-如何选择" class="headerlink" title="1.2.0. 如何选择"></a>1.2.0. 如何选择</h5><ol>
+<li>首选 <code>InnoDB</code>，适用于大部分场景</li>
+<li>参考因素：事务、备份、崩溃恢复、各存储引擎的专有特性（详见下文）</li>
+<li>注意：<strong>尽量不要混合使用多种存储引擎</strong></li>
+</ol>
+<h5 id="1-2-1-MyISAM"><a href="#1-2-1-MyISAM" class="headerlink" title="1.2.1. MyISAM"></a>1.2.1. MyISAM</h5><p><code>v5.5 之前默认</code></p>
+<p>文件组成</p>
+<ul>
+<li><code>.frm</code> 表结构</li>
+<li><code>.MYD</code> 数据</li>
+<li><code>.MYI</code> 索引</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>表级锁</li>
+<li>基本的表损坏修复，非事务性，会造成数据丢失</li>
+<li>支持「全文索引」</li>
+<li>支持数据压缩（<strong>压缩之后只支持读操作</strong>）</li>
+</ul>
+<p>限制</p>
+<ul>
+<li>小于 v5.0 版本时，单表默认大小 <code>4G</code></li>
+<li>大于 v5.0 版本，单表默认 <code>256TB</code></li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>非事务型应用</li>
+<li>只读类应用（如：数据报表）</li>
+<li>空间类应用（如：GPS）</li>
+</ul>
+<h5 id="1-2-2-InnoDB"><a href="#1-2-2-InnoDB" class="headerlink" title="1.2.2. InnoDB"></a>1.2.2. InnoDB</h5><p><code>v5.58 之后默认</code></p>
+<p>使用表空间进行数据存储，通过配置参数 <code>innodb_file_per_table</code></p>
+<ul>
+<li><p><code>ON</code> 独立表空间（<code>v5.6</code> 之后默认）</p>
+<ul>
+<li>tablename.ibd 数据</li>
+<li>tablename.frm 表结构</li>
+</ul>
+</li>
+<li><p><code>OFF</code> 系统表空间</p>
+<ul>
+<li>ibdata[1 ~ n]</li>
+</ul>
+</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>事务性存储引擎</li>
+<li>完全支持事务的 ACID 特性</li>
+<li>日志<ul>
+<li><code>Redo Log</code> 已提交的事务</li>
+<li><code>Undo Log</code> 未提交的事务</li>
+</ul>
+</li>
+<li>支持行级锁<ul>
+<li>可以最大程度支持并发</li>
+<li>由存储引擎层实现</li>
+<li>关于锁<ul>
+<li>主要作用是管理共享资源的并发访问</li>
+<li>用于实现事务的隔离性</li>
+<li>常用类型<ul>
+<li>共享锁（读锁）</li>
+<li>独占锁（写锁）</li>
+</ul>
+</li>
+<li>常用锁粒度（策略）<ul>
+<li>表级</li>
+<li>行级</li>
+</ul>
+</li>
+<li>其它<ul>
+<li>阻塞</li>
+<li>死锁</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>状态检查<ul>
+<li><code>show engine innodb status</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="1-2-3-CSV"><a href="#1-2-3-CSV" class="headerlink" title="1.2.3. CSV"></a>1.2.3. CSV</h5><p>文件组成</p>
+<ul>
+<li><code>.CSV</code> 表内容</li>
+<li><code>.CSM</code> 表的元数据，如表状态、数据量</li>
+<li><code>.frm</code> 表结构</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>数据以文本方式存储在文件中</li>
+<li>所有列不能为 NULL</li>
+<li>不支持索引（不适合大表、在线处理）</li>
+<li>对数据文件直接编辑</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>数据交互的中间表</li>
+</ul>
+<h5 id="1-2-4-ARCHIVE"><a href="#1-2-4-ARCHIVE" class="headerlink" title="1.2.4. ARCHIVE"></a>1.2.4. ARCHIVE</h5><p>以 <code>zlib</code> 对表数据进行压缩，磁盘 I/O 更少</p>
+<p>文件组成</p>
+<ul>
+<li><code>.ARZ</code> 数据</li>
+<li><code>.frm</code> 表结构</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>只支持 insert 和 select 操作</li>
+<li>只支持在自增 ID 列上添加索引</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>日志和数据采集类</li>
+</ul>
+<h5 id="1-2-5-MEMORY"><a href="#1-2-5-MEMORY" class="headerlink" title="1.2.5. MEMORY"></a>1.2.5. MEMORY</h5><p>也被称为 <code>HEAP</code> 存储引擎，所有数据保存在内存中</p>
+<p>文件组成</p>
+<ul>
+<li>.frm 表结构</li>
+</ul>
+<p>特性</p>
+<ul>
+<li>支持的索引类型<ul>
+<li>HASH（默认，适用于：等值查找）</li>
+<li>BTree（适用于：范围查找）</li>
+</ul>
+</li>
+<li>所有字段都是固定长度</li>
+<li>不支持 <code>BLOG</code> 和 <code>TEXT</code> 等大字段</li>
+<li>使用表级锁</li>
+<li>单表大小由参数 <code>max_heap_table_size</code> 决定（默认 16M）</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>查找或映射类，如：邮编和地区对应</li>
+<li>保存数据分析中产生的中间表</li>
+<li>缓存周期性聚合数据的结果表</li>
+</ul>
+<p>⚠️ <strong>注意</strong>：</p>
+<ul>
+<li><strong>数据易丢失，所以要求数据是可再生的</strong>。</li>
+</ul>
+<h5 id="1-2-6-FEDERATED-？"><a href="#1-2-6-FEDERATED-？" class="headerlink" title="1.2.6. FEDERATED ？"></a>1.2.6. FEDERATED ？</h5><p>默认禁止，启用需要在启动时追加 federated 参数（<code>federated=1</code>）</p>
+<p>特性</p>
+<ul>
+<li>提供了访问远程 MySQL 服务器上表的方法</li>
+<li>本地不存储数据，数据全部存放在远程服务器上</li>
+<li>本地需要保存表结构和远程服务器的连接信息</li>
+</ul>
+<p>适用场景</p>
+<ul>
+<li>偶尔的统计分析及手工查询</li>
+</ul>
+<h4 id="1-3-为表中字段选择合适的数据类型"><a href="#1-3-为表中字段选择合适的数据类型" class="headerlink" title="1.3. 为表中字段选择合适的数据类型"></a>1.3. 为表中字段选择合适的数据类型</h4><h5 id="1-3-1-基本原则"><a href="#1-3-1-基本原则" class="headerlink" title="1.3.1. 基本原则"></a>1.3.1. 基本原则</h5><ul>
+<li>当一个列可以选择多种数据类型时，应该<strong>优先选择数字类型</strong>，其次是日期或二进制类型，最后是字符类型。</li>
+<li>对于相同级别的数据类型，应该<strong>优先选择占用空间小的</strong>。</li>
+</ul>
+<h5 id="1-3-2-整数类型"><a href="#1-3-2-整数类型" class="headerlink" title="1.3.2. 整数类型"></a>1.3.2. 整数类型</h5><table>
+<thead>
+<tr>
+<th>列类型</th>
+<th>存储空间</th>
+<th>取值范围（SIGNED）</th>
+<th>取值范围（UNSIGNED）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>tinyint</strong></td>
+<td>1 个字节</td>
+<td><code>-128</code> ~ <code>127</code></td>
+<td><code>0</code> ~ <code>255</code></td>
+</tr>
+<tr>
+<td><strong>smallint</strong></td>
+<td>2 个字节</td>
+<td><code>-3276</code> ~ <code>3276</code></td>
+<td><code>0</code> ~ <code>65535</code></td>
+</tr>
+<tr>
+<td><strong>mediumint</strong></td>
+<td>3 个字节</td>
+<td><code>-8388608</code> ~ <code>8388607</code></td>
+<td><code>0</code> ~ <code>16777215</code></td>
+</tr>
+<tr>
+<td><strong>int</strong></td>
+<td>4 个字节</td>
+<td><code>-2147483648</code> ~ <code>2147483647</code></td>
+<td><code>0</code> ~ <code>4294967295</code></td>
+</tr>
+<tr>
+<td><strong>bigint</strong></td>
+<td>8 个字节</td>
+<td><code>-9223372036854775808</code> ~ <code>9223372036854775807</code></td>
+<td><code>0    </code> ~ <code>18446744073709551615</code></td>
+</tr>
+</tbody></table>
+<p>⚠️ <strong>注意</strong>：</p>
+<ul>
+<li>整型默认 <code>SIGNED</code> 有符号</li>
+<li>后面括号中的数字，表示的是显示宽度，不表示长度，参见这篇文章：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.sqiang.net/post/1100143026.html">MySQL int(M) 中 M 的作用</a></li>
+</ul>
+<h5 id="1-3-3-实数类型"><a href="#1-3-3-实数类型" class="headerlink" title="1.3.3. 实数类型"></a>1.3.3. 实数类型</h5><table>
+<thead>
+<tr>
+<th>列类型</th>
+<th>存储空间</th>
+<th>是否精确类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>float</strong></td>
+<td>4 个字节</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>double</strong></td>
+<td>8 个字节</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>decimal</strong></td>
+<td>每 4 个字节存 9 个数字，小数点占一个字节</td>
+<td>是</td>
+</tr>
+</tbody></table>
+<h5 id="1-3-4-字符串类型"><a href="#1-3-4-字符串类型" class="headerlink" title="1.3.4. 字符串类型"></a>1.3.4. 字符串类型</h5><ul>
+<li><strong>varchar</strong><ul>
+<li><code>特点</code><ul>
+<li>存储<strong>变长</strong>字符串，只占用必要的存储空间</li>
+<li>列的最大长度小于 255，则只占用一个字节用于记录字符串长度。</li>
+<li>列的最大长度大于 255，则要占用两个字节用于记录字符串长度。</li>
+</ul>
+</li>
+<li><code>长度（宽度）问题</code><ul>
+<li>使用最小的符合需求的长度（根据实际情况，保留一定的空间）</li>
+</ul>
+</li>
+<li><code>适用场景</code><ul>
+<li>列的最大长度比平均长度大很多</li>
+<li>列很少被更新</li>
+<li>使用了多字节的字符集存储字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>char</strong><ul>
+<li><code>特点</code><ul>
+<li><strong>定长</strong></li>
+<li>末尾的空格会被删除</li>
+<li>最大宽度 255</li>
+</ul>
+</li>
+<li><code>适用场景</code><ul>
+<li>适合存储长度近似的值</li>
+<li>短小的字符串</li>
+<li>存储经常被更新的字符串</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="1-3-5-日期类型"><a href="#1-3-5-日期类型" class="headerlink" title="1.3.5. 日期类型"></a>1.3.5. 日期类型</h5><ul>
+<li><p><strong>datetime</strong></p>
+<ul>
+<li>精度<ul>
+<li><code>秒</code> v5.6 之前</li>
+<li><code>微妙</code> v5.6 之后 datime(6)</li>
+</ul>
+</li>
+<li>与时区无关</li>
+<li>占用 8 个字节存储长度</li>
+<li>时间范围 <code>1000-01-01 00:00:00 到 9999-12-31 23:59:59</code></li>
+</ul>
+</li>
+<li><p><strong>timestamp</strong></p>
+<ul>
+<li>只占用 4 个字节</li>
+<li>时间范围 <code>1970-01-01 到 2038-01-19</code></li>
+<li><strong>依赖于指定的时区</strong></li>
+<li>在行的数据被修改时，可以自动修改 TIMESTAMP 列的值。</li>
+</ul>
+</li>
+<li><p>MySQL v5.6 新增了 <code>date</code>（只需要 3 个字节）、<code>time</code> ，可根据需要了解。</p>
+</li>
+</ul>
+<p>⚠️ <strong>注意</strong>：</p>
+<ul>
+<li>不要使用字符串类型来存储日期数据</li>
+<li>使用 <code>int</code> 存储日期时间不如直接使用 <code>timestamp</code> 类型</li>
+</ul>
+<h4 id="1-4-建立数据库结构"><a href="#1-4-建立数据库结构" class="headerlink" title="1.4. 建立数据库结构"></a>1.4. 建立数据库结构</h4><p>根据前 3 点给出的建议和注意事项，结合具体业务，依次建立每一个数据表。</p>
+<h3 id="2-关于范式化"><a href="#2-关于范式化" class="headerlink" title="2. 关于范式化"></a>2. 关于范式化</h3><h4 id="2-1-什么是三范式"><a href="#2-1-什么是三范式" class="headerlink" title="2.1. 什么是三范式"></a>2.1. 什么是三范式</h4><ul>
+<li><strong>第一范式</strong><ul>
+<li>表中所有字段都只具有单一属性</li>
+<li>单一属性的列由基本的数据类型所构成</li>
+<li>设计出来的表都是简单的二维表</li>
+</ul>
+</li>
+<li><strong>第二范式</strong><ul>
+<li>以「第一范式」为基础</li>
+<li>一个业务表中只能有一个业务主键</li>
+</ul>
+</li>
+<li><strong>第三范式</strong><ul>
+<li>以「第二范式」为基础</li>
+<li>每一个非主属性既不部分依赖也不传递依赖于业务主键</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-2-什么是反范式化"><a href="#2-2-什么是反范式化" class="headerlink" title="2.2. 什么是反范式化"></a>2.2. 什么是反范式化</h4><p>以空间换时间，进行适当的冗余，以提高查询效率</p>
+<h4 id="2-3-如何选择"><a href="#2-3-如何选择" class="headerlink" title="2.3. 如何选择"></a>2.3. 如何选择</h4><p>对比优缺点如下，建议<strong>根据业务需要合理的结合二者使用</strong> 👍。</p>
+<p><strong>范式化</strong></p>
+<ul>
+<li><code>优点</code><ul>
+<li>可以尽量的减少数据冗余</li>
+<li>更新操作比「反范式化」更快</li>
+<li>数据表通常比「反范式化」的更小</li>
+</ul>
+</li>
+<li><code>缺点</code><ul>
+<li>查询需要关联多个表</li>
+<li>索引优化困难</li>
+</ul>
+</li>
+</ul>
+<p><strong>反范式化</strong></p>
+<ul>
+<li><code>优点</code><ul>
+<li>减少表的关联</li>
+<li>更好的进行索引优化</li>
+</ul>
+</li>
+<li><code>缺点</code><ul>
+<li>存在数据冗余及数据维护异常</li>
+<li>对数据对修改需要更多成本</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/2048329622.html" title="MySQL之数据库结构设计">https://sqiang.net/post/2048329622.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%93%E6%9E%84/" rel="tag"># 数据库结构</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2259619543.html" rel="prev" title="如何做好一场技术演讲">
+                  <i class="fa fa-chevron-left"></i> 如何做好一场技术演讲
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/3209749235.html" rel="next" title="MySQL中索引的使用">
+                  MySQL中索引的使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;7195040b236f27344963fc35591c0761&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

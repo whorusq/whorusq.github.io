@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="本文整理自：极客时间微课《如何做好一场技术演讲》  1. 精心准备1.1. 明确演讲主题如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。 想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：  听众组成？ 对要演讲主题的了解程度？ 听众想听什么？ 演讲能给听众带来什么价值？ ……  1.2. 确定演讲主线 Who 自我介绍，让听众了解自己，建立连接； What&amp;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何做好一场技术演讲">
+<meta property="og:url" content="https://sqiang.net/post/2259619543.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="本文整理自：极客时间微课《如何做好一场技术演讲》  1. 精心准备1.1. 明确演讲主题如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。 想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：  听众组成？ 对要演讲主题的了解程度？ 听众想听什么？ 演讲能给听众带来什么价值？ ……  1.2. 确定演讲主线 Who 自我介绍，让听众了解自己，建立连接； What&amp;a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg">
+<meta property="article:published_time" content="2020-06-24T00:12:45.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.006Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="技术演讲">
+<meta property="article:tag" content="演讲">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg">
+
+
+<link rel="canonical" href="https://sqiang.net/post/2259619543.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;2259619543.html&quot;,&quot;path&quot;:&quot;post&#x2F;2259619543.html&quot;,&quot;title&quot;:&quot;如何做好一场技术演讲&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>如何做好一场技术演讲 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%B2%BE%E5%BF%83%E5%87%86%E5%A4%87"><span class="nav-text">1. 精心准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%98%8E%E7%A1%AE%E6%BC%94%E8%AE%B2%E4%B8%BB%E9%A2%98"><span class="nav-text">1.1. 明确演讲主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E7%A1%AE%E5%AE%9A%E6%BC%94%E8%AE%B2%E4%B8%BB%E7%BA%BF"><span class="nav-text">1.2. 确定演讲主线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%85%B3%E4%BA%8E-PPT"><span class="nav-text">1.3. 关于 PPT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%88%BB%E6%84%8F%E8%AE%AD%E7%BB%83"><span class="nav-text">2. 刻意训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%BC%94%E8%AE%B2%E4%B8%AD%E7%9A%84%E8%82%A2%E4%BD%93%E8%AF%AD%E8%A8%80"><span class="nav-text">3. 演讲中的肢体语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%A6%82%E4%BD%95%E7%BC%93%E8%A7%A3%E6%BC%94%E8%AE%B2%E5%89%8D%E7%9A%84%E7%84%A6%E8%99%91%E5%92%8C%E7%B4%A7%E5%BC%A0"><span class="nav-text">4. 如何缓解演讲前的焦虑和紧张</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96"><span class="nav-text">5. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E8%AE%B2%E6%95%85%E4%BA%8B"><span class="nav-text">5.1. 讲故事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E6%94%B6%E5%B0%BE"><span class="nav-text">5.2. 收尾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-3-%E5%9B%9E%E7%AD%94%E9%97%AE%E9%A2%98"><span class="nav-text">5.3. 回答问题</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2259619543.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何做好一场技术演讲
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-06-24 08:12:45" itemprop="dateCreated datePublished" datetime="2020-06-24T08:12:45+08:00">2020-06-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文整理自：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
+</blockquote>
+<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
+<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
+<ul>
+<li>听众组成？</li>
+<li>对要演讲主题的了解程度？</li>
+<li>听众想听什么？</li>
+<li>演讲能给听众带来什么价值？</li>
+<li>……</li>
+</ul>
+<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
+<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
+<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
+<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
+<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
+<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
+<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
+</ol>
+<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
+<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
+<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
+<li>合理的排版；</li>
+<li>合理而有意义的动效（一定不要太多）；</li>
+<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
+<li>Who 1 页</li>
+<li>What&amp;When 1～2 页</li>
+<li>Why 1 页</li>
+<li>How 展开 3～4 点，每点 2～3 页</li>
+<li>Future 1 页</li>
+<li>Recap 1 页</li>
+</ul>
+</li>
+<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
+<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
+<li>找安静的地方，自我练习。</li>
+<li>请信任的朋友来试听。</li>
+<li>公司内部试讲。</li>
+<li>冥想。</li>
+</ul>
+<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
+<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
+<p>其中：</p>
+<ul>
+<li><p>姿态</p>
+<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
+<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
+</li>
+<li><p>手势</p>
+<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
+<p>  参见下图的乔老师：</p>
+<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
+<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
+</li>
+<li><p>声音</p>
+<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
+<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
+<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
+</li>
+</ul>
+<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
+<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
+<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
+<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
+<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
+<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
+<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
+</ul>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
+<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
+<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
+<ul>
+<li>首先，具体让人产生画面感，产生更多的钩子。</li>
+<li>其次，具体让人更容易产生情绪。</li>
+<li>第三，具体让人产生可信感。</li>
+</ul>
+<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
+<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
+<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
+<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
+<li><p>将不太熟悉的问题转化成自己擅长的。</p>
+</li>
+<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
+</li>
+<li><p>委婉避开尴尬的问题</p>
+<blockquote>
+<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
+</blockquote>
+<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/2259619543.html" title="如何做好一场技术演讲">https://sqiang.net/post/2259619543.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E6%BC%94%E8%AE%B2/" rel="tag"># 技术演讲</a>
+              <a href="/tags/%E6%BC%94%E8%AE%B2/" rel="tag"># 演讲</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/895189460.html" rel="prev" title="一堂技术管理课">
+                  <i class="fa fa-chevron-left"></i> 一堂技术管理课
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2048329622.html" rel="next" title="MySQL之数据库结构设计">
+                  MySQL之数据库结构设计 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;b5fea76f4e79e484f1d8f60c2a2b3d05&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

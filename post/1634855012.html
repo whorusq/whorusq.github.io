@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="1. 常用命令1.1. 基本使用 检出 checkout # 检出代码➜  svn co repo_url# 检出代码，并指定目录名➜  svn co repo_url saved_dir_name 加入版本控制 add # 添加指定文件➜  svn add &#x2F;path&#x2F;to&#x2F;file# 添加所有 .sh 后缀的文件➜  svn add *.sh# 递归添加当前目录下的所有新文件# 如果使用参数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="svn 常用操作命令及问题处理">
+<meta property="og:url" content="https://sqiang.net/post/1634855012.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="1. 常用命令1.1. 基本使用 检出 checkout # 检出代码➜  svn co repo_url# 检出代码，并指定目录名➜  svn co repo_url saved_dir_name 加入版本控制 add # 添加指定文件➜  svn add &#x2F;path&#x2F;to&#x2F;file# 添加所有 .sh 后缀的文件➜  svn add *.sh# 递归添加当前目录下的所有新文件# 如果使用参数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-19T14:07:04.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.019Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="开发工具">
+<meta property="article:tag" content="版本管理">
+<meta property="article:tag" content="svn">
+<meta property="article:tag" content="Subversion">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1634855012.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;1634855012.html&quot;,&quot;path&quot;:&quot;post&#x2F;1634855012.html&quot;,&quot;title&quot;:&quot;svn 常用操作命令及问题处理&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>svn 常用操作命令及问题处理 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">1. 常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">1.1. 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%88%86%E6%94%AF%E5%92%8C%E6%A0%87%E7%AD%BE"><span class="nav-text">1.2. 分支和标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="nav-text">1.3. 历史记录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="nav-text">1.4. 忽略文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-text">1.5. 小技巧</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%90%88%E5%B9%B6-merge"><span class="nav-text">2. 合并 merge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%88%86%E6%94%AF%E5%90%88%E5%B9%B6%E5%88%B0%E4%B8%BB%E5%B9%B2"><span class="nav-text">2.1. 分支合并到主干</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%B8%BB%E5%B9%B2%E5%90%88%E5%B9%B6%E5%88%B0%E5%88%86%E6%94%AF"><span class="nav-text">2.2. 主干合并到分支</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9B%9E%E6%BB%9A-rollback"><span class="nav-text">3. 回滚 rollback</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E6%9C%AA%E6%8F%90%E4%BA%A4%E4%BD%BF%E7%94%A8-revert"><span class="nav-text">3.1. 未提交使用 revert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%B7%B2%E6%8F%90%E4%BA%A4%E4%BD%BF%E7%94%A8-merge-r"><span class="nav-text">3.2. 已提交使用 merge -r</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%9B%9E%E9%80%80%E8%AF%AF%E6%93%8D%E4%BD%9C%E7%9A%84-svn-up"><span class="nav-text">3.3. 回退误操作的 svn up</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%99%84%E5%BD%951"><span class="nav-text">4. 附录1</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%91%BD%E4%BB%A4%E7%AE%80%E5%86%99%E5%AF%B9%E7%85%A7"><span class="nav-text">4.1. 命令简写对照</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%A4%84%E7%90%86%E5%86%B2%E7%AA%81"><span class="nav-text">4.2. 处理冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E6%96%87%E4%BB%B6%E7%AC%A6%E5%8F%B7%E7%8A%B6%E6%80%81"><span class="nav-text">4.3. 文件符号状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E5%A6%82%E4%BD%95%E8%BF%81%E7%A7%BB%E4%BB%93%E5%BA%93"><span class="nav-text">4.4. 如何迁移仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E9%99%84%E5%BD%952%EF%BC%9A%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86"><span class="nav-text">5. 附录2：常见问题处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding"><span class="nav-text">5.1. svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-SSL-handshake-failed-SSL-%E9%94%99%E8%AF%AF%EF%BC%9AKey-usage-violation-in-certificate-has-been-detected"><span class="nav-text">5.2. SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected.</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1634855012.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          svn 常用操作命令及问题处理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-19 22:07:04" itemprop="dateCreated datePublished" datetime="2020-01-19T22:07:04+08:00">2020-01-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a>1. 常用命令</h3><h4 id="1-1-基本使用"><a href="#1-1-基本使用" class="headerlink" title="1.1. 基本使用"></a>1.1. 基本使用</h4><ul>
+<li><p>检出 checkout</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检出代码</span></span><br><span class="line">➜  svn co repo_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检出代码，并指定目录名</span></span><br><span class="line">➜  svn co repo_url saved_dir_name</span><br></pre></td></tr></table></figure></li>
+<li><p>加入版本控制 add</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加指定文件</span></span><br><span class="line">➜  svn add /path/to/file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加所有 .sh 后缀的文件</span></span><br><span class="line">➜  svn add *.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归添加当前目录下的所有新文件</span></span><br><span class="line"><span class="comment"># 如果使用参数 --no-ignore 则新增时会包含被设置为忽略的文件</span></span><br><span class="line">➜  svn add . --force</span><br></pre></td></tr></table></figure></li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>提交 commit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;提交更改&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>更新 update</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up [file|path]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新到指定版本 11</span></span><br><span class="line">➜  svn up -r 11 [file|path]</span><br></pre></td></tr></table></figure></li>
+<li><p>清除锁定 <code>svn cleanup</code></p>
+</li>
+<li><p>重定向仓库地址到新地址</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch --relocate old_repo_url new_repo_url</span><br></pre></td></tr></table></figure></li>
+<li><p>切换当前项目到指定分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch svn://branch_url</span><br></pre></td></tr></table></figure></li>
+<li><p>检查工作副本下的文件状态 <code>svn st</code></p>
+</li>
+<li><p>查看工作副本的版本库概览信息 <code>svn info</code></p>
+</li>
+<li><p>查看版本库上某个目录下的文件列表（不需要本地检出）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list svn://192.168.1.15/blog</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-2-分支和标签"><a href="#1-2-分支和标签" class="headerlink" title="1.2. 分支和标签"></a>1.2. 分支和标签</h4><ul>
+<li><p>创建 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cp svn://trunk_url svn://branch_url -m <span class="string">&#x27;创建分支&#x27;</span></span><br><span class="line">➜  svn mkdir svn://branch_url -m <span class="string">&#x27;创建空分支&#x27;</span></span><br><span class="line">➜  svn cp svn://trunk_url tag_url -m <span class="string">&#x27;创建标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>删除 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除分支&#x27;</span></span><br><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>查看 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ls ^/branches --verbose</span><br><span class="line">➜  svn ls ^/tags --verbose</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-3-历史记录"><a href="#1-3-历史记录" class="headerlink" title="1.3. 历史记录"></a>1.3. 历史记录</h4><ul>
+<li><p>查看提交记录</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看整个项目或指定文件目录的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个指定版本之间的提交记录</span></span><br><span class="line">➜   svn <span class="built_in">log</span> -r 11:5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最新的 5 条提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看带目录信息的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 -v [file|dir]</span><br></pre></td></tr></table></figure></li>
+<li><p>查看指定版本号的文件内容</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cat file -r 版本号</span><br></pre></td></tr></table></figure></li>
+<li><p>查看文件的修改详情（行级）</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 比较工作副本下的文件与缓存在 .svn 的“原始”拷贝</span></span><br><span class="line">➜  svn diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较工作副本下的文件与指定版本号 5 下的文件</span></span><br><span class="line">➜  svn diff -r 5 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较两个版本库下的文件</span></span><br><span class="line">➜  svn diff -r 11:2 file</span><br></pre></td></tr></table></figure></li>
+<li><p>查看文件每一行的最后修改人</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn blame file</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-4-忽略文件"><a href="#1-4-忽略文件" class="headerlink" title="1.4. 忽略文件"></a>1.4. 忽略文件</h4><ul>
+<li><p>基本使用</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 忽略指定文件或目录</span></span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;file|dir&#x27;</span> dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略当前目录中所有以 .log 结尾的文件</span></span><br><span class="line"><span class="comment"># . 表示当前目录，当指定具体目录时，该目录需处于版本控制状态</span></span><br><span class="line">➜  svn propset svn:ignore -R <span class="string">&#x27;*.log&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;ignore *.log file&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>要忽略的文件已经被 add 过了</p>
+<ul>
+<li>未提交</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R [file|dir]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>已提交</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn del [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只从 svn 中忽略，而不删除本地文件</span></span><br><span class="line">➜  svn del --keep-local [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p>  然后再执行忽略设置并提交。</p>
+</li>
+<li><p>使用配置文件</p>
+<p>  新建 .svnignore 文件，写入类似如下内容：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">runtime</span><br><span class="line">*.log</span><br><span class="line">*.apk</span><br><span class="line">*.class</span><br></pre></td></tr></table></figure>
+
+<p>  然后执行设置</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn add .svnignore</span><br><span class="line">➜  svn propset svn:ignore -R -F .svnignore .</span><br></pre></td></tr></table></figure>
+
+<p>  提交设置</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;add .svnignore and set some ignore&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-5-小技巧"><a href="#1-5-小技巧" class="headerlink" title="1.5. 小技巧"></a>1.5. 小技巧</h4><ul>
+<li><p>创建了一个文件夹，并且把它加入版本控制，但忽略文件夹中的所有内容</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn mkdir dir2</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;*&#x27;</span> dir2</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Adding &quot;dir2&quot; and ignoring its contents.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>创建一个不加入版本控制（忽略）的文件夹</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir dir1</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;dir1&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Ignoring a directory called &quot;dir1&quot;.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>导入一个目录 import</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/upload svn://192.168.0.1/repo1 -m <span class="string">&#x27;add module upload&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-合并-merge"><a href="#2-合并-merge" class="headerlink" title="2. 合并 merge"></a>2. 合并 merge</h3><h4 id="2-1-分支合并到主干"><a href="#2-1-分支合并到主干" class="headerlink" title="2.1. 分支合并到主干"></a>2.1. 分支合并到主干</h4><blockquote>
+<p>⚠️<strong>注意</strong>：分支合并到主干后应当删除该分支，因为在 SVN 中该分支已经不能进行刷新也不能合并到主干。</p>
+</blockquote>
+<p>操作步骤：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入主干目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看创建分支时的版本号</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -q -v -l 1 --stop-on-copy svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支上的最新代码到主干</span></span><br><span class="line"><span class="comment"># svn1.8+ 可以不加参数 --reintegrate</span></span><br><span class="line">➜  svn merge --reintegrate svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支中哪些改动已经被合并到主干</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支哪些改动还未合并</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url --show-revs eligible</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from branch r11:r5 into trunk&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-2-主干合并到分支"><a href="#2-2-主干合并到分支" class="headerlink" title="2.2. 主干合并到分支"></a>2.2. 主干合并到分支</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入分支目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并之前，可以使用 svn mergeinfo 命令查看主干上有哪些待合并的版本信息</span></span><br><span class="line">➜  svn mergeinfo -v svn://trunk_url --show-revs eligible --<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并主干上最新代码到分支</span></span><br><span class="line">➜  svn merge svn://trunk_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from trunk r11:r5 into branch&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-回滚-rollback"><a href="#3-回滚-rollback" class="headerlink" title="3. 回滚 rollback"></a>3. 回滚 rollback</h3><h4 id="3-1-未提交使用-revert"><a href="#3-1-未提交使用-revert" class="headerlink" title="3.1. 未提交使用 revert"></a>3.1. 未提交使用 <code>revert</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看文件状态</span></span><br><span class="line">➜  svn status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚单个文件</span></span><br><span class="line">➜  svn revert /path/to/file_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚一个目录</span></span><br><span class="line">➜  svn revert dir_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚整个项目</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn revert -R .</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-已提交使用-merge-r"><a href="#3-2-已提交使用-merge-r" class="headerlink" title="3.2. 已提交使用 merge -r"></a>3.2. 已提交使用 <code>merge -r</code></h4><ol>
+<li><p>先更新到最新代码</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里得到最新版本号 11</span></span><br><span class="line">➜  svn up</span><br><span class="line">Updating <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">At revision 11.</span><br></pre></td></tr></table></figure></li>
+<li><p>找到要回滚到的版本号</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看最新的 50 次提交记录</span></span><br><span class="line"><span class="comment"># 最后的参数可以指定文件或目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn <span class="built_in">log</span> -l 50 [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p> 假如我们想要回退到的版本是 5，可以执行命令 <code>svn diff -r 11:5 [file|dir]</code> 简单查看两个版本的区别。</p>
+</li>
+<li><p>回滚到指定版本号</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn merge -r 11:5 [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p> 验证回滚是否成功</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn diff -r [file|dir]</span><br></pre></td></tr></table></figure></li>
+<li><p>提交本次回滚操作到仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&quot;Revert revision from r28 to r25,because of ...&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>其它地方更新本次回滚操作</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="3-3-回退误操作的-svn-up"><a href="#3-3-回退误操作的-svn-up" class="headerlink" title="3.3. 回退误操作的 svn up"></a>3.3. 回退误操作的 <code>svn up</code></h4><p><strong>场景</strong>：我们有一个目录是稳定版本的环境，因为误操作执行了 <code>svn up</code> 后，代码被更新到了仓库中的最新版本，而最新版还没有测试通过，所以我们需要先将更新的代码回滚，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn merge -r 13410:13962 .</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：千万不要提交，否则仓库中的代码也会回滚，而我们只希望本地目录回滚。</p>
+<p>等到可以执行 <code>svn up</code> 的时候，再恢复：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R .</span><br><span class="line">➜  svn up</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-附录1"><a href="#4-附录1" class="headerlink" title="4. 附录1"></a>4. 附录1</h3><h4 id="4-1-命令简写对照"><a href="#4-1-命令简写对照" class="headerlink" title="4.1. 命令简写对照"></a>4.1. 命令简写对照</h4><ul>
+<li><code>svn checkout</code> <strong>—&gt;</strong> <code>svn co</code></li>
+<li><code>svn update</code> <strong>—&gt;</strong> <code>svn up</code></li>
+<li><code>svn commit</code> <strong>—&gt;</strong> <code>svn ci</code></li>
+<li><code>svn delete</code> <strong>—&gt;</strong> <code>svn rm</code> 或 <code>svn del</code></li>
+<li><code>svn copy</code> <strong>—&gt;</strong> <code>svn cp</code></li>
+<li><code>svn list</code> <strong>—&gt;</strong> <code>svn ls</code></li>
+<li><code>svn status</code> <strong>—&gt;</strong> <code>svn st</code></li>
+<li><code>svn switch</code> <strong>—&gt;</strong> <code>svn sw</code></li>
+<li><code>svn diff</code> <strong>—&gt;</strong> <code>svn di</code></li>
+</ul>
+<h4 id="4-2-处理冲突"><a href="#4-2-处理冲突" class="headerlink" title="4.2. 处理冲突"></a>4.2. 处理冲突</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找合并时的冲突文件，手工解决冲突</span></span><br><span class="line">➜  svn st | grep ^C</span><br><span class="line"><span class="comment"># 告知svn冲突已解决</span></span><br><span class="line">➜  svn resolved filename</span><br><span class="line"><span class="comment"># 提示合并后的版本</span></span><br><span class="line">➜  svn commit -m <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(<strong>p</strong>) postpone    暂时推后处理，我可能要和那个和我冲突的家伙商量一番</li>
+<li>(<strong>df</strong>) diff-full        把所有的修改列出来，比比看</li>
+<li>(<strong>e</strong>) edit              直接编辑冲突的文件</li>
+<li>(<strong>mc</strong>) mine-conflict 如果你很有自信可以只用你的修改，把别人的修改干掉</li>
+<li>(<strong>tc</strong>) theirs-conflict  底气不足，还是用别人修改的吧</li>
+<li>(<strong>s</strong>) show all options  显示其他可用的命令</li>
+</ul>
+<h4 id="4-3-文件符号状态"><a href="#4-3-文件符号状态" class="headerlink" title="4.3. 文件符号状态"></a>4.3. 文件符号状态</h4><ul>
+<li><strong>U</strong>: 表示从服务器收到文件更新了</li>
+<li><strong>G</strong>: 表示本地文件以及服务器文件都已更新,而且成功的合并了</li>
+<li><strong>A</strong>: 表示有文件或者目录添加到工作目录</li>
+<li><strong>R</strong>: 表示文件或者目录被替换了.</li>
+<li><strong>C</strong>: 表示文件的本地修改和服务器修改发生冲突</li>
+</ul>
+<h4 id="4-4-如何迁移仓库"><a href="#4-4-如何迁移仓库" class="headerlink" title="4.4. 如何迁移仓库"></a>4.4. 如何迁移仓库</h4><ol>
+<li><p>备份源仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin dump /path/to/repo &gt; repo.dump</span><br></pre></td></tr></table></figure></li>
+<li><p>新建仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin create new_repo</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：如果是迁移到 Windows 下，使用 VisualSVN 创建新仓库时，不要创建默认目录结构（branches、trunk、tags），否则在导入备份时候可能因为目录冲突发生报错而中断。</p>
+</blockquote>
+</li>
+<li><p>从备份文件导入新建的仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin load /path/to/new_repo &lt; repo.dump</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>建议：切换代码的 svn 仓库地址时，最好使用新 svn 地址进行重新检出的方式操作；如果直接使用 <code>svn switch --relocate svn://svn_old svn://svn_new </code> 进行切换，有可能报类似 <code>uuid</code> 冲突的错误。</strong></p>
+<h3 id="5-附录2：常见问题处理"><a href="#5-附录2：常见问题处理" class="headerlink" title="5. 附录2：常见问题处理"></a>5. 附录2：常见问题处理</h3><h4 id="5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding"><a href="#5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding" class="headerlink" title="5.1. svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding"></a>5.1. <code>svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding</code></h4><p><strong>解决</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export LC_ALL=zh_CN.UTF-8&quot;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected"><a href="#5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected" class="headerlink" title="5.2. SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected."></a>5.2. <code>SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected.</code></h4><p><strong>场景</strong>：在 CentOS 服务器上，通过 svn 命令检出 VisualSVN 管理的仓库代码时。</p>
+<p><strong>解决</strong>：安装高版本的 svn ，如下</p>
+<ul>
+<li><p>添加软件源 <code>vim /etc/yum.repos.d/wandisco-svn.repo</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[WandiscoSVN]</span><br><span class="line">name=Wandisco SVN Repo</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/$releasever/svn-1.8/RPMS/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></li>
+<li><p>删除旧版本 <code>yum remove subversion*</code></p>
+</li>
+<li><p>安装新版本</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum clean all</span><br><span class="line">➜  yum install subversion</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1634855012.html" title="svn 常用操作命令及问题处理">https://sqiang.net/post/1634855012.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"># 开发工具</a>
+              <a href="/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/" rel="tag"># 版本管理</a>
+              <a href="/tags/svn/" rel="tag"># svn</a>
+              <a href="/tags/Subversion/" rel="tag"># Subversion</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3349016682.html" rel="prev" title="安装 svn 最新版本 1.10.x">
+                  <i class="fa fa-chevron-left"></i> 安装 svn 最新版本 1.10.x
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/1709980602.html" rel="next" title="svn 服务端配置">
+                  svn 服务端配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;658a329ce18e2975fc892efa2ebda236&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

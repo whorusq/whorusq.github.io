@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="本文整理自： 极客时间专栏《朱赟（yūn）的技术管理课》 （微信扫码进入课程）  从给答案到做引导每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：  向你问问题和各种琐事的人越来越多； 因为你给的是答案，下次如果有类似的问题，别人还会来找你。  那么如何改变呢？ 授人以鱼，不如授人以渔。  首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一堂技术管理课">
+<meta property="og:url" content="https://sqiang.net/post/895189460.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="本文整理自： 极客时间专栏《朱赟（yūn）的技术管理课》 （微信扫码进入课程）  从给答案到做引导每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：  向你问问题和各种琐事的人越来越多； 因为你给的是答案，下次如果有类似的问题，别人还会来找你。  那么如何改变呢？ 授人以鱼，不如授人以渔。  首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-24T00:04:26.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.006Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="学习笔记">
+<meta property="article:tag" content="技术管理">
+<meta property="article:tag" content="管理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/895189460.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;895189460.html&quot;,&quot;path&quot;:&quot;post&#x2F;895189460.html&quot;,&quot;title&quot;:&quot;一堂技术管理课&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>一堂技术管理课 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E7%BB%99%E7%AD%94%E6%A1%88%E5%88%B0%E5%81%9A%E5%BC%95%E5%AF%BC"><span class="nav-text">从给答案到做引导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bug%E5%BC%95%E5%8F%91%E4%BA%8B%E6%95%85%EF%BC%8C%E8%AF%A5%E4%B8%8D%E8%AF%A5%E8%BF%BD%E7%A9%B6%E8%B4%A3%E4%BB%BB%EF%BC%9F"><span class="nav-text">Bug引发事故，该不该追究责任？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%BD%E7%A9%B6"><span class="nav-text">追究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E8%BF%BD%E7%A9%B6"><span class="nav-text">不追究</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F"><span class="nav-text">怎么做？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%B8%AE%E5%8A%A9%E5%9B%A2%E9%98%9F%E6%88%90%E5%91%98%E6%88%90%E9%95%BF%EF%BC%9F"><span class="nav-text">如何帮助团队成员成长？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E7%BB%99%E5%88%AB%E4%BA%BA%E6%8F%90%E6%84%8F%E8%A7%81%E6%97%B6%EF%BC%8C%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">当我们给别人提意见时，要注意些什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E5%88%AB%E4%BA%BA%E7%BB%99%E6%88%91%E4%BB%AC%E6%8F%90%E6%84%8F%E8%A7%81%E6%97%B6%EF%BC%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E5%BA%94%E5%AF%B9%EF%BC%9F"><span class="nav-text">当别人给我们提意见时，该如何应对？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%BB%B6%E6%9C%9F%E4%BA%86%EF%BC%8C%E4%BD%9C%E4%B8%BA%E8%B4%9F%E8%B4%A3%E4%BA%BA%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-text">项目延期了，作为负责人该怎么办？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E8%80%85%E5%9C%A8%E8%BF%9B%E8%A1%8C%E5%B7%A5%E4%BD%9C%E5%88%86%E9%85%8D%E6%97%B6%EF%BC%8C%E4%BC%9A%E8%80%83%E8%99%91%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-text">管理者在进行工作分配时，会考虑哪些问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86%E8%80%85%E4%B8%8D%E7%94%A8%E4%BA%B2%E5%8A%9B%E4%BA%B2%E4%B8%BA%EF%BC%9A%E5%85%B3%E9%94%AE%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">管理者不用亲力亲为：关键是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%BF%80%E5%8F%91%E5%9B%A2%E9%98%9F%E4%BA%BA%E5%91%98%E7%9A%84%E8%B4%A3%E4%BB%BB%E5%BF%83%EF%BC%9F"><span class="nav-text">如何激发团队人员的责任心？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%B9%B6%E5%BB%BA%E7%AB%8B%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%BC%B9%E6%80%A7"><span class="nav-text">理解并建立自己的工作弹性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AF%B9%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%AF%B4%E2%80%9C%E4%B8%8D%E2%80%9D%EF%BC%9F"><span class="nav-text">如何对更多的工作说“不”？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/895189460.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一堂技术管理课
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-06-24 08:04:26" itemprop="dateCreated datePublished" datetime="2020-06-24T08:04:26+08:00">2020-06-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文整理自： 极客时间专栏<a target="_blank" rel="noopener external nofollow noreferrer" href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
+</blockquote>
+<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
+<ol>
+<li>向你问问题和各种琐事的人越来越多；</li>
+<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
+</ol>
+<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
+<ul>
+<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
+<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
+</li>
+<li><p>其次，如何引导？</p>
+<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
+</li>
+<li><p>最后，引导的好处。</p>
+<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="Bug引发事故，该不该追究责任？"><a href="#Bug引发事故，该不该追究责任？" class="headerlink" title="Bug引发事故，该不该追究责任？"></a>Bug引发事故，该不该追究责任？</h3><h4 id="追究"><a href="#追究" class="headerlink" title="追究"></a>追究</h4><p>假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免：</p>
+<ul>
+<li>大家都怕闯祸，所以风险高的事没人做，或者总是那几个靠谱的“老司机”做，其他人则永远没有机会得到锻炼。</li>
+<li>如果有人搞砸了什么事情，会因为担心承担后果而推卸责任，从而尽可能掩盖错误的坏影响，不让人知道。</li>
+<li>如果别人犯了错，会觉得不关自己的事。</li>
+<li>指出别人的错误就会导致别人被追究责任，因此看到有问题也会犹豫要不要指出。</li>
+</ul>
+<h4 id="不追究"><a href="#不追究" class="headerlink" title="不追究"></a>不追究</h4><p>反之，如果无论发生什么错误，都不需要承担后果或进行反省，没有任何担当，那可能又会出现以下情况：</p>
+<ul>
+<li>同样的错误可能会一再发生。</li>
+<li>小错酿成大错。</li>
+<li>做事仔细的人会觉得不公平。</li>
+</ul>
+<h4 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h4><p>对于工作中的错误，尤其是 Bug 导致的错误，我们应该采取什么态度和措施呢？</p>
+<ol>
+<li>追究责任，但不是惩罚。</li>
+<li>对事儿不对人。</li>
+<li>反复问“为什么”，从根本上发现问题。</li>
+<li>员工关系的建立也很关键。我们需要培养的是大家相互信任、互帮互助，为了共同的目标努力的氛围，而不是一种不安全感。</li>
+</ol>
+<h3 id="如何帮助团队成员成长？"><a href="#如何帮助团队成员成长？" class="headerlink" title="如何帮助团队成员成长？"></a>如何帮助团队成员成长？</h3><p>包括通过指导、反馈、监督、交流、协调资源等方式帮助下属提升能力，迅速成长。</p>
+<p>作为管理者，应该经常思考的是：</p>
+<ul>
+<li>怎样做能够让员工进步到更高层次？</li>
+<li>他的潜力在哪，哪些地方是可以培养和挖掘的？</li>
+<li>怎么帮助员工改进他与组内组外同事的关系，让他有机会更好地发挥他的长处？</li>
+<li>怎样尽早地发现他的错误和缺点，并帮助他认识和改进，而不是在错误变成后果后，去追究责任。</li>
+<li>怎样帮助他在不擅长的领域建立信心？</li>
+<li>怎样帮助他学会处理各种压力和矛盾？</li>
+</ul>
+<p>切忌陷入静态思维去看待动态发展的问题。</p>
+<ul>
+<li>多和自己对话，想想自己哪些时候、哪些方面会用静态的眼光去看待别人的能力。</li>
+<li>把自己有这种心态时的表现或内心的一些想法写出来。</li>
+<li>再遇到类似的情况，停一下，想一想是不是自己可以有所改变。</li>
+<li>诚恳地告诉组员希望帮助他成长，多交流并听取对方的想法。</li>
+</ul>
+<blockquote>
+<p><strong>一个技术管理者的成功并不在于自己代码多好、能力多强，他的成功一定建立在团队成功的基础之上。只有团队成员不断成长，这个团队才可以做成更大的事情，而你才可以在团队的基础上，站得更高、看得更远。</strong></p>
+</blockquote>
+<h3 id="当我们给别人提意见时，要注意些什么？"><a href="#当我们给别人提意见时，要注意些什么？" class="headerlink" title="当我们给别人提意见时，要注意些什么？"></a>当我们给别人提意见时，要注意些什么？</h3><ul>
+<li><p>首先，要思考自己是不是合适提这个意见。</p>
+<p>  也就是说，对方会不会产生 “就凭你” 的逆反心理。</p>
+<p>  在工作中适当放低姿态，往往更容易获得尊重。</p>
+<p>  <strong>不要总是试图居高临下地提意见，尤其是你在对方心里还没有建立任何信任和威信的时候，不要贸然给别人提负面意见。</strong></p>
+</li>
+<li><p>其次，提意见要讲究合适的时机</p>
+<p>  确定什么时候应该提什么样的意见。</p>
+<p>  直接给出意见时，需注意：</p>
+<ol>
+<li>地点很重要，尽量找个安静的地方，避开其他人；</li>
+<li>可能的话，稍微用几句闲聊来导入正题；</li>
+<li>提意见时，语气不应该是责备，而是描述问题；</li>
+<li>不要加入太多个人感觉、观点和情绪，避免使用一些像 “你总是”“你从来都” 的评价。</li>
+</ol>
+<p>  <strong>有效的讨论需要心平气和</strong>，找出问题的最优解才是关键。</p>
+</li>
+<li><p>最后，多夸夸对方做得好的地方，多给予正向反馈</p>
+<p>  很多时候，正向反馈能更好地帮助对方成长。表扬的力量永远大于批评，他会试图把事情做得更好。</p>
+<p>  正向的沟通还能帮助你与对方构建良好的沟通渠道，让你们未来的合作更为顺畅和有效。</p>
+</li>
+</ul>
+<h3 id="当别人给我们提意见时，该如何应对？"><a href="#当别人给我们提意见时，该如何应对？" class="headerlink" title="当别人给我们提意见时，该如何应对？"></a>当别人给我们提意见时，该如何应对？</h3><ol>
+<li><p>尽量排除情绪以及偏见对我们的干扰。</p>
+</li>
+<li><p>假定对方是善意的。</p>
+<p> 尽可能以感激的心态去听取意见，尽管这一点很难，但是我们还是要尽力为之。</p>
+</li>
+<li><p>了解意见的具体细节，把关注点放在对方的出发点，以及对方希望我们改进的地方。</p>
+</li>
+<li><p>对意见里的信息进行分类和过滤。</p>
+<p> 思考一下：哪些是误解，哪些是自己的不足，哪些是自己可以通过沟通去改变的，哪些是自己需要尝试改进的。</p>
+<p> 再三确定后，如果确实不是自己的问题，也不用反感，一笑而过就好。</p>
+</li>
+</ol>
+<h3 id="项目延期了，作为负责人该怎么办？"><a href="#项目延期了，作为负责人该怎么办？" class="headerlink" title="项目延期了，作为负责人该怎么办？"></a>项目延期了，作为负责人该怎么办？</h3><blockquote>
+<p>先问自己几个问题：为什么项目延期了，你是什么时候第一次感觉到项目可能会延期，在此之后你做了什么？</p>
+</blockquote>
+<p>对于<strong>不可控因素</strong>，我们能做的并不多，只能权衡取舍，对项目期限、人员或者需求范围做出调整。</p>
+<p>如果是计划本身的问题，或者是因为项目成员没有很好地跟进同一个计划并保持一致，那我们应该尽最大可能避免这些问题的发生。</p>
+<p>具体措施：</p>
+<ol>
+<li><p>建立一定的流程。</p>
+<p> 这里包括计划制定流程和计划跟进流程，也许是每周一次的同步会议，也许是一个共享的任务管理工具，不要过分相信自己随机跟进的能力。</p>
+</li>
+<li><p>在整个项目计划中，要有明确的优先级。</p>
+<p> 知道哪些任务是非做不可的；哪些任务是别的任务所依赖，需要提前完成的等等。</p>
+<p> 人们往往有先处理简单任务的惰性，如果没有搞清楚轻重缓急，那就有可能出现不太重要的杂事都做完了，而重要的事却没有太大进展的情况。</p>
+</li>
+<li><p>制作一个共享的项目状态表，让团队成员可以一眼就看清楚项目进展，并保持该图表的更新。</p>
+<p> 进度表可以作为大家对进度评估的工具，也可以是负责人判断哪里需要重点跟进的依据。</p>
+<p> 确保这个计划是每个主要相关者都确认并同意的，并在同意后让他们每天都能看到这个计划的所有更新。</p>
+</li>
+<li><p>不要漏掉任何一个人。</p>
+<p> 不要觉得暂时还没有他的活儿，可以先不用跟他沟通。当一个项目的计划落实后，应该第一时间让所有相关的人了解到。临时通知会让合作者或帮忙的人没有参与感，并且很容易因为对方没有提前准备在时间上无法达成一致。</p>
+</li>
+<li><p>提供一个有效的反馈渠道。</p>
+<p> 任何人在任何时候对项目有担心或者质疑，确保他可以通过有效的途径让你第一时间知道他的担心。</p>
+</li>
+</ol>
+<h3 id="管理者在进行工作分配时，会考虑哪些问题？"><a href="#管理者在进行工作分配时，会考虑哪些问题？" class="headerlink" title="管理者在进行工作分配时，会考虑哪些问题？"></a>管理者在进行工作分配时，会考虑哪些问题？</h3><ol>
+<li><p>建立参考基线</p>
+<p> 当和一个人没有任何直接接触的时候，我们可以通过第三方评价、个人履历以及该员工做过的项目或产品来衡量他的能力。</p>
+</li>
+<li><p>问对问题比正确答案更重要</p>
+<p> 把任务交到员工手里之前，要和他进行充分的沟通。告诉他任务的详细情形，看他会问出什么样的问题，提出哪些想法。</p>
+<p> 这能帮助我们进一步评估他是不是真的了解任务的状况，有没有综合去考虑任务中的问题。</p>
+</li>
+<li><p>工期估算</p>
+<p> 估算完成任务的工期是分配任务中必不可少的环节。可以让接受任务的员工试着去估算：需要多久完成，大概什么时候完成，需要什么样的资源等。</p>
+<p> 如果一个人不能花费足够的时间去了解自己未知的部分，我们很难放心地把任务交给他独立完成。</p>
+</li>
+<li><p>执行力</p>
+<p> 工作中有一些人，他们的沟通能力、计划能力都很强，但是执行力却比较差，或者没有粘滞力，执行过程中容易遇难就退、虎头蛇尾。这些人属于能说但不能把事情做好的人，难以托付大事。如果你的项目中有重要的任务，切记不要交给这样的人去做。</p>
+</li>
+<li><p>后期维护</p>
+<p> 完成一个项目并不意味着项目的结束，很多时候，项目上线了还需要一段时间的维护工作。这包括了 Bug 修复，排查用户反馈的问题，完成后续的迭代开发等等。</p>
+<p> 于是，你需要去观察：一个人是不是可以自觉地维护产品，有没有责任感，会不会推卸责任，出了问题，能不能第一时间冲到一线解决。这些都是很重要的品质，也是你判断他是否能够承担更重要任务的参考。</p>
+</li>
+</ol>
+<p>在分配工作的过程中，你还需要注意一些细节问题：</p>
+<ul>
+<li><p>如何对待职场新人</p>
+<p>  一些职场新人很有潜力，但经验不足，也许他们在项目初期有很多地方考虑不完善。这个时候，不要轻易地否定他们的工作。如果你可以耐心地花些时间悉心指导，他们可以快速地学习并且进步。</p>
+</li>
+<li><p>如何针对不同类型的员工分配工作</p>
+<p>  在分配任务的时候，你需要根据每个人的特点安排不同类型的任务，并提供相应的支持和帮助，扬长避短，才能发挥人员的最大效力。</p>
+</li>
+<li><p>大项目的工作分配</p>
+<p>  指定项目负责人，其同样需要拥有分配任务的能力，对于大部分事情不要亲力亲为，而是分配给合适的人，整个过程中沟通、协调为主。</p>
+</li>
+</ul>
+<h3 id="管理者不用亲力亲为：关键是什么？"><a href="#管理者不用亲力亲为：关键是什么？" class="headerlink" title="管理者不用亲力亲为：关键是什么？"></a>管理者不用亲力亲为：关键是什么？</h3><p>把关注点放在如何帮助别人把事情做好上面。比如，接受任务的人需要哪些支持和帮助才能很好的完成任务呢，我们应该在什么样的时间点去提供这样的帮助。</p>
+<p>作为一个管理者，我们在授权和分配任务的时候应该注意：</p>
+<ul>
+<li>让对方明确目标，知道最终想要达到的结果是什么，对这个任务完成的期望值是怎样的。</li>
+<li>制定一个计划，并保持跟进。</li>
+<li>给出反馈，尤其是正面的反馈。</li>
+</ul>
+<p>项目管理中的三个技巧：</p>
+<ol>
+<li><p>在做项目计划的时候，要对多个项目进行细分重组</p>
+<p> 对要做的任务重新细分重组，把大任务变成一个个均匀的小任务，然后根据个人能力，任务的相互依赖情况等重新分配下去。</p>
+</li>
+<li><p>工期估算</p>
+<p> 管理者和任务的负责人要达成一致，并且注意到，工程师门在进行时间预算的时候都是比较乐观、理想的，最好为项目预留缓冲的时间。</p>
+</li>
+<li><p>实时跟进，并准备好 B 计划</p>
+<p> 为项目合理设置里程碑，并实时跟进，一旦出现问题，就要启动 B 计划。</p>
+</li>
+</ol>
+<p>如何处理工作中的人际关系？</p>
+<p>人际关系是一个特别复杂的话题，因人而异，更因情形而异。</p>
+<p>那么如何处理人际关系呢？在这里，我有几点建议，内容可能更偏向于个人感悟，仅供你的参考：</p>
+<ol>
+<li>对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要。</li>
+<li>在交往过程中，尽可能对别人的分享、工作、交流持一种积极、友善和鼓励的态度。</li>
+<li>加入一些有利于自己成长的社交圈子。</li>
+<li>适当的寻求帮助。</li>
+<li>对于别人的意见要尽可能认真对待。</li>
+</ol>
+<h3 id="如何激发团队人员的责任心？"><a href="#如何激发团队人员的责任心？" class="headerlink" title="如何激发团队人员的责任心？"></a>如何激发团队人员的责任心？</h3><ol>
+<li><p>明确责任制，尽可能通过规则来明确和规范与责任心、责任感相关的事情；</p>
+<p> 适当放权，让他去主导一些事情。</p>
+<p> 适当的奖励机制，对于主动承担责任的员工表示认可和感激。</p>
+</li>
+<li><p>让责任制变得有效，而不是形同虚设。</p>
+<p> 有效的责任制，在开始的时候就要让所有人明确责任与权利，而不是最后追究责任或推卸责任。</p>
+<p> 在这个基础上，根据每个人的不同情况，在执行过程中适度跟进。</p>
+</li>
+<li><p>尽可能地让团队成员充满归属感，进而激发他们的责任心。</p>
+<p> 归属感是指一个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
+<p> 如何增加员工的归属感呢？</p>
+<ul>
+<li>在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上。</li>
+<li>管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。</li>
+<li>真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励。</li>
+<li>同时做一些仪式感比较强的团队活动和建设。</li>
+</ul>
+</li>
+</ol>
+<h3 id="理解并建立自己的工作弹性"><a href="#理解并建立自己的工作弹性" class="headerlink" title="理解并建立自己的工作弹性"></a>理解并建立自己的工作弹性</h3><p>人为什么会焦虑呢？可能是自身的弹性能力不够，事实上人的弹性能力也是可以锻炼和提升的：</p>
+<ul>
+<li>正确思考而不是钻牛角尖，找到需要改进的地方持续改进；</li>
+<li>偶尔放纵，不担心犯错，从错误中成长；</li>
+<li>多结识乐观积极向上的朋友；</li>
+<li>一直做自己认为有价值的事情。</li>
+</ul>
+<p>想要构建出自己的弹性能力，还要具备以下两个心态：</p>
+<ol>
+<li>不论你多努力，也不是所有的付出都会有回报，或者有等比的回报。</li>
+<li>不只是你，每个人都有自己搞不定的时候。</li>
+</ol>
+<p><strong>日拱一卒，不期速成。</strong></p>
+<h3 id="如何对更多的工作说“不”？"><a href="#如何对更多的工作说“不”？" class="headerlink" title="如何对更多的工作说“不”？"></a>如何对更多的工作说“不”？</h3><p>要对更多的工作说“不”，需要搞清楚两件事：</p>
+<ol>
+<li>分清事情的轻重缓急，有些紧急的事情和优先级高的事情很难拒绝；</li>
+<li>正确评估自己的能力和时间资源。</li>
+</ol>
+<p>与生活中相比，在工作中说“不”需要更理性，避免强硬拒绝，让对方觉得你是因为不愿帮忙才拒绝的。</p>
+<p>应开门见山，把自己的想法和事实清晰的表达出来。</p>
+<p>对自己力不能及的事情，提早说“不”，无论对人对己，都是负责任的表现。</p>
+<p>答应一件事情之后，尽可能地兑现自己的承诺，如果出现计划外的情况或者难处，要及时的进行沟通。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/895189460.html" title="一堂技术管理课">https://sqiang.net/post/895189460.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/" rel="tag"># 技术管理</a>
+              <a href="/tags/%E7%AE%A1%E7%90%86/" rel="tag"># 管理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1046389609.html" rel="prev" title="PM2 入门指南">
+                  <i class="fa fa-chevron-left"></i> PM2 入门指南
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2259619543.html" rel="next" title="如何做好一场技术演讲">
+                  如何做好一场技术演讲 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;4b86054439221d629a7289af1baf9fe9&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

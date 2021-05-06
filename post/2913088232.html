@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" integrity="sha256-no0c5ccDODBwp+9hSmV5VvPpKwHCpbVzXHexIkupM6U=" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta name="description" content="1.1. 关于 SQLSQL 是 Structure Query Language（结构化查询语言）的缩写，是关系型数据库的基本语言，由 IBM 在 20 世纪 70 年代开发出来，作为 IBM 关系数据库原型 System R 的原型关系语言，实现了关系数据库中的信息检索。 20 世纪 80 年代初，美国国家标准局（ANSI）开始着手制作 SQL 标准，并于 1986 年完成，被叫做 SQL-8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL语法速查1：基础命令篇">
+<meta property="og:url" content="https://sqiang.net/post/2913088232.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="1.1. 关于 SQLSQL 是 Structure Query Language（结构化查询语言）的缩写，是关系型数据库的基本语言，由 IBM 在 20 世纪 70 年代开发出来，作为 IBM 关系数据库原型 System R 的原型关系语言，实现了关系数据库中的信息检索。 20 世纪 80 年代初，美国国家标准局（ANSI）开始着手制作 SQL 标准，并于 1986 年完成，被叫做 SQL-8">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-30T14:53:35.000Z">
+<meta property="article:modified_time" content="2021-05-06T01:39:02.033Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/2913088232.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;2913088232.html&quot;,&quot;path&quot;:&quot;post&#x2F;2913088232.html&quot;,&quot;title&quot;:&quot;MySQL语法速查1：基础命令篇&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>MySQL语法速查1：基础命令篇 | whoru</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">whoru</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E5%85%B3%E4%BA%8E-SQL"><span class="nav-text">1.1. 关于 SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-SQL-%E5%88%86%E7%B1%BB"><span class="nav-text">1.2. SQL 分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-DDL"><span class="nav-text">1.3. DDL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.3.1. 创建数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.3.2. 删除数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-text">1.3.3. 创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-4-%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-text">1.3.4. 删除表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-5-%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="nav-text">1.3.5. 修改表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-6-%E4%BF%AE%E6%94%B9%E8%A1%A8-%E5%A4%96%E9%94%AE"><span class="nav-text">1.3.6. 修改表-外键</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-7-%E4%BF%AE%E6%94%B9%E8%A1%A8-%E7%B4%A2%E5%BC%95"><span class="nav-text">1.3.7. 修改表-索引</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-DML"><span class="nav-text">1.4. DML</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-%E6%96%B0%E5%A2%9E%E8%AE%B0%E5%BD%95%EF%BC%88%E5%A2%9E%EF%BC%89"><span class="nav-text">1.4.1. 新增记录（增）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-%E5%88%A0%E9%99%A4%E8%AE%B0%E5%BD%95%EF%BC%88%E5%88%A0%EF%BC%89"><span class="nav-text">1.4.2. 删除记录（删）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-%E6%9B%B4%E6%96%B0%E8%AE%B0%E5%BD%95%EF%BC%88%E6%94%B9%EF%BC%89"><span class="nav-text">1.4.3. 更新记录（改）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-4-%E6%9F%A5%E8%AF%A2%E8%AE%B0%E5%BD%95%EF%BC%88%E6%9F%A5%EF%BC%89"><span class="nav-text">1.4.4. 查询记录（查）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-DCL"><span class="nav-text">1.5. DCL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-%E6%8E%88%E4%BA%88%E6%9D%83%E9%99%90"><span class="nav-text">1.5.1. 授予权限</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-%E6%94%B6%E5%9B%9E%E6%9D%83%E9%99%90"><span class="nav-text">1.5.2. 收回权限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-%E9%99%84%E5%BD%95"><span class="nav-text">1.6. 附录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">1.6.1. 连接数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-2-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%B8%AE%E5%8A%A9"><span class="nav-text">1.6.2. 如何使用系统帮助</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-3-%E4%BB%80%E4%B9%88%E6%98%AF%E5%85%83%E6%95%B0%E6%8D%AE%E4%BF%A1%E6%81%AF"><span class="nav-text">1.6.3. 什么是元数据信息</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/6557370609" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;6557370609" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-weibo fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2913088232.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL语法速查1：基础命令篇
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-30 22:53:35" itemprop="dateCreated datePublished" datetime="2020-01-30T22:53:35+08:00">2020-01-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-06 09:39:02" itemprop="dateModified" datetime="2021-05-06T09:39:02+08:00">2021-05-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="1-1-关于-SQL"><a href="#1-1-关于-SQL" class="headerlink" title="1.1. 关于 SQL"></a>1.1. 关于 SQL</h3><p>SQL 是 Structure Query Language（结构化查询语言）的缩写，是关系型数据库的基本语言，由 IBM 在 20 世纪 70 年代开发出来，作为 IBM 关系数据库原型 System R 的原型关系语言，实现了关系数据库中的信息检索。</p>
+<p>20 世纪 80 年代初，美国国家标准局（ANSI）开始着手制作 SQL 标准，并于 1986 年完成，被叫做 SQL-86。</p>
+<p>SQL 标准几经修改，日趋完善，大多数关系型数据库系统都支持，而 <strong>(My)SQL</strong> 是在标准 SQL 的基础上进行了扩展。</p>
+<h3 id="1-2-SQL-分类"><a href="#1-2-SQL-分类" class="headerlink" title="1.2. SQL 分类"></a>1.2. SQL 分类</h3><ul>
+<li>DDL（Data Definition Language）：数据定义语句<ul>
+<li>主要用于操作<strong>数据库对象</strong>；</li>
+<li>常用关键字 create、drop、alter等；</li>
+</ul>
+</li>
+<li>DML（Data Manipulation Language）：数据操作语句<ul>
+<li>主要用于操作<strong>数据库记录</strong>;</li>
+<li>常用关键字 insert、delete、update、select等；</li>
+</ul>
+</li>
+<li>DCL（Data Control Language）：数据控制语句<ul>
+<li>主要用于控制数据的<strong>访问权限</strong>；</li>
+<li>常用关键字 grant、revoke等。</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="1-3-DDL"><a href="#1-3-DDL" class="headerlink" title="1.3. DDL"></a>1.3. DDL</h3><h4 id="1-3-1-创建数据库"><a href="#1-3-1-创建数据库" class="headerlink" title="1.3.1. 创建数据库"></a>1.3.1. 创建数据库</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE db_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-2-删除数据库"><a href="#1-3-2-删除数据库" class="headerlink" title="1.3.2. 删除数据库"></a>1.3.2. 删除数据库</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE db_name;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-3-创建表"><a href="#1-3-3-创建表" class="headerlink" title="1.3.3. 创建表"></a>1.3.3. 创建表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name(</span><br><span class="line">    field1_name field1_type [field1_constraints],</span><br><span class="line">    field2_name field2_type [field2_constraints],</span><br><span class="line">    field3_name field3_type [field3_constraints],</span><br><span class="line">    ...</span><br><span class="line">    [<span class="keyword">PRIMARY</span> KEY ( field1_name ),]</span><br><span class="line">    [INDEX `idx_field1_name`(`field1_name`) <span class="keyword">USING</span> BTREE COMMENT <span class="string">&#x27;&#x27;</span>,]</span><br><span class="line">    ...</span><br><span class="line">) [table_constraints];</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>field1_name 字段名，建议以下划线分隔单词，如 <code>update_at</code>。</li>
+<li>field1_type 字段类型<ul>
+<li>int、char、varchar、float、decimal、datatime等。</li>
+<li>数值型的字段后跟括号，用于设置字段的显示宽度，如 <code>int(11)</code>。<ul>
+<li>如果所插入数值的位数小于指定的宽度时会用空格填充；若同时使用 <code>zerofill</code> 约束，则会以 <strong>0</strong> 来填充。</li>
+<li><strong>注意：显示宽度只用于显示，并不能限制取值范围和占用空间，每种数据类型的实际取值范围决定数据能否最终插入数据库</strong>。</li>
+<li>如果插入的值超过字段的实际取值范围，则提示：<code>1264 - Out of range value for column xxxx</code></li>
+</ul>
+</li>
+<li>字符型的字段后跟括号，用于设置可存放值的范围，如：<code>varcahr(5)</code><ul>
+<li>严格模式下，如果插入 6 位字符串，则提示：<code>406 - Data too long for column xxxx</code>。</li>
+<li>非严格模式下，如果插入 6 位字符串，则会进行截取后成功插入数据库，并且显示一个 warning。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>field1_constraints 字段约束条件<ul>
+<li><code>NOT NULL</code> 不允许为空，默认允许为空。</li>
+<li><code>AUTO_INCREMENT</code> 设置为自增列，在 MySQL 中无论 <strong>InnoDB</strong> 引擎还是 <strong>MyISAM</strong> 引擎的表，只能有一个自增列，并且自增列一定是索引列，无论是二级索引还是主键索引。</li>
+<li><code>DEFAULT</code> 默认值，默认 NULL。</li>
+<li><code>COMMENT &#39;注释信息&#39;</code> 字段注释</li>
+<li><code>unsigned</code> 数值型字段无符号，默认有符合。</li>
+<li><code>zerofill</code> 当所插入字段值的长度没有达到在<strong>字段类型</strong>中设置的长度时，用 0 来补全。</li>
+<li><code>CHARACTER SET utf8mb4</code> 设置字段的字符集。</li>
+<li><code>COLLATE utf8mb4_bin</code></li>
+</ul>
+</li>
+<li>table_constraints 表约束条件<ul>
+<li><code>ENGINE=InnoDB</code> 设置表的存储引擎，默认 <strong>InnoDB</strong>，MySQL5.x 以下默认 <strong>MyISAM</strong>。<ul>
+<li><strong>MyISAM</strong> 支持全文本搜索</li>
+<li><strong>InnoDB</strong> 支持事务处理</li>
+<li><strong>MEMORY</strong> 类似MyISAM，但数据存储在内存中，速度很快（特别适合临时表）。</li>
+</ul>
+</li>
+<li><code>DEFAULT CHARSET=utf8</code> 设置默认字符集</li>
+<li><code>AUTO_INCREMENT=10</code> 设置自增列的开始位置，查看表中自增字段的下一个值，使用 <code>SHOW TABLE STATUS LIKE &#39;table_name&#39;;</code> 获取字段 <strong>Auto_increment</strong> 的值。</li>
+<li><code>COMMENT &#39;注释信息&#39;</code> 表的注释信息</li>
+</ul>
+</li>
+</ul>
+<p>查看表的定义</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DESC</span> table_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 或</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name \G;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="1-3-4-删除表"><a href="#1-3-4-删除表" class="headerlink" title="1.3.4. 删除表"></a>1.3.4. 删除表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name；</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除多张表，并且删除之前先判断是否存在</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> table1_name,table2_name,.....;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-5-修改表"><a href="#1-3-5-修改表" class="headerlink" title="1.3.5. 修改表"></a>1.3.5. 修改表</h4><blockquote>
+<blockquote>
+<p><strong>注意</strong> ⚠️：</p>
+</blockquote>
+<ol>
+<li><p>关键字 <code>CHANGE</code> 和 <code>FIRST</code> | <code>AFTER COLUMN</code> 属于 MySQL 在标准 SQL 上的扩展，并不一定适用于其它数据库。</p>
+</li>
+<li><p><strong>field_definition</strong> 至少包含<strong>字段名</strong>和<strong>字段类型</strong>。</p>
+</li>
+</ol>
+</blockquote>
+<ul>
+<li><p>修改表类型</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name MODIFY [<span class="keyword">COLUMN</span>] field_definition [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER field_name];</span><br></pre></td></tr></table></figure></li>
+<li><p>增加表字段</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> [COLUMNM] field_definition [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER field_name];</span><br></pre></td></tr></table></figure></li>
+<li><p>删除表字段</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> [<span class="keyword">COLUMN</span>] field_name;</span><br></pre></td></tr></table></figure></li>
+<li><p>修改字段名</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name CHANGE [<span class="keyword">COLUMN</span>] old_field_name field_definition [<span class="keyword">FIRST</span> <span class="operator">|</span> AFTER field_name];</span><br></pre></td></tr></table></figure></li>
+<li><p>修改字段排列顺序</p>
+<p>  使用前面的可选参数 <code>[FIRST | AFTER field_name]</code>，其中：</p>
+<ul>
+<li>ADD 新增的字段默认在表的最后位置；</li>
+<li>CHANGE 或 MODIFY 默认不改变字段的位置。</li>
+</ul>
+</li>
+<li><p>更改表名</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name RENAME [<span class="keyword">TO</span>] new_table_name;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-3-6-修改表-外键"><a href="#1-3-6-修改表-外键" class="headerlink" title="1.3.6. 修改表-外键"></a>1.3.6. 修改表-外键</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 添加</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_table1_table2 <span class="keyword">FOREIGN</span> KEY (table1) <span class="keyword">REFERENCES</span> table2 (id);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">DROP</span> <span class="keyword">FOREIGN</span> KEY fk_table1_table2;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-7-修改表-索引"><a href="#1-3-7-修改表-索引" class="headerlink" title="1.3.7. 修改表-索引"></a>1.3.7. 修改表-索引</h4><p>这里只介绍了通过修改表结构的方式创建索引，此外还有其它两种方式（<code>CREATE INDEX</code> 或 在 <code>CREATE TABLE</code> 时指定 `），详见后续文章索引部分。</p>
+<ul>
+<li><p>普通索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 添加</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">ADD</span> INDEX idx_name(field1);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">DROP</span> INDEX idx_name;</span><br></pre></td></tr></table></figure></li>
+<li><p>主键索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 添加</span></span><br><span class="line"><span class="comment">-- 先修改要设置为主键的字段：无符号、非空、自增</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1</span><br><span class="line">MODIFY <span class="keyword">COLUMN</span> `id` <span class="type">int</span>(<span class="number">11</span>) UNSIGNED <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY (`id`);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> KEY;</span><br></pre></td></tr></table></figure></li>
+<li><p>唯一索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 添加</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">table</span> mytable <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> [idx_name] (field1(length))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table1 <span class="keyword">DROP</span> <span class="keyword">UNIQUE</span> field1;</span><br></pre></td></tr></table></figure></li>
+<li><p>查询表的索引</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="1-4-DML"><a href="#1-4-DML" class="headerlink" title="1.4. DML"></a>1.4. DML</h3><h4 id="1-4-1-新增记录（增）"><a href="#1-4-1-新增记录（增）" class="headerlink" title="1.4.1. 新增记录（增）"></a>1.4.1. 新增记录（增）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 插入一条</span></span><br><span class="line"><span class="keyword">INSERT</span> INFO table_name(field1,field2,...,fieldn) <span class="keyword">VALUES</span>(val1,val2,...,valn);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 插入多条</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name(field1,field2,...,fieldn)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(record1_val1,record1_val2,...,record1_valn),</span><br><span class="line">(record2_val1,record2_val2,...,record2_valn),</span><br><span class="line">...</span><br><span class="line">(recordn_val1,recordn_val2,...,recordn_valn);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>field1,field2,...,fieldn</code> 可以不用写，但是后面 <code>VALUES</code> 里值的顺序需要与表中的字段顺序保持一致；</li>
+<li>如果待插入的数据，不包含以下类型的字段，可以不用写<ul>
+<li>可空：自动设置为 NULL；</li>
+<li>有默认值：自动设置为默认值；</li>
+<li>自增：自动设置为下一个自增值。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-2-删除记录（删）"><a href="#1-4-2-删除记录（删）" class="headerlink" title="1.4.2. 删除记录（删）"></a>1.4.2. 删除记录（删）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一次删除多张表</span></span><br><span class="line"><span class="keyword">DELETE</span> t1,t2,... <span class="keyword">FROM</span> table1 t1,table2 t2,... [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-3-更新记录（改）"><a href="#1-4-3-更新记录（改）" class="headerlink" title="1.4.3. 更新记录（改）"></a>1.4.3. 更新记录（改）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">UPDATE table_name <span class="keyword">SET</span> field1<span class="operator">=</span>val1,field2<span class="operator">=</span>val2,...,fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一次更新多个表</span></span><br><span class="line">UPDATE table1 a,table2 b, tablen n <span class="keyword">SET</span> a.field1<span class="operator">=</span>val1,...,n.fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-4-查询记录（查）"><a href="#1-4-4-查询记录（查）" class="headerlink" title="1.4.4. 查询记录（查）"></a>1.4.4. 查询记录（查）</h4><ul>
+<li><p>基本</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT * FROM table_name</span><br><span class="line">[WHERE condition]</span><br><span class="line">[ORDER BY field1 [DESC|ASC], field2 [DESC|ASC], ...]</span><br><span class="line">[LIMIT offset_start,row_count];</span><br></pre></td></tr></table></figure>
+
+<p>  说明：</p>
+<ul>
+<li><code>[WHERE condition]</code> 过滤条件</li>
+<li><code>[ORDER BY field1 [DESC|ASC], field2 [DESC|ASC], ...]</code> 排序<ul>
+<li>ASC 升序（默认）</li>
+<li>DESC 降序</li>
+</ul>
+</li>
+<li><code>[LIMIT offset_start,row_count]</code> 限制</li>
+</ul>
+</li>
+<li><p>去重查询</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">distinct</span> field1 <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure></li>
+<li><p>聚合（汇总统计）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [field1,field2,...] func_name <span class="keyword">FROM</span> table_name</span><br><span class="line">[<span class="keyword">WHERE</span> <span class="keyword">condition</span>]</span><br><span class="line">[<span class="keyword">GROUP</span> <span class="keyword">BY</span> field1,field2,...]</span><br><span class="line">[<span class="keyword">WITH</span> ROLLUIP]</span><br><span class="line">[<span class="keyword">HAVING</span> <span class="keyword">condition</span>]</span><br></pre></td></tr></table></figure>
+
+<p>  说明：</p>
+<ul>
+<li><code>func_name</code> 聚合函数，常用：sum 求和、count(*) 记录数、max 最大值、min 最小值。</li>
+<li><code>[WHERE condition]</code> 聚合前按条件对结果进行过滤，<strong>应尽量使用此过滤以减少待聚合的结果集，提高聚合效率</strong>。</li>
+<li><code>[GROUP BY field1,field2,...]</code> 分类聚合字段</li>
+<li><code>[WITH ROLLUIP]</code> 是否对分类聚合后的结果进行再汇总。</li>
+<li><code>[HAVING condition]</code> 对聚合后的结果再进行条件过滤。</li>
+</ul>
+</li>
+<li><p>内连接</p>
+<p>  仅获取两张表中互相匹配的记录</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1,field2 <span class="keyword">FROM</span> table1 t1,table2 t2</span><br><span class="line"><span class="keyword">WHERE</span> t1.outid<span class="operator">=</span>t2.outid</span><br></pre></td></tr></table></figure>
+
+<p>  其中 <code>field1,field2,...</code> 分别存储在两张表中。</p>
+</li>
+<li><p>外连接</p>
+<ul>
+<li><p>左连接</p>
+<p>  包含所有左边表中的记录，甚至是右边表中没有和它匹配的记录。</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1,field2,... <span class="keyword">FROM</span> table1 t1</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> table2 t2 <span class="keyword">ON</span> t2.outid<span class="operator">=</span>t1.outid</span><br></pre></td></tr></table></figure></li>
+<li><p>右连接</p>
+<p>  包含所有右边表中的记录，甚至是右边表中没有和它匹配的记录。</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT field1,field2,... FROM table1 t1</span><br><span class="line">RIGHT JOIN table2 t2 ON t2.outid=t1.outid</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>子查询</p>
+<p>  当进行查询时，需要的条件是另一个 select 语句的结果时将用到子查询功能。</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> field1,field2,... <span class="keyword">FROM</span> table1 <span class="keyword">WHERE</span> outid <span class="keyword">IN</span>(</span><br><span class="line">    <span class="keyword">SELECT</span> outid <span class="keyword">FROM</span> table2</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>  除了 IN，用于子查询的关键字还有：<code>NOT IN</code>、<code>=</code>、<code>!=</code>、<code>EXISTS</code>、<code>NOT EXISTS</code>等。</p>
+<p>  MySQL4.1 以前的版本不支持子查询，需要用表连接来实现，如：</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> t1.<span class="operator">*</span> <span class="keyword">FROM</span> table1 t1,table2 t2</span><br><span class="line"><span class="keyword">WHERE</span> t1.outid<span class="operator">=</span>t2.outid</span><br></pre></td></tr></table></figure></li>
+<li><p>联合（合并结果集）</p>
+  <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table1</span><br><span class="line"><span class="keyword">UNION</span> <span class="operator">|</span> <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> table2</span><br><span class="line">...</span><br><span class="line"><span class="keyword">UNION</span> <span class="operator">|</span> <span class="keyword">UNION</span> <span class="keyword">ALL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> tablen</span><br></pre></td></tr></table></figure>
+
+<p>  说明：</p>
+<ul>
+<li><code>UNION ALL</code> 把结果集直接合并在一起。</li>
+<li><code>UNION</code> 是将 <code>UNION ALL</code> 的结果集执行一次 <code>DISTINCT</code>，去除重复记录后的结果。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-5-DCL"><a href="#1-5-DCL" class="headerlink" title="1.5. DCL"></a>1.5. DCL</h3><h4 id="1-5-1-授予权限"><a href="#1-5-1-授予权限" class="headerlink" title="1.5.1. 授予权限"></a>1.5.1. 授予权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">select</span>,<span class="keyword">insert</span> <span class="keyword">ON</span> db1.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;123&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-2-收回权限"><a href="#1-5-2-收回权限" class="headerlink" title="1.5.2. 收回权限"></a>1.5.2. 收回权限</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">insert</span> <span class="keyword">ON</span> db1.<span class="operator">*</span> <span class="keyword">FROM</span> <span class="string">&#x27;user1&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-附录"><a href="#1-6-附录" class="headerlink" title="1.6. 附录"></a>1.6. 附录</h3><h4 id="1-6-1-连接数据库"><a href="#1-6-1-连接数据库" class="headerlink" title="1.6.1. 连接数据库"></a>1.6.1. 连接数据库</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql [-h127.0.0.1] [-P3306] -uroot -p[password]</span><br></pre></td></tr></table></figure>
+
+<p>参数说明：</p>
+<ul>
+<li><code>-h</code> 可选，数据库地址（IP或域名），默认 127.0.0.1。</li>
+<li><code>-P</code> 可选，数据库端口号，默认 3306.</li>
+<li><code>-u</code> 数据库登录用户</li>
+<li><code>-p</code> 数据库登录用户对应的密码</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mysql -uroot -p</span><br><span class="line">Enter password:</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 4</span><br><span class="line">Server version: 5.7.24-log MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &#x27;help;&#x27; or &#x27;\h&#x27; for help. Type &#x27;\c&#x27; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">MySQL [(none)]&gt; exit</span><br><span class="line">Bye</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-6-2-如何使用系统帮助"><a href="#1-6-2-如何使用系统帮助" class="headerlink" title="1.6.2. 如何使用系统帮助"></a>1.6.2. 如何使用系统帮助</h4><p>在命令行模式下，使用 <code>? contents</code> 命令查看对应分类的帮助信息。</p>
+<p>如：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 查看 show 相关的所有命令等</span></span><br><span class="line">mysql<span class="operator">&gt;</span> ? <span class="keyword">show</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-6-3-什么是元数据信息"><a href="#1-6-3-什么是元数据信息" class="headerlink" title="1.6.3. 什么是元数据信息"></a>1.6.3. 什么是元数据信息</h4><p>元数据指数据的数据，比如表名、列名、列类型、索引名等表的各种属性名称。<strong>MySQL 5.0</strong> 之后提供来一个新的数据库 <code>information_schema</code>，用来记录 MySQL 中的元数据信息。</p>
+<ul>
+<li>这是一个比较特殊的数据库，它在物理上并不存在相关的目录和文件；</li>
+<li>对应数据库里使用 <code>show tables</code> 显示的各种“表”也并不是实际存在的物理表，而全部是视图。</li>
+</ul>
+<p>常用的视图如下：</p>
+<ul>
+<li><code>SCHEMATA</code> 提供当前 MySQL 实例中所有的数据库信息，对应 <code>show  databases;</code> 的结果。</li>
+<li><code>TABLES</code> 提供关于数据库中的表信息（包括视图），详细表述里某个表属于那个 schema、表类型、表引擎、创建时间等，对应 <code>show tables from schemaname;</code> 的结果。</li>
+<li><code>COLUMNS</code> 提供所有表中的列信息，对应 <code>show columns from schemaname.tablename;</code> 的结果。</li>
+<li><code>STATISTICS</code> 提供关于表索引的信息，对应 <code>show index from schemaname.tablename;</code> 的结果。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/2913088232.html" title="MySQL语法速查1：基础命令篇">https://sqiang.net/post/2913088232.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/SQL/" rel="tag"># SQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1679410750.html" rel="prev" title="借助 EditorConfig 统一编码风格">
+                  <i class="fa fa-chevron-left"></i> 借助 EditorConfig 统一编码风格
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2437365066.html" rel="next" title="MySQL 导入数据时查看实时进度">
+                  MySQL 导入数据时查看实时进度 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script class="next-config" data-name="nprogress" type="application/json">{&quot;enable&quot;:true,&quot;spinner&quot;:true}</script>
+  <script src="/js/third-party/nprogress.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;21bc44a7244fb0cf714b1c3af1618d7c&quot;}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
