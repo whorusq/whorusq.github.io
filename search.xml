@@ -2175,6 +2175,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Homebrew 常用命令</title>
+    <url>/post/980470740.html</url>
+    <content><![CDATA[<h3 id="1-安装、卸载"><a href="#1-安装、卸载" class="headerlink" title="1. 安装、卸载"></a>1. 安装、卸载</h3><h4 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1. 安装"></a>1.1. 安装</h4><p>依赖：</p>
+<ul>
+<li>Intel CPU</li>
+<li>OS X 10.10 or higher</li>
+<li>Command Line Tools (CLT) for Xcode: <code>xcode-select --install</code>, developer.apple.com/downloads or Xcode</li>
+<li>A Bourne-compatible shell for installation (e.g. bash or zsh)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-卸载"><a href="#1-2-卸载" class="headerlink" title="1.2. 卸载"></a>1.2. 卸载</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h3><h4 id="2-1-信息查询"><a href="#2-1-信息查询" class="headerlink" title="2.1. 信息查询"></a>2.1. 信息查询</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 Homebrew 版本</span></span><br><span class="line">➜  ~ brew -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的软件</span></span><br><span class="line">➜  ~ brew list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用浏览器打开 Homebrew 官网</span></span><br><span class="line">➜  ~ brew home</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包的详细信息</span></span><br><span class="line">➜  ~ brew info 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测系统中与Homebrew有关的潜在问题</span></span><br><span class="line">➜  ~ brew doctor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包的所有版本</span></span><br><span class="line">➜  ~ brew list --versions | grep 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以树形展示所有已安装包的依赖</span></span><br><span class="line">➜  ~ brew deps --installed --tree</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-查找软件包"><a href="#2-2-查找软件包" class="headerlink" title="2.2. 查找软件包"></a>2.2. 查找软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew search git</span><br><span class="line">➜  ~ brew search /^git$/</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-安装软件包"><a href="#2-3-安装软件包" class="headerlink" title="2.3. 安装软件包"></a>2.3. 安装软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew install 包名</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-卸载软件包"><a href="#2-4-卸载软件包" class="headerlink" title="2.4. 卸载软件包"></a>2.4. 卸载软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew uninstall 包名</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-自身更新"><a href="#2-5-自身更新" class="headerlink" title="2.5. 自身更新"></a>2.5. 自身更新</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew update</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-更新包"><a href="#2-6-更新包" class="headerlink" title="2.6. 更新包"></a>2.6. 更新包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看哪些包有新版本可更新</span></span><br><span class="line">➜  ~ brew outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新所有包</span></span><br><span class="line">➜  ~ brew upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新指定包</span></span><br><span class="line">➜  ~ brew upgrade 包名</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-7-清理旧的升级包"><a href="#2-7-清理旧的升级包" class="headerlink" title="2.7. 清理旧的升级包"></a>2.7. 清理旧的升级包</h4><blockquote>
+<p>⚠️ 注意：如果一个包当前有可更新的版本没有更新，执行清理时候只会提示一个警告，而不会执行清理操作。需要先升级到最新版本，值执行清理。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看哪些包可清理</span></span><br><span class="line">➜  ~ brew cleanup -n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理所有</span></span><br><span class="line">➜  ~ brew cleanup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理指定包</span></span><br><span class="line">➜  ~ brew cleanup 包名</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-8-锁定不想更新的包"><a href="#2-8-锁定不想更新的包" class="headerlink" title="2.8. 锁定不想更新的包"></a>2.8. 锁定不想更新的包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 锁定</span></span><br><span class="line">➜  ~ brew pin 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解锁</span></span><br><span class="line">➜  ~ brew unpin 包名</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-9-关联包"><a href="#2-9-关联包" class="headerlink" title="2.9. 关联包"></a>2.9. 关联包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理无效的关联，且清理与之相关的位于/Applications和~/Applications中的无用App链接</span></span><br><span class="line">➜  ~ brew prune</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将指定软件的安装文件symlink到Homebrew上</span></span><br><span class="line">➜  ~ brew link 包名</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>开发工具</tag>
+        <tag>Homebrew</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JetBrains全系列产品30天试用期重置插件</title>
     <url>/post/1904459089.html</url>
     <content><![CDATA[<blockquote>
@@ -2225,52 +2271,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Homebrew 常用命令</title>
-    <url>/post/980470740.html</url>
-    <content><![CDATA[<h3 id="1-安装、卸载"><a href="#1-安装、卸载" class="headerlink" title="1. 安装、卸载"></a>1. 安装、卸载</h3><h4 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1. 安装"></a>1.1. 安装</h4><p>依赖：</p>
-<ul>
-<li>Intel CPU</li>
-<li>OS X 10.10 or higher</li>
-<li>Command Line Tools (CLT) for Xcode: <code>xcode-select --install</code>, developer.apple.com/downloads or Xcode</li>
-<li>A Bourne-compatible shell for installation (e.g. bash or zsh)</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/usr/bin/ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-卸载"><a href="#1-2-卸载" class="headerlink" title="1.2. 卸载"></a>1.2. 卸载</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ruby -e <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h3><h4 id="2-1-信息查询"><a href="#2-1-信息查询" class="headerlink" title="2.1. 信息查询"></a>2.1. 信息查询</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 Homebrew 版本</span></span><br><span class="line">➜  ~ brew -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的软件</span></span><br><span class="line">➜  ~ brew list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用浏览器打开 Homebrew 官网</span></span><br><span class="line">➜  ~ brew home</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包的详细信息</span></span><br><span class="line">➜  ~ brew info 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测系统中与Homebrew有关的潜在问题</span></span><br><span class="line">➜  ~ brew doctor</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看包的所有版本</span></span><br><span class="line">➜  ~ brew list --versions | grep 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以树形展示所有已安装包的依赖</span></span><br><span class="line">➜  ~ brew deps --installed --tree</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-查找软件包"><a href="#2-2-查找软件包" class="headerlink" title="2.2. 查找软件包"></a>2.2. 查找软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew search git</span><br><span class="line">➜  ~ brew search /^git$/</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-安装软件包"><a href="#2-3-安装软件包" class="headerlink" title="2.3. 安装软件包"></a>2.3. 安装软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew install 包名</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-卸载软件包"><a href="#2-4-卸载软件包" class="headerlink" title="2.4. 卸载软件包"></a>2.4. 卸载软件包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew uninstall 包名</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-自身更新"><a href="#2-5-自身更新" class="headerlink" title="2.5. 自身更新"></a>2.5. 自身更新</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ brew update</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-6-更新包"><a href="#2-6-更新包" class="headerlink" title="2.6. 更新包"></a>2.6. 更新包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看哪些包有新版本可更新</span></span><br><span class="line">➜  ~ brew outdated</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新所有包</span></span><br><span class="line">➜  ~ brew upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新指定包</span></span><br><span class="line">➜  ~ brew upgrade 包名</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-7-清理旧的升级包"><a href="#2-7-清理旧的升级包" class="headerlink" title="2.7. 清理旧的升级包"></a>2.7. 清理旧的升级包</h4><blockquote>
-<p>⚠️ 注意：如果一个包当前有可更新的版本没有更新，执行清理时候只会提示一个警告，而不会执行清理操作。需要先升级到最新版本，值执行清理。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看哪些包可清理</span></span><br><span class="line">➜  ~ brew cleanup -n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理所有</span></span><br><span class="line">➜  ~ brew cleanup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理指定包</span></span><br><span class="line">➜  ~ brew cleanup 包名</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-8-锁定不想更新的包"><a href="#2-8-锁定不想更新的包" class="headerlink" title="2.8. 锁定不想更新的包"></a>2.8. 锁定不想更新的包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 锁定</span></span><br><span class="line">➜  ~ brew pin 包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解锁</span></span><br><span class="line">➜  ~ brew unpin 包名</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-9-关联包"><a href="#2-9-关联包" class="headerlink" title="2.9. 关联包"></a>2.9. 关联包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理无效的关联，且清理与之相关的位于/Applications和~/Applications中的无用App链接</span></span><br><span class="line">➜  ~ brew prune</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将指定软件的安装文件symlink到Homebrew上</span></span><br><span class="line">➜  ~ brew link 包名</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>开发工具</tag>
-        <tag>Homebrew</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JetBrains全系列软件激活教程</title>
     <url>/post/1936578867.html</url>
     <content><![CDATA[<blockquote>
@@ -2311,72 +2311,6 @@
         <tag>PHPStorm</tag>
         <tag>WebStorm</tag>
         <tag>Pycharm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>借助 EditorConfig 统一编码风格</title>
-    <url>/post/1679410750.html</url>
-    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
-<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
-<ul>
-<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
-<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
-<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
-<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
-<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
-
-<p>其中：</p>
-<table>
-<thead>
-<tr>
-<th>通配符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配除路径分隔符（/）之外的任何字符串</td>
-</tr>
-<tr>
-<td>**</td>
-<td>匹配任何字符串</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配任何单个字符</td>
-</tr>
-<tr>
-<td>[name]</td>
-<td>匹配名称中的任何单个字符</td>
-</tr>
-<tr>
-<td>[!name]</td>
-<td>匹配任何不在名称中的单个字符</td>
-</tr>
-<tr>
-<td>{s1,s2,s3}</td>
-<td>匹配给定的任何字符串（以逗号分隔）</td>
-</tr>
-<tr>
-<td>{num1..num2}</td>
-<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
-</tr>
-</tbody></table>
-<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>EditorConfig</tag>
       </tags>
   </entry>
   <entry>
@@ -2546,44 +2480,69 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
-    <url>/post/2445402303.html</url>
-    <content><![CDATA[<blockquote>
-<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
-</blockquote>
-<p>涉及 vscode 配置：</p>
+    <title>借助 EditorConfig 统一编码风格</title>
+    <url>/post/1679410750.html</url>
+    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
+<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
 <ul>
-<li><code>.vscode/tasks.json</code> 启动</li>
-<li><code>.vscode/launch.json</code> 调试</li>
+<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
+<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
+<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
+<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
 </ul>
 <span id="more"></span>
 
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h4><ul>
-<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
-<li>2、此时会列出 package.json 中定义的 script 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
-</ul>
-<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
 
-<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
-<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
-<blockquote>
-<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
-</blockquote>
-<h4 id="调试配置"><a href="#调试配置" class="headerlink" title="调试配置"></a>调试配置</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
-<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
-<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配除路径分隔符（/）之外的任何字符串</td>
+</tr>
+<tr>
+<td>**</td>
+<td>匹配任何字符串</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配任何单个字符</td>
+</tr>
+<tr>
+<td>[name]</td>
+<td>匹配名称中的任何单个字符</td>
+</tr>
+<tr>
+<td>[!name]</td>
+<td>匹配任何不在名称中的单个字符</td>
+</tr>
+<tr>
+<td>{s1,s2,s3}</td>
+<td>匹配给定的任何字符串（以逗号分隔）</td>
+</tr>
+<tr>
+<td>{num1..num2}</td>
+<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
+</tr>
+</tbody></table>
+<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
 ]]></content>
       <categories>
         <category>开发工具</category>
       </categories>
       <tags>
         <tag>开发工具</tag>
-        <tag>vscode</tag>
-        <tag>Node.js</tag>
+        <tag>EditorConfig</tag>
       </tags>
   </entry>
   <entry>
@@ -2632,6 +2591,47 @@
         <tag>开发工具</tag>
         <tag>PHPStorm</tag>
         <tag>XDebug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
+    <url>/post/2445402303.html</url>
+    <content><![CDATA[<blockquote>
+<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
+</blockquote>
+<p>涉及 vscode 配置：</p>
+<ul>
+<li><code>.vscode/tasks.json</code> 启动</li>
+<li><code>.vscode/launch.json</code> 调试</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h4><ul>
+<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
+<li>2、此时会列出 package.json 中定义的 script 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
+</ul>
+<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
+<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
+<blockquote>
+<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
+</blockquote>
+<h4 id="调试配置"><a href="#调试配置" class="headerlink" title="调试配置"></a>调试配置</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
+<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
+<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>vscode</tag>
+        <tag>Node.js</tag>
       </tags>
   </entry>
   <entry>
