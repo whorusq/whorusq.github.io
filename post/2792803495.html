@@ -264,6 +264,8 @@
 <p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
 </blockquote>
 <p>解决步骤如下：</p>
+<span id="more"></span>
+
 <h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 
 <p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
