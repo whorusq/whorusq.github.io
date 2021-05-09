@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">91</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">92</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,100 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2792803495.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2792803495.html" class="post-title-link" itemprop="url">解决Hexo文章更新时间问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2021-05-09 下午 16:53:55" itemprop="dateCreated datePublished" datetime="2021-05-09T16:53:55+08:00">2021-05-09 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<ul>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -516,106 +610,6 @@
 <p>Windows 7 64bit：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
 </a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1904459089.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1904459089.html" class="post-title-link" itemprop="url">JetBrains全系列产品30天试用期重置插件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-12-10 上午 10:38:08" itemprop="dateCreated datePublished" datetime="2020-12-10T10:38:08+08:00">2020-12-10 上午</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新</span>
-        <time title="修改时间：2021-03-15 上午 10:38:08" itemprop="dateModified" datetime="2021-03-15T10:38:08+08:00">2021-03-15 上午</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>此插件来自 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhile.io/2020/11/18/jetbrains-eval-reset-da33a93d.html">https://zhile.io</a>，仅供学习研究项目的，请勿无休止的一直试用，更多说明信息详见原文。</p>
-</blockquote>
-<h3 id="1-如何安装"><a href="#1-如何安装" class="headerlink" title="1. 如何安装"></a>1. 如何安装</h3><h4 id="1-1-在线安装"><a href="#1-1-在线安装" class="headerlink" title="1.1. 在线安装"></a>1.1. 在线安装</h4><ol>
-<li>打开插件市场 <code>Settings/Preferences... -&gt; Plugins</code>；</li>
-<li>手动添加第三方插件仓库地址：<code>https://plugins.zhile.io</code>；</li>
-<li>搜索插件名称 <code>IDE Eval Reset</code> 进行安装。</li>
-</ol>
-<h4 id="1-2-下载安装"><a href="#1-2-下载安装" class="headerlink" title="1.2. 下载安装"></a>1.2. 下载安装</h4><ol>
-<li><p>点击 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://plugins.zhile.io/files/ide-eval-resetter-2.1.10.zip">ide-eval-resetter-2.1.10.zip</a> 下载，或到<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/pengzhile/ide-eval-resetter">官方仓库</a>下载最新版本（注意：如果是 <code>macOS</code> 系统，可能会下载完自动解压）。</p>
-</li>
-<li><p>通常可以直接把下载到的 zip 包拖进 IDE 窗口进行插件的安装。如果无法拖动安装，可以在 <code>Settings/Preferences... -&gt; Plugins</code> 里选择手动安装（<code>Install Plugin From Disk...</code>）。</p>
-</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/1904459089.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

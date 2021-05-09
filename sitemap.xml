@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://sqiang.net/post/2792803495.html</loc>
+    
+    <lastmod>2021-05-09</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://sqiang.net/tags/index.html</loc>
     
     <lastmod>2021-05-06</lastmod>
@@ -676,27 +683,6 @@
 
   
   <url>
-    <loc>https://sqiang.net/tags/HTML-CSS/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/CSS/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Less/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/Java/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
@@ -781,6 +767,20 @@
   </url>
   
   <url>
+    <loc>https://sqiang.net/tags/Redis/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sqiang.net/tags/LNMP/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
@@ -809,20 +809,6 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/Redis/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/oh-my-zsh/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
@@ -837,77 +823,21 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/Composer/</loc>
+    <loc>https://sqiang.net/tags/HTML-CSS/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://sqiang.net/tags/CSS/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/PSR/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/PSR-1/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/PSR-2/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/PSR-3/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/PSR-4/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/PHP-CLI/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/ThinkPHP/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Python/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/pip/</loc>
+    <loc>https://sqiang.net/tags/Less/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -964,6 +894,97 @@
   
   <url>
     <loc>https://sqiang.net/tags/Gitalk/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Python/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/pip/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Composer/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PSR/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PSR-1/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PSR-2/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PSR-3/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PSR-4/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/PHP-CLI/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/ThinkPHP/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E8%BF%88%E5%85%8B%E5%B0%94%C2%B7%E4%B9%94%E4%B8%B9/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BE%8E%E5%89%A7/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1111,20 +1132,6 @@
   
   <url>
     <loc>https://sqiang.net/tags/brew/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E8%BF%88%E5%85%8B%E5%B0%94%C2%B7%E4%B9%94%E4%B8%B9/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BE%8E%E5%89%A7/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1348,34 +1355,6 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Git/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/svn/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Subversion/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
@@ -1411,6 +1390,34 @@
   </url>
   
   <url>
+    <loc>https://sqiang.net/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Git/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/svn/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Subversion/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sqiang.net/tags/Vagrant/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
@@ -1418,13 +1425,6 @@
   </url>
   
 
-  
-  <url>
-    <loc>https://sqiang.net/categories/HTML-CSS/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
   <url>
     <loc>https://sqiang.net/categories/Java/</loc>
@@ -1448,7 +1448,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/categories/PHP/</loc>
+    <loc>https://sqiang.net/categories/HTML-CSS/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/categories/%E5%85%B6%E5%AE%83/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1462,7 +1469,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/categories/%E5%85%B6%E5%AE%83/</loc>
+    <loc>https://sqiang.net/categories/PHP/</loc>
+    <lastmod>2021-05-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1477,13 +1491,6 @@
   
   <url>
     <loc>https://sqiang.net/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2021-05-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/</loc>
     <lastmod>2021-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

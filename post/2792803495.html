@@ -25,30 +25,30 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。  本文介绍一个简单的工具 IPXWrapper，它的原理是通过 UDP 包来模拟 IPX。 同时这是一个开源项目，相关地址如下：">
+<meta name="description" content="问题描述：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新所有文章的更新日期都变成了今天。   产生原因：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题">
-<meta property="og:url" content="https://sqiang.net/post/438064550.html">
+<meta property="og:title" content="解决Hexo文章更新时间问题">
+<meta property="og:url" content="https://sqiang.net/post/2792803495.html">
 <meta property="og:site_name" content="whoru">
-<meta property="og:description" content="之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。  本文介绍一个简单的工具 IPXWrapper，它的原理是通过 UDP 包来模拟 IPX。 同时这是一个开源项目，相关地址如下：">
+<meta property="og:description" content="问题描述：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新所有文章的更新日期都变成了今天。   产生原因：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-11-06T15:21:27.000Z">
-<meta property="article:modified_time" content="2020-11-06T15:21:27.000Z">
+<meta property="article:published_time" content="2021-05-09T08:53:55.000Z">
+<meta property="article:modified_time" content="2021-05-09T08:53:55.000Z">
 <meta property="article:author" content="whoru.S.Q">
-<meta property="article:tag" content="游戏">
-<meta property="article:tag" content="ipx">
-<meta property="article:tag" content="IPXWrapper">
+<meta property="article:tag" content="其它">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://sqiang.net/post/438064550.html">
+<link rel="canonical" href="https://sqiang.net/post/2792803495.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;438064550.html&quot;,&quot;path&quot;:&quot;post&#x2F;438064550.html&quot;,&quot;title&quot;:&quot;借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;sqiang.net&#x2F;post&#x2F;2792803495.html&quot;,&quot;path&quot;:&quot;post&#x2F;2792803495.html&quot;,&quot;title&quot;:&quot;解决Hexo文章更新时间问题&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题 | whoru</title><script src="/js/config.js"></script>
+<title>解决Hexo文章更新时间问题 | whoru</title><script src="/js/config.js"></script>
   
 
 
@@ -142,7 +142,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -155,6 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BF%AE%E6%94%B9-scaffolds-post-md-%E6%96%87%E4%BB%B6"><span class="nav-text">1. 修改 &#x2F;scaffolds&#x2F;post.md 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%BB%E9%A2%98%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-text">2. 主题相关配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-ok"><span class="nav-text">3. ok</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +211,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/438064550.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2792803495.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -223,7 +224,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题
+          解决Hexo文章更新时间问题
         </h1>
 
         <div class="post-meta-container">
@@ -234,7 +235,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-11-06 晚上 23:21:27" itemprop="dateCreated datePublished" datetime="2020-11-06T23:21:27+08:00">2020-11-06 晚上</time>
+      <time title="创建时间：2021-05-09 下午 16:53:55" itemprop="dateCreated datePublished" datetime="2021-05-09T16:53:55+08:00">2021-05-09 下午</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,7 +243,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
         </span>
     </span>
 
@@ -257,22 +258,27 @@
     
     <div class="post-body" itemprop="articleBody">
         <blockquote>
-<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
 </blockquote>
-<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
-<p>同时这是一个开源项目，相关地址如下：</p>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
 <ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
 </ul>
-<p>下载下来后，按以下步骤操作：</p>
-<ol>
-<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
-<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
-<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
-</ol>
-<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
 
     </div>
 
@@ -298,7 +304,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://sqiang.net/post/438064550.html" title="借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题">https://sqiang.net/post/438064550.html</a>
+      <a href="https://sqiang.net/post/2792803495.html" title="解决Hexo文章更新时间问题">https://sqiang.net/post/2792803495.html</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
@@ -307,23 +313,20 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
-              <a href="/tags/ipx/" rel="tag"># ipx</a>
-              <a href="/tags/IPXWrapper/" rel="tag"># IPXWrapper</a>
+              <a href="/tags/%E5%85%B6%E5%AE%83/" rel="tag"># 其它</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/post/2411996818.html" rel="prev" title="Webpack入门及常用配置速查">
-                  <i class="fa fa-chevron-left"></i> Webpack入门及常用配置速查
+                <a href="/post/3973669864.html" rel="prev" title="自建跨域代理解决Gitalk无法登录的问题">
+                  <i class="fa fa-chevron-left"></i> 自建跨域代理解决Gitalk无法登录的问题
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/post/3045142832.html" rel="next" title="怀旧游戏《红色警戒2：共和国之辉》">
-                  怀旧游戏《红色警戒2：共和国之辉》 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -380,7 +383,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;5d7104d8ef792db4610b0910d03acdcb&quot;}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{&quot;enable&quot;:true,&quot;github_id&quot;:&quot;whorusq&quot;,&quot;repo&quot;:&quot;whorusq.github.io&quot;,&quot;client_id&quot;:&quot;f44a924ab4f6c0cb2361&quot;,&quot;client_secret&quot;:&quot;1943379c1e177136881043495e8db6caab823791&quot;,&quot;admin_user&quot;:&quot;whorusq&quot;,&quot;distraction_free_mode&quot;:true,&quot;proxy&quot;:&quot;https:&#x2F;&#x2F;obscure-everglades-63042.herokuapp.com&#x2F;https:&#x2F;&#x2F;github.com&#x2F;login&#x2F;oauth&#x2F;access_token&quot;,&quot;language&quot;:&quot;zh-CN&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;gitalk@1.7.2&#x2F;dist&#x2F;gitalk.min.js&quot;,&quot;integrity&quot;:&quot;sha256-Pmj85ojLaPOWwRtlMJwmezB&#x2F;Qg8BzvJp5eTzvXaYAfA&#x3D;&quot;},&quot;path_md5&quot;:&quot;f2fd7548aba2b7cbd7e8048ec3f684e2&quot;}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
