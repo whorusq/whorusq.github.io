@@ -25,15 +25,15 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;sqiang.net&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;right&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12,&quot;onmobile&quot;:true},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:true,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="适用场景：以 npm run xxx 启动项目，并进行本地开发；在需要调试的时候按 F5 或单击 Debug 相应按钮打开调试模式，进行断点调试。  涉及 vscode 配置：  .vscode&#x2F;tasks.json 启动 .vscode&#x2F;launch.json 调试">
+<meta name="description" content="适用场景：以 npm run xxx 启动项目，并进行本地开发；在需要调试的时候按 F5 或单击 Debug 相应按钮打开调试模式，进行断点调试。  涉及 vscode 配置：  .vscode&#x2F;tasks.json 启动 .vscode&#x2F;launch.json 调试  其实 launch.json 也一样可以启动项目，但是 tasks.json 能实现更多功能，并且将启动、调试分开，会更清晰。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用 vscode 启动、调试 Node.js 项目">
 <meta property="og:url" content="https://sqiang.net/post/2445402303.html">
 <meta property="og:site_name" content="whoru">
-<meta property="og:description" content="适用场景：以 npm run xxx 启动项目，并进行本地开发；在需要调试的时候按 F5 或单击 Debug 相应按钮打开调试模式，进行断点调试。  涉及 vscode 配置：  .vscode&#x2F;tasks.json 启动 .vscode&#x2F;launch.json 调试">
+<meta property="og:description" content="适用场景：以 npm run xxx 启动项目，并进行本地开发；在需要调试的时候按 F5 或单击 Debug 相应按钮打开调试模式，进行断点调试。  涉及 vscode 配置：  .vscode&#x2F;tasks.json 启动 .vscode&#x2F;launch.json 调试  其实 launch.json 也一样可以启动项目，但是 tasks.json 能实现更多功能，并且将启动、调试分开，会更清晰。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-09-22T00:48:48.000Z">
-<meta property="article:modified_time" content="2020-09-22T00:48:48.000Z">
+<meta property="article:modified_time" content="2021-05-26T09:31:58.000Z">
 <meta property="article:author" content="whoru.S.Q">
 <meta property="article:tag" content="开发工具">
 <meta property="article:tag" content="vscode">
@@ -155,7 +155,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE"><span class="nav-text">启动配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE"><span class="nav-text">调试配置</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%85%8D%E7%BD%AE-tasks-json"><span class="nav-text">启动配置 tasks.json</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE-launch-json"><span class="nav-text">调试配置 launch.json</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -237,6 +237,13 @@
 
       <time title="创建时间：2020-09-22 早上 08:48:48" itemprop="dateCreated datePublished" datetime="2020-09-22T08:48:48+08:00">2020-09-22 早上</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新</span>
+        <time title="修改时间：2021-05-26 下午 17:31:58" itemprop="dateModified" datetime="2021-05-26T17:31:58+08:00">2021-05-26 下午</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -265,21 +272,22 @@
 <li><code>.vscode/tasks.json</code> 启动</li>
 <li><code>.vscode/launch.json</code> 调试</li>
 </ul>
+<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
 <span id="more"></span>
 
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置"><a href="#启动配置" class="headerlink" title="启动配置"></a>启动配置</h4><ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置-tasks-json"><a href="#启动配置-tasks-json" class="headerlink" title="启动配置 tasks.json"></a>启动配置 tasks.json</h4><ul>
 <li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
-<li>2、此时会列出 package.json 中定义的 script 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
+<li>2、此时会列出 <code>package.json</code> 中定义的 <code>script</code> 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
 </ul>
 <p>tasks 的使用说明<a target="_blank" rel="noopener external nofollow noreferrer" href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    <span class="comment">// 这是一个使用 npm 启动项目到示例，指定脚本 dev</span></span><br><span class="line">    <span class="comment">// 注意：设置不同 type 类型时，相应的参数是跟随变化的</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 这是另一种启动方式</span></span><br><span class="line">    <span class="comment">// 1. 使用 nvm 切换到指定 Node 版本；2. 紧接着使用 npm 启动；3. 通过 options 追加额外参数</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;start dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;source ~/.zshrc &amp;&amp; nvm use 10 &amp;&amp; npm run dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:*&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
 <p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
 <blockquote>
 <p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
 </blockquote>
-<h4 id="调试配置"><a href="#调试配置" class="headerlink" title="调试配置"></a>调试配置</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
+<h4 id="调试配置-launch-json"><a href="#调试配置-launch-json" class="headerlink" title="调试配置 launch.json"></a>调试配置 launch.json</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
