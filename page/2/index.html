@@ -91,9 +91,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">92</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,87 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1732007690.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1732007690.html" class="post-title-link" itemprop="url">弹窗提示「Windows要求已数字签名的驱动程序」怎么办</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-12-10 晚上 22:12:38" itemprop="dateCreated datePublished" datetime="2020-12-10T22:12:38+08:00">2020-12-10 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">系统和软件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
+<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
+
+<p>重启系统，然后重新安装出错的程序就可以了。</p>
+<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
+<p>Windows 7 32bit：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
+<p>Windows 7 64bit：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
+</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -540,123 +621,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3209780963.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3209780963.html" class="post-title-link" itemprop="url">《最后的舞动 The Last Dance》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-10-28 晚上 19:09:05" itemprop="dateCreated datePublished" datetime="2020-10-28T19:09:05+08:00">2020-10-28 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/" itemprop="url" rel="index"><span itemprop="name">影视音乐</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <table>
-  <thead>
-    <tr>
-      <th colspan="2">
-        片名：最后的舞动 The Last Dance（2020）
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="5">
-      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
-      </td>
-      <td><b>导演</b>：杰森·海希尔</td>
-    </tr>
-    <tr>
-      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
-    </tr>
-    <tr>
-      <td><b>类型</b>：纪录片</td>
-    </tr>
-    <tr>
-      <td><b>地区</b>：欧美</td>
-    </tr>
-    <tr>
-      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="2">
-        下载（磁力链接）：
-        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E01</a>
-        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E02</a>
-        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E03</a>
-        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E04</a>
-        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E05</a>
-        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E06</a>
-        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E07</a>
-        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E08</a>
-        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E09</a>
-        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E10</a>
-      </td>
-    </tr>
-  </tfoot>
-</table>
       
     </div>
 

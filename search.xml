@@ -791,6 +791,19 @@
       </tags>
   </entry>
   <entry>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>zip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 CentOS7 下安装、配置 Redis 服务</title>
     <url>/post/2447614005.html</url>
     <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
@@ -3731,45 +3744,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Shell文本处理三剑客之grep</title>
-    <url>/post/990120436.html</url>
-    <content><![CDATA[<blockquote>
-<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
-</blockquote>
-<p>语法：</p>
-<ul>
-<li><code>grep [option] [pattern] [file1,file2...]</code></li>
-<li><code>command | grep [option] [pattern]</code></li>
-</ul>
-<span id="more"></span>
-
-<p>参数（option）：</p>
-<ul>
-<li><code>-v</code> 不显示匹配信息</li>
-<li><code>-i</code> 搜索时忽略大小写</li>
-<li><code>-n</code> 显示行号</li>
-<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
-<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
-<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
-<li>其它<ul>
-<li><code>-c</code> 成功匹配数量</li>
-<li><code>-w</code> 匹配整个单词</li>
-<li><code>-x</code> 匹配整行</li>
-<li><code>-l</code> 只列出匹配的文件名</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Shell</tag>
-        <tag>grep</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shell文本处理三剑客之awk</title>
     <url>/post/4211206534.html</url>
     <content><![CDATA[<blockquote>
@@ -4066,6 +4040,45 @@
         <tag>Linux</tag>
         <tag>Shell</tag>
         <tag>awk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Shell文本处理三剑客之grep</title>
+    <url>/post/990120436.html</url>
+    <content><![CDATA[<blockquote>
+<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
+</blockquote>
+<p>语法：</p>
+<ul>
+<li><code>grep [option] [pattern] [file1,file2...]</code></li>
+<li><code>command | grep [option] [pattern]</code></li>
+</ul>
+<span id="more"></span>
+
+<p>参数（option）：</p>
+<ul>
+<li><code>-v</code> 不显示匹配信息</li>
+<li><code>-i</code> 搜索时忽略大小写</li>
+<li><code>-n</code> 显示行号</li>
+<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
+<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
+<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
+<li>其它<ul>
+<li><code>-c</code> 成功匹配数量</li>
+<li><code>-w</code> 匹配整个单词</li>
+<li><code>-x</code> 匹配整行</li>
+<li><code>-l</code> 只列出匹配的文件名</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Shell</tag>
+        <tag>grep</tag>
       </tags>
   </entry>
   <entry>

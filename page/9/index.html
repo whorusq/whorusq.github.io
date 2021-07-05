@@ -91,9 +91,9 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">106</span></a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">92</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,87 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1784173707.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1784173707.html" class="post-title-link" itemprop="url">解决 Docker 容器与宿主机时间不同步</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-03-03 晚上 20:09:52" itemprop="dateCreated datePublished" datetime="2020-03-03T20:09:52+08:00">2020-03-03 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="解决方式一：追加容器启动参数"><a href="#解决方式一：追加容器启动参数" class="headerlink" title="解决方式一：追加容器启动参数"></a>解决方式一：追加容器启动参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-v /etc/localtime:/etc/localtime:ro</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">-e <span class="string">&quot;TZ=Asia/Shanghai&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方式二：调整-Dockerfile-参数"><a href="#解决方式二：调整-Dockerfile-参数" class="headerlink" title="解决方式二：调整 Dockerfile 参数"></a>解决方式二：调整 Dockerfile 参数</h4><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENV</span> TZ=America/Los_Angeles</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ln -snf /usr/share/zoneinfo/<span class="variable">$TZ</span> /etc/localtime &amp;&amp; <span class="built_in">echo</span> <span class="variable">$TZ</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure>
+
+<p>参照：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes">https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://stackoverflow.com/questions/22800624/will-docker-container-auto-sync-time-with-the-host-machine">http://stackoverflow.com/questions/22800624/will-docker-container-auto-sync-time-with-the-host-machine</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -520,95 +601,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/3800214565.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/600047155.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/600047155.html" class="post-title-link" itemprop="url">Linux系统切换阿里云软件更新源</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-28 晚上 22:05:15" itemprop="dateCreated datePublished" datetime="2020-02-28T22:05:15+08:00">2020-02-28 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<ul>
-<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
-</li>
-<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
-</li>
-<li><p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
-</li>
-</ul>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/600047155.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
