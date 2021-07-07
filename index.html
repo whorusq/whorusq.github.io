@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,152 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/undefined.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/undefined.html" class="post-title-link" itemprop="url">MySQL如何查询最新审核过的一条数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+      
+
+      <time title="创建时间：2021-07-07 下午 17:23:14 / 修改时间：17:26:04" itemprop="dateCreated datePublished" datetime="2021-07-07T17:23:14+08:00">2021-07-07 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>本文只是项目过程中暂时能想到的一种方法，如果你有其它实现方式，欢迎留言与我交流。</p>
+</blockquote>
+<p><strong>原始数据</strong></p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2orejelw5td3bwfkv</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-06-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or81tr5evpean60d</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-06-19 11:12:16</td>
+</tr>
+<tr>
+<td>2or81tt1m5rnw1h0o</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-05-19 11:57:00</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>目标描述</strong>：针对每个 organization_id， 根据审核时间，获取最新审核的一条数据</p>
+<p><strong>预期结果</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>完整 SQL 如下:</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(id <span class="keyword">ORDER</span> <span class="keyword">BY</span> audit_time),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> id,</span><br><span class="line">	organization_id</span><br><span class="line"><span class="keyword">FROM</span> organization_auth_request</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> organization_id</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点说明:</strong></p>
+<ul>
+<li><code>GROUP_CONCAT(id ORDER BY audit_time)</code> 分组后拼接的时候，可以指定排序字段和排序方式，以确保能够按照指定顺序拼接</li>
+<li><code>SUBSTRING_INDEX(&#39;待截取的字符串&#39;,&#39;,&#39;,-1)</code><ul>
+<li>第一个参数是待截取的字符串；</li>
+<li>第二个参数是截取时以什么字符分组，比如这里是以 <code>,</code> 分组；</li>
+<li>第三个参数是截取方向和个数，<code>-1</code> 表示从末尾截取一组字符（正数从开头开始截取；负数从末尾开始截取）。</li>
+</ul>
+</li>
+</ul>
+<p>关于这两个函数的更多使用方式，参见官方文档或搜索引擎。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -507,88 +653,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/2256713588.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/966087952.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/966087952.html" class="post-title-link" itemprop="url">Git 常用命令速查</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-12-28 晚上 21:00:17" itemprop="dateCreated datePublished" datetime="2020-12-28T21:00:17+08:00">2020-12-28 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-查看"><a href="#1-1-查看" class="headerlink" title="1.1. 查看"></a>1.1. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list <span class="comment"># 所有设置</span></span><br><span class="line">$ git config --list --global <span class="comment"># 全局设置</span></span><br><span class="line">$ git config --list --<span class="built_in">local</span> <span class="comment"># 当前仓库设置</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-最小设置"><a href="#1-2-最小设置" class="headerlink" title="1.2. 最小设置"></a>1.2. 最小设置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不进行此设置时，只能执行 git add 操作</span></span><br><span class="line"><span class="comment"># 一般与待 push 的远程仓库保持一致</span></span><br><span class="line"><span class="comment"># 针对 --local 的设置，优先级高于 --global s</span></span><br><span class="line">$ git config --global user.name <span class="string">&quot;xxx&quot;</span> <span class="comment"># 用户名</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;xxx@email.com&quot;</span> <span class="comment"># 用户绑定的邮箱</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/966087952.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

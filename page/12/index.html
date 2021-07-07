@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,83 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1152072481.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1152072481.html" class="post-title-link" itemprop="url">shell 中如何输出 n 个连续字符</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-17 晚上 22:58:43" itemprop="dateCreated datePublished" datetime="2020-02-17T22:58:43+08:00">2020-02-17 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>本文以输出 n 个空格为例，新建 <code>demo.sh</code> ，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">IP=<span class="string">&#x27;192.168.1.5&#x27;</span></span><br><span class="line">DESCRIPTION=<span class="string">&#x27;内部服务器5&#x27;</span></span><br><span class="line"><span class="comment"># spacenum=`expr 16 - $&#123;#IP&#125;`</span></span><br><span class="line">spacenum=12</span><br><span class="line"><span class="comment"># seq -s &#x27; &#x27; 5 输出 1 2 3 4 5</span></span><br><span class="line"><span class="comment"># seq -s &#x27;a&#x27; 5 输出 1a2a3a4a5a</span></span><br><span class="line"><span class="comment"># sed &#x27;s/[0-9]//g&#x27; 将 0-9 的数字去掉</span></span><br><span class="line">spaces=$(seq -s <span class="string">&#x27; &#x27;</span> <span class="variable">$spacenum</span> | sed <span class="string">&#x27;s/[0-9]//g&#x27;</span>)</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;$IP<span class="variable">$spaces</span>- <span class="variable">$DESCRIPTION</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ ~ sh demo.sh</span><br><span class="line">192.168.1.5            - 内部服务器5</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -513,113 +590,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1562646191.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1562646191.html" class="post-title-link" itemprop="url">Linux“万能”分区方案</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-17 晚上 20:33:16" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:16+08:00">2020-02-17 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>这里介绍的分区方案只是个通用建议，并不适用于所有情况，需要根据服务器具体配置决定！</strong></p>
-<table>
-<thead>
-<tr>
-<th>挂载点</th>
-<th>大小</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/</td>
-<td>20G</td>
-<td>根分区</td>
-</tr>
-<tr>
-<td>/boot</td>
-<td>100M</td>
-<td>启动分区</td>
-</tr>
-<tr>
-<td>swap</td>
-<td>建议内存的两倍，最多 16G</td>
-<td>内存交换空间</td>
-</tr>
-<tr>
-<td>/usr</td>
-<td>20G</td>
-<td>用户目录，存放用户安装的软件等</td>
-</tr>
-<tr>
-<td>/data</td>
-<td>剩下的所有空间</td>
-<td>这里的名称根据需要自定义，主要用于存放各类物理数据。</td>
-</tr>
-</tbody></table>
-
       
     </div>
 

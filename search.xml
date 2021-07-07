@@ -791,19 +791,6 @@
       </tags>
   </entry>
   <entry>
-    <title>zip分卷压缩命令</title>
-    <url>/post/4078650632.html</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>zip</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 CentOS7 下安装、配置 Redis 服务</title>
     <url>/post/2447614005.html</url>
     <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
@@ -979,6 +966,19 @@
         <tag>Nginx</tag>
         <tag>MySQL</tag>
         <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>zip</tag>
       </tags>
   </entry>
   <entry>
@@ -1395,37 +1395,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo添加自定义404页面</title>
-    <url>/post/2039108116.html</url>
-    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
-<span id="more"></span>
-
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
-</blockquote>
-<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
-<li>Github Pages 不需要特殊处理</li>
-</ul>
-<ul>
-<li><p>Nginx</p>
-  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 基本语法</title>
     <url>/post/2023023504.html</url>
     <content><![CDATA[<blockquote>
@@ -1497,6 +1466,37 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo添加自定义404页面</title>
+    <url>/post/2039108116.html</url>
+    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
+<span id="more"></span>
+
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
+</blockquote>
+<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
+<li>Github Pages 不需要特殊处理</li>
+</ul>
+<ul>
+<li><p>Nginx</p>
+  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown 的锚点链接如何写</title>
     <url>/post/2762528363.html</url>
     <content><![CDATA[<blockquote>
@@ -1527,6 +1527,38 @@
       <tags>
         <tag>Markdown</tag>
         <tag>文档编写工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Excel 中实现下拉多选、反选</title>
+    <url>/post/366405450.html</url>
+    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
+
+<span id="more"></span>
+
+<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
+<li>选择一列；</li>
+<li>依次点击：<code>数据 &gt; 数据验证</code></li>
+<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
+<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Excel</tag>
       </tags>
   </entry>
   <entry>
@@ -1632,38 +1664,6 @@
         <tag>其它</tag>
         <tag>Hexo</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在 Excel 中实现下拉多选、反选</title>
-    <url>/post/366405450.html</url>
-    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
-</center>
-
-<span id="more"></span>
-
-<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
-<li>选择一列；</li>
-<li>依次点击：<code>数据 &gt; 数据验证</code></li>
-<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
-<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
-</ol>
-<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
-</ol>
-<blockquote>
-<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Excel</tag>
       </tags>
   </entry>
   <entry>
@@ -2364,6 +2364,120 @@
       </tags>
   </entry>
   <entry>
+    <title>借助 EditorConfig 统一编码风格</title>
+    <url>/post/1679410750.html</url>
+    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
+<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
+<ul>
+<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
+<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
+<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
+<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配除路径分隔符（/）之外的任何字符串</td>
+</tr>
+<tr>
+<td>**</td>
+<td>匹配任何字符串</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配任何单个字符</td>
+</tr>
+<tr>
+<td>[name]</td>
+<td>匹配名称中的任何单个字符</td>
+</tr>
+<tr>
+<td>[!name]</td>
+<td>匹配任何不在名称中的单个字符</td>
+</tr>
+<tr>
+<td>{s1,s2,s3}</td>
+<td>匹配给定的任何字符串（以逗号分隔）</td>
+</tr>
+<tr>
+<td>{num1..num2}</td>
+<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
+</tr>
+</tbody></table>
+<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>EditorConfig</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
+    <url>/post/223922994.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
+<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
+<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
+</li>
+<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
+<blockquote>
+<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
+</blockquote>
+<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
+<ul>
+<li>方式一：给宿主机设置一个固定 IP；</li>
+<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
+<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>PHPStorm</tag>
+        <tag>XDebug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Webpack入门及常用配置速查</title>
     <url>/post/2411996818.html</url>
     <content><![CDATA[<blockquote>
@@ -2530,120 +2644,6 @@
       </tags>
   </entry>
   <entry>
-    <title>借助 EditorConfig 统一编码风格</title>
-    <url>/post/1679410750.html</url>
-    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
-<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
-<ul>
-<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
-<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
-<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
-<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
-<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
-
-<p>其中：</p>
-<table>
-<thead>
-<tr>
-<th>通配符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配除路径分隔符（/）之外的任何字符串</td>
-</tr>
-<tr>
-<td>**</td>
-<td>匹配任何字符串</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配任何单个字符</td>
-</tr>
-<tr>
-<td>[name]</td>
-<td>匹配名称中的任何单个字符</td>
-</tr>
-<tr>
-<td>[!name]</td>
-<td>匹配任何不在名称中的单个字符</td>
-</tr>
-<tr>
-<td>{s1,s2,s3}</td>
-<td>匹配给定的任何字符串（以逗号分隔）</td>
-</tr>
-<tr>
-<td>{num1..num2}</td>
-<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
-</tr>
-</tbody></table>
-<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>EditorConfig</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
-    <url>/post/223922994.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
-<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
-<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
-</li>
-<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
-<blockquote>
-<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
-</blockquote>
-<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
-<ul>
-<li>方式一：给宿主机设置一个固定 IP；</li>
-<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
-<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>PHPStorm</tag>
-        <tag>XDebug</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用 vscode 启动、调试 Node.js 项目</title>
     <url>/post/2445402303.html</url>
     <content><![CDATA[<blockquote>
@@ -2755,28 +2755,6 @@
       </tags>
   </entry>
   <entry>
-    <title>替换国内镜像源让 Homebrew 起飞</title>
-    <url>/post/3431125306.html</url>
-    <content><![CDATA[<blockquote>
-<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
-</blockquote>
-<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>开发工具</tag>
-        <tag>Homebrew</tag>
-        <tag>brew</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《最后的舞动 The Last Dance》</title>
     <url>/post/3209780963.html</url>
     <content><![CDATA[<table>
@@ -2881,6 +2859,28 @@
       <tags>
         <tag>系统和软件</tag>
         <tag>数字签名</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>替换国内镜像源让 Homebrew 起飞</title>
+    <url>/post/3431125306.html</url>
+    <content><![CDATA[<blockquote>
+<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
+</blockquote>
+<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>开发工具</tag>
+        <tag>Homebrew</tag>
+        <tag>brew</tag>
       </tags>
   </entry>
   <entry>
@@ -3103,42 +3103,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Docker 中的 PHP 如何安装扩展</title>
-    <url>/post/90967283.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍在 Docker 中三类扩展的安装方式，包括核心扩展、PECL扩展、其它扩展。</p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="1-PHP-源码"><a href="#1-PHP-源码" class="headerlink" title="1. PHP 源码"></a>1. PHP 源码</h3><p>为了保证 Docker 镜像尽量小，PHP 的源文件是以压缩包的形式存在镜像中，官方提供了 <code>docker-php-source</code> 快捷脚本，用于对源文件压缩包的解压（extract）及解压后的文件进行删除（delete）的操作。</p>
-<p>示例：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> docker-php-source extract \</span></span><br><span class="line"><span class="bash">    <span class="comment"># 此处开始执行你需要的操作 \</span></span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-source delete</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：一定要记得删除，否则解压出来的文件会大大增加镜像的文件大小。</strong></p>
-<h3 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a>2. 安装扩展</h3><h4 id="2-1-核心扩展"><a href="#2-1-核心扩展" class="headerlink" title="2.1. 核心扩展"></a>2.1. 核心扩展</h4><p>这里主要用到的是官方提供的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 快捷脚本，如下</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 相关依赖必须手动安装</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        libmcrypt-dev \</span><br><span class="line">        libpng-dev \</span><br><span class="line">    <span class="comment"># 安装扩展</span></span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) iconv mcrypt \</span><br><span class="line">    <span class="comment"># 如果安装的扩展需要自定义配置时</span></span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) gd</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：这里的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 已经包含了 <code>docker-php-source</code> 的操作，所有不需要再手动去执行。</p>
-<h4 id="2-2-PECL-扩展"><a href="#2-2-PECL-扩展" class="headerlink" title="2.2. PECL 扩展"></a>2.2. PECL 扩展</h4><p>因为一些扩展并不包含在 PHP 源码文件中，所有需要使用 <a href="https://secure.php.net/manual/zh/install.pecl.intro.php">PECL</a>（PHP 的扩展库仓库，通过 <a href="http://pear.php.net/">PEAR</a> 打包）。用 <code>pecl install</code> 安装扩展，然后再用官方提供的 <code>docker-php-ext-enable</code> 快捷脚本来启用扩展，如下示例</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 手动安装依赖</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y libmemcached-dev zlib1g-dev \</span><br><span class="line">	<span class="comment"># 安装需要的扩展</span></span><br><span class="line">   &amp;&amp; pecl install memcached-<span class="number">2.2</span>.<span class="number">0</span> \</span><br><span class="line">   <span class="comment"># 启用扩展</span></span><br><span class="line">   &amp;&amp; docker-php-ext-enable memcached</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-其它扩展"><a href="#2-3-其它扩展" class="headerlink" title="2.3. 其它扩展"></a>2.3. 其它扩展</h4><p>一些既不在 PHP 源码包，也不再 PECL 扩展仓库中的扩展，可以通过下载扩展程序源码，编译安装的方式安装，如下示例：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; ( \</span></span><br><span class="line"><span class="bash">        <span class="built_in">cd</span> xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; phpize \</span></span><br><span class="line"><span class="bash">        &amp;&amp; ./configure --enable-xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make -j$(nproc) \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make install \</span></span><br><span class="line"><span class="bash">    ) \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-enable xcache</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：官方提供的 <code>docker-php-ext-*</code> 脚本接受任意的绝对路径（不支持相对路径，以便与系统内置的扩展程序进行区分），所以，上面的例子也可以这样写：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C /tmp/xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-configure /tmp/xcache --enable-xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-install /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r /tmp/xcache</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Docker</tag>
-        <tag>PECL</tag>
-        <tag>PEAR</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Docker 之 Dockerfile 介绍</title>
     <url>/post/404938395.html</url>
     <content><![CDATA[<h3 id="1-基本结构"><a href="#1-基本结构" class="headerlink" title="1. 基本结构"></a>1. 基本结构</h3><p>Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
@@ -3345,6 +3309,42 @@
       <tags>
         <tag>Docker</tag>
         <tag>Dockerfile</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Docker 中的 PHP 如何安装扩展</title>
+    <url>/post/90967283.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍在 Docker 中三类扩展的安装方式，包括核心扩展、PECL扩展、其它扩展。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-PHP-源码"><a href="#1-PHP-源码" class="headerlink" title="1. PHP 源码"></a>1. PHP 源码</h3><p>为了保证 Docker 镜像尽量小，PHP 的源文件是以压缩包的形式存在镜像中，官方提供了 <code>docker-php-source</code> 快捷脚本，用于对源文件压缩包的解压（extract）及解压后的文件进行删除（delete）的操作。</p>
+<p>示例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> docker-php-source extract \</span></span><br><span class="line"><span class="bash">    <span class="comment"># 此处开始执行你需要的操作 \</span></span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-source delete</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：一定要记得删除，否则解压出来的文件会大大增加镜像的文件大小。</strong></p>
+<h3 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a>2. 安装扩展</h3><h4 id="2-1-核心扩展"><a href="#2-1-核心扩展" class="headerlink" title="2.1. 核心扩展"></a>2.1. 核心扩展</h4><p>这里主要用到的是官方提供的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 快捷脚本，如下</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 相关依赖必须手动安装</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        libmcrypt-dev \</span><br><span class="line">        libpng-dev \</span><br><span class="line">    <span class="comment"># 安装扩展</span></span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) iconv mcrypt \</span><br><span class="line">    <span class="comment"># 如果安装的扩展需要自定义配置时</span></span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) gd</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 已经包含了 <code>docker-php-source</code> 的操作，所有不需要再手动去执行。</p>
+<h4 id="2-2-PECL-扩展"><a href="#2-2-PECL-扩展" class="headerlink" title="2.2. PECL 扩展"></a>2.2. PECL 扩展</h4><p>因为一些扩展并不包含在 PHP 源码文件中，所有需要使用 <a href="https://secure.php.net/manual/zh/install.pecl.intro.php">PECL</a>（PHP 的扩展库仓库，通过 <a href="http://pear.php.net/">PEAR</a> 打包）。用 <code>pecl install</code> 安装扩展，然后再用官方提供的 <code>docker-php-ext-enable</code> 快捷脚本来启用扩展，如下示例</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 手动安装依赖</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y libmemcached-dev zlib1g-dev \</span><br><span class="line">	<span class="comment"># 安装需要的扩展</span></span><br><span class="line">   &amp;&amp; pecl install memcached-<span class="number">2.2</span>.<span class="number">0</span> \</span><br><span class="line">   <span class="comment"># 启用扩展</span></span><br><span class="line">   &amp;&amp; docker-php-ext-enable memcached</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-其它扩展"><a href="#2-3-其它扩展" class="headerlink" title="2.3. 其它扩展"></a>2.3. 其它扩展</h4><p>一些既不在 PHP 源码包，也不再 PECL 扩展仓库中的扩展，可以通过下载扩展程序源码，编译安装的方式安装，如下示例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; ( \</span></span><br><span class="line"><span class="bash">        <span class="built_in">cd</span> xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; phpize \</span></span><br><span class="line"><span class="bash">        &amp;&amp; ./configure --enable-xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make -j$(nproc) \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make install \</span></span><br><span class="line"><span class="bash">    ) \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-enable xcache</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：官方提供的 <code>docker-php-ext-*</code> 脚本接受任意的绝对路径（不支持相对路径，以便与系统内置的扩展程序进行区分），所以，上面的例子也可以这样写：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C /tmp/xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-configure /tmp/xcache --enable-xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-install /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r /tmp/xcache</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Docker</tag>
+        <tag>PECL</tag>
+        <tag>PEAR</tag>
       </tags>
   </entry>
   <entry>
@@ -5858,6 +5858,92 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>数据库结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL如何查询最新审核过的一条数据</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文只是项目过程中暂时能想到的一种方法，如果你有其它实现方式，欢迎留言与我交流。</p>
+</blockquote>
+<p><strong>原始数据</strong></p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2orejelw5td3bwfkv</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-06-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or81tr5evpean60d</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-06-19 11:12:16</td>
+</tr>
+<tr>
+<td>2or81tt1m5rnw1h0o</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-05-19 11:57:00</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>目标描述</strong>：针对每个 organization_id， 根据审核时间，获取最新审核的一条数据</p>
+<p><strong>预期结果</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>完整 SQL 如下:</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(id <span class="keyword">ORDER</span> <span class="keyword">BY</span> audit_time),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> id,</span><br><span class="line">	organization_id</span><br><span class="line"><span class="keyword">FROM</span> organization_auth_request</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> organization_id</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点说明:</strong></p>
+<ul>
+<li><code>GROUP_CONCAT(id ORDER BY audit_time)</code> 分组后拼接的时候，可以指定排序字段和排序方式，以确保能够按照指定顺序拼接</li>
+<li><code>SUBSTRING_INDEX(&#39;待截取的字符串&#39;,&#39;,&#39;,-1)</code><ul>
+<li>第一个参数是待截取的字符串；</li>
+<li>第二个参数是截取时以什么字符分组，比如这里是以 <code>,</code> 分组；</li>
+<li>第三个参数是截取方向和个数，<code>-1</code> 表示从末尾截取一组字符（正数从开头开始截取；负数从末尾开始截取）。</li>
+</ul>
+</li>
+</ul>
+<p>关于这两个函数的更多使用方式，参见官方文档或搜索引擎。</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>

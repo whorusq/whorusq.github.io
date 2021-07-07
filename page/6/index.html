@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">93</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -196,6 +196,101 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1273366459.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1273366459.html" class="post-title-link" itemprop="url">如何优雅的升级 Nginx（热部署）版本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-07-09 早上 08:22:16" itemprop="dateCreated datePublished" datetime="2020-07-09T08:22:16+08:00">2020-07-09 早上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-升级"><a href="#1-升级" class="headerlink" title="1. 升级"></a>1. 升级</h3><h4 id="1-1-下载、编译新版本的-Nginx"><a href="#1-1-下载、编译新版本的-Nginx" class="headerlink" title="1.1. 下载、编译新版本的 Nginx"></a>1.1. 下载、编译新版本的 Nginx</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ wget https://nginx.org/download/nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ tar zxvf nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ <span class="built_in">cd</span> nginx-1.15.6</span><br><span class="line">➜  ~ ./configure --prefix=/usr/<span class="built_in">local</span>/nginx</span><br><span class="line">➜  ~ make</span><br></pre></td></tr></table></figure>
+
+<p>备份原 Nginx 二进制文件，并用新版本替换</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ cp /usr/<span class="built_in">local</span>/nginx/sbin/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx.old</span><br><span class="line">➜  ~ \cp -rf objs/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-切换-Nginx-的新老进程"><a href="#1-2-切换-Nginx-的新老进程" class="headerlink" title="1.2. 切换 Nginx 的新老进程"></a>1.2. 切换 Nginx 的新老进程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin/</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31579  3601  0 12:28 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<p>向正在运行的老版本的 <code>master</code> 进程发送热部署信号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -USR2 6680</span><br><span class="line"></span><br><span class="line"><span class="comment"># Nginx 将使用新的二进制文件启动新版本的 master 和 worker 进程</span></span><br><span class="line"><span class="comment"># 并将所有用户请求平滑的过渡到新的进程</span></span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31584  3601  0 12:29 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<p>向老版本的 <code>master</code> 进程发送信号，让其优雅关闭所有 <code>worker</code> 进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -WINCH 6680</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31587  3601  0 12:31 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>⚠️ 注意</strong>：老版本的 <code>master</code> 进程不会自动退出，以方便执行版本回退操作。当新版本稳定运行后，再发送信号退出老版本的 <code>master</code> 进程。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/1273366459.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -580,104 +675,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/895189460.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1046389609.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1046389609.html" class="post-title-link" itemprop="url">PM2 入门指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-06-19 晚上 21:11:19" itemprop="dateCreated datePublished" datetime="2020-06-19T21:11:19+08:00">2020-06-19 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 = Process Manager 2</p>
-<blockquote>
-<p>ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS</p>
-</blockquote>
-<blockquote>
-<p>PM2 is a daemon process manager that will help you manage and keep your application online 24/7</p>
-</blockquote>
-<p>上面是官网给出的 title，简单来说：<strong>它是在后台运行的 <code>Node.js</code> 进程管理器，提供一套针对生产环境运行时的工具集，可以保障你的程序 7 * 24 小时在线。</strong></p>
-<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/">https://pm2.keymetrics.io</a></p>
-<p>文档：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/docs/usage/quick-start">https://pm2.keymetrics.io/docs/usage/quick-start</a></p>
-<p>总结其主要特性如下：</p>
-<ul>
-<li>日志管理：应用程序日志保存在服务器的硬盘中 <code>~/.pm2/logs/</code></li>
-<li>负载均衡：使用 <code>Node cluster</code> 集群模块，可以通过创建共享同一服务器端口的多个子进程来扩展您的应用程序。这样做还允许您以零秒停机时间重新启动应用程序，实现热重载。</li>
-<li>终端监控：可以在终端中监控您的应用程序运行状况，包括CPU使用率，使用的内存，请求/分钟等。</li>
-<li>自动停止不稳定的进程（避免无限循环）</li>
-<li>支持静态服务器功能</li>
-<li>提供 <code>HTTP API</code></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/1046389609.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
