@@ -791,44 +791,16 @@
       </tags>
   </entry>
   <entry>
-    <title>在 CentOS7 下安装、配置 Redis 服务</title>
-    <url>/post/2447614005.html</url>
-    <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
-<p>下载：<a href="https://redis.io/download">https://redis.io/download</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-下载源码包"><a href="#2-下载源码包" class="headerlink" title="2. 下载源码包"></a>2. 下载源码包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 推荐在这个目录存放各个软件的源码</span></span><br><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本</span></span><br><span class="line">➜  wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载最新稳定版</span></span><br><span class="line">➜  wget http://download.redis.io/redis-stable.tar.gz</span><br><span class="line"><span class="comment"># 查看源码具体版本</span></span><br><span class="line">➜  cat redis-stable/src/version.h</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-编译安装"><a href="#3-编译安装" class="headerlink" title="3. 编译安装"></a>3. 编译安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  tar zxvf redis-5.0.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> redis-5.0.5</span><br><span class="line">➜  make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到指定目录下</span></span><br><span class="line">➜  make PREFIX=/usr/<span class="built_in">local</span>/redis-5.0.5 install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝默认配置文件到指定目录</span></span><br><span class="line">➜  mkdir /usr/<span class="built_in">local</span>/redis-5.0.5/etc</span><br><span class="line">➜  cp redis.conf /usr/<span class="built_in">local</span>/redis-5.0.5/etc/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建程序软链接，以便后期版本升级</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">ln -s redis-5.0.5 redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量，以便在全局使用 Redis 相关命令</span></span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PATH:/usr/local/redis/bin&quot;&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">➜  redis-cli -v</span><br><span class="line">redis-cli 5.0.5</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-修改默认配置文件"><a href="#4-修改默认配置文件" class="headerlink" title="4. 修改默认配置文件"></a>4. 修改默认配置文件</h3><p>这里只是一些推荐的常用基本配置，详细的参见配置文件中对各个配置项的说明，或者参照这里 <a href="https://www.runoob.com/redis/redis-conf.html">https://www.runoob.com/redis/redis-conf.html</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为方便管理多个 Redis 服务，以版本号作为配置文件的名称后缀</span></span><br><span class="line">➜  mv redis.conf redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始编辑配置文件</span></span><br><span class="line">➜  vi redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 以下是常用配置项</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启守护进程（后台）方式运行</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进程文件</span></span><br><span class="line">pidfile /var/redis/run/redis_6379.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只允许指定主机连接，默认不限制</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端闲置多长时间（单位：s）关闭连接</span></span><br><span class="line"><span class="comment"># 默认 0 ，无限制</span></span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地持久化数据文件名</span></span><br><span class="line">dbfilename dump_6379.rdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">dir /var/redis/db/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志级别</span></span><br><span class="line"><span class="comment"># - debug 适用于开发、测试，打印的信息较多</span></span><br><span class="line"><span class="comment"># - verbose 比 debug 简洁一些</span></span><br><span class="line"><span class="comment"># - notice 默认，普通的 verbose，用于生产环境</span></span><br><span class="line"><span class="comment"># - warning 警告和一些比较严重的信息</span></span><br><span class="line">loglevel notice</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件</span></span><br><span class="line"><span class="comment"># 默认为空字符串，表示标准输出（stdout）</span></span><br><span class="line"><span class="comment"># 如果以守护进程运行，并且此处采用标准输出，则日志发送给 /dev/null</span></span><br><span class="line">logfile /var/redis/<span class="built_in">log</span>/redis_6379.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接密码</span></span><br><span class="line"><span class="comment"># 为保证服务安全，建议开启并设置一个复杂的密码</span></span><br><span class="line">requirepass pwd2019</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 保存上面修改好的配置文件</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置中不存在的目录</span></span><br><span class="line">➜  mkdir -p /var/redis/&#123;run,<span class="built_in">log</span>,db&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><p>基本启动方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以默认配置启动</span></span><br><span class="line">➜  redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定配置文件</span></span><br><span class="line">➜  redis-server /usr/<span class="built_in">local</span>/redis/etc/redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更多使用参数</span></span><br><span class="line">➜  redis-server -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br></pre></td></tr></table></figure>
-
-<p>使用脚本启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/redis-5.0.5/utils/</span><br><span class="line">➜  cp redis_init_script /etc/init.d/</span><br><span class="line">➜  <span class="built_in">cd</span> /etc/init.d/</span><br><span class="line">➜  mv redis_init_script redis_6379</span><br><span class="line">➜  vim redis_6379</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:     redis_6379</span></span><br><span class="line"><span class="comment"># Default-Start:        2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:         0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description:    Redis data structure server</span></span><br><span class="line"><span class="comment"># Description:          Redis data structure server. See https://redis.io</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据实际安装情况修改这里的路径、端口、连接密码</span></span><br><span class="line"></span><br><span class="line">REDISPORT=6379</span><br><span class="line">REDISPWD=pwd2019</span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-server</span><br><span class="line">CLIEXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid</span><br><span class="line">CONF=<span class="string">&quot;/usr/local/redis/etc/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.conf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> exists, process is already running or crashed&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Starting Redis server...&quot;</span></span><br><span class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> does not exist, process is not running&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stopping ...&quot;</span></span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="variable">$REDISPWD</span> ]; <span class="keyword">then</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="variable">$REDISPWD</span> shutdown</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> shutdown</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">while</span> [ -x /proc/<span class="variable">$&#123;PID&#125;</span> ]</span><br><span class="line">                <span class="keyword">do</span></span><br><span class="line">                    <span class="built_in">echo</span> <span class="string">&quot;Waiting for Redis to shutdown ...&quot;</span></span><br><span class="line">                    sleep 1</span><br><span class="line">                <span class="keyword">done</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Redis stopped&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Please use start or stop as first argument&quot;</span></span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-
-<p>使用脚本启动服务测试</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ./redis_6379 start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否启动成功</span></span><br><span class="line">➜  ps -ef | grep redis</span><br><span class="line">root     19262     1  0 01:42 ?        00:00:00 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line">root     19267 19129  0 01:43 pts/0    00:00:00 grep --color=auto redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">➜  ./redis_6379 stop</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-加入开机自启动"><a href="#6-加入开机自启动" class="headerlink" title="6. 加入开机自启动"></a>6. 加入开机自启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 root 用户操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到自启动列表</span></span><br><span class="line"><span class="comment"># 这里的 redis_6379 与 /etc/init.d/redis_6379 文件名保持一致</span></span><br><span class="line">➜  chkconfig --add redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 2 3 4 5 级别设置为自启动</span></span><br><span class="line">➜  chkconfig --level 2345 redis_6379 on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否设置成功</span></span><br><span class="line">➜  chkconfig --list | grep redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启检查自启动是否生效</span></span><br><span class="line">➜  reboot</span><br></pre></td></tr></table></figure>
-
-<p>在 CentOS7+ 建议使用 <code>systemctl</code> 命令对 Redis 服务进行统一管理，如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">➜  systemctl status redis_6379</span><br><span class="line">● redis_6379.service - LSB: Redis data structure server</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/redis_6379; bad; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2019-11-11 02:21:03 UTC; 3s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 1042 ExecStop=/etc/rc.d/init.d/redis_6379 stop (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 1056 ExecStart=/etc/rc.d/init.d/redis_6379 start (code=exited, status=0/SUCCESS)</span><br><span class="line">   CGroup: /system.slice/redis_6379.service</span><br><span class="line">           └─1058 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line"></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Starting LSB: Redis data structure server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: Starting Redis server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># oO0OoO0OoO0Oo Re...0Oo</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Redis version=5....ted</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Configuration loaded</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Started LSB: Redis data structure server.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">➜  systemctl start redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务</span></span><br><span class="line">➜  systemctl stop redis_6379</span><br></pre></td></tr></table></figure>]]></content>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>Redis</tag>
-        <tag>缓存</tag>
+        <tag>zip</tag>
       </tags>
   </entry>
   <entry>
@@ -969,16 +941,44 @@
       </tags>
   </entry>
   <entry>
-    <title>zip分卷压缩命令</title>
-    <url>/post/4078650632.html</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>在 CentOS7 下安装、配置 Redis 服务</title>
+    <url>/post/2447614005.html</url>
+    <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
+<p>下载：<a href="https://redis.io/download">https://redis.io/download</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-下载源码包"><a href="#2-下载源码包" class="headerlink" title="2. 下载源码包"></a>2. 下载源码包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 推荐在这个目录存放各个软件的源码</span></span><br><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本</span></span><br><span class="line">➜  wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载最新稳定版</span></span><br><span class="line">➜  wget http://download.redis.io/redis-stable.tar.gz</span><br><span class="line"><span class="comment"># 查看源码具体版本</span></span><br><span class="line">➜  cat redis-stable/src/version.h</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-编译安装"><a href="#3-编译安装" class="headerlink" title="3. 编译安装"></a>3. 编译安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  tar zxvf redis-5.0.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> redis-5.0.5</span><br><span class="line">➜  make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到指定目录下</span></span><br><span class="line">➜  make PREFIX=/usr/<span class="built_in">local</span>/redis-5.0.5 install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝默认配置文件到指定目录</span></span><br><span class="line">➜  mkdir /usr/<span class="built_in">local</span>/redis-5.0.5/etc</span><br><span class="line">➜  cp redis.conf /usr/<span class="built_in">local</span>/redis-5.0.5/etc/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建程序软链接，以便后期版本升级</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">ln -s redis-5.0.5 redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量，以便在全局使用 Redis 相关命令</span></span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PATH:/usr/local/redis/bin&quot;&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">➜  redis-cli -v</span><br><span class="line">redis-cli 5.0.5</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-修改默认配置文件"><a href="#4-修改默认配置文件" class="headerlink" title="4. 修改默认配置文件"></a>4. 修改默认配置文件</h3><p>这里只是一些推荐的常用基本配置，详细的参见配置文件中对各个配置项的说明，或者参照这里 <a href="https://www.runoob.com/redis/redis-conf.html">https://www.runoob.com/redis/redis-conf.html</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为方便管理多个 Redis 服务，以版本号作为配置文件的名称后缀</span></span><br><span class="line">➜  mv redis.conf redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始编辑配置文件</span></span><br><span class="line">➜  vi redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 以下是常用配置项</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启守护进程（后台）方式运行</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进程文件</span></span><br><span class="line">pidfile /var/redis/run/redis_6379.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只允许指定主机连接，默认不限制</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端闲置多长时间（单位：s）关闭连接</span></span><br><span class="line"><span class="comment"># 默认 0 ，无限制</span></span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地持久化数据文件名</span></span><br><span class="line">dbfilename dump_6379.rdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">dir /var/redis/db/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志级别</span></span><br><span class="line"><span class="comment"># - debug 适用于开发、测试，打印的信息较多</span></span><br><span class="line"><span class="comment"># - verbose 比 debug 简洁一些</span></span><br><span class="line"><span class="comment"># - notice 默认，普通的 verbose，用于生产环境</span></span><br><span class="line"><span class="comment"># - warning 警告和一些比较严重的信息</span></span><br><span class="line">loglevel notice</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件</span></span><br><span class="line"><span class="comment"># 默认为空字符串，表示标准输出（stdout）</span></span><br><span class="line"><span class="comment"># 如果以守护进程运行，并且此处采用标准输出，则日志发送给 /dev/null</span></span><br><span class="line">logfile /var/redis/<span class="built_in">log</span>/redis_6379.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接密码</span></span><br><span class="line"><span class="comment"># 为保证服务安全，建议开启并设置一个复杂的密码</span></span><br><span class="line">requirepass pwd2019</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 保存上面修改好的配置文件</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置中不存在的目录</span></span><br><span class="line">➜  mkdir -p /var/redis/&#123;run,<span class="built_in">log</span>,db&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><p>基本启动方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以默认配置启动</span></span><br><span class="line">➜  redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定配置文件</span></span><br><span class="line">➜  redis-server /usr/<span class="built_in">local</span>/redis/etc/redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更多使用参数</span></span><br><span class="line">➜  redis-server -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br></pre></td></tr></table></figure>
+
+<p>使用脚本启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/redis-5.0.5/utils/</span><br><span class="line">➜  cp redis_init_script /etc/init.d/</span><br><span class="line">➜  <span class="built_in">cd</span> /etc/init.d/</span><br><span class="line">➜  mv redis_init_script redis_6379</span><br><span class="line">➜  vim redis_6379</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:     redis_6379</span></span><br><span class="line"><span class="comment"># Default-Start:        2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:         0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description:    Redis data structure server</span></span><br><span class="line"><span class="comment"># Description:          Redis data structure server. See https://redis.io</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据实际安装情况修改这里的路径、端口、连接密码</span></span><br><span class="line"></span><br><span class="line">REDISPORT=6379</span><br><span class="line">REDISPWD=pwd2019</span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-server</span><br><span class="line">CLIEXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid</span><br><span class="line">CONF=<span class="string">&quot;/usr/local/redis/etc/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.conf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> exists, process is already running or crashed&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Starting Redis server...&quot;</span></span><br><span class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> does not exist, process is not running&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stopping ...&quot;</span></span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="variable">$REDISPWD</span> ]; <span class="keyword">then</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="variable">$REDISPWD</span> shutdown</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> shutdown</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">while</span> [ -x /proc/<span class="variable">$&#123;PID&#125;</span> ]</span><br><span class="line">                <span class="keyword">do</span></span><br><span class="line">                    <span class="built_in">echo</span> <span class="string">&quot;Waiting for Redis to shutdown ...&quot;</span></span><br><span class="line">                    sleep 1</span><br><span class="line">                <span class="keyword">done</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Redis stopped&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Please use start or stop as first argument&quot;</span></span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<p>使用脚本启动服务测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ./redis_6379 start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否启动成功</span></span><br><span class="line">➜  ps -ef | grep redis</span><br><span class="line">root     19262     1  0 01:42 ?        00:00:00 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line">root     19267 19129  0 01:43 pts/0    00:00:00 grep --color=auto redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">➜  ./redis_6379 stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-加入开机自启动"><a href="#6-加入开机自启动" class="headerlink" title="6. 加入开机自启动"></a>6. 加入开机自启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 root 用户操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到自启动列表</span></span><br><span class="line"><span class="comment"># 这里的 redis_6379 与 /etc/init.d/redis_6379 文件名保持一致</span></span><br><span class="line">➜  chkconfig --add redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 2 3 4 5 级别设置为自启动</span></span><br><span class="line">➜  chkconfig --level 2345 redis_6379 on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否设置成功</span></span><br><span class="line">➜  chkconfig --list | grep redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启检查自启动是否生效</span></span><br><span class="line">➜  reboot</span><br></pre></td></tr></table></figure>
+
+<p>在 CentOS7+ 建议使用 <code>systemctl</code> 命令对 Redis 服务进行统一管理，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">➜  systemctl status redis_6379</span><br><span class="line">● redis_6379.service - LSB: Redis data structure server</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/redis_6379; bad; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2019-11-11 02:21:03 UTC; 3s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 1042 ExecStop=/etc/rc.d/init.d/redis_6379 stop (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 1056 ExecStart=/etc/rc.d/init.d/redis_6379 start (code=exited, status=0/SUCCESS)</span><br><span class="line">   CGroup: /system.slice/redis_6379.service</span><br><span class="line">           └─1058 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line"></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Starting LSB: Redis data structure server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: Starting Redis server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># oO0OoO0OoO0Oo Re...0Oo</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Redis version=5....ted</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Configuration loaded</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Started LSB: Redis data structure server.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">➜  systemctl start redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务</span></span><br><span class="line">➜  systemctl stop redis_6379</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>zip</tag>
+        <tag>Redis</tag>
+        <tag>缓存</tag>
       </tags>
   </entry>
   <entry>
@@ -1395,6 +1395,37 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo添加自定义404页面</title>
+    <url>/post/2039108116.html</url>
+    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
+<span id="more"></span>
+
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
+</blockquote>
+<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
+<li>Github Pages 不需要特殊处理</li>
+</ul>
+<ul>
+<li><p>Nginx</p>
+  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Markdown 基本语法</title>
     <url>/post/2023023504.html</url>
     <content><![CDATA[<blockquote>
@@ -1466,37 +1497,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo添加自定义404页面</title>
-    <url>/post/2039108116.html</url>
-    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
-<span id="more"></span>
-
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
-</blockquote>
-<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
-<li>Github Pages 不需要特殊处理</li>
-</ul>
-<ul>
-<li><p>Nginx</p>
-  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Markdown 的锚点链接如何写</title>
     <url>/post/2762528363.html</url>
     <content><![CDATA[<blockquote>
@@ -1527,38 +1527,6 @@
       <tags>
         <tag>Markdown</tag>
         <tag>文档编写工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在 Excel 中实现下拉多选、反选</title>
-    <url>/post/366405450.html</url>
-    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
-</center>
-
-<span id="more"></span>
-
-<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
-<li>选择一列；</li>
-<li>依次点击：<code>数据 &gt; 数据验证</code></li>
-<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
-<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
-</ol>
-<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
-</ol>
-<blockquote>
-<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Excel</tag>
       </tags>
   </entry>
   <entry>
@@ -1667,6 +1635,38 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在 Excel 中实现下拉多选、反选</title>
+    <url>/post/366405450.html</url>
+    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
+
+<span id="more"></span>
+
+<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
+<li>选择一列；</li>
+<li>依次点击：<code>数据 &gt; 数据验证</code></li>
+<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
+<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>怎么使用 Excel 实现二级联动的下拉菜单</title>
     <url>/post/2104705023.html</url>
     <content><![CDATA[<blockquote>
@@ -1703,6 +1703,43 @@
       <tags>
         <tag>其它</tag>
         <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Hexo文章更新时间问题</title>
+    <url>/post/2792803495.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<span id="more"></span>
+
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<ul>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -1747,43 +1784,6 @@
         <tag>Hexo</tag>
         <tag>NexT</tag>
         <tag>Gitalk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Hexo文章更新时间问题</title>
-    <url>/post/2792803495.html</url>
-    <content><![CDATA[<blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
-</blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
-<span id="more"></span>
-
-<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
-<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
-<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
-<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
-<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
-<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
-<ul>
-<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
-<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -2364,120 +2364,6 @@
       </tags>
   </entry>
   <entry>
-    <title>借助 EditorConfig 统一编码风格</title>
-    <url>/post/1679410750.html</url>
-    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
-<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
-<ul>
-<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
-<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
-<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
-<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
-<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
-
-<p>其中：</p>
-<table>
-<thead>
-<tr>
-<th>通配符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>*</td>
-<td>匹配除路径分隔符（/）之外的任何字符串</td>
-</tr>
-<tr>
-<td>**</td>
-<td>匹配任何字符串</td>
-</tr>
-<tr>
-<td>?</td>
-<td>匹配任何单个字符</td>
-</tr>
-<tr>
-<td>[name]</td>
-<td>匹配名称中的任何单个字符</td>
-</tr>
-<tr>
-<td>[!name]</td>
-<td>匹配任何不在名称中的单个字符</td>
-</tr>
-<tr>
-<td>{s1,s2,s3}</td>
-<td>匹配给定的任何字符串（以逗号分隔）</td>
-</tr>
-<tr>
-<td>{num1..num2}</td>
-<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
-</tr>
-</tbody></table>
-<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>EditorConfig</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
-    <url>/post/223922994.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
-<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
-<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
-</li>
-<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
-<blockquote>
-<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
-</blockquote>
-<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
-<ul>
-<li>方式一：给宿主机设置一个固定 IP；</li>
-<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
-<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>PHPStorm</tag>
-        <tag>XDebug</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Webpack入门及常用配置速查</title>
     <url>/post/2411996818.html</url>
     <content><![CDATA[<blockquote>
@@ -2644,6 +2530,120 @@
       </tags>
   </entry>
   <entry>
+    <title>借助 EditorConfig 统一编码风格</title>
+    <url>/post/1679410750.html</url>
+    <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>该插件在部分编辑器中已经捆绑（比如 <code>IDEA</code>、<code>Pycharm</code>、<code>Webstorm</code>、<code>Visual Studio</code> 等），其它的则需要自行安装。</p>
+<p>下面是一些主流编辑器的安装参考，其它详见官网。</p>
+<ul>
+<li><a href="https://github.com/sindresorhus/editorconfig-sublime#readme">Sublime Text</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">Visule Studio Code</a></li>
+<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">vim</a></li>
+<li><a href="https://plugins.jetbrains.com/plugin/7294-editorconfig">PHPStorm</a></li>
+<li><a href="https://github.com/sindresorhus/atom-editorconfig#readme">Atom</a></li>
+<li><a href="https://github.com/ncjones/editorconfig-eclipse#readme">Eclipse</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>在项目根目录创建文件 <code>.editorconfig</code>，添加如下示例配置：</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="comment"># editorconfig.org</span></span><br><span class="line"><span class="attr">root</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配所有文件</span></span><br><span class="line"><span class="section">[*]</span></span><br><span class="line"><span class="comment"># 缩进格式，space 或 tab</span></span><br><span class="line"><span class="attr">indent_style</span> = space</span><br><span class="line"><span class="comment"># 缩进大小</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">2</span></span><br><span class="line"><span class="comment"># 当使用 tab 缩进时的大小</span></span><br><span class="line"><span class="comment">#tab_width = 2</span></span><br><span class="line"><span class="comment"># 换行符，可选 lf、cr、crlf</span></span><br><span class="line"><span class="attr">end_of_line</span> = lf</span><br><span class="line"><span class="comment"># 文件默认字符集</span></span><br><span class="line"><span class="attr">charset</span> = utf-<span class="number">8</span></span><br><span class="line"><span class="comment"># 清除行尾空格</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment"># 在保存时，文件底部保留一个空行</span></span><br><span class="line"><span class="attr">insert_final_newline</span> = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .md 结尾的文件</span></span><br><span class="line"><span class="section">[*.md]</span></span><br><span class="line"><span class="attr">trim_trailing_whitespace</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 匹配以 .php、.py、.java 结尾的文件</span></span><br><span class="line"><span class="section">[*.&#123;php,py,java&#125;]</span></span><br><span class="line"><span class="attr">indent_size</span> = <span class="number">4</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Makefile]</span></span><br><span class="line"><span class="attr">indent_style</span> = tab</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*</td>
+<td>匹配除路径分隔符（/）之外的任何字符串</td>
+</tr>
+<tr>
+<td>**</td>
+<td>匹配任何字符串</td>
+</tr>
+<tr>
+<td>?</td>
+<td>匹配任何单个字符</td>
+</tr>
+<tr>
+<td>[name]</td>
+<td>匹配名称中的任何单个字符</td>
+</tr>
+<tr>
+<td>[!name]</td>
+<td>匹配任何不在名称中的单个字符</td>
+</tr>
+<tr>
+<td>{s1,s2,s3}</td>
+<td>匹配给定的任何字符串（以逗号分隔）</td>
+</tr>
+<tr>
+<td>{num1..num2}</td>
+<td>匹配num1和num2之间的任何整数，其中num1和num2可以是正数或负数</td>
+</tr>
+</tbody></table>
+<p>更多详细功能，参见官网 <a href="https://editorconfig.org/">https://editorconfig.org/</a>。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>EditorConfig</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
+    <url>/post/223922994.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
+<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
+<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
+</li>
+<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
+<blockquote>
+<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
+</blockquote>
+<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
+<ul>
+<li>方式一：给宿主机设置一个固定 IP；</li>
+<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
+<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>PHPStorm</tag>
+        <tag>XDebug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何使用 vscode 启动、调试 Node.js 项目</title>
     <url>/post/2445402303.html</url>
     <content><![CDATA[<blockquote>
@@ -2755,6 +2755,28 @@
       </tags>
   </entry>
   <entry>
+    <title>替换国内镜像源让 Homebrew 起飞</title>
+    <url>/post/3431125306.html</url>
+    <content><![CDATA[<blockquote>
+<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
+</blockquote>
+<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>开发工具</tag>
+        <tag>Homebrew</tag>
+        <tag>brew</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《最后的舞动 The Last Dance》</title>
     <url>/post/3209780963.html</url>
     <content><![CDATA[<table>
@@ -2859,28 +2881,6 @@
       <tags>
         <tag>系统和软件</tag>
         <tag>数字签名</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>替换国内镜像源让 Homebrew 起飞</title>
-    <url>/post/3431125306.html</url>
-    <content><![CDATA[<blockquote>
-<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
-</blockquote>
-<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>开发工具</tag>
-        <tag>Homebrew</tag>
-        <tag>brew</tag>
       </tags>
   </entry>
   <entry>
@@ -3103,6 +3103,42 @@
       </tags>
   </entry>
   <entry>
+    <title>Docker 中的 PHP 如何安装扩展</title>
+    <url>/post/90967283.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍在 Docker 中三类扩展的安装方式，包括核心扩展、PECL扩展、其它扩展。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-PHP-源码"><a href="#1-PHP-源码" class="headerlink" title="1. PHP 源码"></a>1. PHP 源码</h3><p>为了保证 Docker 镜像尽量小，PHP 的源文件是以压缩包的形式存在镜像中，官方提供了 <code>docker-php-source</code> 快捷脚本，用于对源文件压缩包的解压（extract）及解压后的文件进行删除（delete）的操作。</p>
+<p>示例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> docker-php-source extract \</span></span><br><span class="line"><span class="bash">    <span class="comment"># 此处开始执行你需要的操作 \</span></span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-source delete</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：一定要记得删除，否则解压出来的文件会大大增加镜像的文件大小。</strong></p>
+<h3 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a>2. 安装扩展</h3><h4 id="2-1-核心扩展"><a href="#2-1-核心扩展" class="headerlink" title="2.1. 核心扩展"></a>2.1. 核心扩展</h4><p>这里主要用到的是官方提供的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 快捷脚本，如下</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 相关依赖必须手动安装</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        libmcrypt-dev \</span><br><span class="line">        libpng-dev \</span><br><span class="line">    <span class="comment"># 安装扩展</span></span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) iconv mcrypt \</span><br><span class="line">    <span class="comment"># 如果安装的扩展需要自定义配置时</span></span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) gd</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：这里的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 已经包含了 <code>docker-php-source</code> 的操作，所有不需要再手动去执行。</p>
+<h4 id="2-2-PECL-扩展"><a href="#2-2-PECL-扩展" class="headerlink" title="2.2. PECL 扩展"></a>2.2. PECL 扩展</h4><p>因为一些扩展并不包含在 PHP 源码文件中，所有需要使用 <a href="https://secure.php.net/manual/zh/install.pecl.intro.php">PECL</a>（PHP 的扩展库仓库，通过 <a href="http://pear.php.net/">PEAR</a> 打包）。用 <code>pecl install</code> 安装扩展，然后再用官方提供的 <code>docker-php-ext-enable</code> 快捷脚本来启用扩展，如下示例</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 手动安装依赖</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y libmemcached-dev zlib1g-dev \</span><br><span class="line">	<span class="comment"># 安装需要的扩展</span></span><br><span class="line">   &amp;&amp; pecl install memcached-<span class="number">2.2</span>.<span class="number">0</span> \</span><br><span class="line">   <span class="comment"># 启用扩展</span></span><br><span class="line">   &amp;&amp; docker-php-ext-enable memcached</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-其它扩展"><a href="#2-3-其它扩展" class="headerlink" title="2.3. 其它扩展"></a>2.3. 其它扩展</h4><p>一些既不在 PHP 源码包，也不再 PECL 扩展仓库中的扩展，可以通过下载扩展程序源码，编译安装的方式安装，如下示例：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; ( \</span></span><br><span class="line"><span class="bash">        <span class="built_in">cd</span> xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; phpize \</span></span><br><span class="line"><span class="bash">        &amp;&amp; ./configure --enable-xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make -j$(nproc) \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make install \</span></span><br><span class="line"><span class="bash">    ) \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-enable xcache</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：官方提供的 <code>docker-php-ext-*</code> 脚本接受任意的绝对路径（不支持相对路径，以便与系统内置的扩展程序进行区分），所以，上面的例子也可以这样写：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C /tmp/xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-configure /tmp/xcache --enable-xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-install /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r /tmp/xcache</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Docker</tag>
+        <tag>PECL</tag>
+        <tag>PEAR</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Docker 之 Dockerfile 介绍</title>
     <url>/post/404938395.html</url>
     <content><![CDATA[<h3 id="1-基本结构"><a href="#1-基本结构" class="headerlink" title="1. 基本结构"></a>1. 基本结构</h3><p>Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
@@ -3309,42 +3345,6 @@
       <tags>
         <tag>Docker</tag>
         <tag>Dockerfile</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Docker 中的 PHP 如何安装扩展</title>
-    <url>/post/90967283.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍在 Docker 中三类扩展的安装方式，包括核心扩展、PECL扩展、其它扩展。</p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="1-PHP-源码"><a href="#1-PHP-源码" class="headerlink" title="1. PHP 源码"></a>1. PHP 源码</h3><p>为了保证 Docker 镜像尽量小，PHP 的源文件是以压缩包的形式存在镜像中，官方提供了 <code>docker-php-source</code> 快捷脚本，用于对源文件压缩包的解压（extract）及解压后的文件进行删除（delete）的操作。</p>
-<p>示例：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> docker-php-source extract \</span></span><br><span class="line"><span class="bash">    <span class="comment"># 此处开始执行你需要的操作 \</span></span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-source delete</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：一定要记得删除，否则解压出来的文件会大大增加镜像的文件大小。</strong></p>
-<h3 id="2-安装扩展"><a href="#2-安装扩展" class="headerlink" title="2. 安装扩展"></a>2. 安装扩展</h3><h4 id="2-1-核心扩展"><a href="#2-1-核心扩展" class="headerlink" title="2.1. 核心扩展"></a>2.1. 核心扩展</h4><p>这里主要用到的是官方提供的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 快捷脚本，如下</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 相关依赖必须手动安装</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y \</span><br><span class="line">        libfreetype6-dev \</span><br><span class="line">        libjpeg62-turbo-dev \</span><br><span class="line">        libmcrypt-dev \</span><br><span class="line">        libpng-dev \</span><br><span class="line">    <span class="comment"># 安装扩展</span></span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) iconv mcrypt \</span><br><span class="line">    <span class="comment"># 如果安装的扩展需要自定义配置时</span></span><br><span class="line">    &amp;&amp; docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \</span><br><span class="line">    &amp;&amp; docker-php-ext-install -j$(nproc) gd</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：这里的 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 已经包含了 <code>docker-php-source</code> 的操作，所有不需要再手动去执行。</p>
-<h4 id="2-2-PECL-扩展"><a href="#2-2-PECL-扩展" class="headerlink" title="2.2. PECL 扩展"></a>2.2. PECL 扩展</h4><p>因为一些扩展并不包含在 PHP 源码文件中，所有需要使用 <a href="https://secure.php.net/manual/zh/install.pecl.intro.php">PECL</a>（PHP 的扩展库仓库，通过 <a href="http://pear.php.net/">PEAR</a> 打包）。用 <code>pecl install</code> 安装扩展，然后再用官方提供的 <code>docker-php-ext-enable</code> 快捷脚本来启用扩展，如下示例</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">7.1</span>-fpm</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> apt-get update \</span></span><br><span class="line"><span class="bash">	<span class="comment"># 手动安装依赖</span></span></span><br><span class="line">	&amp;&amp; apt-get install -y libmemcached-dev zlib1g-dev \</span><br><span class="line">	<span class="comment"># 安装需要的扩展</span></span><br><span class="line">   &amp;&amp; pecl install memcached-<span class="number">2.2</span>.<span class="number">0</span> \</span><br><span class="line">   <span class="comment"># 启用扩展</span></span><br><span class="line">   &amp;&amp; docker-php-ext-enable memcached</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-其它扩展"><a href="#2-3-其它扩展" class="headerlink" title="2.3. 其它扩展"></a>2.3. 其它扩展</h4><p>一些既不在 PHP 源码包，也不再 PECL 扩展仓库中的扩展，可以通过下载扩展程序源码，编译安装的方式安装，如下示例：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; ( \</span></span><br><span class="line"><span class="bash">        <span class="built_in">cd</span> xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; phpize \</span></span><br><span class="line"><span class="bash">        &amp;&amp; ./configure --enable-xcache \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make -j$(nproc) \</span></span><br><span class="line"><span class="bash">        &amp;&amp; make install \</span></span><br><span class="line"><span class="bash">    ) \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-enable xcache</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>：官方提供的 <code>docker-php-ext-*</code> 脚本接受任意的绝对路径（不支持相对路径，以便与系统内置的扩展程序进行区分），所以，上面的例子也可以这样写：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">FROM</span> php:<span class="number">5.6</span>-apache</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> curl -fsSL <span class="string">&#x27;https://xcache.lighttpd.net/pub/Releases/3.2.0/xcache-3.2.0.tar.gz&#x27;</span> -o xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; mkdir -p /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; tar -xf xcache.tar.gz -C /tmp/xcache --strip-components=1 \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm xcache.tar.gz \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-configure /tmp/xcache --enable-xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; docker-php-ext-install /tmp/xcache \</span></span><br><span class="line"><span class="bash">    &amp;&amp; rm -r /tmp/xcache</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Docker</tag>
-        <tag>PECL</tag>
-        <tag>PEAR</tag>
       </tags>
   </entry>
   <entry>
@@ -4799,6 +4799,59 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在 CentOS 6.x/7.x 上安装 Git 及最新版</title>
+    <url>/post/2026663390.html</url>
+    <content><![CDATA[<blockquote>
+<p>Git 是一个分布式版本控制软件，最初由<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>创作，于 2005 年以 GPL 发布。最初目的是为更好地管理 Linux 内核开发而设计。</p>
+</blockquote>
+<p>更多介绍，详见：</p>
+<ul>
+<li>官网：<a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></li>
+<li>wiki：<a href="https://zh.wikipedia.org/wiki/Git">https://zh.wikipedia.org/wiki/Git</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="方式一、yum安装"><a href="#方式一、yum安装" class="headerlink" title="方式一、yum安装"></a>方式一、yum安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum info git</span><br><span class="line">Failed to <span class="built_in">set</span> locale, defaulting to C</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">Available Packages</span><br><span class="line">Name        : git</span><br><span class="line">Arch        : x86_64</span><br><span class="line">Version     : 1.8.3.1 &lt;--- 说明：当前系统是 CentOS7.x，在 6.x 上是 1.7.1</span><br><span class="line">Release     : 12.el7_4</span><br><span class="line">Size        : 4.4 M</span><br><span class="line">Repo        : updates/7/x86_64</span><br><span class="line">Summary     : Fast Version Control System</span><br><span class="line">URL         : http://git-scm.com/</span><br><span class="line">License     : GPLv2</span><br><span class="line">Description : Git is a fast, scalable, distributed revision control system with an</span><br><span class="line">            : unusually rich <span class="built_in">command</span> <span class="built_in">set</span> that provides both high-level operations</span><br><span class="line">            : and full access to internals.</span><br><span class="line">            :</span><br><span class="line">            : The git rpm installs the core tools with minimal dependencies.  To</span><br><span class="line">            : install all git packages, including tools <span class="keyword">for</span> integrating with other</span><br><span class="line">            : SCMs, install the git-all meta-package.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了安装较新版本，需要手动添加一个仓库源</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始安装</span></span><br><span class="line">➜  yum install -y git</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二、源码包安装"><a href="#方式二、源码包安装" class="headerlink" title="方式二、源码包安装"></a>方式二、源码包安装</h3><blockquote>
+<p>提示：请使用 root 用户操作</p>
+</blockquote>
+<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-卸载旧的git版本（如果之前有安装rpm包）"><a href="#2-2-卸载旧的git版本（如果之前有安装rpm包）" class="headerlink" title="2.2. 卸载旧的git版本（如果之前有安装rpm包）"></a>2.2. 卸载旧的git版本（如果之前有安装rpm包）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-下载-amp-解压"><a href="#2-3-下载-amp-解压" class="headerlink" title="2.3. 下载&amp;解压"></a>2.3. 下载&amp;解压</h4><p>源码文件（当前最新版本 **v2.29.2 ** @ <strong>2020年12月14日</strong>）</p>
+<ul>
+<li>地址1：<a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></li>
+<li>地址2：<a href="https://github.com/git/git/releases">https://github.com/git/git/releases</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> ~</span><br><span class="line">➜  wget -c https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.gz</span><br><span class="line">➜  tar -zxvf git-2.29.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-检查git版本"><a href="#2-5-检查git版本" class="headerlink" title="2.5. 检查git版本"></a>2.5. 检查git版本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git --version</span><br><span class="line">git version 2.5.0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：如果安装完查看版本不是我们安装的最新版，请重新执行下面的操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br><span class="line">➜  git --versione</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://github.com/git/git/blob/master/INSTALL">https://github.com/git/git/blob/master/INSTALL</a></li>
+<li><a href="http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x">http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>版本管理</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git 常用命令速查</title>
     <url>/post/966087952.html</url>
     <content><![CDATA[<h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-查看"><a href="#1-1-查看" class="headerlink" title="1.1. 查看"></a>1.1. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list <span class="comment"># 所有设置</span></span><br><span class="line">$ git config --list --global <span class="comment"># 全局设置</span></span><br><span class="line">$ git config --list --<span class="built_in">local</span> <span class="comment"># 当前仓库设置</span></span><br></pre></td></tr></table></figure>
@@ -4842,59 +4895,6 @@
 <li><a href="https://git-scm.com/book/zh/v2">Git - Book</a></li>
 <li><a href="https://backlog.com/git-tutorial/cn/">猴子都能懂的GIT入门</a></li>
 <li><a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>版本管理</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在 CentOS 6.x/7.x 上安装 Git 及最新版</title>
-    <url>/post/2026663390.html</url>
-    <content><![CDATA[<blockquote>
-<p>Git 是一个分布式版本控制软件，最初由<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>创作，于 2005 年以 GPL 发布。最初目的是为更好地管理 Linux 内核开发而设计。</p>
-</blockquote>
-<p>更多介绍，详见：</p>
-<ul>
-<li>官网：<a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></li>
-<li>wiki：<a href="https://zh.wikipedia.org/wiki/Git">https://zh.wikipedia.org/wiki/Git</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="方式一、yum安装"><a href="#方式一、yum安装" class="headerlink" title="方式一、yum安装"></a>方式一、yum安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum info git</span><br><span class="line">Failed to <span class="built_in">set</span> locale, defaulting to C</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">Available Packages</span><br><span class="line">Name        : git</span><br><span class="line">Arch        : x86_64</span><br><span class="line">Version     : 1.8.3.1 &lt;--- 说明：当前系统是 CentOS7.x，在 6.x 上是 1.7.1</span><br><span class="line">Release     : 12.el7_4</span><br><span class="line">Size        : 4.4 M</span><br><span class="line">Repo        : updates/7/x86_64</span><br><span class="line">Summary     : Fast Version Control System</span><br><span class="line">URL         : http://git-scm.com/</span><br><span class="line">License     : GPLv2</span><br><span class="line">Description : Git is a fast, scalable, distributed revision control system with an</span><br><span class="line">            : unusually rich <span class="built_in">command</span> <span class="built_in">set</span> that provides both high-level operations</span><br><span class="line">            : and full access to internals.</span><br><span class="line">            :</span><br><span class="line">            : The git rpm installs the core tools with minimal dependencies.  To</span><br><span class="line">            : install all git packages, including tools <span class="keyword">for</span> integrating with other</span><br><span class="line">            : SCMs, install the git-all meta-package.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了安装较新版本，需要手动添加一个仓库源</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始安装</span></span><br><span class="line">➜  yum install -y git</span><br></pre></td></tr></table></figure>
-
-<h3 id="方式二、源码包安装"><a href="#方式二、源码包安装" class="headerlink" title="方式二、源码包安装"></a>方式二、源码包安装</h3><blockquote>
-<p>提示：请使用 root 用户操作</p>
-</blockquote>
-<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-卸载旧的git版本（如果之前有安装rpm包）"><a href="#2-2-卸载旧的git版本（如果之前有安装rpm包）" class="headerlink" title="2.2. 卸载旧的git版本（如果之前有安装rpm包）"></a>2.2. 卸载旧的git版本（如果之前有安装rpm包）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-下载-amp-解压"><a href="#2-3-下载-amp-解压" class="headerlink" title="2.3. 下载&amp;解压"></a>2.3. 下载&amp;解压</h4><p>源码文件（当前最新版本 **v2.29.2 ** @ <strong>2020年12月14日</strong>）</p>
-<ul>
-<li>地址1：<a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></li>
-<li>地址2：<a href="https://github.com/git/git/releases">https://github.com/git/git/releases</a></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> ~</span><br><span class="line">➜  wget -c https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.gz</span><br><span class="line">➜  tar -zxvf git-2.29.2.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-检查git版本"><a href="#2-5-检查git版本" class="headerlink" title="2.5. 检查git版本"></a>2.5. 检查git版本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git --version</span><br><span class="line">git version 2.5.0</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：如果安装完查看版本不是我们安装的最新版，请重新执行下面的操作</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br><span class="line">➜  git --versione</span><br></pre></td></tr></table></figure>
-
-<p>参考：</p>
-<ul>
-<li><a href="https://github.com/git/git/blob/master/INSTALL">https://github.com/git/git/blob/master/INSTALL</a></li>
-<li><a href="http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x">http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x</a></li>
 </ul>
 ]]></content>
       <categories>
@@ -5485,6 +5485,92 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL如何查询最新审核过的一条数据</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文只是项目过程中暂时能想到的一种方法，如果你有其它实现方式，欢迎留言与我交流。</p>
+</blockquote>
+<p><strong>原始数据</strong></p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2orejelw5td3bwfkv</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-06-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or81tr5evpean60d</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-06-19 11:12:16</td>
+</tr>
+<tr>
+<td>2or81tt1m5rnw1h0o</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-05-19 11:57:00</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>目标描述</strong>：针对每个 organization_id， 根据审核时间，获取最新审核的一条数据</p>
+<p><strong>预期结果</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>id（主键）</th>
+<th>organization_id</th>
+<th>audit_time（审核时间）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2or7zo75ygc7fi2l7</td>
+<td>2oo2v3mqwrd832efh</td>
+<td>2021-07-02 15:23:37</td>
+</tr>
+<tr>
+<td>2or96z2524ac1zw0v</td>
+<td>202106171149548es5ntrhd</td>
+<td>2021-07-09 13:31:00</td>
+</tr>
+</tbody></table>
+<p><strong>完整 SQL 如下:</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(id <span class="keyword">ORDER</span> <span class="keyword">BY</span> audit_time),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> id,</span><br><span class="line">	organization_id</span><br><span class="line"><span class="keyword">FROM</span> organization_auth_request</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> organization_id</span><br></pre></td></tr></table></figure>
+
+<p><strong>关键点说明:</strong></p>
+<ul>
+<li><code>GROUP_CONCAT(id ORDER BY audit_time)</code> 分组后拼接的时候，可以指定排序字段和排序方式，以确保能够按照指定顺序拼接</li>
+<li><code>SUBSTRING_INDEX(&#39;待截取的字符串&#39;,&#39;,&#39;,-1)</code><ul>
+<li>第一个参数是待截取的字符串；</li>
+<li>第二个参数是截取时以什么字符分组，比如这里是以 <code>,</code> 分组；</li>
+<li>第三个参数是截取方向和个数，<code>-1</code> 表示从末尾截取一组字符（正数从开头开始截取；负数从末尾开始截取）。</li>
+</ul>
+</li>
+</ul>
+<p>关于这两个函数的更多使用方式，参见官方文档或搜索引擎。</p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL之数据库结构设计</title>
     <url>/post/2048329622.html</url>
     <content><![CDATA[<blockquote>
@@ -5858,92 +5944,6 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>数据库结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL如何查询最新审核过的一条数据</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文只是项目过程中暂时能想到的一种方法，如果你有其它实现方式，欢迎留言与我交流。</p>
-</blockquote>
-<p><strong>原始数据</strong></p>
-<table>
-<thead>
-<tr>
-<th>id（主键）</th>
-<th>organization_id</th>
-<th>audit_time（审核时间）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2orejelw5td3bwfkv</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-06-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or7zo75ygc7fi2l7</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-07-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or81tr5evpean60d</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-06-19 11:12:16</td>
-</tr>
-<tr>
-<td>2or81tt1m5rnw1h0o</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-05-19 11:57:00</td>
-</tr>
-<tr>
-<td>2or96z2524ac1zw0v</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-07-09 13:31:00</td>
-</tr>
-</tbody></table>
-<p><strong>目标描述</strong>：针对每个 organization_id， 根据审核时间，获取最新审核的一条数据</p>
-<p><strong>预期结果</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>id（主键）</th>
-<th>organization_id</th>
-<th>audit_time（审核时间）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2or7zo75ygc7fi2l7</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-07-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or96z2524ac1zw0v</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-07-09 13:31:00</td>
-</tr>
-</tbody></table>
-<p><strong>完整 SQL 如下:</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(id <span class="keyword">ORDER</span> <span class="keyword">BY</span> audit_time),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> id,</span><br><span class="line">	organization_id</span><br><span class="line"><span class="keyword">FROM</span> organization_auth_request</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> organization_id</span><br></pre></td></tr></table></figure>
-
-<p><strong>关键点说明:</strong></p>
-<ul>
-<li><code>GROUP_CONCAT(id ORDER BY audit_time)</code> 分组后拼接的时候，可以指定排序字段和排序方式，以确保能够按照指定顺序拼接</li>
-<li><code>SUBSTRING_INDEX(&#39;待截取的字符串&#39;,&#39;,&#39;,-1)</code><ul>
-<li>第一个参数是待截取的字符串；</li>
-<li>第二个参数是截取时以什么字符分组，比如这里是以 <code>,</code> 分组；</li>
-<li>第三个参数是截取方向和个数，<code>-1</code> 表示从末尾截取一组字符（正数从开头开始截取；负数从末尾开始截取）。</li>
-</ul>
-</li>
-</ul>
-<p>关于这两个函数的更多使用方式，参见官方文档或搜索引擎。</p>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>数据库</tag>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>

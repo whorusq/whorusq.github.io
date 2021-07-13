@@ -2878,6 +2878,10 @@ mark.search-keyword {
   background: url("https://static.sqiang.net/blog/img/sidebar_top_bg.gif") center center no-repeat;
   background-size: cover;
 }
+a#clustrmaps-widget-v2,
+#clustrmaps-widget-v2 {
+  min-height: auto !important;
+}
 @media (min-width: 1200px) {
   .post-body {
     font-size: 1em;
