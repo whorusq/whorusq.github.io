@@ -791,6 +791,19 @@
       </tags>
   </entry>
   <entry>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>zip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 CentOS7 下安装、配置 Redis 服务</title>
     <url>/post/2447614005.html</url>
     <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
@@ -829,19 +842,6 @@
         <tag>Linux</tag>
         <tag>Redis</tag>
         <tag>缓存</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zip分卷压缩命令</title>
-    <url>/post/4078650632.html</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>zip</tag>
       </tags>
   </entry>
   <entry>
@@ -1787,6 +1787,115 @@
       </tags>
   </entry>
   <entry>
+    <title>如何做好一场技术演讲</title>
+    <url>/post/2259619543.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
+</blockquote>
+<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
+<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
+<ul>
+<li>听众组成？</li>
+<li>对要演讲主题的了解程度？</li>
+<li>听众想听什么？</li>
+<li>演讲能给听众带来什么价值？</li>
+<li>……</li>
+</ul>
+<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
+<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
+<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
+<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
+<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
+<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
+<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
+</ol>
+<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
+<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
+<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
+<li>合理的排版；</li>
+<li>合理而有意义的动效（一定不要太多）；</li>
+<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
+<li>Who 1 页</li>
+<li>What&amp;When 1～2 页</li>
+<li>Why 1 页</li>
+<li>How 展开 3～4 点，每点 2～3 页</li>
+<li>Future 1 页</li>
+<li>Recap 1 页</li>
+</ul>
+</li>
+<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
+<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
+<li>找安静的地方，自我练习。</li>
+<li>请信任的朋友来试听。</li>
+<li>公司内部试讲。</li>
+<li>冥想。</li>
+</ul>
+<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
+<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
+<p>其中：</p>
+<ul>
+<li><p>姿态</p>
+<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
+<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
+</li>
+<li><p>手势</p>
+<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
+<p>  参见下图的乔老师：</p>
+<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
+<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
+</li>
+<li><p>声音</p>
+<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
+<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
+<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
+</li>
+</ul>
+<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
+<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
+<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
+<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
+<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
+<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
+<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
+</ul>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
+<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
+<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
+<ul>
+<li>首先，具体让人产生画面感，产生更多的钩子。</li>
+<li>其次，具体让人更容易产生情绪。</li>
+<li>第三，具体让人产生可信感。</li>
+</ul>
+<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
+<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
+<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
+<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
+<li><p>将不太熟悉的问题转化成自己擅长的。</p>
+</li>
+<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
+</li>
+<li><p>委婉避开尴尬的问题</p>
+<blockquote>
+<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
+</blockquote>
+<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>技术演讲</tag>
+        <tag>演讲</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一堂技术管理课</title>
     <url>/post/895189460.html</url>
     <content><![CDATA[<blockquote>
@@ -2022,115 +2131,6 @@
         <tag>学习笔记</tag>
         <tag>技术管理</tag>
         <tag>管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何做好一场技术演讲</title>
-    <url>/post/2259619543.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
-</blockquote>
-<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
-<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
-<ul>
-<li>听众组成？</li>
-<li>对要演讲主题的了解程度？</li>
-<li>听众想听什么？</li>
-<li>演讲能给听众带来什么价值？</li>
-<li>……</li>
-</ul>
-<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
-<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
-<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
-<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
-<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
-<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
-<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
-</ol>
-<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
-<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
-<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
-<li>合理的排版；</li>
-<li>合理而有意义的动效（一定不要太多）；</li>
-<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
-<li>Who 1 页</li>
-<li>What&amp;When 1～2 页</li>
-<li>Why 1 页</li>
-<li>How 展开 3～4 点，每点 2～3 页</li>
-<li>Future 1 页</li>
-<li>Recap 1 页</li>
-</ul>
-</li>
-<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
-<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
-<li>找安静的地方，自我练习。</li>
-<li>请信任的朋友来试听。</li>
-<li>公司内部试讲。</li>
-<li>冥想。</li>
-</ul>
-<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
-<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
-<p>其中：</p>
-<ul>
-<li><p>姿态</p>
-<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
-<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
-</li>
-<li><p>手势</p>
-<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
-<p>  参见下图的乔老师：</p>
-<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
-<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
-</li>
-<li><p>声音</p>
-<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
-<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
-<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
-</li>
-</ul>
-<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
-<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
-<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
-<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
-<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
-<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
-<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
-</ul>
-<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
-<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
-<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
-<ul>
-<li>首先，具体让人产生画面感，产生更多的钩子。</li>
-<li>其次，具体让人更容易产生情绪。</li>
-<li>第三，具体让人产生可信感。</li>
-</ul>
-<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
-<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
-<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
-<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
-<li><p>将不太熟悉的问题转化成自己擅长的。</p>
-</li>
-<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
-</li>
-<li><p>委婉避开尴尬的问题</p>
-<blockquote>
-<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
-</blockquote>
-<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>技术演讲</tag>
-        <tag>演讲</tag>
       </tags>
   </entry>
   <entry>
@@ -2596,6 +2596,48 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
+    <url>/post/2445402303.html</url>
+    <content><![CDATA[<blockquote>
+<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
+</blockquote>
+<p>涉及 vscode 配置：</p>
+<ul>
+<li><code>.vscode/tasks.json</code> 启动</li>
+<li><code>.vscode/launch.json</code> 调试</li>
+</ul>
+<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
+<span id="more"></span>
+
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置-tasks-json"><a href="#启动配置-tasks-json" class="headerlink" title="启动配置 tasks.json"></a>启动配置 tasks.json</h4><ul>
+<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
+<li>2、此时会列出 <code>package.json</code> 中定义的 <code>script</code> 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
+</ul>
+<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    <span class="comment">// 这是一个使用 npm 启动项目到示例，指定脚本 dev</span></span><br><span class="line">    <span class="comment">// 注意：设置不同 type 类型时，相应的可用参数是跟随变化的</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 这是另一种启动方式</span></span><br><span class="line">    <span class="comment">// 1. 使用 nvm 切换到指定 Node 版本；2. 紧接着使用 npm 启动；3. 通过 options 追加额外参数</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;start dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;source ~/.zshrc &amp;&amp; nvm use 10 &amp;&amp; npm run dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:*&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
+<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
+<blockquote>
+<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
+</blockquote>
+<h4 id="调试配置-launch-json"><a href="#调试配置-launch-json" class="headerlink" title="调试配置 launch.json"></a>调试配置 launch.json</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
+<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
+<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>vscode</tag>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
     <url>/post/223922994.html</url>
     <content><![CDATA[<blockquote>
@@ -2644,45 +2686,25 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
-    <url>/post/2445402303.html</url>
+    <title>替换国内镜像源让 Homebrew 起飞</title>
+    <url>/post/3431125306.html</url>
     <content><![CDATA[<blockquote>
-<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
+<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
 </blockquote>
-<p>涉及 vscode 配置：</p>
-<ul>
-<li><code>.vscode/tasks.json</code> 启动</li>
-<li><code>.vscode/launch.json</code> 调试</li>
-</ul>
-<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
-<span id="more"></span>
+<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
 
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置-tasks-json"><a href="#启动配置-tasks-json" class="headerlink" title="启动配置 tasks.json"></a>启动配置 tasks.json</h4><ul>
-<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
-<li>2、此时会列出 <code>package.json</code> 中定义的 <code>script</code> 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
-</ul>
-<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    <span class="comment">// 这是一个使用 npm 启动项目到示例，指定脚本 dev</span></span><br><span class="line">    <span class="comment">// 注意：设置不同 type 类型时，相应的可用参数是跟随变化的</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 这是另一种启动方式</span></span><br><span class="line">    <span class="comment">// 1. 使用 nvm 切换到指定 Node 版本；2. 紧接着使用 npm 启动；3. 通过 options 追加额外参数</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;start dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;source ~/.zshrc &amp;&amp; nvm use 10 &amp;&amp; npm run dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:*&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
 
-<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
-<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
-<blockquote>
-<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
-</blockquote>
-<h4 id="调试配置-launch-json"><a href="#调试配置-launch-json" class="headerlink" title="调试配置 launch.json"></a>调试配置 launch.json</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
-<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
-<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
+<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>开发工具</category>
       </categories>
       <tags>
+        <tag>macOS</tag>
         <tag>开发工具</tag>
-        <tag>vscode</tag>
-        <tag>Node.js</tag>
+        <tag>Homebrew</tag>
+        <tag>brew</tag>
       </tags>
   </entry>
   <entry>
@@ -2812,28 +2834,6 @@
       </tags>
   </entry>
   <entry>
-    <title>替换国内镜像源让 Homebrew 起飞</title>
-    <url>/post/3431125306.html</url>
-    <content><![CDATA[<blockquote>
-<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
-</blockquote>
-<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>开发工具</tag>
-        <tag>Homebrew</tag>
-        <tag>brew</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
     <url>/post/2159656190.html</url>
     <content><![CDATA[<blockquote>
@@ -2861,27 +2861,6 @@
         <tag>系统和软件</tag>
         <tag>Google Chrome</tag>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
-    <url>/post/1732007690.html</url>
-    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
-<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
-<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
-
-<p>重启系统，然后重新安装出错的程序就可以了。</p>
-<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
-<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
-<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
-</a></p>
-]]></content>
-      <categories>
-        <category>系统和软件</category>
-      </categories>
-      <tags>
-        <tag>系统和软件</tag>
-        <tag>数字签名</tag>
       </tags>
   </entry>
   <entry>
@@ -2918,6 +2897,27 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
+    <url>/post/1732007690.html</url>
+    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
+<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
+
+<p>重启系统，然后重新安装出错的程序就可以了。</p>
+<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
+<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
+<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
+</a></p>
+]]></content>
+      <categories>
+        <category>系统和软件</category>
+      </categories>
+      <tags>
+        <tag>系统和软件</tag>
+        <tag>数字签名</tag>
       </tags>
   </entry>
   <entry>
@@ -5948,6 +5948,44 @@
       </tags>
   </entry>
   <entry>
+    <title>Redis 与 Memcache 的区别</title>
+    <url>/post/3127178255.html</url>
+    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
+<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
+<li>功能简单，使用内存存储数据</li>
+<li>限制<ul>
+<li>key 小于 250B</li>
+<li>value 小于 1M</li>
+<li>key 最大失效时间小于 30 天</li>
+<li>只支持 K-V 结构，不支持持久化和主从同步</li>
+</ul>
+</li>
+</ul>
+<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
+<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
+<li>异步非阻塞I/O（多路复用）<ul>
+<li>多路：多个网络连接</li>
+<li>复用：复用同一个线程</li>
+</ul>
+</li>
+<li>避免多线程上下文切换的代价</li>
+<li>避免多线程造成各种锁的问题</li>
+</ul>
+</li>
+<li>数据在内存存储，支持持久化</li>
+<li>支持更多的数据类型，list、hash、set等</li>
+<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL语法速查1：基础命令篇</title>
     <url>/post/2913088232.html</url>
     <content><![CDATA[<h3 id="1-1-关于-SQL"><a href="#1-1-关于-SQL" class="headerlink" title="1.1. 关于 SQL"></a>1.1. 关于 SQL</h3><p>SQL 是 Structure Query Language（结构化查询语言）的缩写，是关系型数据库的基本语言，由 IBM 在 20 世纪 70 年代开发出来，作为 IBM 关系数据库原型 System R 的原型关系语言，实现了关系数据库中的信息检索。</p>
@@ -6186,44 +6224,6 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis 与 Memcache 的区别</title>
-    <url>/post/3127178255.html</url>
-    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
-<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
-<li>功能简单，使用内存存储数据</li>
-<li>限制<ul>
-<li>key 小于 250B</li>
-<li>value 小于 1M</li>
-<li>key 最大失效时间小于 30 天</li>
-<li>只支持 K-V 结构，不支持持久化和主从同步</li>
-</ul>
-</li>
-</ul>
-<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
-<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
-<li>异步非阻塞I/O（多路复用）<ul>
-<li>多路：多个网络连接</li>
-<li>复用：复用同一个线程</li>
-</ul>
-</li>
-<li>避免多线程上下文切换的代价</li>
-<li>避免多线程造成各种锁的问题</li>
-</ul>
-</li>
-<li>数据在内存存储，支持持久化</li>
-<li>支持更多的数据类型，list、hash、set等</li>
-<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
