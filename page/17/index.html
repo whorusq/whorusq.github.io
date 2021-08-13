@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">95</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -198,6 +198,91 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1634855012.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1634855012.html" class="post-title-link" itemprop="url">svn 常用操作命令及问题处理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-19 晚上 22:07:04" itemprop="dateCreated datePublished" datetime="2020-01-19T22:07:04+08:00">2020-01-19 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a>1. 常用命令</h3><h4 id="1-1-基本使用"><a href="#1-1-基本使用" class="headerlink" title="1.1. 基本使用"></a>1.1. 基本使用</h4><ul>
+<li><p>检出 checkout</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检出代码</span></span><br><span class="line">➜  svn co repo_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检出代码，并指定目录名</span></span><br><span class="line">➜  svn co repo_url saved_dir_name</span><br></pre></td></tr></table></figure></li>
+<li><p>加入版本控制 add</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加指定文件</span></span><br><span class="line">➜  svn add /path/to/file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加所有 .sh 后缀的文件</span></span><br><span class="line">➜  svn add *.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归添加当前目录下的所有新文件</span></span><br><span class="line"><span class="comment"># 如果使用参数 --no-ignore 则新增时会包含被设置为忽略的文件</span></span><br><span class="line">➜  svn add . --force</span><br></pre></td></tr></table></figure></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/1634855012.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -526,90 +611,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/2710129075.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/806379323.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/806379323.html" class="post-title-link" itemprop="url">Composer 很慢怎么办？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-01-18 晚上 22:01:08" itemprop="dateCreated datePublished" datetime="2020-01-18T22:01:08+08:00">2020-01-18 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>🔗 关于 Composer 的详细安装使用，详见之前的文章：<a href="462910674.html">在 PHP 中安装、使用 Composer 包管理工具</a></p>
-</blockquote>
-<p>Composer 在国内不管是更新还是安装都有一个「<strong>慢</strong>」的问题，有的时候真的很煎熬。</p>
-<p>因此我们一般会替换为 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://pkg.phpcomposer.com/">Packagist / Composer 中国全量镜像</a>，然而在使用过程发现，这个镜像并不稳定，有时候也会挂掉，所以本文介绍另外两种加速 composer 的方式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/806379323.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

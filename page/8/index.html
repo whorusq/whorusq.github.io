@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">95</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -198,6 +198,102 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2719612904.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2719612904.html" class="post-title-link" itemprop="url">JavaScript 中 undefined 与 null 的用法区别</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-04-22 下午 15:29:38" itemprop="dateCreated datePublished" datetime="2020-04-22T15:29:38+08:00">2020-04-22 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
+<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
+<p>二者的主要用法区别如下：</p>
+<ul>
+<li><code>undefined</code><ul>
+<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
+<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
+<li>函数没有返回值时，默认返回 <code>undefined</code></li>
+</ul>
+</li>
+<li><code>null</code><ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
+<ol>
+<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
+<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -516,91 +612,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/3997579074.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2104705023.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2104705023.html" class="post-title-link" itemprop="url">怎么使用 Excel 实现二级联动的下拉菜单</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-03-03 晚上 21:46:15" itemprop="dateCreated datePublished" datetime="2020-03-03T21:46:15+08:00">2020-03-03 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文以 macOS 下的 Excel  为示例，相当于最新版 Excel，如果有菜单名称和位置不同，请自行转换。</p>
-</blockquote>
-<h4 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_cascade_menu.gif" width="95%">
-</center>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2104705023.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

@@ -25,26 +25,29 @@
   <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js" integrity="sha256-a5YRB27CcBwBFcT5EF/f3E4vzIqyHrSR878nseNYw64=" crossorigin="anonymous"></script>
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","version":"8.7.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Talk is cheap, just do IT.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="whoru">
-<meta property="og:url" content="https://sqiang.net/tags/PSR-3/index.html">
+<meta name="description" content="JD-GUI 是一款大家耳熟能详的 Java 反编译工具，可以方便的将编译好的 .class 文件反编译为 .java 源码文件，用于开发调试、源码学习等。 官网地址：http:&#x2F;&#x2F;java-decompiler.github.io Git 地址：https:&#x2F;&#x2F;github.com&#x2F;java-decompiler&#x2F;jd-gui  当前最新版本：v1.6.6 @ Dec 25, 2019  下载地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在mac上使用Java反编译工具JD-GUI">
+<meta property="og:url" content="https://sqiang.net/post/2524245389.html">
 <meta property="og:site_name" content="whoru">
-<meta property="og:description" content="Talk is cheap, just do IT.">
+<meta property="og:description" content="JD-GUI 是一款大家耳熟能详的 Java 反编译工具，可以方便的将编译好的 .class 文件反编译为 .java 源码文件，用于开发调试、源码学习等。 官网地址：http:&#x2F;&#x2F;java-decompiler.github.io Git 地址：https:&#x2F;&#x2F;github.com&#x2F;java-decompiler&#x2F;jd-gui  当前最新版本：v1.6.6 @ Dec 25, 2019  下载地">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-13T05:39:41.000Z">
+<meta property="article:modified_time" content="2021-08-13T05:39:41.000Z">
 <meta property="article:author" content="whoru.S.Q">
-<meta property="article:tag" content="whoru,whoru.S.Q">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="开发工具">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://sqiang.net/tags/PSR-3/">
+<link rel="canonical" href="https://sqiang.net/post/2524245389.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/PSR-3/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/2524245389.html","path":"post/2524245389.html","title":"在mac上使用Java反编译工具JD-GUI"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: PSR-3 | whoru</title>
+<title>在mac上使用Java反编译工具JD-GUI | whoru</title>
   
 
 
@@ -197,51 +200,145 @@
 </noscript>
 
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h2 class="collection-header">PSR-3
-          <small>标签</small>
-        </h2>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2524245389.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          在mac上使用Java反编译工具JD-GUI
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2021-08-13 下午 13:39:41" itemprop="dateCreated datePublished" datetime="2021-08-13T13:39:41+08:00">2021-08-13 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>JD-GUI 是一款大家耳熟能详的 Java 反编译工具，可以方便的将编译好的 <code>.class</code> 文件反编译为 <code>.java</code> 源码文件，用于开发调试、源码学习等。</p>
+<p>官网地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://java-decompiler.github.io/">http://java-decompiler.github.io</a></p>
+<p>Git 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui">https://github.com/java-decompiler/jd-gui</a></p>
+<blockquote>
+<p>当前最新版本：v1.6.6 @ Dec 25, 2019</p>
+</blockquote>
+<p>下载地址：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.jar</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6-min.jar</a></li>
+<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.rpm</a></li>
+<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.deb</a></li>
+<li>MacOS <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-osx-1.6.6.tar</a></li>
+<li>Windows <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-windows-1.6.6.zip</a></li>
+</ul>
+<p>需要注意的是，<strong>运行 JD-GUI 所需 Java 版本最高为 JDK 10.0.2（可在官网文档查看）</strong>，否则会出现闪退、无法使用等问题，所以需要修改设置进行指定，下面以 macOS 为例进行说明。</p>
+<p>首先，使用如下命令，查看 jdk 的安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为我只安装了 Java1.8 和 Java11 两个版本，所以这里需要找 1.8 的路径</span></span><br><span class="line">➜ /usr/libexec/java_home -v 1.8</span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<p>其次，使用文本编辑器打开文件 <code>/Applications/JD-GUI.app/Contents/MacOS/universalJavaApplicationStub.sh</code>，修改如下部分：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># first check system variable &quot;$JAVA_HOME&quot;</span></span><br><span class="line"><span class="comment"># 这里的配置默认找的是系统环境变量中配置的 jdk 版本</span></span><br><span class="line"><span class="comment"># 而我配置的是 Java11，所以直接运行的时候出现闪退而无法使用</span></span><br><span class="line"><span class="comment"># 这里需要直接写死 1.8 的路径</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$JAVA_HOME</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">	JAVACMD=<span class="string">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/bin/java&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后，重新打开 JD-GUI.app 即可。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-01-19T16:24:06+08:00"
-              content="2020-01-19 下午">
-          01-19
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/post/2710129075.html" itemprop="url">
-            <span itemprop="name">PHP 之 PSR 标准规范</span>
-          </a>
-      </div>
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
 
-      
-    </header>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/2524245389.html" title="在mac上使用Java反编译工具JD-GUI">https://sqiang.net/post/2524245389.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"># 开发工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1623733608.html" rel="prev" title="MySQL如何查询最新审核过的一条数据">
+                  <i class="fa fa-chevron-left"></i> MySQL如何查询最新审核过的一条数据
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
 
+
+
+
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -284,7 +381,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://obscure-everglades-63042.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"9ac90eaa9bde6034bc61e53af0fc2581"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://obscure-everglades-63042.herokuapp.com/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"621761360271ef7b51693c1aaa656e47"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

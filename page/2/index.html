@@ -93,7 +93,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">94</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">95</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -198,6 +198,93 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2256713588.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2256713588.html" class="post-title-link" itemprop="url">配置 Nginx 输入用户名和密码才能访问</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2021-02-25 下午 14:39:38" itemprop="dateCreated datePublished" datetime="2021-02-25T14:39:38+08:00">2021-02-25 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
+</blockquote>
+<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
+
+<p>如果没有这个工具，需要先安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/2256713588.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -528,95 +615,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/438064550.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/438064550.html" class="post-title-link" itemprop="url">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-11-06 晚上 23:21:27" itemprop="dateCreated datePublished" datetime="2020-11-06T23:21:27+08:00">2020-11-06 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
-</blockquote>
-<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
-<p>同时这是一个开源项目，相关地址如下：</p>
-<ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
-</ul>
-<p>下载下来后，按以下步骤操作：</p>
-<ol>
-<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
-<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
-<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
-</ol>
-<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
-
       
     </div>
 
