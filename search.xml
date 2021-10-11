@@ -327,303 +327,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Composer 很慢怎么办？</title>
-    <url>/post/806379323.html</url>
-    <content><![CDATA[<blockquote>
-<p>🔗 关于 Composer 的详细安装使用，详见之前的文章：<a href="462910674.html">在 PHP 中安装、使用 Composer 包管理工具</a></p>
-</blockquote>
-<p>Composer 在国内不管是更新还是安装都有一个「<strong>慢</strong>」的问题，有的时候真的很煎熬。</p>
-<p>因此我们一般会替换为 <a href="https://pkg.phpcomposer.com/">Packagist / Composer 中国全量镜像</a>，然而在使用过程发现，这个镜像并不稳定，有时候也会挂掉，所以本文介绍另外两种加速 composer 的方式。</p>
-<span id="more"></span>
-<h3 id="方式一：使用另一个镜像（推荐）"><a href="#方式一：使用另一个镜像（推荐）" class="headerlink" title="方式一：使用另一个镜像（推荐）"></a>方式一：使用另一个镜像（推荐）</h3><p>现在阿里云官方已经推出了 Composer 全量镜像，详见这里 <a href="https://mirrors.aliyun.com/composer/">https://mirrors.aliyun.com/composer</a></p>
-<blockquote>
-<p>同时推荐一个 Composer 镜像源切换管理工具 <a href="https://github.com/slince/composer-registry-manager" title="https://github.com/slince/composer-registry-manager">composer-registry-manager</a> 👍</p>
-</blockquote>
-<ul>
-<li><p>设置镜像：</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -g 表示全局，去除该参数则只对当前项目生效</span></span><br><span class="line">➜  composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</span><br></pre></td></tr></table></figure></li>
-<li><p>取消镜像：</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  composer config -g --<span class="built_in">unset</span> repos.packagist</span><br></pre></td></tr></table></figure></li>
-<li><p>调试</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加参数 -vvv 可输出详细的信息</span></span><br><span class="line">➜  composer -vvv require alibabacloud/sdk</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="方式二：使用代理"><a href="#方式二：使用代理" class="headerlink" title="方式二：使用代理"></a>方式二：使用代理</h3><p>如果你的机器有本机 ssr 或其它代理，比如我的本机代理：<code>http://127.0.0.1:1087</code>，那么我在使用 Composer 时可以如下操作：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">export</span> http_proxy=http://127.0.0.1:1087;<span class="built_in">export</span> https_proxy=http://127.0.0.1:1087;</span><br><span class="line">➜  composer require qiniu/php-sdk</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：上面的操作只在当前 session 生效，新建或切换一个 tab 后会失效。如果想永久生效，需修改 <code>~/.bashsrc</code>。<strong>建议只是临时使用这种方式，强烈推荐采用方式一的全量镜像。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Composer</tag>
-        <tag>包管理工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP 之 PSR 标准规范</title>
-    <url>/post/2710129075.html</url>
-    <content><![CDATA[<p>PSR（PHP Standards Recommendation） 是由 PHP FIG 组织制定的 PHP 规范，是 PHP 开发的实践标准。</p>
-<p>由于标准在不断制定，本文主要介绍 PSR-1、PSR-2、PSR-3、PSR-4的一些主要细节，后面逐步更新所有标准。</p>
-<span id="more"></span>
-
-<h3 id="PSR-1-基本的代码风格"><a href="#PSR-1-基本的代码风格" class="headerlink" title="PSR-1 基本的代码风格"></a>PSR-1 基本的代码风格</h3><h4 id="PHP-标签"><a href="#PHP-标签" class="headerlink" title="PHP 标签"></a>PHP 标签</h4><p>PHP 代码必须放在 <code>&lt;?php ... ?&gt;</code> 或 <code>&lt;?= ...?&gt;</code> 标签中。</p>
-<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>无 BOM 的 UTF-8 字符集。</p>
-<h4 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h4><p>命名空间和类必须遵守 PSR-4 自动加载器标准。</p>
-<h4 id="类名"><a href="#类名" class="headerlink" title="类名"></a>类名</h4><p>驼峰式：所有单词首字母大写。</p>
-<h4 id="参量名"><a href="#参量名" class="headerlink" title="参量名"></a>参量名</h4><p>全部大写，如果需要可添加下划线分隔单词。</p>
-<h4 id="方法名"><a href="#方法名" class="headerlink" title="方法名"></a>方法名</h4><p>驼峰式：首字母小写，后续单词首字母大写。</p>
-<h3 id="PSR-2-严格的代码风格"><a href="#PSR-2-严格的代码风格" class="headerlink" title="PSR-2 严格的代码风格"></a>PSR-2 严格的代码风格</h3><h4 id="贯彻-PSR-1-⭐️"><a href="#贯彻-PSR-1-⭐️" class="headerlink" title="贯彻 PSR-1 ⭐️"></a>贯彻 PSR-1 ⭐️</h4><h4 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h4><p>四个空格（一般编辑器都可以设置：将一个制表符转换为4个空格）。</p>
-<h4 id="文件和代码行"><a href="#文件和代码行" class="headerlink" title="文件和代码行"></a>文件和代码行</h4><ol>
-<li>PHP 文件采用 UNIX 风格换行符（LF），末尾一个空行；</li>
-<li>每行代码推荐小于80个字符，最大120。</li>
-</ol>
-<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>使用小写字母，如：true、false</p>
-<h4 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h4><ol>
-<li>命名空间声明（namespace）语句后紧跟一个空行；</li>
-<li>导入命名空间（use）时，最后跟一个空行。</li>
-</ol>
-<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><ol>
-<li>类定义体的起始括号在类名之后新起一行</li>
-<li>extends 与 implements 关键字必须与类名在同一行。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ClassName extends ParentClass implements Interface</span><br><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
-<li>方法定义体的起始括号在方法名之后新起一行；</li>
-<li>方法定义体结束括号后新起一行；</li>
-<li>方法参数的括号两边没有空格；</li>
-<li>每个参数（除最后一个）后面跟一个逗号和空格。</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace app;</span><br><span class="line"></span><br><span class="line">Class</span><br><span class="line">&#123;</span><br><span class="line">    public function f1($var1, $v2 = null)</span><br><span class="line">    &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function f2($v3)</span><br><span class="line">    &#123;</span><br><span class="line">        //</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><ol>
-<li>类中的每个属性和方法都要声明可见性：public、private、protected；</li>
-<li>不要在私有方法前加下划线（_）；</li>
-<li>abstract 或 final 放在可见性关键字之前；</li>
-<li>static 放在可见性关键字之后。</li>
-</ol>
-<h4 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h4><ol>
-<li>涉及关键字：if、else、elseif、switch、case、while、do while、for、foreach、catch。</li>
-<li>如果控制关键字后面有一对括号（与关键字在同一行），则起始括号后面、结束括号前面不能有空格；</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if ($me-&gt;isAlive() === true) &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125; while ($me-&gt;isWorking());</span><br><span class="line"></span><br><span class="line">    $me-&gt;sayHaha();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="PSR-3-日志记录器接口"><a href="#PSR-3-日志记录器接口" class="headerlink" title="PSR-3 日志记录器接口"></a>PSR-3 日志记录器接口</h3><p>提供类一个日志接口 Psr\Log\LoggerInterface，其复用类 RFC 5424 系统日志协议，详见：<a href="http://tools.ietf.org/html/rfc5424">http://tools.ietf.org/html/rfc5424</a></p>
-<p>推荐 <a href="http://packagist.org/packages/monolog/monolog">monolog/monolog</a>，一个实现类 PSR-3 的日志记录器。</p>
-<h3 id="PSR-4-自动加载"><a href="#PSR-4-自动加载" class="headerlink" title="PSR-4 自动加载"></a>PSR-4 自动加载</h3><p>基于命名空间查找和加载类、接口、性状。</p>
-<p>推荐使用 Composer 包依赖管理工具，使用方法<a href="462910674.html">参照这里</a>。</p>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>PSR</tag>
-        <tag>PSR-1</tag>
-        <tag>PSR-2</tag>
-        <tag>PSR-3</tag>
-        <tag>PSR-4</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PHP 之命令行模式</title>
-    <url>/post/954645501.html</url>
-    <content><![CDATA[<h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="2-常用操作"><a href="#2-常用操作" class="headerlink" title="2. 常用操作"></a>2. 常用操作</h3><h4 id="2-1-以交互模式运行-PHP"><a href="#2-1-以交互模式运行-PHP" class="headerlink" title="2.1. 以交互模式运行 PHP"></a>2.1. 以交互模式运行 PHP</h4><p>类似 Python，进入交互模式后，可用直接执行 PHP 代码，而不需要先创建 .php 文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php -a</span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line">hello world</span><br><span class="line">php &gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-运行内建的-Web-服务器"><a href="#2-2-运行内建的-Web-服务器" class="headerlink" title="2.2. 运行内建的 Web 服务器"></a>2.2. 运行内建的 Web 服务器</h4><p>从 <code>PHP 5.4.0</code> 开始，PHP 的命令行模式提供了一个内建的 Web 服务器。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">pwd</span></span><br><span class="line">/Users/user1/<span class="built_in">test</span></span><br><span class="line">➜ touch index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php phpinfo();&quot;</span> &gt; index.php</span><br><span class="line">➜ php -S localhost:8000</span><br><span class="line">PHP 5.6.30 Development Server started at Tue Sep  5 10:53:51 2017</span><br><span class="line">Listening on http://localhost:8000</span><br><span class="line">Document root is /Users/user1/<span class="built_in">test</span></span><br><span class="line">Press Ctrl-C to quit.</span><br></pre></td></tr></table></figure>
-
-<p>此时，我们在浏览器中输入地址 <a href="localhost:8000">localhost:8000</a> 即可打开 <code>index.php</code> ，并输出 <code>phpinfo()</code> 的内容，请求访问日志如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Tue Sep  5 10:53:53 2017] PHP Warning:  phpinfo(): It is not safe to rely on the system&#x27;s timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone &#x27;UTC&#x27; for now, but please set date.timezone to select your timezone. in /Users/user1/test/index.php on line 1</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53689 [200]: /</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53690 [404]: /favicon.ico - No such file or directory</span><br></pre></td></tr></table></figure>
-
-<p>使用 <code>ctrl + c</code> 关闭服务</p>
-<h4 id="2-3-查找-php-ini-文件"><a href="#2-3-查找-php-ini-文件" class="headerlink" title="2.3. 查找 php.ini 文件"></a>2.3. 查找 php.ini 文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ /usr/bin/php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-语法检查"><a href="#2-4-语法检查" class="headerlink" title="2.4. 语法检查"></a>2.4. 语法检查</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">PHP Parse error:  parse error, expecting `<span class="string">&#x27;,&#x27;</span><span class="string">&#x27; or `&#x27;</span>;<span class="string">&#x27;&#x27;</span> <span class="keyword">in</span> index.php on line 2</span><br><span class="line">Errors parsing index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27;; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">No syntax errors detected <span class="keyword">in</span> index.php</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-命令行脚本开发"><a href="#2-5-命令行脚本开发" class="headerlink" title="2.5. 命令行脚本开发"></a>2.5. 命令行脚本开发</h4><p>在使用 C 语言开发程序时，我们通常会在 main 函数中提供两个可选的参数 <code>int main(int argc, char *argv[])</code>，这两个参数就是从命令行提供的输入参数。</p>
-<p>在PHP中，提供了两个全局变量 <strong>$argc</strong> 和 <strong>$argv</strong> 用于获取命令行输入。</p>
-<ul>
-<li>$argc 包含了 $argv 数组包含元素的数目</li>
-<li>$argv 是一个数组，包含了提供的参数，第一个参数总是脚本文件名称</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ vim console.php</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;命令行参数个数：&#x27;</span> . <span class="variable">$argc</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;命令行参数：\n&quot;</span>;</span><br><span class="line">foreach (<span class="variable">$argv</span> as <span class="variable">$key</span> =&gt; <span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;\t&quot;</span> . <span class="variable">$key</span> . <span class="string">&#x27; : &#x27;</span> . <span class="variable">$arg</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">➜ php console.php hello world</span><br><span class="line">命令行参数个数：3</span><br><span class="line">命令行参数：</span><br><span class="line">	0 : console.php</span><br><span class="line">	1 : hello</span><br><span class="line">	2 : world</span><br></pre></td></tr></table></figure>
-
-<p>在脚本中，可以通过 <code>php_sapi_name()</code> 函数判断是否是在命令行下运行的</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php -r <span class="string">&#x27;echo php_sapi_name(), PHP_EOL;&#x27;</span></span><br><span class="line">cli</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>PHP-CLI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ThinkPHP 框架执行流程浅析</title>
-    <url>/post/2410148889.html</url>
-    <content><![CDATA[<blockquote>
-<p>版本：v5.1.x LTS</p>
-<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
-</blockquote>
-<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
-<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
-<p>其中入口文件位置：<strong>public/index.php</strong></p>
-<span id="more"></span>
-
-<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
-<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
-<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
-<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
-<blockquote>
-<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
-</blockquote>
-<blockquote>
-<p>详见如下三个函数的文档：</p>
-<ul>
-<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>ThinkPHP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>在 PHP 中安装、使用 Composer 包管理工具</title>
-    <url>/post/462910674.html</url>
-    <content><![CDATA[<blockquote>
-<p>Composer 是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。</p>
-</blockquote>
-<h3 id="0-相关资源及概述"><a href="#0-相关资源及概述" class="headerlink" title="0. 相关资源及概述"></a>0. 相关资源及概述</h3><ul>
-<li><p>Composer官网 <a href="https://getcomposer.org/">https://getcomposer.org</a></p>
-</li>
-<li><p>Composer Github 地址 <a href="https://github.com/composer/composer">https://github.com/composer/composer</a></p>
-</li>
-<li><p>Composer中国镜像 <a href="http://www.phpcomposer.com/">http://www.phpcomposer.com</a></p>
-</li>
-<li><p>阿里云全量镜像（👍 <strong>推荐</strong>）：<a href="https://developer.aliyun.com/composer">https://developer.aliyun.com/composer</a></p>
-</li>
-<li><p><strong>Packagist</strong></p>
-<p>  官网：<a href="https://packagist.org/">https://packagist.org</a></p>
-<p>  它是 Composer 主要的一个包信息存储库，包开发者将具体代码托管到 Github 上，将包信息提交到 Packagist 上，这样使用者就可以通过 Composer 去使用。它的执行顺序如下：</p>
-<ul>
-<li>首先，Composer 根据本地定义的 <code>composer.json</code> 信息去查询 Packagist；</li>
-<li>其次，Packagist 根据 <code>composer.json/package.json</code> 信息解析，最终对应到Github 仓库；</li>
-<li>最后，Composer 基于 Github 仓库上的 <code>composer.json</code> 下载代码到本地。</li>
-</ul>
-</li>
-<li><p><strong>composer.json</strong></p>
-<p>  这是 Composer 的核心，主要用来配置 Composer 的执行规则。</p>
-</li>
-<li><p><strong>自动加载</strong></p>
-<p>  Composer 基于 PHP 命名空间和 PSR-4 标准开发、集成了一个自动加载器。</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="1-安装配置"><a href="#1-安装配置" class="headerlink" title="1. 安装配置"></a>1. 安装配置</h3><h4 id="1-1-下载-composer-phar"><a href="#1-1-下载-composer-phar" class="headerlink" title="1.1. 下载 composer.phar"></a>1.1. 下载 composer.phar</h4><ul>
-<li><p>Linux / Unix / OSX</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上面的 curl 命令出错或无法使用，可用 php 命令代替</span></span><br><span class="line">➜ php -r <span class="string">&quot;readfile(&#x27;https://getcomposer.org/installer&#x27;);&quot;</span> | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 下面是其它的一些参数 -----</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --install-dir 指定下载目录</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --install-dir=bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># --filename 指定下载成功存放的 composer 文件名</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --filename=composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># --version 下载指定版本的 composer</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --version=1.0.0-alpha8</span><br></pre></td></tr></table></figure></li>
-<li><p>Windows</p>
-<p>方式一：使用安装器 👍</p>
-<p>下载、运行 <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a> ，将自动下载 composer 并配置好相关环境变量，之后可直接使用命令 composer</p>
-<p>方式二：<a href="https://getcomposer.org/composer.phar">点击这里</a>手动下载</p>
-</li>
-</ul>
-<h4 id="1-2-配置"><a href="#1-2-配置" class="headerlink" title="1.2. 配置"></a>1.2. 配置</h4><p>下载得到 composer.phar 文件后，我们就可以通过如下命令来使用了</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 Composer 版本</span></span><br><span class="line">➜ php composer.phar -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Composer 帮助</span></span><br><span class="line">➜ php composer.phar</span><br></pre></td></tr></table></figure>
-
-<p>为了更好的使用 Composer，在 Linux 系统下，我们可以通过如下方式简化命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line">➜ sudo chmod+x /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在可以直接使用 composer 来操作了</span></span><br><span class="line">➜ composer -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p> ⚠️ <strong>注意</strong>：如果提示找不到命令之类，需检查系统环境变量设置中是否包含路径 <strong>/usr/local/bin</strong></p>
-</blockquote>
-<h3 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h3><p>这里以安装一个二维码组件为例，包的标识为 <code>endroid/qrcode</code></p>
-<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><ul>
-<li><p>方式一：使用 composer require 命令</p>
-<p>  格式： composer require 包的标识（厂商名/包名）</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p ~/www/composer_demo</span><br><span class="line">➜ <span class="built_in">cd</span> ~/www/composer_demo</span><br><span class="line">➜ composer require endroid/qrcode</span><br></pre></td></tr></table></figure></li>
-<li><p>方式二：使用 composer install 命令</p>
-<p>  在项目根目录下编辑 composer.json 文件，通过 require 配置项目依赖的包，如下：</p>
-  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;endroid/qrcode&quot;</span>: <span class="string">&quot;^2.2&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>  然后使用以下命令进行安装</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer install</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p>包安装好之后，目录结构如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ tree -L 2</span><br><span class="line">.</span><br><span class="line">├── composer.json  -----&gt; 项目通过 composer 设置的配置信息</span><br><span class="line">├── composer.lock  -----&gt; 锁定项目，只使用其列出的具体版本的包</span><br><span class="line">└── vendor  -----&gt; 组件本源码存放位置</span><br><span class="line">    ├── autoload.php</span><br><span class="line">    ├── bacon</span><br><span class="line">    ├── composer</span><br><span class="line">    ├── endroid</span><br><span class="line">    ├── khanamiryan</span><br><span class="line">    ├── myclabs</span><br><span class="line">    ├── paragonie</span><br><span class="line">    └── symfony</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-使用安装的包"><a href="#2-2-使用安装的包" class="headerlink" title="2.2. 使用安装的包"></a>2.2. 使用安装的包</h4><p>在需要使用包的 PHP 文件头部添加以下代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/audoload.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>现在参考组件的说明文档，开始使用吧！</p>
-<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><p>更多详细命令介绍请<a href="http://docs.phpcomposer.com/03-cli.html">访问这里</a>或直接执行 <code>composer commands help</code></p>
-<h4 id="3-1-composer-init"><a href="#3-1-composer-init" class="headerlink" title="3.1. composer init"></a>3.1. composer init</h4><p>以命令行交互方式创建 composer.json 并初始化项目的依赖、描述等信息，如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer init</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This <span class="built_in">command</span> will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [sunqiang/<span class="built_in">test</span>]: company/package1</span><br><span class="line">Description []:</span><br><span class="line">Author [whorusq &lt;whorusq@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []:</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []:</span><br><span class="line">License []:</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;company/package1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authors&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;whorusq&quot;</span>,</span><br><span class="line">            <span class="string">&quot;email&quot;</span>: <span class="string">&quot;whorusq@gmail.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;require&quot;</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]? yes</span><br><span class="line">➜ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--  1 user1  staff   170B  9  4 13:45 composer.json</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-composer-install"><a href="#3-2-composer-install" class="headerlink" title="3.2. composer install"></a>3.2. composer install</h4><p>这是最常用的命令，Composer 会根据本地的 <code>composer.json</code> 安装需要的依赖包。</p>
-<p>下载下来的包放入项目下的 <code>vendor</code> 目录中，同时将安装时候的包版本信息放入到 <code>composer.lock</code> 文件，以便锁定版本。</p>
-<blockquote>
-<p><strong>⚠️ 注意</strong>：</p>
-<ul>
-<li><p>如果当前目录下存在 <code>composer.lock</code> 文件，它会从此文件读取依赖版本，而不是根据 <code>composer.json</code> 文件去获取依赖。这确保了该库的每个使用者都能得到相同的依赖版本。</p>
-</li>
-<li><p>如果没有 <code>composer.lock</code> 文件，composer 将在处理完依赖关系后创建它。</p>
-</li>
-</ul>
-</blockquote>
-<h4 id="3-3-composer-update"><a href="#3-3-composer-update" class="headerlink" title="3.3. composer update"></a>3.3. composer update</h4><p>为了获取依赖的最新版本，并且升级 <code>composer.lock</code> 文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 项目目录（composer.json 所在位置）下执行</span></span><br><span class="line">➜ composer update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你只是想更新几个包，你可以像这样分别列出它们：</span></span><br><span class="line">➜ composer update vendor/package vendor/package2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你还可以使用通配符进行批量更新：</span></span><br><span class="line">➜ composer update vendor/*</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="3-4-composer-config"><a href="#3-4-composer-config" class="headerlink" title="3.4. composer config"></a>3.4. composer config</h4><p>用以编辑 Composer 的一些基本设置</p>
-<ul>
-<li>全局配置：<code>COMPOSER_HOME/config.json</code></li>
-<li>非全局配置：当前项目的目录下 <code>composer.json</code></li>
-</ul>
-<h4 id="3-5-composer-create-project"><a href="#3-5-composer-create-project" class="headerlink" title="3.5. composer create-project"></a>3.5. composer create-project</h4><p>从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
-<p>此命令有几个常见的用途：</p>
-<ul>
-<li>快速的部署你的应用。</li>
-<li>检出任何资源包，并开发它的补丁。</li>
-<li>多人开发项目，可以用它来加快应用的初始化。</li>
-</ul>
-<p><strong>默认情况下，这个命令会在 <a href="packagist.org">packagist.org</a> 上查找你指定的包。</strong></p>
-<p>示例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过 Composer 下载、初始化 ThinkPHP5.x</span></span><br><span class="line">➜ composer create-project topthink/think tp5  --prefer-dist</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-6-composer-require"><a href="#3-6-composer-require" class="headerlink" title="3.6. composer require"></a>3.6. composer require</h4><p>增加新的依赖包到当前目录的 <code>composer.json</code> 文件中，并且在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认交互模式</span></span><br><span class="line">➜ composer require</span><br><span class="line">Search <span class="keyword">for</span> a package: gearman</span><br><span class="line"></span><br><span class="line">Found 15 packages matching gearman</span><br><span class="line"></span><br><span class="line">   [0] mhlavac/gearman</span><br><span class="line">   [1] silverstripe-australia/gearman</span><br><span class="line">   [2] dmank/gearman</span><br><span class="line">   [3] pafelin/gearman</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">Enter package <span class="comment"># to add, or the complete package name if it is not listed: 0</span></span><br><span class="line">Enter the version constraint to require (or leave blank to use the latest version):</span><br><span class="line">Using version ^0.1.0 <span class="keyword">for</span> mhlavac/gearman</span><br><span class="line">Search <span class="keyword">for</span> a package: ^C</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非交互模式，直接指定需要的包名</span></span><br><span class="line">➜ composer require mhlavac/gearman</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-7-self-update"><a href="#3-7-self-update" class="headerlink" title="3.7. self-update"></a>3.7. self-update</h4><p>将 Composer 自身升级到最新版本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer self-update</span><br><span class="line">You are already using composer version 1.5.1 (stable channel).</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>Composer</tag>
-        <tag>包管理工具</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>curl 命令速查</title>
     <url>/post/2208464112.html</url>
     <content><![CDATA[<blockquote>
@@ -1271,11 +974,11 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>PHP</tag>
         <tag>Linux</tag>
         <tag>LNMP</tag>
         <tag>Nginx</tag>
         <tag>MySQL</tag>
+        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1306,6 +1009,303 @@
         <tag>Linux</tag>
         <tag>oh-my-zsh</tag>
         <tag>aghoster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Composer 很慢怎么办？</title>
+    <url>/post/806379323.html</url>
+    <content><![CDATA[<blockquote>
+<p>🔗 关于 Composer 的详细安装使用，详见之前的文章：<a href="462910674.html">在 PHP 中安装、使用 Composer 包管理工具</a></p>
+</blockquote>
+<p>Composer 在国内不管是更新还是安装都有一个「<strong>慢</strong>」的问题，有的时候真的很煎熬。</p>
+<p>因此我们一般会替换为 <a href="https://pkg.phpcomposer.com/">Packagist / Composer 中国全量镜像</a>，然而在使用过程发现，这个镜像并不稳定，有时候也会挂掉，所以本文介绍另外两种加速 composer 的方式。</p>
+<span id="more"></span>
+<h3 id="方式一：使用另一个镜像（推荐）"><a href="#方式一：使用另一个镜像（推荐）" class="headerlink" title="方式一：使用另一个镜像（推荐）"></a>方式一：使用另一个镜像（推荐）</h3><p>现在阿里云官方已经推出了 Composer 全量镜像，详见这里 <a href="https://mirrors.aliyun.com/composer/">https://mirrors.aliyun.com/composer</a></p>
+<blockquote>
+<p>同时推荐一个 Composer 镜像源切换管理工具 <a href="https://github.com/slince/composer-registry-manager" title="https://github.com/slince/composer-registry-manager">composer-registry-manager</a> 👍</p>
+</blockquote>
+<ul>
+<li><p>设置镜像：</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -g 表示全局，去除该参数则只对当前项目生效</span></span><br><span class="line">➜  composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/</span><br></pre></td></tr></table></figure></li>
+<li><p>取消镜像：</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  composer config -g --<span class="built_in">unset</span> repos.packagist</span><br></pre></td></tr></table></figure></li>
+<li><p>调试</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加参数 -vvv 可输出详细的信息</span></span><br><span class="line">➜  composer -vvv require alibabacloud/sdk</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="方式二：使用代理"><a href="#方式二：使用代理" class="headerlink" title="方式二：使用代理"></a>方式二：使用代理</h3><p>如果你的机器有本机 ssr 或其它代理，比如我的本机代理：<code>http://127.0.0.1:1087</code>，那么我在使用 Composer 时可以如下操作：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">export</span> http_proxy=http://127.0.0.1:1087;<span class="built_in">export</span> https_proxy=http://127.0.0.1:1087;</span><br><span class="line">➜  composer require qiniu/php-sdk</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：上面的操作只在当前 session 生效，新建或切换一个 tab 后会失效。如果想永久生效，需修改 <code>~/.bashsrc</code>。<strong>建议只是临时使用这种方式，强烈推荐采用方式一的全量镜像。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Composer</tag>
+        <tag>包管理工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP 之 PSR 标准规范</title>
+    <url>/post/2710129075.html</url>
+    <content><![CDATA[<p>PSR（PHP Standards Recommendation） 是由 PHP FIG 组织制定的 PHP 规范，是 PHP 开发的实践标准。</p>
+<p>由于标准在不断制定，本文主要介绍 PSR-1、PSR-2、PSR-3、PSR-4的一些主要细节，后面逐步更新所有标准。</p>
+<span id="more"></span>
+
+<h3 id="PSR-1-基本的代码风格"><a href="#PSR-1-基本的代码风格" class="headerlink" title="PSR-1 基本的代码风格"></a>PSR-1 基本的代码风格</h3><h4 id="PHP-标签"><a href="#PHP-标签" class="headerlink" title="PHP 标签"></a>PHP 标签</h4><p>PHP 代码必须放在 <code>&lt;?php ... ?&gt;</code> 或 <code>&lt;?= ...?&gt;</code> 标签中。</p>
+<h4 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h4><p>无 BOM 的 UTF-8 字符集。</p>
+<h4 id="自动加载"><a href="#自动加载" class="headerlink" title="自动加载"></a>自动加载</h4><p>命名空间和类必须遵守 PSR-4 自动加载器标准。</p>
+<h4 id="类名"><a href="#类名" class="headerlink" title="类名"></a>类名</h4><p>驼峰式：所有单词首字母大写。</p>
+<h4 id="参量名"><a href="#参量名" class="headerlink" title="参量名"></a>参量名</h4><p>全部大写，如果需要可添加下划线分隔单词。</p>
+<h4 id="方法名"><a href="#方法名" class="headerlink" title="方法名"></a>方法名</h4><p>驼峰式：首字母小写，后续单词首字母大写。</p>
+<h3 id="PSR-2-严格的代码风格"><a href="#PSR-2-严格的代码风格" class="headerlink" title="PSR-2 严格的代码风格"></a>PSR-2 严格的代码风格</h3><h4 id="贯彻-PSR-1-⭐️"><a href="#贯彻-PSR-1-⭐️" class="headerlink" title="贯彻 PSR-1 ⭐️"></a>贯彻 PSR-1 ⭐️</h4><h4 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h4><p>四个空格（一般编辑器都可以设置：将一个制表符转换为4个空格）。</p>
+<h4 id="文件和代码行"><a href="#文件和代码行" class="headerlink" title="文件和代码行"></a>文件和代码行</h4><ol>
+<li>PHP 文件采用 UNIX 风格换行符（LF），末尾一个空行；</li>
+<li>每行代码推荐小于80个字符，最大120。</li>
+</ol>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>使用小写字母，如：true、false</p>
+<h4 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h4><ol>
+<li>命名空间声明（namespace）语句后紧跟一个空行；</li>
+<li>导入命名空间（use）时，最后跟一个空行。</li>
+</ol>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><ol>
+<li>类定义体的起始括号在类名之后新起一行</li>
+<li>extends 与 implements 关键字必须与类名在同一行。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ClassName extends ParentClass implements Interface</span><br><span class="line">&#123;</span><br><span class="line">    // ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
+<li>方法定义体的起始括号在方法名之后新起一行；</li>
+<li>方法定义体结束括号后新起一行；</li>
+<li>方法参数的括号两边没有空格；</li>
+<li>每个参数（除最后一个）后面跟一个逗号和空格。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace app;</span><br><span class="line"></span><br><span class="line">Class</span><br><span class="line">&#123;</span><br><span class="line">    public function f1($var1, $v2 = null)</span><br><span class="line">    &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function f2($v3)</span><br><span class="line">    &#123;</span><br><span class="line">        //</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><ol>
+<li>类中的每个属性和方法都要声明可见性：public、private、protected；</li>
+<li>不要在私有方法前加下划线（_）；</li>
+<li>abstract 或 final 放在可见性关键字之前；</li>
+<li>static 放在可见性关键字之后。</li>
+</ol>
+<h4 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h4><ol>
+<li>涉及关键字：if、else、elseif、switch、case、while、do while、for、foreach、catch。</li>
+<li>如果控制关键字后面有一对括号（与关键字在同一行），则起始括号后面、结束括号前面不能有空格；</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if ($me-&gt;isAlive() === true) &#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        // ...</span><br><span class="line">    &#125; while ($me-&gt;isWorking());</span><br><span class="line"></span><br><span class="line">    $me-&gt;sayHaha();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PSR-3-日志记录器接口"><a href="#PSR-3-日志记录器接口" class="headerlink" title="PSR-3 日志记录器接口"></a>PSR-3 日志记录器接口</h3><p>提供类一个日志接口 Psr\Log\LoggerInterface，其复用类 RFC 5424 系统日志协议，详见：<a href="http://tools.ietf.org/html/rfc5424">http://tools.ietf.org/html/rfc5424</a></p>
+<p>推荐 <a href="http://packagist.org/packages/monolog/monolog">monolog/monolog</a>，一个实现类 PSR-3 的日志记录器。</p>
+<h3 id="PSR-4-自动加载"><a href="#PSR-4-自动加载" class="headerlink" title="PSR-4 自动加载"></a>PSR-4 自动加载</h3><p>基于命名空间查找和加载类、接口、性状。</p>
+<p>推荐使用 Composer 包依赖管理工具，使用方法<a href="462910674.html">参照这里</a>。</p>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>PSR</tag>
+        <tag>PSR-1</tag>
+        <tag>PSR-2</tag>
+        <tag>PSR-3</tag>
+        <tag>PSR-4</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP 之命令行模式</title>
+    <url>/post/954645501.html</url>
+    <content><![CDATA[<h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="2-常用操作"><a href="#2-常用操作" class="headerlink" title="2. 常用操作"></a>2. 常用操作</h3><h4 id="2-1-以交互模式运行-PHP"><a href="#2-1-以交互模式运行-PHP" class="headerlink" title="2.1. 以交互模式运行 PHP"></a>2.1. 以交互模式运行 PHP</h4><p>类似 Python，进入交互模式后，可用直接执行 PHP 代码，而不需要先创建 .php 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php -a</span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line">hello world</span><br><span class="line">php &gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-运行内建的-Web-服务器"><a href="#2-2-运行内建的-Web-服务器" class="headerlink" title="2.2. 运行内建的 Web 服务器"></a>2.2. 运行内建的 Web 服务器</h4><p>从 <code>PHP 5.4.0</code> 开始，PHP 的命令行模式提供了一个内建的 Web 服务器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">pwd</span></span><br><span class="line">/Users/user1/<span class="built_in">test</span></span><br><span class="line">➜ touch index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php phpinfo();&quot;</span> &gt; index.php</span><br><span class="line">➜ php -S localhost:8000</span><br><span class="line">PHP 5.6.30 Development Server started at Tue Sep  5 10:53:51 2017</span><br><span class="line">Listening on http://localhost:8000</span><br><span class="line">Document root is /Users/user1/<span class="built_in">test</span></span><br><span class="line">Press Ctrl-C to quit.</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们在浏览器中输入地址 <a href="localhost:8000">localhost:8000</a> 即可打开 <code>index.php</code> ，并输出 <code>phpinfo()</code> 的内容，请求访问日志如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Tue Sep  5 10:53:53 2017] PHP Warning:  phpinfo(): It is not safe to rely on the system&#x27;s timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone &#x27;UTC&#x27; for now, but please set date.timezone to select your timezone. in /Users/user1/test/index.php on line 1</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53689 [200]: /</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53690 [404]: /favicon.ico - No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>ctrl + c</code> 关闭服务</p>
+<h4 id="2-3-查找-php-ini-文件"><a href="#2-3-查找-php-ini-文件" class="headerlink" title="2.3. 查找 php.ini 文件"></a>2.3. 查找 php.ini 文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ /usr/bin/php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-语法检查"><a href="#2-4-语法检查" class="headerlink" title="2.4. 语法检查"></a>2.4. 语法检查</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">PHP Parse error:  parse error, expecting `<span class="string">&#x27;,&#x27;</span><span class="string">&#x27; or `&#x27;</span>;<span class="string">&#x27;&#x27;</span> <span class="keyword">in</span> index.php on line 2</span><br><span class="line">Errors parsing index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27;; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">No syntax errors detected <span class="keyword">in</span> index.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-命令行脚本开发"><a href="#2-5-命令行脚本开发" class="headerlink" title="2.5. 命令行脚本开发"></a>2.5. 命令行脚本开发</h4><p>在使用 C 语言开发程序时，我们通常会在 main 函数中提供两个可选的参数 <code>int main(int argc, char *argv[])</code>，这两个参数就是从命令行提供的输入参数。</p>
+<p>在PHP中，提供了两个全局变量 <strong>$argc</strong> 和 <strong>$argv</strong> 用于获取命令行输入。</p>
+<ul>
+<li>$argc 包含了 $argv 数组包含元素的数目</li>
+<li>$argv 是一个数组，包含了提供的参数，第一个参数总是脚本文件名称</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ vim console.php</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;命令行参数个数：&#x27;</span> . <span class="variable">$argc</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;命令行参数：\n&quot;</span>;</span><br><span class="line">foreach (<span class="variable">$argv</span> as <span class="variable">$key</span> =&gt; <span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;\t&quot;</span> . <span class="variable">$key</span> . <span class="string">&#x27; : &#x27;</span> . <span class="variable">$arg</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">➜ php console.php hello world</span><br><span class="line">命令行参数个数：3</span><br><span class="line">命令行参数：</span><br><span class="line">	0 : console.php</span><br><span class="line">	1 : hello</span><br><span class="line">	2 : world</span><br></pre></td></tr></table></figure>
+
+<p>在脚本中，可以通过 <code>php_sapi_name()</code> 函数判断是否是在命令行下运行的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ php -r <span class="string">&#x27;echo php_sapi_name(), PHP_EOL;&#x27;</span></span><br><span class="line">cli</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>PHP-CLI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ThinkPHP 框架执行流程浅析</title>
+    <url>/post/2410148889.html</url>
+    <content><![CDATA[<blockquote>
+<p>版本：v5.1.x LTS</p>
+<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
+</blockquote>
+<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
+<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
+<p>其中入口文件位置：<strong>public/index.php</strong></p>
+<span id="more"></span>
+
+<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
+<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
+<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
+<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
+<blockquote>
+<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
+</blockquote>
+<blockquote>
+<p>详见如下三个函数的文档：</p>
+<ul>
+<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>ThinkPHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 PHP 中安装、使用 Composer 包管理工具</title>
+    <url>/post/462910674.html</url>
+    <content><![CDATA[<blockquote>
+<p>Composer 是 PHP 用来管理依赖（dependency）关系的工具。你可以在自己的项目中声明所依赖的外部工具库（libraries），Composer 会帮你安装这些依赖的库文件。</p>
+</blockquote>
+<h3 id="0-相关资源及概述"><a href="#0-相关资源及概述" class="headerlink" title="0. 相关资源及概述"></a>0. 相关资源及概述</h3><ul>
+<li><p>Composer官网 <a href="https://getcomposer.org/">https://getcomposer.org</a></p>
+</li>
+<li><p>Composer Github 地址 <a href="https://github.com/composer/composer">https://github.com/composer/composer</a></p>
+</li>
+<li><p>Composer中国镜像 <a href="http://www.phpcomposer.com/">http://www.phpcomposer.com</a></p>
+</li>
+<li><p>阿里云全量镜像（👍 <strong>推荐</strong>）：<a href="https://developer.aliyun.com/composer">https://developer.aliyun.com/composer</a></p>
+</li>
+<li><p><strong>Packagist</strong></p>
+<p>  官网：<a href="https://packagist.org/">https://packagist.org</a></p>
+<p>  它是 Composer 主要的一个包信息存储库，包开发者将具体代码托管到 Github 上，将包信息提交到 Packagist 上，这样使用者就可以通过 Composer 去使用。它的执行顺序如下：</p>
+<ul>
+<li>首先，Composer 根据本地定义的 <code>composer.json</code> 信息去查询 Packagist；</li>
+<li>其次，Packagist 根据 <code>composer.json/package.json</code> 信息解析，最终对应到Github 仓库；</li>
+<li>最后，Composer 基于 Github 仓库上的 <code>composer.json</code> 下载代码到本地。</li>
+</ul>
+</li>
+<li><p><strong>composer.json</strong></p>
+<p>  这是 Composer 的核心，主要用来配置 Composer 的执行规则。</p>
+</li>
+<li><p><strong>自动加载</strong></p>
+<p>  Composer 基于 PHP 命名空间和 PSR-4 标准开发、集成了一个自动加载器。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="1-安装配置"><a href="#1-安装配置" class="headerlink" title="1. 安装配置"></a>1. 安装配置</h3><h4 id="1-1-下载-composer-phar"><a href="#1-1-下载-composer-phar" class="headerlink" title="1.1. 下载 composer.phar"></a>1.1. 下载 composer.phar</h4><ul>
+<li><p>Linux / Unix / OSX</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 下载</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果上面的 curl 命令出错或无法使用，可用 php 命令代替</span></span><br><span class="line">➜ php -r <span class="string">&quot;readfile(&#x27;https://getcomposer.org/installer&#x27;);&quot;</span> | php</span><br><span class="line"></span><br><span class="line"><span class="comment"># ----- 下面是其它的一些参数 -----</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># --install-dir 指定下载目录</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --install-dir=bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># --filename 指定下载成功存放的 composer 文件名</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --filename=composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># --version 下载指定版本的 composer</span></span><br><span class="line">➜ curl -sS https://getcomposer.org/installer | php -- --version=1.0.0-alpha8</span><br></pre></td></tr></table></figure></li>
+<li><p>Windows</p>
+<p>方式一：使用安装器 👍</p>
+<p>下载、运行 <a href="https://getcomposer.org/Composer-Setup.exe">Composer-Setup.exe</a> ，将自动下载 composer 并配置好相关环境变量，之后可直接使用命令 composer</p>
+<p>方式二：<a href="https://getcomposer.org/composer.phar">点击这里</a>手动下载</p>
+</li>
+</ul>
+<h4 id="1-2-配置"><a href="#1-2-配置" class="headerlink" title="1.2. 配置"></a>1.2. 配置</h4><p>下载得到 composer.phar 文件后，我们就可以通过如下命令来使用了</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 Composer 版本</span></span><br><span class="line">➜ php composer.phar -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 Composer 帮助</span></span><br><span class="line">➜ php composer.phar</span><br></pre></td></tr></table></figure>
+
+<p>为了更好的使用 Composer，在 Linux 系统下，我们可以通过如下方式简化命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ sudo mv composer.phar /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line">➜ sudo chmod+x /usr/<span class="built_in">local</span>/bin/composer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 现在可以直接使用 composer 来操作了</span></span><br><span class="line">➜ composer -V</span><br><span class="line">Composer version 1.4.1 2017-03-10 09:29:45</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> ⚠️ <strong>注意</strong>：如果提示找不到命令之类，需检查系统环境变量设置中是否包含路径 <strong>/usr/local/bin</strong></p>
+</blockquote>
+<h3 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2. 基本使用"></a>2. 基本使用</h3><p>这里以安装一个二维码组件为例，包的标识为 <code>endroid/qrcode</code></p>
+<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><ul>
+<li><p>方式一：使用 composer require 命令</p>
+<p>  格式： composer require 包的标识（厂商名/包名）</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p ~/www/composer_demo</span><br><span class="line">➜ <span class="built_in">cd</span> ~/www/composer_demo</span><br><span class="line">➜ composer require endroid/qrcode</span><br></pre></td></tr></table></figure></li>
+<li><p>方式二：使用 composer install 命令</p>
+<p>  在项目根目录下编辑 composer.json 文件，通过 require 配置项目依赖的包，如下：</p>
+  <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;endroid/qrcode&quot;</span>: <span class="string">&quot;^2.2&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  然后使用以下命令进行安装</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer install</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>包安装好之后，目录结构如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ tree -L 2</span><br><span class="line">.</span><br><span class="line">├── composer.json  -----&gt; 项目通过 composer 设置的配置信息</span><br><span class="line">├── composer.lock  -----&gt; 锁定项目，只使用其列出的具体版本的包</span><br><span class="line">└── vendor  -----&gt; 组件本源码存放位置</span><br><span class="line">    ├── autoload.php</span><br><span class="line">    ├── bacon</span><br><span class="line">    ├── composer</span><br><span class="line">    ├── endroid</span><br><span class="line">    ├── khanamiryan</span><br><span class="line">    ├── myclabs</span><br><span class="line">    ├── paragonie</span><br><span class="line">    └── symfony</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-使用安装的包"><a href="#2-2-使用安装的包" class="headerlink" title="2.2. 使用安装的包"></a>2.2. 使用安装的包</h4><p>在需要使用包的 PHP 文件头部添加以下代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;vendor/audoload.php&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>现在参考组件的说明文档，开始使用吧！</p>
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><p>更多详细命令介绍请<a href="http://docs.phpcomposer.com/03-cli.html">访问这里</a>或直接执行 <code>composer commands help</code></p>
+<h4 id="3-1-composer-init"><a href="#3-1-composer-init" class="headerlink" title="3.1. composer init"></a>3.1. composer init</h4><p>以命令行交互方式创建 composer.json 并初始化项目的依赖、描述等信息，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer init</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Welcome to the Composer config generator</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This <span class="built_in">command</span> will guide you through creating your composer.json config.</span><br><span class="line"></span><br><span class="line">Package name (&lt;vendor&gt;/&lt;name&gt;) [sunqiang/<span class="built_in">test</span>]: company/package1</span><br><span class="line">Description []:</span><br><span class="line">Author [whorusq &lt;whorusq@gmail.com&gt;, n to skip]:</span><br><span class="line">Minimum Stability []:</span><br><span class="line">Package Type (e.g. library, project, metapackage, composer-plugin) []:</span><br><span class="line">License []:</span><br><span class="line"></span><br><span class="line">Define your dependencies.</span><br><span class="line"></span><br><span class="line">Would you like to define your dev dependencies (require-dev) interactively [yes]? no</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;company/package1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;authors&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;name&quot;</span>: <span class="string">&quot;whorusq&quot;</span>,</span><br><span class="line">            <span class="string">&quot;email&quot;</span>: <span class="string">&quot;whorusq@gmail.com&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;require&quot;</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Do you confirm generation [yes]? yes</span><br><span class="line">➜ ll</span><br><span class="line">total 8</span><br><span class="line">-rw-r--r--  1 user1  staff   170B  9  4 13:45 composer.json</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-composer-install"><a href="#3-2-composer-install" class="headerlink" title="3.2. composer install"></a>3.2. composer install</h4><p>这是最常用的命令，Composer 会根据本地的 <code>composer.json</code> 安装需要的依赖包。</p>
+<p>下载下来的包放入项目下的 <code>vendor</code> 目录中，同时将安装时候的包版本信息放入到 <code>composer.lock</code> 文件，以便锁定版本。</p>
+<blockquote>
+<p><strong>⚠️ 注意</strong>：</p>
+<ul>
+<li><p>如果当前目录下存在 <code>composer.lock</code> 文件，它会从此文件读取依赖版本，而不是根据 <code>composer.json</code> 文件去获取依赖。这确保了该库的每个使用者都能得到相同的依赖版本。</p>
+</li>
+<li><p>如果没有 <code>composer.lock</code> 文件，composer 将在处理完依赖关系后创建它。</p>
+</li>
+</ul>
+</blockquote>
+<h4 id="3-3-composer-update"><a href="#3-3-composer-update" class="headerlink" title="3.3. composer update"></a>3.3. composer update</h4><p>为了获取依赖的最新版本，并且升级 <code>composer.lock</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 项目目录（composer.json 所在位置）下执行</span></span><br><span class="line">➜ composer update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你只是想更新几个包，你可以像这样分别列出它们：</span></span><br><span class="line">➜ composer update vendor/package vendor/package2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 你还可以使用通配符进行批量更新：</span></span><br><span class="line">➜ composer update vendor/*</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="3-4-composer-config"><a href="#3-4-composer-config" class="headerlink" title="3.4. composer config"></a>3.4. composer config</h4><p>用以编辑 Composer 的一些基本设置</p>
+<ul>
+<li>全局配置：<code>COMPOSER_HOME/config.json</code></li>
+<li>非全局配置：当前项目的目录下 <code>composer.json</code></li>
+</ul>
+<h4 id="3-5-composer-create-project"><a href="#3-5-composer-create-project" class="headerlink" title="3.5. composer create-project"></a>3.5. composer create-project</h4><p>从现有的包中创建一个新的项目。这相当于执行了一个 <code>git clone</code> 或 <code>svn checkout</code> 命令后将这个包的依赖安装到它自己的 vendor 目录。</p>
+<p>此命令有几个常见的用途：</p>
+<ul>
+<li>快速的部署你的应用。</li>
+<li>检出任何资源包，并开发它的补丁。</li>
+<li>多人开发项目，可以用它来加快应用的初始化。</li>
+</ul>
+<p><strong>默认情况下，这个命令会在 <a href="packagist.org">packagist.org</a> 上查找你指定的包。</strong></p>
+<p>示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 通过 Composer 下载、初始化 ThinkPHP5.x</span></span><br><span class="line">➜ composer create-project topthink/think tp5  --prefer-dist</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-composer-require"><a href="#3-6-composer-require" class="headerlink" title="3.6. composer require"></a>3.6. composer require</h4><p>增加新的依赖包到当前目录的 <code>composer.json</code> 文件中，并且在添加或改变依赖时， 修改后的依赖关系将被安装或者更新。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 默认交互模式</span></span><br><span class="line">➜ composer require</span><br><span class="line">Search <span class="keyword">for</span> a package: gearman</span><br><span class="line"></span><br><span class="line">Found 15 packages matching gearman</span><br><span class="line"></span><br><span class="line">   [0] mhlavac/gearman</span><br><span class="line">   [1] silverstripe-australia/gearman</span><br><span class="line">   [2] dmank/gearman</span><br><span class="line">   [3] pafelin/gearman</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">Enter package <span class="comment"># to add, or the complete package name if it is not listed: 0</span></span><br><span class="line">Enter the version constraint to require (or leave blank to use the latest version):</span><br><span class="line">Using version ^0.1.0 <span class="keyword">for</span> mhlavac/gearman</span><br><span class="line">Search <span class="keyword">for</span> a package: ^C</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非交互模式，直接指定需要的包名</span></span><br><span class="line">➜ composer require mhlavac/gearman</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-self-update"><a href="#3-7-self-update" class="headerlink" title="3.7. self-update"></a>3.7. self-update</h4><p>将 Composer 自身升级到最新版本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ composer self-update</span><br><span class="line">You are already using composer version 1.5.1 (stable channel).</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>Composer</tag>
+        <tag>包管理工具</tag>
       </tags>
   </entry>
   <entry>
@@ -2868,27 +2868,6 @@
       </tags>
   </entry>
   <entry>
-    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
-    <url>/post/1732007690.html</url>
-    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
-<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
-<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
-
-<p>重启系统，然后重新安装出错的程序就可以了。</p>
-<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
-<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
-<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
-</a></p>
-]]></content>
-      <categories>
-        <category>系统和软件</category>
-      </categories>
-      <tags>
-        <tag>系统和软件</tag>
-        <tag>数字签名</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
     <url>/post/2159656190.html</url>
     <content><![CDATA[<blockquote>
@@ -2916,6 +2895,27 @@
         <tag>系统和软件</tag>
         <tag>Google Chrome</tag>
         <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
+    <url>/post/1732007690.html</url>
+    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
+<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
+
+<p>重启系统，然后重新安装出错的程序就可以了。</p>
+<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
+<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
+<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
+</a></p>
+]]></content>
+      <categories>
+        <category>系统和软件</category>
+      </categories>
+      <tags>
+        <tag>系统和软件</tag>
+        <tag>数字签名</tag>
       </tags>
   </entry>
   <entry>
@@ -2952,61 +2952,6 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>数据类型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dayjs时间处理库</title>
-    <url>/post/3076911137.html</url>
-    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
-</blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
-<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
-<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>dayjs</tag>
       </tags>
   </entry>
   <entry>
@@ -3095,6 +3040,61 @@
       <tags>
         <tag>Node.js</tag>
         <tag>PM2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dayjs时间处理库</title>
+    <url>/post/3076911137.html</url>
+    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
+<blockquote>
+<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
+</blockquote>
+<p>其主要特性如下：</p>
+<ul>
+<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
+<li>不可变数据（Immutable）</li>
+<li>支持链式操作（Chainable）</li>
+<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
+<li>全浏览器兼容</li>
+<li>强大的国际化支持（I18n）</li>
+</ul>
+<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
+<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
+<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
+<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>dayjs</tag>
       </tags>
   </entry>
   <entry>
@@ -3557,8 +3557,8 @@
         <category>Docker</category>
       </categories>
       <tags>
-        <tag>PHP</tag>
         <tag>MySQL</tag>
+        <tag>PHP</tag>
         <tag>Docker</tag>
       </tags>
   </entry>
@@ -4635,9 +4635,7 @@
 </table>
 
 <h3 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h3><ul>
-<li><a href="https://cdn-144.bayfiles.com/32e8a0p9p4/c6c2ab9f-1605156187/ra2.zip">直链下载</a></li>
-<li><a href="https://cowtransfer.com/s/5d168f44862745">奶牛快传</a></li>
-<li><a href="https://pan.baidu.com/s/1IR_LAs7BlaucQOJFKpXg9Q">百度网盘</a> 提取码: <code>hrgn</code></li>
+<li><a href="https://pan.baidu.com/s/1mpFcWFnfJjjBLcf8UkAnMw">百度网盘</a> 提取码: <code>2uy4</code></li>
 </ul>
 <h3 id="3-安装说明"><a href="#3-安装说明" class="headerlink" title="3. 安装说明"></a>3. 安装说明</h3><h4 id="3-1-基本设置"><a href="#3-1-基本设置" class="headerlink" title="3.1. 基本设置"></a>3.1. 基本设置</h4><blockquote>
 <p>提示：操作之前，建议修改系统设置，显示文件扩展名。</p>
@@ -5393,197 +5391,6 @@
         <tag>版本管理</tag>
         <tag>svn</tag>
         <tag>Subversion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis 与 Memcache 的区别</title>
-    <url>/post/3127178255.html</url>
-    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
-<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
-<li>功能简单，使用内存存储数据</li>
-<li>限制<ul>
-<li>key 小于 250B</li>
-<li>value 小于 1M</li>
-<li>key 最大失效时间小于 30 天</li>
-<li>只支持 K-V 结构，不支持持久化和主从同步</li>
-</ul>
-</li>
-</ul>
-<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
-<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
-<li>异步非阻塞I/O（多路复用）<ul>
-<li>多路：多个网络连接</li>
-<li>复用：复用同一个线程</li>
-</ul>
-</li>
-<li>避免多线程上下文切换的代价</li>
-<li>避免多线程造成各种锁的问题</li>
-</ul>
-</li>
-<li>数据在内存存储，支持持久化</li>
-<li>支持更多的数据类型，list、hash、set等</li>
-<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis 的基本特性和 5 个常用数据结构</title>
-    <url>/post/2119054721.html</url>
-    <content><![CDATA[<h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
-<li><p>速度快</p>
-<ul>
-<li>基于 C 语言开发，源码短小精悍</li>
-<li>数据存在内存中</li>
-<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
-</ul>
-</li>
-<li><p>支持数据持久化，异步保存到磁盘</p>
-</li>
-<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
-</li>
-<li><p>多语言客户端</p>
-</li>
-<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
-</li>
-<li><p>简单</p>
-<ul>
-<li>核心代码量小</li>
-<li>不依赖外部库</li>
-<li>单线程模型</li>
-</ul>
-</li>
-<li><p>支持主从复制</p>
-</li>
-<li><p>原生高可用和分布式解决方案</p>
-<ul>
-<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
-<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-常用数据结构"><a href="#2-常用数据结构" class="headerlink" title="2. 常用数据结构"></a>2. 常用数据结构</h3><p><img data-src="https://static.sqiang.net/image/post/redis-data-structure-types.jpeg"></p>
-<p>下面是一些通用的 API（不依赖具体数据类型）：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按照规则遍历所有 key</span></span><br><span class="line"><span class="comment"># ⚠️ 注意：生产环境禁用，可以用 scan 替代，或只在从节点执行</span></span><br><span class="line">&gt; keys [patern]</span><br><span class="line">&gt; scan cursor [MATCH pattern] [COUNT count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 key 的数据类型</span></span><br><span class="line">&gt; <span class="built_in">type</span> key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 key 是否存在</span></span><br><span class="line">&gt; exists key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">&gt; del key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 key 的数量</span></span><br><span class="line"><span class="comment"># 时间复杂度 O(1)，通过内部计数器使用</span></span><br><span class="line">&gt; dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置过期时间（单位：秒），到期后自动删除</span></span><br><span class="line">&gt; expire key seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 key 的剩余过期时间</span></span><br><span class="line"><span class="comment"># &gt; 0 剩余时间</span></span><br><span class="line"><span class="comment"># -1 key 存在，但没有设置过期时间</span></span><br><span class="line"><span class="comment"># -2 key 过期后被自动删除</span></span><br><span class="line">&gt; ttl key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除 key 的过期时间</span></span><br><span class="line">&gt; persist key</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-sting-字符串"><a href="#2-1-sting-字符串" class="headerlink" title="2.1. sting 字符串"></a>2.1. sting 字符串</h4><h5 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1. 结构"></a>2.1.1. 结构</h5><ul>
-<li>key</li>
-<li>value</li>
-</ul>
-<h5 id="2-1-2-场景"><a href="#2-1-2-场景" class="headerlink" title="2.1.2. 场景"></a>2.1.2. 场景</h5><ul>
-<li>缓存</li>
-<li>计数器</li>
-<li>分布式锁</li>
-<li>……</li>
-</ul>
-<h5 id="2-1-3-专有-API"><a href="#2-1-3-专有-API" class="headerlink" title="2.1.3. 专有 API"></a>2.1.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># key 不管是否存在，都设置：存在则更新，不存在则新增</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; setnx key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 存在才设置 &lt;==&gt; 更新</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value xx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定 key 的 value</span></span><br><span class="line">&gt; get key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量设置</span></span><br><span class="line">&gt; mset key value [key value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量获取</span></span><br><span class="line">&gt; mget key [ key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字符串长度</span></span><br><span class="line">&gt; strlen key</span><br></pre></td></tr></table></figure>
-
-<p>子串</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加子串</span></span><br><span class="line"><span class="comment"># 返回追加成功的字符串长度</span></span><br><span class="line">&gt; append key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取子串</span></span><br><span class="line">&gt; getrange key start end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 覆盖子串</span></span><br><span class="line">&gt; setrange key offset value</span><br></pre></td></tr></table></figure>
-
-<p>计数器</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 递增</span></span><br><span class="line"><span class="comment"># 不能超过 Long.Max 9223372036854775807</span></span><br><span class="line">&gt; incr key</span><br><span class="line">&gt; incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递减</span></span><br><span class="line"><span class="comment"># 不能低于 Long.Min -9223372036854775808</span></span><br><span class="line">&gt; decr key</span><br><span class="line">&gt; decrby key decrement</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-hash-哈希"><a href="#2-2-hash-哈希" class="headerlink" title="2.2. hash 哈希"></a>2.2. hash 哈希</h4><h5 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1. 结构"></a>2.2.1. 结构</h5><ul>
-<li><p>key</p>
-</li>
-<li><p>value</p>
-<ul>
-<li><p>field 不能相同</p>
-</li>
-<li><p>value 可以相同</p>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-2-3-专有-API"><a href="#2-2-3-专有-API" class="headerlink" title="2.2.3. 专有 API"></a>2.2.3. 专有 API</h5><p>基本操作</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 为 key 增加一个键值对</span></span><br><span class="line"><span class="comment"># field 存在则修改，不存在，则新增</span></span><br><span class="line">&gt; hset key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># field 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; hsetnx key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 key 增加多个键值对</span></span><br><span class="line">&gt; hmset key field value [field value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 key 中指定的键</span></span><br><span class="line">&gt; hdel key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递增</span></span><br><span class="line">&gt; hincrby key field increment</span><br><span class="line">&gt; hincrbyfloat key field increment</span><br></pre></td></tr></table></figure>
-
-<p>查询</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取 key 的一个键的值</span></span><br><span class="line">&gt; hget key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的多个键的值</span></span><br><span class="line">&gt; hmget key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的所有 field 和 value</span></span><br><span class="line">&gt; hgetall key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 field</span></span><br><span class="line">&gt; hkeys key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 value</span></span><br><span class="line">&gt; hvals key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中的一个 field 是否存在</span></span><br><span class="line">&gt; hexists key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中所有 field 的数量</span></span><br><span class="line">&gt; hlen key</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-list-列表"><a href="#2-3-list-列表" class="headerlink" title="2.3.  list 列表"></a>2.3.  list 列表</h4><h5 id="2-3-1-特点"><a href="#2-3-1-特点" class="headerlink" title="2.3.1. 特点"></a>2.3.1. 特点</h5><ul>
-<li>有序</li>
-<li>可重复</li>
-<li>左右两端插入、弹出</li>
-</ul>
-<h5 id="2-3-2-场景"><a href="#2-3-2-场景" class="headerlink" title="2.3.2. 场景"></a>2.3.2. 场景</h5><ul>
-<li><p>Stack 栈 <code>lpush</code> + <code>lpop</code></p>
-</li>
-<li><p>Queue 队列 <code>lpush</code> + <code>rpop</code></p>
-</li>
-<li><p>Capped Collection 有限队列集合（固定数量） <code>lpush</code> + <code>ltrim</code></p>
-</li>
-<li><p>Message Queue 消息队列 <code>lpush</code> + <code>brpop</code></p>
-</li>
-</ul>
-<h5 id="2-3-3-专有-API"><a href="#2-3-3-专有-API" class="headerlink" title="2.3.3. 专有 API"></a>2.3.3. 专有 API</h5><p>增（<strong>入</strong>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边添加</span></span><br><span class="line">&gt; lpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边添加</span></span><br><span class="line">&gt; rpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在列表元素 pivot 的前面或后面插入一个新元素</span></span><br><span class="line">&gt; linsert key BEFORE|AFTER pivot newValue</span><br></pre></td></tr></table></figure>
-
-<p>删（<strong>出</strong>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边弹出一个 value</span></span><br><span class="line">&gt; lpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边弹出一个 value</span></span><br><span class="line">&gt; rpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有 value 相等的项</span></span><br><span class="line">&gt; lrem key count value</span><br><span class="line"><span class="comment"># count = 0 删除所有 value 相等的项</span></span><br><span class="line"><span class="comment"># count &gt; 0 从左到右，删除最多 count 个 value 相等的项</span></span><br><span class="line"><span class="comment"># count &lt; 0 从右到左，删除最多 Math.abs(count) 个 value 相等的项</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照索引范围修剪列表</span></span><br><span class="line">&gt; ltrim key start stop</span><br></pre></td></tr></table></figure>
-
-<p>改</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改指定下标的元素</span></span><br><span class="line">&gt; lset key index newValue</span><br></pre></td></tr></table></figure>
-
-<p>查</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围的所有项（包含 stop 的项）</span></span><br><span class="line">&gt; lrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询一个 key 下的所有项</span></span><br><span class="line">&gt; lrange key 0 -1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定下标的项</span></span><br><span class="line">&gt; lindex key index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取列表长度</span></span><br><span class="line">&gt; llen key</span><br></pre></td></tr></table></figure>
-
-<p>其它</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] timeout</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-set-集合"><a href="#2-4-set-集合" class="headerlink" title="2.4. set 集合"></a>2.4. set 集合</h4><h5 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1. 特点"></a>2.4.1. 特点</h5><ul>
-<li>无序</li>
-<li>不可以重复</li>
-<li>集合之间的操作</li>
-</ul>
-<h5 id="2-4-2-场景"><a href="#2-4-2-场景" class="headerlink" title="2.4.2. 场景"></a>2.4.2. 场景</h5><ul>
-<li><p>Tagging 标签化 <code>sadd</code></p>
-</li>
-<li><p>Random Item 随机元素 <code>srandmember</code> 或 <code>spop</code></p>
-</li>
-<li><p>Social Graph 社交图谱 <code>sadd</code> + <code>sinter</code></p>
-</li>
-</ul>
-<h5 id="2-4-3-专有-API"><a href="#2-4-3-专有-API" class="headerlink" title="2.4.3. 专有 API"></a>2.4.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素到集合中（重复的元素会被忽略）</span></span><br><span class="line">&gt; sadd key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中删除元素</span></span><br><span class="line">&gt; srem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算集合中元素个数</span></span><br><span class="line">&gt; scard key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查集合中是否存在指定的元素</span></span><br><span class="line">&gt; sismember key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中随机取出 count 个元素</span></span><br><span class="line"><span class="comment"># 不会破坏集合</span></span><br><span class="line">&gt; srandmember key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment">#从集合中随机弹出 count 个元素</span></span><br><span class="line"><span class="comment">#会破坏集合（元素的顺序）</span></span><br><span class="line">&gt; spop key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出集合中所有元素</span></span><br><span class="line">&gt; smembers key</span><br><span class="line"><span class="comment"># 注意：1. 获取到的元素是无序的；2. 元素较多时会阻塞其它操作</span></span><br><span class="line"><span class="comment"># 替代：sscan ?</span></span><br></pre></td></tr></table></figure>
-
-<p>集合间</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取一个集合与其它集合的差集</span></span><br><span class="line">&gt; sdiff key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的交集</span></span><br><span class="line">&gt; sinter key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的并集</span></span><br><span class="line">&gt; sunion key [key ...]</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-zset-有序集合"><a href="#2-5-zset-有序集合" class="headerlink" title="2.5. zset 有序集合"></a>2.5. zset 有序集合</h4><h5 id="2-5-1-特点"><a href="#2-5-1-特点" class="headerlink" title="2.5.1. 特点"></a>2.5.1. 特点</h5><ul>
-<li>有序</li>
-<li>不可以重复</li>
-<li>元素多一个 score 用于排序</li>
-</ul>
-<h5 id="2-5-2-场景"><a href="#2-5-2-场景" class="headerlink" title="2.5.2. 场景"></a>2.5.2. 场景</h5><ul>
-<li>排行榜</li>
-</ul>
-<h5 id="2-5-3-专有-API"><a href="#2-5-3-专有-API" class="headerlink" title="2.5.3. 专有 API"></a>2.5.3. 专有 API</h5><p>基本操作</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line"><span class="comment"># score 可重复，member 不可以重复</span></span><br><span class="line">&gt; zadd key score member [score member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">&gt; zrem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加或减少元素的分数（score）</span></span><br><span class="line"><span class="comment"># increment 传负数表示减少</span></span><br><span class="line">&gt; zincrby key increment member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回元素总个数</span></span><br><span class="line">&gt; zcard key</span><br></pre></td></tr></table></figure>
-
-<p>排名和分数</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 返回元素分数（score）</span></span><br><span class="line">&gt; zscore key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的升序（score 从小到大）排名</span></span><br><span class="line">&gt; zrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的降序（score 从大到小）排名</span></span><br><span class="line">&gt; zrevrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定分数间的成员数量</span></span><br><span class="line">&gt; zcount</span><br></pre></td></tr></table></figure>
-
-<p>根据范围获取元素</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围内的升序（score 从小到大）元素[分数]</span></span><br><span class="line"><span class="comment"># star 0 第一条；stop -1 最后一条</span></span><br><span class="line">zrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定索引范围内的降序（score 从大到小）元素[分数]</span></span><br><span class="line">zrevrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的升序元素[分数]</span></span><br><span class="line">&gt; zrangebyscore key min max [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的降序元素[分数]</span></span><br><span class="line">&gt; zrevrangebyscore key max min [withscores]</span><br></pre></td></tr></table></figure>
-
-<p>根据范围移除元素</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定排名范围内的元素</span></span><br><span class="line">&gt; zremrangebyrank key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定分数范围内的元素</span></span><br><span class="line">&gt; zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -6411,6 +6218,197 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 与 Memcache 的区别</title>
+    <url>/post/3127178255.html</url>
+    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
+<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
+<li>功能简单，使用内存存储数据</li>
+<li>限制<ul>
+<li>key 小于 250B</li>
+<li>value 小于 1M</li>
+<li>key 最大失效时间小于 30 天</li>
+<li>只支持 K-V 结构，不支持持久化和主从同步</li>
+</ul>
+</li>
+</ul>
+<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
+<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
+<li>异步非阻塞I/O（多路复用）<ul>
+<li>多路：多个网络连接</li>
+<li>复用：复用同一个线程</li>
+</ul>
+</li>
+<li>避免多线程上下文切换的代价</li>
+<li>避免多线程造成各种锁的问题</li>
+</ul>
+</li>
+<li>数据在内存存储，支持持久化</li>
+<li>支持更多的数据类型，list、hash、set等</li>
+<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 的基本特性和 5 个常用数据结构</title>
+    <url>/post/2119054721.html</url>
+    <content><![CDATA[<h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
+<li><p>速度快</p>
+<ul>
+<li>基于 C 语言开发，源码短小精悍</li>
+<li>数据存在内存中</li>
+<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
+</ul>
+</li>
+<li><p>支持数据持久化，异步保存到磁盘</p>
+</li>
+<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
+</li>
+<li><p>多语言客户端</p>
+</li>
+<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
+</li>
+<li><p>简单</p>
+<ul>
+<li>核心代码量小</li>
+<li>不依赖外部库</li>
+<li>单线程模型</li>
+</ul>
+</li>
+<li><p>支持主从复制</p>
+</li>
+<li><p>原生高可用和分布式解决方案</p>
+<ul>
+<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
+<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-常用数据结构"><a href="#2-常用数据结构" class="headerlink" title="2. 常用数据结构"></a>2. 常用数据结构</h3><p><img data-src="https://static.sqiang.net/image/post/redis-data-structure-types.jpeg"></p>
+<p>下面是一些通用的 API（不依赖具体数据类型）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按照规则遍历所有 key</span></span><br><span class="line"><span class="comment"># ⚠️ 注意：生产环境禁用，可以用 scan 替代，或只在从节点执行</span></span><br><span class="line">&gt; keys [patern]</span><br><span class="line">&gt; scan cursor [MATCH pattern] [COUNT count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 key 的数据类型</span></span><br><span class="line">&gt; <span class="built_in">type</span> key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 key 是否存在</span></span><br><span class="line">&gt; exists key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">&gt; del key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 key 的数量</span></span><br><span class="line"><span class="comment"># 时间复杂度 O(1)，通过内部计数器使用</span></span><br><span class="line">&gt; dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置过期时间（单位：秒），到期后自动删除</span></span><br><span class="line">&gt; expire key seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 key 的剩余过期时间</span></span><br><span class="line"><span class="comment"># &gt; 0 剩余时间</span></span><br><span class="line"><span class="comment"># -1 key 存在，但没有设置过期时间</span></span><br><span class="line"><span class="comment"># -2 key 过期后被自动删除</span></span><br><span class="line">&gt; ttl key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除 key 的过期时间</span></span><br><span class="line">&gt; persist key</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-sting-字符串"><a href="#2-1-sting-字符串" class="headerlink" title="2.1. sting 字符串"></a>2.1. sting 字符串</h4><h5 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1. 结构"></a>2.1.1. 结构</h5><ul>
+<li>key</li>
+<li>value</li>
+</ul>
+<h5 id="2-1-2-场景"><a href="#2-1-2-场景" class="headerlink" title="2.1.2. 场景"></a>2.1.2. 场景</h5><ul>
+<li>缓存</li>
+<li>计数器</li>
+<li>分布式锁</li>
+<li>……</li>
+</ul>
+<h5 id="2-1-3-专有-API"><a href="#2-1-3-专有-API" class="headerlink" title="2.1.3. 专有 API"></a>2.1.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># key 不管是否存在，都设置：存在则更新，不存在则新增</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; setnx key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 存在才设置 &lt;==&gt; 更新</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value xx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定 key 的 value</span></span><br><span class="line">&gt; get key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量设置</span></span><br><span class="line">&gt; mset key value [key value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量获取</span></span><br><span class="line">&gt; mget key [ key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字符串长度</span></span><br><span class="line">&gt; strlen key</span><br></pre></td></tr></table></figure>
+
+<p>子串</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加子串</span></span><br><span class="line"><span class="comment"># 返回追加成功的字符串长度</span></span><br><span class="line">&gt; append key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取子串</span></span><br><span class="line">&gt; getrange key start end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 覆盖子串</span></span><br><span class="line">&gt; setrange key offset value</span><br></pre></td></tr></table></figure>
+
+<p>计数器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 递增</span></span><br><span class="line"><span class="comment"># 不能超过 Long.Max 9223372036854775807</span></span><br><span class="line">&gt; incr key</span><br><span class="line">&gt; incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递减</span></span><br><span class="line"><span class="comment"># 不能低于 Long.Min -9223372036854775808</span></span><br><span class="line">&gt; decr key</span><br><span class="line">&gt; decrby key decrement</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-hash-哈希"><a href="#2-2-hash-哈希" class="headerlink" title="2.2. hash 哈希"></a>2.2. hash 哈希</h4><h5 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1. 结构"></a>2.2.1. 结构</h5><ul>
+<li><p>key</p>
+</li>
+<li><p>value</p>
+<ul>
+<li><p>field 不能相同</p>
+</li>
+<li><p>value 可以相同</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2-3-专有-API"><a href="#2-2-3-专有-API" class="headerlink" title="2.2.3. 专有 API"></a>2.2.3. 专有 API</h5><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 为 key 增加一个键值对</span></span><br><span class="line"><span class="comment"># field 存在则修改，不存在，则新增</span></span><br><span class="line">&gt; hset key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># field 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; hsetnx key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 key 增加多个键值对</span></span><br><span class="line">&gt; hmset key field value [field value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 key 中指定的键</span></span><br><span class="line">&gt; hdel key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递增</span></span><br><span class="line">&gt; hincrby key field increment</span><br><span class="line">&gt; hincrbyfloat key field increment</span><br></pre></td></tr></table></figure>
+
+<p>查询</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取 key 的一个键的值</span></span><br><span class="line">&gt; hget key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的多个键的值</span></span><br><span class="line">&gt; hmget key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的所有 field 和 value</span></span><br><span class="line">&gt; hgetall key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 field</span></span><br><span class="line">&gt; hkeys key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 value</span></span><br><span class="line">&gt; hvals key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中的一个 field 是否存在</span></span><br><span class="line">&gt; hexists key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中所有 field 的数量</span></span><br><span class="line">&gt; hlen key</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-list-列表"><a href="#2-3-list-列表" class="headerlink" title="2.3.  list 列表"></a>2.3.  list 列表</h4><h5 id="2-3-1-特点"><a href="#2-3-1-特点" class="headerlink" title="2.3.1. 特点"></a>2.3.1. 特点</h5><ul>
+<li>有序</li>
+<li>可重复</li>
+<li>左右两端插入、弹出</li>
+</ul>
+<h5 id="2-3-2-场景"><a href="#2-3-2-场景" class="headerlink" title="2.3.2. 场景"></a>2.3.2. 场景</h5><ul>
+<li><p>Stack 栈 <code>lpush</code> + <code>lpop</code></p>
+</li>
+<li><p>Queue 队列 <code>lpush</code> + <code>rpop</code></p>
+</li>
+<li><p>Capped Collection 有限队列集合（固定数量） <code>lpush</code> + <code>ltrim</code></p>
+</li>
+<li><p>Message Queue 消息队列 <code>lpush</code> + <code>brpop</code></p>
+</li>
+</ul>
+<h5 id="2-3-3-专有-API"><a href="#2-3-3-专有-API" class="headerlink" title="2.3.3. 专有 API"></a>2.3.3. 专有 API</h5><p>增（<strong>入</strong>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边添加</span></span><br><span class="line">&gt; lpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边添加</span></span><br><span class="line">&gt; rpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在列表元素 pivot 的前面或后面插入一个新元素</span></span><br><span class="line">&gt; linsert key BEFORE|AFTER pivot newValue</span><br></pre></td></tr></table></figure>
+
+<p>删（<strong>出</strong>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边弹出一个 value</span></span><br><span class="line">&gt; lpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边弹出一个 value</span></span><br><span class="line">&gt; rpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有 value 相等的项</span></span><br><span class="line">&gt; lrem key count value</span><br><span class="line"><span class="comment"># count = 0 删除所有 value 相等的项</span></span><br><span class="line"><span class="comment"># count &gt; 0 从左到右，删除最多 count 个 value 相等的项</span></span><br><span class="line"><span class="comment"># count &lt; 0 从右到左，删除最多 Math.abs(count) 个 value 相等的项</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照索引范围修剪列表</span></span><br><span class="line">&gt; ltrim key start stop</span><br></pre></td></tr></table></figure>
+
+<p>改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改指定下标的元素</span></span><br><span class="line">&gt; lset key index newValue</span><br></pre></td></tr></table></figure>
+
+<p>查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围的所有项（包含 stop 的项）</span></span><br><span class="line">&gt; lrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询一个 key 下的所有项</span></span><br><span class="line">&gt; lrange key 0 -1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定下标的项</span></span><br><span class="line">&gt; lindex key index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取列表长度</span></span><br><span class="line">&gt; llen key</span><br></pre></td></tr></table></figure>
+
+<p>其它</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] timeout</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-set-集合"><a href="#2-4-set-集合" class="headerlink" title="2.4. set 集合"></a>2.4. set 集合</h4><h5 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1. 特点"></a>2.4.1. 特点</h5><ul>
+<li>无序</li>
+<li>不可以重复</li>
+<li>集合之间的操作</li>
+</ul>
+<h5 id="2-4-2-场景"><a href="#2-4-2-场景" class="headerlink" title="2.4.2. 场景"></a>2.4.2. 场景</h5><ul>
+<li><p>Tagging 标签化 <code>sadd</code></p>
+</li>
+<li><p>Random Item 随机元素 <code>srandmember</code> 或 <code>spop</code></p>
+</li>
+<li><p>Social Graph 社交图谱 <code>sadd</code> + <code>sinter</code></p>
+</li>
+</ul>
+<h5 id="2-4-3-专有-API"><a href="#2-4-3-专有-API" class="headerlink" title="2.4.3. 专有 API"></a>2.4.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素到集合中（重复的元素会被忽略）</span></span><br><span class="line">&gt; sadd key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中删除元素</span></span><br><span class="line">&gt; srem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算集合中元素个数</span></span><br><span class="line">&gt; scard key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查集合中是否存在指定的元素</span></span><br><span class="line">&gt; sismember key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中随机取出 count 个元素</span></span><br><span class="line"><span class="comment"># 不会破坏集合</span></span><br><span class="line">&gt; srandmember key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment">#从集合中随机弹出 count 个元素</span></span><br><span class="line"><span class="comment">#会破坏集合（元素的顺序）</span></span><br><span class="line">&gt; spop key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出集合中所有元素</span></span><br><span class="line">&gt; smembers key</span><br><span class="line"><span class="comment"># 注意：1. 获取到的元素是无序的；2. 元素较多时会阻塞其它操作</span></span><br><span class="line"><span class="comment"># 替代：sscan ?</span></span><br></pre></td></tr></table></figure>
+
+<p>集合间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取一个集合与其它集合的差集</span></span><br><span class="line">&gt; sdiff key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的交集</span></span><br><span class="line">&gt; sinter key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的并集</span></span><br><span class="line">&gt; sunion key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-zset-有序集合"><a href="#2-5-zset-有序集合" class="headerlink" title="2.5. zset 有序集合"></a>2.5. zset 有序集合</h4><h5 id="2-5-1-特点"><a href="#2-5-1-特点" class="headerlink" title="2.5.1. 特点"></a>2.5.1. 特点</h5><ul>
+<li>有序</li>
+<li>不可以重复</li>
+<li>元素多一个 score 用于排序</li>
+</ul>
+<h5 id="2-5-2-场景"><a href="#2-5-2-场景" class="headerlink" title="2.5.2. 场景"></a>2.5.2. 场景</h5><ul>
+<li>排行榜</li>
+</ul>
+<h5 id="2-5-3-专有-API"><a href="#2-5-3-专有-API" class="headerlink" title="2.5.3. 专有 API"></a>2.5.3. 专有 API</h5><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line"><span class="comment"># score 可重复，member 不可以重复</span></span><br><span class="line">&gt; zadd key score member [score member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">&gt; zrem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加或减少元素的分数（score）</span></span><br><span class="line"><span class="comment"># increment 传负数表示减少</span></span><br><span class="line">&gt; zincrby key increment member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回元素总个数</span></span><br><span class="line">&gt; zcard key</span><br></pre></td></tr></table></figure>
+
+<p>排名和分数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 返回元素分数（score）</span></span><br><span class="line">&gt; zscore key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的升序（score 从小到大）排名</span></span><br><span class="line">&gt; zrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的降序（score 从大到小）排名</span></span><br><span class="line">&gt; zrevrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定分数间的成员数量</span></span><br><span class="line">&gt; zcount</span><br></pre></td></tr></table></figure>
+
+<p>根据范围获取元素</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围内的升序（score 从小到大）元素[分数]</span></span><br><span class="line"><span class="comment"># star 0 第一条；stop -1 最后一条</span></span><br><span class="line">zrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定索引范围内的降序（score 从大到小）元素[分数]</span></span><br><span class="line">zrevrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的升序元素[分数]</span></span><br><span class="line">&gt; zrangebyscore key min max [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的降序元素[分数]</span></span><br><span class="line">&gt; zrevrangebyscore key max min [withscores]</span><br></pre></td></tr></table></figure>
+
+<p>根据范围移除元素</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定排名范围内的元素</span></span><br><span class="line">&gt; zremrangebyrank key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定分数范围内的元素</span></span><br><span class="line">&gt; zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
