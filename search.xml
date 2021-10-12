@@ -791,19 +791,6 @@
       </tags>
   </entry>
   <entry>
-    <title>zip分卷压缩命令</title>
-    <url>/post/4078650632.html</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>zip</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>在 CentOS7 下安装、配置 Redis 服务</title>
     <url>/post/2447614005.html</url>
     <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
@@ -842,6 +829,19 @@
         <tag>Linux</tag>
         <tag>Redis</tag>
         <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>zip</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,6 +1346,353 @@
       </tags>
   </entry>
   <entry>
+    <title>一堂技术管理课</title>
+    <url>/post/895189460.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文整理自： 极客时间专栏<a href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
+</blockquote>
+<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
+<ol>
+<li>向你问问题和各种琐事的人越来越多；</li>
+<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
+</ol>
+<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
+<ul>
+<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
+<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
+</li>
+<li><p>其次，如何引导？</p>
+<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
+</li>
+<li><p>最后，引导的好处。</p>
+<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="Bug引发事故，该不该追究责任？"><a href="#Bug引发事故，该不该追究责任？" class="headerlink" title="Bug引发事故，该不该追究责任？"></a>Bug引发事故，该不该追究责任？</h3><h4 id="追究"><a href="#追究" class="headerlink" title="追究"></a>追究</h4><p>假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免：</p>
+<ul>
+<li>大家都怕闯祸，所以风险高的事没人做，或者总是那几个靠谱的“老司机”做，其他人则永远没有机会得到锻炼。</li>
+<li>如果有人搞砸了什么事情，会因为担心承担后果而推卸责任，从而尽可能掩盖错误的坏影响，不让人知道。</li>
+<li>如果别人犯了错，会觉得不关自己的事。</li>
+<li>指出别人的错误就会导致别人被追究责任，因此看到有问题也会犹豫要不要指出。</li>
+</ul>
+<h4 id="不追究"><a href="#不追究" class="headerlink" title="不追究"></a>不追究</h4><p>反之，如果无论发生什么错误，都不需要承担后果或进行反省，没有任何担当，那可能又会出现以下情况：</p>
+<ul>
+<li>同样的错误可能会一再发生。</li>
+<li>小错酿成大错。</li>
+<li>做事仔细的人会觉得不公平。</li>
+</ul>
+<h4 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h4><p>对于工作中的错误，尤其是 Bug 导致的错误，我们应该采取什么态度和措施呢？</p>
+<ol>
+<li>追究责任，但不是惩罚。</li>
+<li>对事儿不对人。</li>
+<li>反复问“为什么”，从根本上发现问题。</li>
+<li>员工关系的建立也很关键。我们需要培养的是大家相互信任、互帮互助，为了共同的目标努力的氛围，而不是一种不安全感。</li>
+</ol>
+<h3 id="如何帮助团队成员成长？"><a href="#如何帮助团队成员成长？" class="headerlink" title="如何帮助团队成员成长？"></a>如何帮助团队成员成长？</h3><p>包括通过指导、反馈、监督、交流、协调资源等方式帮助下属提升能力，迅速成长。</p>
+<p>作为管理者，应该经常思考的是：</p>
+<ul>
+<li>怎样做能够让员工进步到更高层次？</li>
+<li>他的潜力在哪，哪些地方是可以培养和挖掘的？</li>
+<li>怎么帮助员工改进他与组内组外同事的关系，让他有机会更好地发挥他的长处？</li>
+<li>怎样尽早地发现他的错误和缺点，并帮助他认识和改进，而不是在错误变成后果后，去追究责任。</li>
+<li>怎样帮助他在不擅长的领域建立信心？</li>
+<li>怎样帮助他学会处理各种压力和矛盾？</li>
+</ul>
+<p>切忌陷入静态思维去看待动态发展的问题。</p>
+<ul>
+<li>多和自己对话，想想自己哪些时候、哪些方面会用静态的眼光去看待别人的能力。</li>
+<li>把自己有这种心态时的表现或内心的一些想法写出来。</li>
+<li>再遇到类似的情况，停一下，想一想是不是自己可以有所改变。</li>
+<li>诚恳地告诉组员希望帮助他成长，多交流并听取对方的想法。</li>
+</ul>
+<blockquote>
+<p><strong>一个技术管理者的成功并不在于自己代码多好、能力多强，他的成功一定建立在团队成功的基础之上。只有团队成员不断成长，这个团队才可以做成更大的事情，而你才可以在团队的基础上，站得更高、看得更远。</strong></p>
+</blockquote>
+<h3 id="当我们给别人提意见时，要注意些什么？"><a href="#当我们给别人提意见时，要注意些什么？" class="headerlink" title="当我们给别人提意见时，要注意些什么？"></a>当我们给别人提意见时，要注意些什么？</h3><ul>
+<li><p>首先，要思考自己是不是合适提这个意见。</p>
+<p>  也就是说，对方会不会产生 “就凭你” 的逆反心理。</p>
+<p>  在工作中适当放低姿态，往往更容易获得尊重。</p>
+<p>  <strong>不要总是试图居高临下地提意见，尤其是你在对方心里还没有建立任何信任和威信的时候，不要贸然给别人提负面意见。</strong></p>
+</li>
+<li><p>其次，提意见要讲究合适的时机</p>
+<p>  确定什么时候应该提什么样的意见。</p>
+<p>  直接给出意见时，需注意：</p>
+<ol>
+<li>地点很重要，尽量找个安静的地方，避开其他人；</li>
+<li>可能的话，稍微用几句闲聊来导入正题；</li>
+<li>提意见时，语气不应该是责备，而是描述问题；</li>
+<li>不要加入太多个人感觉、观点和情绪，避免使用一些像 “你总是”“你从来都” 的评价。</li>
+</ol>
+<p>  <strong>有效的讨论需要心平气和</strong>，找出问题的最优解才是关键。</p>
+</li>
+<li><p>最后，多夸夸对方做得好的地方，多给予正向反馈</p>
+<p>  很多时候，正向反馈能更好地帮助对方成长。表扬的力量永远大于批评，他会试图把事情做得更好。</p>
+<p>  正向的沟通还能帮助你与对方构建良好的沟通渠道，让你们未来的合作更为顺畅和有效。</p>
+</li>
+</ul>
+<h3 id="当别人给我们提意见时，该如何应对？"><a href="#当别人给我们提意见时，该如何应对？" class="headerlink" title="当别人给我们提意见时，该如何应对？"></a>当别人给我们提意见时，该如何应对？</h3><ol>
+<li><p>尽量排除情绪以及偏见对我们的干扰。</p>
+</li>
+<li><p>假定对方是善意的。</p>
+<p> 尽可能以感激的心态去听取意见，尽管这一点很难，但是我们还是要尽力为之。</p>
+</li>
+<li><p>了解意见的具体细节，把关注点放在对方的出发点，以及对方希望我们改进的地方。</p>
+</li>
+<li><p>对意见里的信息进行分类和过滤。</p>
+<p> 思考一下：哪些是误解，哪些是自己的不足，哪些是自己可以通过沟通去改变的，哪些是自己需要尝试改进的。</p>
+<p> 再三确定后，如果确实不是自己的问题，也不用反感，一笑而过就好。</p>
+</li>
+</ol>
+<h3 id="项目延期了，作为负责人该怎么办？"><a href="#项目延期了，作为负责人该怎么办？" class="headerlink" title="项目延期了，作为负责人该怎么办？"></a>项目延期了，作为负责人该怎么办？</h3><blockquote>
+<p>先问自己几个问题：为什么项目延期了，你是什么时候第一次感觉到项目可能会延期，在此之后你做了什么？</p>
+</blockquote>
+<p>对于<strong>不可控因素</strong>，我们能做的并不多，只能权衡取舍，对项目期限、人员或者需求范围做出调整。</p>
+<p>如果是计划本身的问题，或者是因为项目成员没有很好地跟进同一个计划并保持一致，那我们应该尽最大可能避免这些问题的发生。</p>
+<p>具体措施：</p>
+<ol>
+<li><p>建立一定的流程。</p>
+<p> 这里包括计划制定流程和计划跟进流程，也许是每周一次的同步会议，也许是一个共享的任务管理工具，不要过分相信自己随机跟进的能力。</p>
+</li>
+<li><p>在整个项目计划中，要有明确的优先级。</p>
+<p> 知道哪些任务是非做不可的；哪些任务是别的任务所依赖，需要提前完成的等等。</p>
+<p> 人们往往有先处理简单任务的惰性，如果没有搞清楚轻重缓急，那就有可能出现不太重要的杂事都做完了，而重要的事却没有太大进展的情况。</p>
+</li>
+<li><p>制作一个共享的项目状态表，让团队成员可以一眼就看清楚项目进展，并保持该图表的更新。</p>
+<p> 进度表可以作为大家对进度评估的工具，也可以是负责人判断哪里需要重点跟进的依据。</p>
+<p> 确保这个计划是每个主要相关者都确认并同意的，并在同意后让他们每天都能看到这个计划的所有更新。</p>
+</li>
+<li><p>不要漏掉任何一个人。</p>
+<p> 不要觉得暂时还没有他的活儿，可以先不用跟他沟通。当一个项目的计划落实后，应该第一时间让所有相关的人了解到。临时通知会让合作者或帮忙的人没有参与感，并且很容易因为对方没有提前准备在时间上无法达成一致。</p>
+</li>
+<li><p>提供一个有效的反馈渠道。</p>
+<p> 任何人在任何时候对项目有担心或者质疑，确保他可以通过有效的途径让你第一时间知道他的担心。</p>
+</li>
+</ol>
+<h3 id="管理者在进行工作分配时，会考虑哪些问题？"><a href="#管理者在进行工作分配时，会考虑哪些问题？" class="headerlink" title="管理者在进行工作分配时，会考虑哪些问题？"></a>管理者在进行工作分配时，会考虑哪些问题？</h3><ol>
+<li><p>建立参考基线</p>
+<p> 当和一个人没有任何直接接触的时候，我们可以通过第三方评价、个人履历以及该员工做过的项目或产品来衡量他的能力。</p>
+</li>
+<li><p>问对问题比正确答案更重要</p>
+<p> 把任务交到员工手里之前，要和他进行充分的沟通。告诉他任务的详细情形，看他会问出什么样的问题，提出哪些想法。</p>
+<p> 这能帮助我们进一步评估他是不是真的了解任务的状况，有没有综合去考虑任务中的问题。</p>
+</li>
+<li><p>工期估算</p>
+<p> 估算完成任务的工期是分配任务中必不可少的环节。可以让接受任务的员工试着去估算：需要多久完成，大概什么时候完成，需要什么样的资源等。</p>
+<p> 如果一个人不能花费足够的时间去了解自己未知的部分，我们很难放心地把任务交给他独立完成。</p>
+</li>
+<li><p>执行力</p>
+<p> 工作中有一些人，他们的沟通能力、计划能力都很强，但是执行力却比较差，或者没有粘滞力，执行过程中容易遇难就退、虎头蛇尾。这些人属于能说但不能把事情做好的人，难以托付大事。如果你的项目中有重要的任务，切记不要交给这样的人去做。</p>
+</li>
+<li><p>后期维护</p>
+<p> 完成一个项目并不意味着项目的结束，很多时候，项目上线了还需要一段时间的维护工作。这包括了 Bug 修复，排查用户反馈的问题，完成后续的迭代开发等等。</p>
+<p> 于是，你需要去观察：一个人是不是可以自觉地维护产品，有没有责任感，会不会推卸责任，出了问题，能不能第一时间冲到一线解决。这些都是很重要的品质，也是你判断他是否能够承担更重要任务的参考。</p>
+</li>
+</ol>
+<p>在分配工作的过程中，你还需要注意一些细节问题：</p>
+<ul>
+<li><p>如何对待职场新人</p>
+<p>  一些职场新人很有潜力，但经验不足，也许他们在项目初期有很多地方考虑不完善。这个时候，不要轻易地否定他们的工作。如果你可以耐心地花些时间悉心指导，他们可以快速地学习并且进步。</p>
+</li>
+<li><p>如何针对不同类型的员工分配工作</p>
+<p>  在分配任务的时候，你需要根据每个人的特点安排不同类型的任务，并提供相应的支持和帮助，扬长避短，才能发挥人员的最大效力。</p>
+</li>
+<li><p>大项目的工作分配</p>
+<p>  指定项目负责人，其同样需要拥有分配任务的能力，对于大部分事情不要亲力亲为，而是分配给合适的人，整个过程中沟通、协调为主。</p>
+</li>
+</ul>
+<h3 id="管理者不用亲力亲为：关键是什么？"><a href="#管理者不用亲力亲为：关键是什么？" class="headerlink" title="管理者不用亲力亲为：关键是什么？"></a>管理者不用亲力亲为：关键是什么？</h3><p>把关注点放在如何帮助别人把事情做好上面。比如，接受任务的人需要哪些支持和帮助才能很好的完成任务呢，我们应该在什么样的时间点去提供这样的帮助。</p>
+<p>作为一个管理者，我们在授权和分配任务的时候应该注意：</p>
+<ul>
+<li>让对方明确目标，知道最终想要达到的结果是什么，对这个任务完成的期望值是怎样的。</li>
+<li>制定一个计划，并保持跟进。</li>
+<li>给出反馈，尤其是正面的反馈。</li>
+</ul>
+<p>项目管理中的三个技巧：</p>
+<ol>
+<li><p>在做项目计划的时候，要对多个项目进行细分重组</p>
+<p> 对要做的任务重新细分重组，把大任务变成一个个均匀的小任务，然后根据个人能力，任务的相互依赖情况等重新分配下去。</p>
+</li>
+<li><p>工期估算</p>
+<p> 管理者和任务的负责人要达成一致，并且注意到，工程师门在进行时间预算的时候都是比较乐观、理想的，最好为项目预留缓冲的时间。</p>
+</li>
+<li><p>实时跟进，并准备好 B 计划</p>
+<p> 为项目合理设置里程碑，并实时跟进，一旦出现问题，就要启动 B 计划。</p>
+</li>
+</ol>
+<p>如何处理工作中的人际关系？</p>
+<p>人际关系是一个特别复杂的话题，因人而异，更因情形而异。</p>
+<p>那么如何处理人际关系呢？在这里，我有几点建议，内容可能更偏向于个人感悟，仅供你的参考：</p>
+<ol>
+<li>对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要。</li>
+<li>在交往过程中，尽可能对别人的分享、工作、交流持一种积极、友善和鼓励的态度。</li>
+<li>加入一些有利于自己成长的社交圈子。</li>
+<li>适当的寻求帮助。</li>
+<li>对于别人的意见要尽可能认真对待。</li>
+</ol>
+<h3 id="如何激发团队人员的责任心？"><a href="#如何激发团队人员的责任心？" class="headerlink" title="如何激发团队人员的责任心？"></a>如何激发团队人员的责任心？</h3><ol>
+<li><p>明确责任制，尽可能通过规则来明确和规范与责任心、责任感相关的事情；</p>
+<p> 适当放权，让他去主导一些事情。</p>
+<p> 适当的奖励机制，对于主动承担责任的员工表示认可和感激。</p>
+</li>
+<li><p>让责任制变得有效，而不是形同虚设。</p>
+<p> 有效的责任制，在开始的时候就要让所有人明确责任与权利，而不是最后追究责任或推卸责任。</p>
+<p> 在这个基础上，根据每个人的不同情况，在执行过程中适度跟进。</p>
+</li>
+<li><p>尽可能地让团队成员充满归属感，进而激发他们的责任心。</p>
+<p> 归属感是指一个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
+<p> 如何增加员工的归属感呢？</p>
+<ul>
+<li>在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上。</li>
+<li>管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。</li>
+<li>真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励。</li>
+<li>同时做一些仪式感比较强的团队活动和建设。</li>
+</ul>
+</li>
+</ol>
+<h3 id="理解并建立自己的工作弹性"><a href="#理解并建立自己的工作弹性" class="headerlink" title="理解并建立自己的工作弹性"></a>理解并建立自己的工作弹性</h3><p>人为什么会焦虑呢？可能是自身的弹性能力不够，事实上人的弹性能力也是可以锻炼和提升的：</p>
+<ul>
+<li>正确思考而不是钻牛角尖，找到需要改进的地方持续改进；</li>
+<li>偶尔放纵，不担心犯错，从错误中成长；</li>
+<li>多结识乐观积极向上的朋友；</li>
+<li>一直做自己认为有价值的事情。</li>
+</ul>
+<p>想要构建出自己的弹性能力，还要具备以下两个心态：</p>
+<ol>
+<li>不论你多努力，也不是所有的付出都会有回报，或者有等比的回报。</li>
+<li>不只是你，每个人都有自己搞不定的时候。</li>
+</ol>
+<p><strong>日拱一卒，不期速成。</strong></p>
+<h3 id="如何对更多的工作说“不”？"><a href="#如何对更多的工作说“不”？" class="headerlink" title="如何对更多的工作说“不”？"></a>如何对更多的工作说“不”？</h3><p>要对更多的工作说“不”，需要搞清楚两件事：</p>
+<ol>
+<li>分清事情的轻重缓急，有些紧急的事情和优先级高的事情很难拒绝；</li>
+<li>正确评估自己的能力和时间资源。</li>
+</ol>
+<p>与生活中相比，在工作中说“不”需要更理性，避免强硬拒绝，让对方觉得你是因为不愿帮忙才拒绝的。</p>
+<p>应开门见山，把自己的想法和事实清晰的表达出来。</p>
+<p>对自己力不能及的事情，提早说“不”，无论对人对己，都是负责任的表现。</p>
+<p>答应一件事情之后，尽可能地兑现自己的承诺，如果出现计划外的情况或者难处，要及时的进行沟通。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>技术管理</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何做好一场技术演讲</title>
+    <url>/post/2259619543.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
+</blockquote>
+<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
+<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
+<ul>
+<li>听众组成？</li>
+<li>对要演讲主题的了解程度？</li>
+<li>听众想听什么？</li>
+<li>演讲能给听众带来什么价值？</li>
+<li>……</li>
+</ul>
+<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
+<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
+<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
+<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
+<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
+<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
+<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
+</ol>
+<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
+<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
+<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
+<li>合理的排版；</li>
+<li>合理而有意义的动效（一定不要太多）；</li>
+<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
+<li>Who 1 页</li>
+<li>What&amp;When 1～2 页</li>
+<li>Why 1 页</li>
+<li>How 展开 3～4 点，每点 2～3 页</li>
+<li>Future 1 页</li>
+<li>Recap 1 页</li>
+</ul>
+</li>
+<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
+<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
+<li>找安静的地方，自我练习。</li>
+<li>请信任的朋友来试听。</li>
+<li>公司内部试讲。</li>
+<li>冥想。</li>
+</ul>
+<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
+<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
+<p>其中：</p>
+<ul>
+<li><p>姿态</p>
+<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
+<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
+</li>
+<li><p>手势</p>
+<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
+<p>  参见下图的乔老师：</p>
+<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
+<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
+</li>
+<li><p>声音</p>
+<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
+<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
+<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
+</li>
+</ul>
+<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
+<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
+<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
+<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
+<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
+<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
+<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
+</ul>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
+<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
+<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
+<ul>
+<li>首先，具体让人产生画面感，产生更多的钩子。</li>
+<li>其次，具体让人更容易产生情绪。</li>
+<li>第三，具体让人产生可信感。</li>
+</ul>
+<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
+<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
+<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
+<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
+<li><p>将不太熟悉的问题转化成自己擅长的。</p>
+</li>
+<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
+</li>
+<li><p>委婉避开尴尬的问题</p>
+<blockquote>
+<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
+</blockquote>
+<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>技术演讲</tag>
+        <tag>演讲</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo最佳实践推荐</title>
     <url>/post/1938539149.html</url>
     <content><![CDATA[<blockquote>
@@ -1787,350 +2134,60 @@
       </tags>
   </entry>
   <entry>
-    <title>一堂技术管理课</title>
-    <url>/post/895189460.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文整理自： 极客时间专栏<a href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
-</blockquote>
-<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
-<ol>
-<li>向你问问题和各种琐事的人越来越多；</li>
-<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
-</ol>
-<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
-<ul>
-<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
-<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
-</li>
-<li><p>其次，如何引导？</p>
-<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
-</li>
-<li><p>最后，引导的好处。</p>
-<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="Bug引发事故，该不该追究责任？"><a href="#Bug引发事故，该不该追究责任？" class="headerlink" title="Bug引发事故，该不该追究责任？"></a>Bug引发事故，该不该追究责任？</h3><h4 id="追究"><a href="#追究" class="headerlink" title="追究"></a>追究</h4><p>假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免：</p>
-<ul>
-<li>大家都怕闯祸，所以风险高的事没人做，或者总是那几个靠谱的“老司机”做，其他人则永远没有机会得到锻炼。</li>
-<li>如果有人搞砸了什么事情，会因为担心承担后果而推卸责任，从而尽可能掩盖错误的坏影响，不让人知道。</li>
-<li>如果别人犯了错，会觉得不关自己的事。</li>
-<li>指出别人的错误就会导致别人被追究责任，因此看到有问题也会犹豫要不要指出。</li>
-</ul>
-<h4 id="不追究"><a href="#不追究" class="headerlink" title="不追究"></a>不追究</h4><p>反之，如果无论发生什么错误，都不需要承担后果或进行反省，没有任何担当，那可能又会出现以下情况：</p>
-<ul>
-<li>同样的错误可能会一再发生。</li>
-<li>小错酿成大错。</li>
-<li>做事仔细的人会觉得不公平。</li>
-</ul>
-<h4 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h4><p>对于工作中的错误，尤其是 Bug 导致的错误，我们应该采取什么态度和措施呢？</p>
-<ol>
-<li>追究责任，但不是惩罚。</li>
-<li>对事儿不对人。</li>
-<li>反复问“为什么”，从根本上发现问题。</li>
-<li>员工关系的建立也很关键。我们需要培养的是大家相互信任、互帮互助，为了共同的目标努力的氛围，而不是一种不安全感。</li>
-</ol>
-<h3 id="如何帮助团队成员成长？"><a href="#如何帮助团队成员成长？" class="headerlink" title="如何帮助团队成员成长？"></a>如何帮助团队成员成长？</h3><p>包括通过指导、反馈、监督、交流、协调资源等方式帮助下属提升能力，迅速成长。</p>
-<p>作为管理者，应该经常思考的是：</p>
-<ul>
-<li>怎样做能够让员工进步到更高层次？</li>
-<li>他的潜力在哪，哪些地方是可以培养和挖掘的？</li>
-<li>怎么帮助员工改进他与组内组外同事的关系，让他有机会更好地发挥他的长处？</li>
-<li>怎样尽早地发现他的错误和缺点，并帮助他认识和改进，而不是在错误变成后果后，去追究责任。</li>
-<li>怎样帮助他在不擅长的领域建立信心？</li>
-<li>怎样帮助他学会处理各种压力和矛盾？</li>
-</ul>
-<p>切忌陷入静态思维去看待动态发展的问题。</p>
-<ul>
-<li>多和自己对话，想想自己哪些时候、哪些方面会用静态的眼光去看待别人的能力。</li>
-<li>把自己有这种心态时的表现或内心的一些想法写出来。</li>
-<li>再遇到类似的情况，停一下，想一想是不是自己可以有所改变。</li>
-<li>诚恳地告诉组员希望帮助他成长，多交流并听取对方的想法。</li>
-</ul>
-<blockquote>
-<p><strong>一个技术管理者的成功并不在于自己代码多好、能力多强，他的成功一定建立在团队成功的基础之上。只有团队成员不断成长，这个团队才可以做成更大的事情，而你才可以在团队的基础上，站得更高、看得更远。</strong></p>
-</blockquote>
-<h3 id="当我们给别人提意见时，要注意些什么？"><a href="#当我们给别人提意见时，要注意些什么？" class="headerlink" title="当我们给别人提意见时，要注意些什么？"></a>当我们给别人提意见时，要注意些什么？</h3><ul>
-<li><p>首先，要思考自己是不是合适提这个意见。</p>
-<p>  也就是说，对方会不会产生 “就凭你” 的逆反心理。</p>
-<p>  在工作中适当放低姿态，往往更容易获得尊重。</p>
-<p>  <strong>不要总是试图居高临下地提意见，尤其是你在对方心里还没有建立任何信任和威信的时候，不要贸然给别人提负面意见。</strong></p>
-</li>
-<li><p>其次，提意见要讲究合适的时机</p>
-<p>  确定什么时候应该提什么样的意见。</p>
-<p>  直接给出意见时，需注意：</p>
-<ol>
-<li>地点很重要，尽量找个安静的地方，避开其他人；</li>
-<li>可能的话，稍微用几句闲聊来导入正题；</li>
-<li>提意见时，语气不应该是责备，而是描述问题；</li>
-<li>不要加入太多个人感觉、观点和情绪，避免使用一些像 “你总是”“你从来都” 的评价。</li>
-</ol>
-<p>  <strong>有效的讨论需要心平气和</strong>，找出问题的最优解才是关键。</p>
-</li>
-<li><p>最后，多夸夸对方做得好的地方，多给予正向反馈</p>
-<p>  很多时候，正向反馈能更好地帮助对方成长。表扬的力量永远大于批评，他会试图把事情做得更好。</p>
-<p>  正向的沟通还能帮助你与对方构建良好的沟通渠道，让你们未来的合作更为顺畅和有效。</p>
-</li>
-</ul>
-<h3 id="当别人给我们提意见时，该如何应对？"><a href="#当别人给我们提意见时，该如何应对？" class="headerlink" title="当别人给我们提意见时，该如何应对？"></a>当别人给我们提意见时，该如何应对？</h3><ol>
-<li><p>尽量排除情绪以及偏见对我们的干扰。</p>
-</li>
-<li><p>假定对方是善意的。</p>
-<p> 尽可能以感激的心态去听取意见，尽管这一点很难，但是我们还是要尽力为之。</p>
-</li>
-<li><p>了解意见的具体细节，把关注点放在对方的出发点，以及对方希望我们改进的地方。</p>
-</li>
-<li><p>对意见里的信息进行分类和过滤。</p>
-<p> 思考一下：哪些是误解，哪些是自己的不足，哪些是自己可以通过沟通去改变的，哪些是自己需要尝试改进的。</p>
-<p> 再三确定后，如果确实不是自己的问题，也不用反感，一笑而过就好。</p>
-</li>
-</ol>
-<h3 id="项目延期了，作为负责人该怎么办？"><a href="#项目延期了，作为负责人该怎么办？" class="headerlink" title="项目延期了，作为负责人该怎么办？"></a>项目延期了，作为负责人该怎么办？</h3><blockquote>
-<p>先问自己几个问题：为什么项目延期了，你是什么时候第一次感觉到项目可能会延期，在此之后你做了什么？</p>
-</blockquote>
-<p>对于<strong>不可控因素</strong>，我们能做的并不多，只能权衡取舍，对项目期限、人员或者需求范围做出调整。</p>
-<p>如果是计划本身的问题，或者是因为项目成员没有很好地跟进同一个计划并保持一致，那我们应该尽最大可能避免这些问题的发生。</p>
-<p>具体措施：</p>
-<ol>
-<li><p>建立一定的流程。</p>
-<p> 这里包括计划制定流程和计划跟进流程，也许是每周一次的同步会议，也许是一个共享的任务管理工具，不要过分相信自己随机跟进的能力。</p>
-</li>
-<li><p>在整个项目计划中，要有明确的优先级。</p>
-<p> 知道哪些任务是非做不可的；哪些任务是别的任务所依赖，需要提前完成的等等。</p>
-<p> 人们往往有先处理简单任务的惰性，如果没有搞清楚轻重缓急，那就有可能出现不太重要的杂事都做完了，而重要的事却没有太大进展的情况。</p>
-</li>
-<li><p>制作一个共享的项目状态表，让团队成员可以一眼就看清楚项目进展，并保持该图表的更新。</p>
-<p> 进度表可以作为大家对进度评估的工具，也可以是负责人判断哪里需要重点跟进的依据。</p>
-<p> 确保这个计划是每个主要相关者都确认并同意的，并在同意后让他们每天都能看到这个计划的所有更新。</p>
-</li>
-<li><p>不要漏掉任何一个人。</p>
-<p> 不要觉得暂时还没有他的活儿，可以先不用跟他沟通。当一个项目的计划落实后，应该第一时间让所有相关的人了解到。临时通知会让合作者或帮忙的人没有参与感，并且很容易因为对方没有提前准备在时间上无法达成一致。</p>
-</li>
-<li><p>提供一个有效的反馈渠道。</p>
-<p> 任何人在任何时候对项目有担心或者质疑，确保他可以通过有效的途径让你第一时间知道他的担心。</p>
-</li>
-</ol>
-<h3 id="管理者在进行工作分配时，会考虑哪些问题？"><a href="#管理者在进行工作分配时，会考虑哪些问题？" class="headerlink" title="管理者在进行工作分配时，会考虑哪些问题？"></a>管理者在进行工作分配时，会考虑哪些问题？</h3><ol>
-<li><p>建立参考基线</p>
-<p> 当和一个人没有任何直接接触的时候，我们可以通过第三方评价、个人履历以及该员工做过的项目或产品来衡量他的能力。</p>
-</li>
-<li><p>问对问题比正确答案更重要</p>
-<p> 把任务交到员工手里之前，要和他进行充分的沟通。告诉他任务的详细情形，看他会问出什么样的问题，提出哪些想法。</p>
-<p> 这能帮助我们进一步评估他是不是真的了解任务的状况，有没有综合去考虑任务中的问题。</p>
-</li>
-<li><p>工期估算</p>
-<p> 估算完成任务的工期是分配任务中必不可少的环节。可以让接受任务的员工试着去估算：需要多久完成，大概什么时候完成，需要什么样的资源等。</p>
-<p> 如果一个人不能花费足够的时间去了解自己未知的部分，我们很难放心地把任务交给他独立完成。</p>
-</li>
-<li><p>执行力</p>
-<p> 工作中有一些人，他们的沟通能力、计划能力都很强，但是执行力却比较差，或者没有粘滞力，执行过程中容易遇难就退、虎头蛇尾。这些人属于能说但不能把事情做好的人，难以托付大事。如果你的项目中有重要的任务，切记不要交给这样的人去做。</p>
-</li>
-<li><p>后期维护</p>
-<p> 完成一个项目并不意味着项目的结束，很多时候，项目上线了还需要一段时间的维护工作。这包括了 Bug 修复，排查用户反馈的问题，完成后续的迭代开发等等。</p>
-<p> 于是，你需要去观察：一个人是不是可以自觉地维护产品，有没有责任感，会不会推卸责任，出了问题，能不能第一时间冲到一线解决。这些都是很重要的品质，也是你判断他是否能够承担更重要任务的参考。</p>
-</li>
-</ol>
-<p>在分配工作的过程中，你还需要注意一些细节问题：</p>
-<ul>
-<li><p>如何对待职场新人</p>
-<p>  一些职场新人很有潜力，但经验不足，也许他们在项目初期有很多地方考虑不完善。这个时候，不要轻易地否定他们的工作。如果你可以耐心地花些时间悉心指导，他们可以快速地学习并且进步。</p>
-</li>
-<li><p>如何针对不同类型的员工分配工作</p>
-<p>  在分配任务的时候，你需要根据每个人的特点安排不同类型的任务，并提供相应的支持和帮助，扬长避短，才能发挥人员的最大效力。</p>
-</li>
-<li><p>大项目的工作分配</p>
-<p>  指定项目负责人，其同样需要拥有分配任务的能力，对于大部分事情不要亲力亲为，而是分配给合适的人，整个过程中沟通、协调为主。</p>
-</li>
-</ul>
-<h3 id="管理者不用亲力亲为：关键是什么？"><a href="#管理者不用亲力亲为：关键是什么？" class="headerlink" title="管理者不用亲力亲为：关键是什么？"></a>管理者不用亲力亲为：关键是什么？</h3><p>把关注点放在如何帮助别人把事情做好上面。比如，接受任务的人需要哪些支持和帮助才能很好的完成任务呢，我们应该在什么样的时间点去提供这样的帮助。</p>
-<p>作为一个管理者，我们在授权和分配任务的时候应该注意：</p>
-<ul>
-<li>让对方明确目标，知道最终想要达到的结果是什么，对这个任务完成的期望值是怎样的。</li>
-<li>制定一个计划，并保持跟进。</li>
-<li>给出反馈，尤其是正面的反馈。</li>
-</ul>
-<p>项目管理中的三个技巧：</p>
-<ol>
-<li><p>在做项目计划的时候，要对多个项目进行细分重组</p>
-<p> 对要做的任务重新细分重组，把大任务变成一个个均匀的小任务，然后根据个人能力，任务的相互依赖情况等重新分配下去。</p>
-</li>
-<li><p>工期估算</p>
-<p> 管理者和任务的负责人要达成一致，并且注意到，工程师门在进行时间预算的时候都是比较乐观、理想的，最好为项目预留缓冲的时间。</p>
-</li>
-<li><p>实时跟进，并准备好 B 计划</p>
-<p> 为项目合理设置里程碑，并实时跟进，一旦出现问题，就要启动 B 计划。</p>
-</li>
-</ol>
-<p>如何处理工作中的人际关系？</p>
-<p>人际关系是一个特别复杂的话题，因人而异，更因情形而异。</p>
-<p>那么如何处理人际关系呢？在这里，我有几点建议，内容可能更偏向于个人感悟，仅供你的参考：</p>
-<ol>
-<li>对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要。</li>
-<li>在交往过程中，尽可能对别人的分享、工作、交流持一种积极、友善和鼓励的态度。</li>
-<li>加入一些有利于自己成长的社交圈子。</li>
-<li>适当的寻求帮助。</li>
-<li>对于别人的意见要尽可能认真对待。</li>
-</ol>
-<h3 id="如何激发团队人员的责任心？"><a href="#如何激发团队人员的责任心？" class="headerlink" title="如何激发团队人员的责任心？"></a>如何激发团队人员的责任心？</h3><ol>
-<li><p>明确责任制，尽可能通过规则来明确和规范与责任心、责任感相关的事情；</p>
-<p> 适当放权，让他去主导一些事情。</p>
-<p> 适当的奖励机制，对于主动承担责任的员工表示认可和感激。</p>
-</li>
-<li><p>让责任制变得有效，而不是形同虚设。</p>
-<p> 有效的责任制，在开始的时候就要让所有人明确责任与权利，而不是最后追究责任或推卸责任。</p>
-<p> 在这个基础上，根据每个人的不同情况，在执行过程中适度跟进。</p>
-</li>
-<li><p>尽可能地让团队成员充满归属感，进而激发他们的责任心。</p>
-<p> 归属感是指一个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
-<p> 如何增加员工的归属感呢？</p>
-<ul>
-<li>在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上。</li>
-<li>管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。</li>
-<li>真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励。</li>
-<li>同时做一些仪式感比较强的团队活动和建设。</li>
-</ul>
-</li>
-</ol>
-<h3 id="理解并建立自己的工作弹性"><a href="#理解并建立自己的工作弹性" class="headerlink" title="理解并建立自己的工作弹性"></a>理解并建立自己的工作弹性</h3><p>人为什么会焦虑呢？可能是自身的弹性能力不够，事实上人的弹性能力也是可以锻炼和提升的：</p>
-<ul>
-<li>正确思考而不是钻牛角尖，找到需要改进的地方持续改进；</li>
-<li>偶尔放纵，不担心犯错，从错误中成长；</li>
-<li>多结识乐观积极向上的朋友；</li>
-<li>一直做自己认为有价值的事情。</li>
-</ul>
-<p>想要构建出自己的弹性能力，还要具备以下两个心态：</p>
-<ol>
-<li>不论你多努力，也不是所有的付出都会有回报，或者有等比的回报。</li>
-<li>不只是你，每个人都有自己搞不定的时候。</li>
-</ol>
-<p><strong>日拱一卒，不期速成。</strong></p>
-<h3 id="如何对更多的工作说“不”？"><a href="#如何对更多的工作说“不”？" class="headerlink" title="如何对更多的工作说“不”？"></a>如何对更多的工作说“不”？</h3><p>要对更多的工作说“不”，需要搞清楚两件事：</p>
-<ol>
-<li>分清事情的轻重缓急，有些紧急的事情和优先级高的事情很难拒绝；</li>
-<li>正确评估自己的能力和时间资源。</li>
-</ol>
-<p>与生活中相比，在工作中说“不”需要更理性，避免强硬拒绝，让对方觉得你是因为不愿帮忙才拒绝的。</p>
-<p>应开门见山，把自己的想法和事实清晰的表达出来。</p>
-<p>对自己力不能及的事情，提早说“不”，无论对人对己，都是负责任的表现。</p>
-<p>答应一件事情之后，尽可能地兑现自己的承诺，如果出现计划外的情况或者难处，要及时的进行沟通。</p>
-]]></content>
+    <title>《最后的舞动 The Last Dance》</title>
+    <url>/post/3209780963.html</url>
+    <content><![CDATA[<table>
+  <thead>
+    <tr>
+      <th colspan="2">
+        片名：最后的舞动 The Last Dance（2020）
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5">
+      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
+      </td>
+      <td><b>导演</b>：杰森·海希尔</td>
+    </tr>
+    <tr>
+      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
+    </tr>
+    <tr>
+      <td><b>类型</b>：纪录片</td>
+    </tr>
+    <tr>
+      <td><b>地区</b>：欧美</td>
+    </tr>
+    <tr>
+      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">
+        下载（磁力链接）：
+        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E01</a>
+        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E02</a>
+        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E03</a>
+        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E04</a>
+        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E05</a>
+        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E06</a>
+        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E07</a>
+        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E08</a>
+        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E09</a>
+        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E10</a>
+      </td>
+    </tr>
+  </tfoot>
+</table>]]></content>
       <categories>
-        <category>学习笔记</category>
+        <category>影视音乐</category>
       </categories>
       <tags>
-        <tag>学习笔记</tag>
-        <tag>技术管理</tag>
-        <tag>管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何做好一场技术演讲</title>
-    <url>/post/2259619543.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
-</blockquote>
-<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
-<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
-<ul>
-<li>听众组成？</li>
-<li>对要演讲主题的了解程度？</li>
-<li>听众想听什么？</li>
-<li>演讲能给听众带来什么价值？</li>
-<li>……</li>
-</ul>
-<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
-<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
-<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
-<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
-<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
-<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
-<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
-</ol>
-<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
-<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
-<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
-<li>合理的排版；</li>
-<li>合理而有意义的动效（一定不要太多）；</li>
-<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
-<li>Who 1 页</li>
-<li>What&amp;When 1～2 页</li>
-<li>Why 1 页</li>
-<li>How 展开 3～4 点，每点 2～3 页</li>
-<li>Future 1 页</li>
-<li>Recap 1 页</li>
-</ul>
-</li>
-<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
-<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
-<li>找安静的地方，自我练习。</li>
-<li>请信任的朋友来试听。</li>
-<li>公司内部试讲。</li>
-<li>冥想。</li>
-</ul>
-<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
-<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
-<p>其中：</p>
-<ul>
-<li><p>姿态</p>
-<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
-<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
-</li>
-<li><p>手势</p>
-<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
-<p>  参见下图的乔老师：</p>
-<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
-<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
-</li>
-<li><p>声音</p>
-<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
-<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
-<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
-</li>
-</ul>
-<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
-<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
-<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
-<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
-<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
-<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
-<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
-</ul>
-<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
-<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
-<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
-<ul>
-<li>首先，具体让人产生画面感，产生更多的钩子。</li>
-<li>其次，具体让人更容易产生情绪。</li>
-<li>第三，具体让人产生可信感。</li>
-</ul>
-<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
-<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
-<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
-<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
-<li><p>将不太熟悉的问题转化成自己擅长的。</p>
-</li>
-<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
-</li>
-<li><p>委婉避开尴尬的问题</p>
-<blockquote>
-<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
-</blockquote>
-<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>技术演讲</tag>
-        <tag>演讲</tag>
+        <tag>迈克尔·乔丹</tag>
+        <tag>美剧</tag>
       </tags>
   </entry>
   <entry>
@@ -2336,6 +2393,9 @@
 </blockquote>
 <span id="more"></span>
 
+<blockquote>
+<p>适应于最新版的激活方式，请参照：<a href="/post/1904459089.html">JetBrains全系列产品30天试用期重置插件</a></p>
+</blockquote>
 <h3 id="支持版本"><a href="#支持版本" class="headerlink" title="支持版本"></a>支持版本</h3><p>该方法声称支持 <strong>2020.1</strong> 及以下版本，已测试：</p>
 <ul>
 <li>IDEA 2019.3.4</li>
@@ -2343,9 +2403,7 @@
 <li>WebStorm 2020.1</li>
 <li>Pycharm 2020.1</li>
 </ul>
-<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><blockquote>
-<p>版本：v3.2.0<br>更新：2020-04-10<br>sha1sum: 832e9a35df3ea690d4165099619d1adac725e144</p>
-</blockquote>
+<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><strong>版本</strong>：<code>v3.2.0</code><br><strong>更新</strong>：<code>2020-04-10</code><br><strong>sha1sum</strong>: <code>832e9a35df3ea690d4165099619d1adac725e144</code></p>
 <ul>
 <li><a href="https://pan.baidu.com/s/1AdUjEPMVDplsK3I0LFajEw">百度网盘下载</a>，提取码：<code>ijtm</code></li>
 </ul>
@@ -2811,63 +2869,6 @@
       </tags>
   </entry>
   <entry>
-    <title>《最后的舞动 The Last Dance》</title>
-    <url>/post/3209780963.html</url>
-    <content><![CDATA[<table>
-  <thead>
-    <tr>
-      <th colspan="2">
-        片名：最后的舞动 The Last Dance（2020）
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="5">
-      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
-      </td>
-      <td><b>导演</b>：杰森·海希尔</td>
-    </tr>
-    <tr>
-      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
-    </tr>
-    <tr>
-      <td><b>类型</b>：纪录片</td>
-    </tr>
-    <tr>
-      <td><b>地区</b>：欧美</td>
-    </tr>
-    <tr>
-      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="2">
-        下载（磁力链接）：
-        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E01</a>
-        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E02</a>
-        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E03</a>
-        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E04</a>
-        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E05</a>
-        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E06</a>
-        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E07</a>
-        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E08</a>
-        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E09</a>
-        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E10</a>
-      </td>
-    </tr>
-  </tfoot>
-</table>]]></content>
-      <categories>
-        <category>影视音乐</category>
-      </categories>
-      <tags>
-        <tag>迈克尔·乔丹</tag>
-        <tag>美剧</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
     <url>/post/2159656190.html</url>
     <content><![CDATA[<blockquote>
@@ -2952,6 +2953,61 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dayjs时间处理库</title>
+    <url>/post/3076911137.html</url>
+    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
+<blockquote>
+<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
+</blockquote>
+<p>其主要特性如下：</p>
+<ul>
+<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
+<li>不可变数据（Immutable）</li>
+<li>支持链式操作（Chainable）</li>
+<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
+<li>全浏览器兼容</li>
+<li>强大的国际化支持（I18n）</li>
+</ul>
+<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
+<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
+<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
+<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>dayjs</tag>
       </tags>
   </entry>
   <entry>
@@ -3043,61 +3099,6 @@
       </tags>
   </entry>
   <entry>
-    <title>dayjs时间处理库</title>
-    <url>/post/3076911137.html</url>
-    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
-</blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
-<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
-<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>dayjs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用 nrm 管理 npm 源</title>
     <url>/post/316987977.html</url>
     <content><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ npm i nrm -g</span><br></pre></td></tr></table></figure>
@@ -3135,6 +3136,75 @@
         <tag>Node.js</tag>
         <tag>npm</tag>
         <tag>nvm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何优雅的升级 Nginx（热部署）版本</title>
+    <url>/post/1273366459.html</url>
+    <content><![CDATA[<h3 id="1-升级"><a href="#1-升级" class="headerlink" title="1. 升级"></a>1. 升级</h3><h4 id="1-1-下载、编译新版本的-Nginx"><a href="#1-1-下载、编译新版本的-Nginx" class="headerlink" title="1.1. 下载、编译新版本的 Nginx"></a>1.1. 下载、编译新版本的 Nginx</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ wget https://nginx.org/download/nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ tar zxvf nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ <span class="built_in">cd</span> nginx-1.15.6</span><br><span class="line">➜  ~ ./configure --prefix=/usr/<span class="built_in">local</span>/nginx</span><br><span class="line">➜  ~ make</span><br></pre></td></tr></table></figure>
+
+<p>备份原 Nginx 二进制文件，并用新版本替换</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ cp /usr/<span class="built_in">local</span>/nginx/sbin/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx.old</span><br><span class="line">➜  ~ \cp -rf objs/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-切换-Nginx-的新老进程"><a href="#1-2-切换-Nginx-的新老进程" class="headerlink" title="1.2. 切换 Nginx 的新老进程"></a>1.2. 切换 Nginx 的新老进程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin/</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31579  3601  0 12:28 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<p>向正在运行的老版本的 <code>master</code> 进程发送热部署信号</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -USR2 6680</span><br><span class="line"></span><br><span class="line"><span class="comment"># Nginx 将使用新的二进制文件启动新版本的 master 和 worker 进程</span></span><br><span class="line"><span class="comment"># 并将所有用户请求平滑的过渡到新的进程</span></span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31584  3601  0 12:29 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<p>向老版本的 <code>master</code> 进程发送信号，让其优雅关闭所有 <code>worker</code> 进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -WINCH 6680</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31587  3601  0 12:31 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>⚠️ 注意</strong>：老版本的 <code>master</code> 进程不会自动退出，以方便执行版本回退操作。当新版本稳定运行后，再发送信号退出老版本的 <code>master</code> 进程。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="2-版本回退"><a href="#2-版本回退" class="headerlink" title="2. 版本回退"></a>2. 版本回退</h3><ol>
+<li><p>向老版本的 Nginx 进程发送信号，重启其 <code>worker</code> 进程</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -HUP 6680</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31590  3601  0 12:35 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ol start="2">
+<li><p>等老版本的 Nginx <code>worker</code> 进程启动后，向新版本的 Nginx <code>master</code> 进程发送信号，让其退出打开的所有 <code>worker</code> 进程</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -WINCH 31581</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31590  3601  0 12:35 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
+<li><p>最后退出新版本的 <code>master</code> 进程</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -QUIT 31581</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31592  3601  0 12:36 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>配置 Nginx 输入用户名和密码才能访问</title>
+    <url>/post/2256713588.html</url>
+    <content><![CDATA[<blockquote>
+<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
+</blockquote>
+<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
+
+<p>如果没有这个工具，需要先安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="2-生成密钥文件"><a href="#2-生成密钥文件" class="headerlink" title="2. 生成密钥文件"></a>2. 生成密钥文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/.htpasswd 是生成的用户名、密码文件及存放路径。</span></span><br><span class="line"><span class="comment"># 根据自己的情况存放到一个合适位置，后面修改 Nginx 配置文件的时候会用到。</span></span><br><span class="line">$ htpasswd -c /etc/nginx/.htpasswd admin</span><br><span class="line">New password:</span><br><span class="line">Re-type new password:</span><br><span class="line">Adding password <span class="keyword">for</span> user admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看生成的文件内容如下</span></span><br><span class="line">$ cat /etc/nginx/.htpasswd</span><br><span class="line">admin:$apr1$pCPJOCsr<span class="variable">$pyVB5i</span>.K/CuUPHGeWm6XN1</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置-Nginx-并重启"><a href="#3-配置-Nginx-并重启" class="headerlink" title="3. 配置 Nginx 并重启"></a>3. 配置 Nginx 并重启</h3><p>如下修改 Nginx 配置：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  demo.xxx.com; <span class="comment"># 需要控制访问的域名</span></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span>   /data/wwwroot/demo;</span><br><span class="line">    <span class="attribute">index</span>  index.htm index.html;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">auth_basic</span> <span class="string">&quot;Restricted&quot;</span>; <span class="comment"># 弹窗上的提示信息（有些浏览器不显示）</span></span><br><span class="line">    <span class="attribute">auth_basic_user_file</span> /etc/nginx/.htpasswd; <span class="comment"># 生成的用户名、密码文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重启 Nginx，访问 <code>demo.xxx.com</code> 即可看到用户名、密码输入框。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -3675,75 +3745,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何优雅的升级 Nginx（热部署）版本</title>
-    <url>/post/1273366459.html</url>
-    <content><![CDATA[<h3 id="1-升级"><a href="#1-升级" class="headerlink" title="1. 升级"></a>1. 升级</h3><h4 id="1-1-下载、编译新版本的-Nginx"><a href="#1-1-下载、编译新版本的-Nginx" class="headerlink" title="1.1. 下载、编译新版本的 Nginx"></a>1.1. 下载、编译新版本的 Nginx</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ wget https://nginx.org/download/nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ tar zxvf nginx-1.15.6.tar.gz</span><br><span class="line">➜  ~ <span class="built_in">cd</span> nginx-1.15.6</span><br><span class="line">➜  ~ ./configure --prefix=/usr/<span class="built_in">local</span>/nginx</span><br><span class="line">➜  ~ make</span><br></pre></td></tr></table></figure>
-
-<p>备份原 Nginx 二进制文件，并用新版本替换</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ cp /usr/<span class="built_in">local</span>/nginx/sbin/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx.old</span><br><span class="line">➜  ~ \cp -rf objs/nginx /usr/<span class="built_in">local</span>/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-切换-Nginx-的新老进程"><a href="#1-2-切换-Nginx-的新老进程" class="headerlink" title="1.2. 切换 Nginx 的新老进程"></a>1.2. 切换 Nginx 的新老进程</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/nginx/sbin/</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31579  3601  0 12:28 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
-
-<p>向正在运行的老版本的 <code>master</code> 进程发送热部署信号</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -USR2 6680</span><br><span class="line"></span><br><span class="line"><span class="comment"># Nginx 将使用新的二进制文件启动新版本的 master 和 worker 进程</span></span><br><span class="line"><span class="comment"># 并将所有用户请求平滑的过渡到新的进程</span></span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody    6681  6680  0 12:17 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31584  3601  0 12:29 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
-
-<p>向老版本的 <code>master</code> 进程发送信号，让其优雅关闭所有 <code>worker</code> 进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -WINCH 6680</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31587  3601  0 12:31 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>⚠️ 注意</strong>：老版本的 <code>master</code> 进程不会自动退出，以方便执行版本回退操作。当新版本稳定运行后，再发送信号退出老版本的 <code>master</code> 进程。</p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="2-版本回退"><a href="#2-版本回退" class="headerlink" title="2. 版本回退"></a>2. 版本回退</h3><ol>
-<li><p>向老版本的 Nginx 进程发送信号，重启其 <code>worker</code> 进程</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -HUP 6680</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31582 31581  0 12:29 ?        00:00:00 nginx: worker process</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31590  3601  0 12:35 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ol start="2">
-<li><p>等老版本的 Nginx <code>worker</code> 进程启动后，向新版本的 Nginx <code>master</code> 进程发送信号，让其退出打开的所有 <code>worker</code> 进程</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -WINCH 31581</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">root     31581  6680  0 12:29 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31590  3601  0 12:35 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
-<li><p>最后退出新版本的 <code>master</code> 进程</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ <span class="built_in">kill</span> -QUIT 31581</span><br><span class="line">➜  ~ ps -ef | grep nginx</span><br><span class="line">root      6680     1  0 12:17 ?        00:00:00 nginx: master process ./nginx</span><br><span class="line">nobody   31588  6680  0 12:35 ?        00:00:00 nginx: worker process</span><br><span class="line">root     31592  3601  0 12:36 pts/0    00:00:00 grep --color=auto nginx</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>配置 Nginx 输入用户名和密码才能访问</title>
-    <url>/post/2256713588.html</url>
-    <content><![CDATA[<blockquote>
-<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
-</blockquote>
-<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
-
-<p>如果没有这个工具，需要先安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="2-生成密钥文件"><a href="#2-生成密钥文件" class="headerlink" title="2. 生成密钥文件"></a>2. 生成密钥文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/.htpasswd 是生成的用户名、密码文件及存放路径。</span></span><br><span class="line"><span class="comment"># 根据自己的情况存放到一个合适位置，后面修改 Nginx 配置文件的时候会用到。</span></span><br><span class="line">$ htpasswd -c /etc/nginx/.htpasswd admin</span><br><span class="line">New password:</span><br><span class="line">Re-type new password:</span><br><span class="line">Adding password <span class="keyword">for</span> user admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看生成的文件内容如下</span></span><br><span class="line">$ cat /etc/nginx/.htpasswd</span><br><span class="line">admin:$apr1$pCPJOCsr<span class="variable">$pyVB5i</span>.K/CuUPHGeWm6XN1</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-配置-Nginx-并重启"><a href="#3-配置-Nginx-并重启" class="headerlink" title="3. 配置 Nginx 并重启"></a>3. 配置 Nginx 并重启</h3><p>如下修改 Nginx 配置：</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  demo.xxx.com; <span class="comment"># 需要控制访问的域名</span></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span>   /data/wwwroot/demo;</span><br><span class="line">    <span class="attribute">index</span>  index.htm index.html;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">auth_basic</span> <span class="string">&quot;Restricted&quot;</span>; <span class="comment"># 弹窗上的提示信息（有些浏览器不显示）</span></span><br><span class="line">    <span class="attribute">auth_basic_user_file</span> /etc/nginx/.htpasswd; <span class="comment"># 生成的用户名、密码文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>重启 Nginx，访问 <code>demo.xxx.com</code> 即可看到用户名、密码输入框。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Nginx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 下 MySQL 自动备份脚本</title>
     <url>/post/3905919184.html</url>
     <content><![CDATA[<blockquote>
@@ -4207,23 +4208,6 @@
       </tags>
   </entry>
   <entry>
-    <title>shell 中如何输出 n 个连续字符</title>
-    <url>/post/1152072481.html</url>
-    <content><![CDATA[<p>本文以输出 n 个空格为例，新建 <code>demo.sh</code> ，代码如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">IP=<span class="string">&#x27;192.168.1.5&#x27;</span></span><br><span class="line">DESCRIPTION=<span class="string">&#x27;内部服务器5&#x27;</span></span><br><span class="line"><span class="comment"># spacenum=`expr 16 - $&#123;#IP&#125;`</span></span><br><span class="line">spacenum=12</span><br><span class="line"><span class="comment"># seq -s &#x27; &#x27; 5 输出 1 2 3 4 5</span></span><br><span class="line"><span class="comment"># seq -s &#x27;a&#x27; 5 输出 1a2a3a4a5a</span></span><br><span class="line"><span class="comment"># sed &#x27;s/[0-9]//g&#x27; 将 0-9 的数字去掉</span></span><br><span class="line">spaces=$(seq -s <span class="string">&#x27; &#x27;</span> <span class="variable">$spacenum</span> | sed <span class="string">&#x27;s/[0-9]//g&#x27;</span>)</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;$IP<span class="variable">$spaces</span>- <span class="variable">$DESCRIPTION</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行输出如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ ~ sh demo.sh</span><br><span class="line">192.168.1.5            - 内部服务器5</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Shell</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>一键切换brew国内镜像源</title>
     <url>/post/1031793596.html</url>
     <content><![CDATA[<blockquote>
@@ -4255,6 +4239,23 @@
         <tag>macOS</tag>
         <tag>Shell</tag>
         <tag>Bash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>shell 中如何输出 n 个连续字符</title>
+    <url>/post/1152072481.html</url>
+    <content><![CDATA[<p>本文以输出 n 个空格为例，新建 <code>demo.sh</code> ，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">IP=<span class="string">&#x27;192.168.1.5&#x27;</span></span><br><span class="line">DESCRIPTION=<span class="string">&#x27;内部服务器5&#x27;</span></span><br><span class="line"><span class="comment"># spacenum=`expr 16 - $&#123;#IP&#125;`</span></span><br><span class="line">spacenum=12</span><br><span class="line"><span class="comment"># seq -s &#x27; &#x27; 5 输出 1 2 3 4 5</span></span><br><span class="line"><span class="comment"># seq -s &#x27;a&#x27; 5 输出 1a2a3a4a5a</span></span><br><span class="line"><span class="comment"># sed &#x27;s/[0-9]//g&#x27; 将 0-9 的数字去掉</span></span><br><span class="line">spaces=$(seq -s <span class="string">&#x27; &#x27;</span> <span class="variable">$spacenum</span> | sed <span class="string">&#x27;s/[0-9]//g&#x27;</span>)</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;$IP<span class="variable">$spaces</span>- <span class="variable">$DESCRIPTION</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ ~ sh demo.sh</span><br><span class="line">192.168.1.5            - 内部服务器5</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Shell</tag>
       </tags>
   </entry>
   <entry>
@@ -4557,137 +4558,6 @@
       </tags>
   </entry>
   <entry>
-    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
-    <url>/post/438064550.html</url>
-    <content><![CDATA[<blockquote>
-<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
-</blockquote>
-<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
-<p>同时这是一个开源项目，相关地址如下：</p>
-<ul>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
-<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
-</ul>
-<p>下载下来后，按以下步骤操作：</p>
-<ol>
-<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
-<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
-<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
-</ol>
-<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>ipx</tag>
-        <tag>IPXWrapper</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>怀旧游戏《红色警戒2：共和国之辉》</title>
-    <url>/post/3045142832.html</url>
-    <content><![CDATA[<blockquote>
-<p>《红色警戒2：共和国之辉》是即时战略游戏《红色警戒2》的一个非官方游戏模组（MOD），由中国爱好者 <strong>Lord Hero</strong> 制作，将古巴阵营从游戏中剔除，以中国阵营替代，并新增了解放军战士、轻坦克、训练中心等中国阵营特有的兵种及建筑。</p>
-</blockquote>
-<p><img data-src="https://static.sqiang.net/image/post/red_alert_2.jpg?imageView2/2/w/600" alt="《红色警戒2：共和国之辉》"></p>
-<span id="more"></span>
-
-<h3 id="1-游戏信息"><a href="#1-游戏信息" class="headerlink" title="1. 游戏信息"></a>1. 游戏信息</h3><table>
-  <thead>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="right"><b>中文名</b></td>
-      <td>红色警戒2：共和国之辉</td>
-      <td align="right"><b>开发商</b></td>
-      <td>Westwood公司</td>
-    </tr>
-    <tr>
-      <td align="right"><b>原版名称</b></td>
-      <td>Red Alert 2</td>
-      <td align="right"><b>发行日期</b></td>
-      <td>2001年</td>
-    </tr>
-        <tr>
-      <td align="right"><b>游戏类型</b></td>
-      <td>即时战略</td>
-      <td align="right"><b>制作人</b></td>
-      <td>Lord Hero</td>
-    </tr>
-        <tr>
-      <td align="right"><b>内容主题</b></td>
-      <td>战争</td>
-      <td align="right"><b>游戏平台</b></td>
-      <td>PC</td>
-    </tr>
-        <tr>
-      <td align="right"><b>玩家人数</b></td>
-      <td>2 到 8 人</td>
-      <td align="right"><b>游戏画面</b></td>
-      <td>2D</td>
-    </tr>
-  </tbody>
-  <tfoot>
-  </tfoot>
-</table>
-
-<h3 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h3><ul>
-<li><a href="https://pan.baidu.com/s/1mpFcWFnfJjjBLcf8UkAnMw">百度网盘</a> 提取码: <code>2uy4</code></li>
-</ul>
-<h3 id="3-安装说明"><a href="#3-安装说明" class="headerlink" title="3. 安装说明"></a>3. 安装说明</h3><h4 id="3-1-基本设置"><a href="#3-1-基本设置" class="headerlink" title="3.1. 基本设置"></a>3.1. 基本设置</h4><blockquote>
-<p>提示：操作之前，建议修改系统设置，显示文件扩展名。</p>
-</blockquote>
-<ol>
-<li><p>解压下载的文件到任意位置，包含 <code>GHra2.rar</code>、<code>ddraw.zip</code>、<code>ipxwrapper-0.6.1.zip</code> 三个压缩包。</p>
-</li>
-<li><p>解压主程序文件 <code>GHra2.rar</code> 到系统的一个目录下，<strong>注意不要使用包含中文的路径</strong>。比如，我的最终目录为 <code>C:\game\GHra2</code></p>
-</li>
-<li><p>解决游戏卡顿问题</p>
-<ul>
-<li>解压 <code>ddraw.zip</code> 得到 <code>ddraw.dll</code>，拷贝到游戏根目录下；</li>
-<li>找到游戏根目录下的 <code>Ra2.ini</code> 文件，右键选择编辑打开，然后把 <code>[Video]</code> 部分全部替换为以下内容：</li>
-</ul>
- <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Video]</span></span><br><span class="line"><span class="attr">VideoBackBuffer</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">AllowHiResModes</span>=<span class="literal">yes</span></span><br><span class="line"><span class="attr">AllowVRAMSidebar</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">ScreenWidth</span>=<span class="number">1024</span></span><br><span class="line"><span class="attr">ScreenHeight</span>=<span class="number">768</span></span><br><span class="line"><span class="attr">StretchMovies</span>=<span class="literal">no</span></span><br></pre></td></tr></table></figure></li>
-<li><p>兼容性设置（这里以 <code>Windows 7</code> 系统为例）</p>
-<p> 在 <code>ra2.exe</code> 文件上右键单击，依次选择「属性」 &gt; 「兼容性」：</p>
-<ul>
-<li>勾选<strong>以兼容模式运行这个程序</strong>，并选择<strong>Windows XP（Service Pack 3）</strong>；</li>
-<li>勾选<strong>以管理员身份运行此程序</strong>。</li>
-</ul>
-</li>
-<li><p>双击 <code>ra2.exe</code> 启动游戏。因为绿色免安装版，如果启动游戏没反应，可重试两次；如果还是不行，则先双击运行游戏根目录下的 <code>RegSetup.exe</code> 文件，并根据提示完成安装以修复注册表，然后再打开游戏。</p>
-</li>
-</ol>
-<h4 id="3-2-局域网对战设置"><a href="#3-2-局域网对战设置" class="headerlink" title="3.2. 局域网对战设置"></a>3.2. 局域网对战设置</h4><p>由于该游戏在局域网对战时使用的 <code>IPX</code> 网络协议在高版本系统中已经被抛弃，所以我们需要使用一个工具 <code>IPXWrapper</code> 进行模拟。</p>
-<ol>
-<li><p>解压 <code>ipxwrapper-0.6.1.zip</code> 到任意目录下，并把所有文件拷贝到游戏根目录下，具体安装说明详见 <a href="/post/438064550.html">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题
-</a>。</p>
-</li>
-<li><p>启动游戏后，依次选择菜单「选项」 &gt; 「网络」，并做如下修改：</p>
-<ul>
-<li><strong>网卡</strong>：选择连接网络使用的网卡（注意，下拉框里显示的是网卡的 mac 地址）；</li>
-<li><strong>Socket 号码</strong>：设置为 <code>0</code></li>
-<li><strong>目标网络</strong>：设置为 <code>00.00.00.00</code></li>
-</ul>
-<p> <strong>注意</strong>：此处的设置，所有准备联网对战的机器需要<strong>保持一致</strong>，否则也会找不到。</p>
-</li>
-<li><p>返回主菜单，单击「网络」，修改你自己的游戏玩家名称，最后创建或参与游戏。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>红色警戒2</tag>
-        <tag>共和国之辉</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>吴军博士人生进阶三部曲：《态度》</title>
     <url>/post/1479506599.html</url>
     <content><![CDATA[<ul>
@@ -4829,6 +4699,138 @@
       <tags>
         <tag>学习笔记</tag>
         <tag>读书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
+    <url>/post/438064550.html</url>
+    <content><![CDATA[<blockquote>
+<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
+</blockquote>
+<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
+<p>同时这是一个开源项目，相关地址如下：</p>
+<ul>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
+<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
+</ul>
+<p>下载下来后，按以下步骤操作：</p>
+<ol>
+<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
+<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
+<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
+</ol>
+<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>ipx</tag>
+        <tag>IPXWrapper</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怀旧游戏《红色警戒2：共和国之辉》</title>
+    <url>/post/3045142832.html</url>
+    <content><![CDATA[<blockquote>
+<p>《红色警戒2：共和国之辉》是即时战略游戏《红色警戒2》的一个非官方游戏模组（MOD），由中国爱好者 <strong>Lord Hero</strong> 制作，将古巴阵营从游戏中剔除，以中国阵营替代，并新增了解放军战士、轻坦克、训练中心等中国阵营特有的兵种及建筑。</p>
+</blockquote>
+<p><img data-src="https://static.sqiang.net/image/post/red_alert_2.jpg?imageView2/2/w/600" alt="《红色警戒2：共和国之辉》"></p>
+<span id="more"></span>
+
+<h3 id="1-游戏信息"><a href="#1-游戏信息" class="headerlink" title="1. 游戏信息"></a>1. 游戏信息</h3><table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="right"><b>中文名</b></td>
+      <td>红色警戒2：共和国之辉</td>
+      <td align="right"><b>开发商</b></td>
+      <td>Westwood公司</td>
+    </tr>
+    <tr>
+      <td align="right"><b>原版名称</b></td>
+      <td>Red Alert 2</td>
+      <td align="right"><b>发行日期</b></td>
+      <td>2001年</td>
+    </tr>
+        <tr>
+      <td align="right"><b>游戏类型</b></td>
+      <td>即时战略</td>
+      <td align="right"><b>制作人</b></td>
+      <td>Lord Hero</td>
+    </tr>
+        <tr>
+      <td align="right"><b>内容主题</b></td>
+      <td>战争</td>
+      <td align="right"><b>游戏平台</b></td>
+      <td>PC</td>
+    </tr>
+        <tr>
+      <td align="right"><b>玩家人数</b></td>
+      <td>2 到 8 人</td>
+      <td align="right"><b>游戏画面</b></td>
+      <td>2D</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<h3 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h3><ul>
+<li><a href="https://pan.baidu.com/s/1YWrcQ8qrethEGhV24Z7rGQ">百度网盘</a> 提取码: <code>xrqt</code></li>
+<li>阿里云网盘(暂不支持)</li>
+</ul>
+<h3 id="3-安装说明"><a href="#3-安装说明" class="headerlink" title="3. 安装说明"></a>3. 安装说明</h3><h4 id="3-1-基本设置"><a href="#3-1-基本设置" class="headerlink" title="3.1. 基本设置"></a>3.1. 基本设置</h4><blockquote>
+<p>提示：操作之前，建议修改系统设置，显示文件扩展名。</p>
+</blockquote>
+<ol>
+<li><p>解压下载的文件到任意位置，包含 <code>GHra2.rar</code>、<code>ddraw.zip</code>、<code>ipxwrapper-0.6.1.zip</code> 三个压缩包。</p>
+</li>
+<li><p>解压主程序文件 <code>GHra2.rar</code> 到系统的一个目录下，<strong>注意不要使用包含中文的路径</strong>。比如，我的最终目录为 <code>C:\game\GHra2</code></p>
+</li>
+<li><p>解决游戏卡顿问题</p>
+<ul>
+<li>解压 <code>ddraw.zip</code> 得到 <code>ddraw.dll</code>，拷贝到游戏根目录下；</li>
+<li>找到游戏根目录下的 <code>Ra2.ini</code> 文件，右键选择编辑打开，然后把 <code>[Video]</code> 部分全部替换为以下内容：</li>
+</ul>
+ <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Video]</span></span><br><span class="line"><span class="attr">VideoBackBuffer</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">AllowHiResModes</span>=<span class="literal">yes</span></span><br><span class="line"><span class="attr">AllowVRAMSidebar</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">ScreenWidth</span>=<span class="number">1024</span></span><br><span class="line"><span class="attr">ScreenHeight</span>=<span class="number">768</span></span><br><span class="line"><span class="attr">StretchMovies</span>=<span class="literal">no</span></span><br></pre></td></tr></table></figure></li>
+<li><p>兼容性设置（这里以 <code>Windows 7</code> 系统为例）</p>
+<p> 在 <code>ra2.exe</code> 文件上右键单击，依次选择「属性」 &gt; 「兼容性」：</p>
+<ul>
+<li>勾选<strong>以兼容模式运行这个程序</strong>，并选择<strong>Windows XP（Service Pack 3）</strong>；</li>
+<li>勾选<strong>以管理员身份运行此程序</strong>。</li>
+</ul>
+</li>
+<li><p>双击 <code>ra2.exe</code> 启动游戏。因为绿色免安装版，如果启动游戏没反应，可重试两次；如果还是不行，则先双击运行游戏根目录下的 <code>RegSetup.exe</code> 文件，并根据提示完成安装以修复注册表，然后再打开游戏。</p>
+</li>
+</ol>
+<h4 id="3-2-局域网对战设置"><a href="#3-2-局域网对战设置" class="headerlink" title="3.2. 局域网对战设置"></a>3.2. 局域网对战设置</h4><p>由于该游戏在局域网对战时使用的 <code>IPX</code> 网络协议在高版本系统中已经被抛弃，所以我们需要使用一个工具 <code>IPXWrapper</code> 进行模拟。</p>
+<ol>
+<li><p>解压 <code>ipxwrapper-0.6.1.zip</code> 到任意目录下，并把所有文件拷贝到游戏根目录下，具体安装说明详见 <a href="/post/438064550.html">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题
+</a>。</p>
+</li>
+<li><p>启动游戏后，依次选择菜单「选项」 &gt; 「网络」，并做如下修改：</p>
+<ul>
+<li><strong>网卡</strong>：选择连接网络使用的网卡（注意，下拉框里显示的是网卡的 mac 地址）；</li>
+<li><strong>Socket 号码</strong>：设置为 <code>0</code></li>
+<li><strong>目标网络</strong>：设置为 <code>00.00.00.00</code></li>
+</ul>
+<p> <strong>注意</strong>：此处的设置，所有准备联网对战的机器需要<strong>保持一致</strong>，否则也会找不到。</p>
+</li>
+<li><p>返回主菜单，单击「网络」，修改你自己的游戏玩家名称，最后创建或参与游戏。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>红色警戒2</tag>
+        <tag>共和国之辉</tag>
       </tags>
   </entry>
   <entry>
@@ -6221,44 +6223,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis 与 Memcache 的区别</title>
-    <url>/post/3127178255.html</url>
-    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
-<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
-<li>功能简单，使用内存存储数据</li>
-<li>限制<ul>
-<li>key 小于 250B</li>
-<li>value 小于 1M</li>
-<li>key 最大失效时间小于 30 天</li>
-<li>只支持 K-V 结构，不支持持久化和主从同步</li>
-</ul>
-</li>
-</ul>
-<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
-<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
-<li>异步非阻塞I/O（多路复用）<ul>
-<li>多路：多个网络连接</li>
-<li>复用：复用同一个线程</li>
-</ul>
-</li>
-<li>避免多线程上下文切换的代价</li>
-<li>避免多线程造成各种锁的问题</li>
-</ul>
-</li>
-<li>数据在内存存储，支持持久化</li>
-<li>支持更多的数据类型，list、hash、set等</li>
-<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis 的基本特性和 5 个常用数据结构</title>
     <url>/post/2119054721.html</url>
     <content><![CDATA[<h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
@@ -6402,6 +6366,44 @@
 
 <p>根据范围移除元素</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定排名范围内的元素</span></span><br><span class="line">&gt; zremrangebyrank key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定分数范围内的元素</span></span><br><span class="line">&gt; zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 与 Memcache 的区别</title>
+    <url>/post/3127178255.html</url>
+    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
+<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
+<li>功能简单，使用内存存储数据</li>
+<li>限制<ul>
+<li>key 小于 250B</li>
+<li>value 小于 1M</li>
+<li>key 最大失效时间小于 30 天</li>
+<li>只支持 K-V 结构，不支持持久化和主从同步</li>
+</ul>
+</li>
+</ul>
+<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
+<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
+<li>异步非阻塞I/O（多路复用）<ul>
+<li>多路：多个网络连接</li>
+<li>复用：复用同一个线程</li>
+</ul>
+</li>
+<li>避免多线程上下文切换的代价</li>
+<li>避免多线程造成各种锁的问题</li>
+</ul>
+</li>
+<li>数据在内存存储，支持持久化</li>
+<li>支持更多的数据类型，list、hash、set等</li>
+<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
+</ul>
 ]]></content>
       <categories>
         <category>数据库</category>
