@@ -2872,9 +2872,9 @@
     <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
     <url>/post/2159656190.html</url>
     <content><![CDATA[<blockquote>
-<p>当前最新稳定版本：<strong>Version 94.0.4606.61 (Official Build)</strong></p>
+<p>当前最新稳定版本：<strong>Version 95.0.4638.69 (Official Build)</strong></p>
 </blockquote>
-<h3 id="谷歌官网直接下载地址"><a href="#谷歌官网直接下载地址" class="headerlink" title="谷歌官网直接下载地址"></a>谷歌官网直接下载地址</h3><p>⚠️ 需要科学上网</p>
+<h3 id="谷歌官网直接下载地址"><a href="#谷歌官网直接下载地址" class="headerlink" title="谷歌官网直接下载地址"></a>谷歌官网直接下载地址</h3><p><strong>注意</strong>：需要科学上网！无法科学上网的，请使用后面的网盘备份地址。</p>
 <ul>
 <li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dstable-arch_x86-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup.exe">Windows 32位</a></li>
 <li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup64.exe">Windows 64位</a></li>
@@ -2917,6 +2917,42 @@
       <tags>
         <tag>系统和软件</tag>
         <tag>数字签名</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript 中 undefined 与 null 的用法区别</title>
+    <url>/post/2719612904.html</url>
+    <content><![CDATA[<p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
+<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
+<p>二者的主要用法区别如下：</p>
+<ul>
+<li><code>undefined</code><ul>
+<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
+<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
+<li>函数没有返回值时，默认返回 <code>undefined</code></li>
+</ul>
+</li>
+<li><code>null</code><ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
+<ol>
+<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
+<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据类型</tag>
       </tags>
   </entry>
   <entry>
@@ -2972,42 +3008,6 @@
       <tags>
         <tag>JavaScript</tag>
         <tag>dayjs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript 中 undefined 与 null 的用法区别</title>
-    <url>/post/2719612904.html</url>
-    <content><![CDATA[<p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
-<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
-<p>二者的主要用法区别如下：</p>
-<ul>
-<li><code>undefined</code><ul>
-<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
-<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
-<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
-<li>函数没有返回值时，默认返回 <code>undefined</code></li>
-</ul>
-</li>
-<li><code>null</code><ul>
-<li>作为函数的参数，表示该函数的参数不是对象。</li>
-<li>作为对象原型链的终点。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
-<ol>
-<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
-<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
-</ol>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>数据类型</tag>
       </tags>
   </entry>
   <entry>
@@ -3780,45 +3780,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Shell文本处理三剑客之grep</title>
-    <url>/post/990120436.html</url>
-    <content><![CDATA[<blockquote>
-<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
-</blockquote>
-<p>语法：</p>
-<ul>
-<li><code>grep [option] [pattern] [file1,file2...]</code></li>
-<li><code>command | grep [option] [pattern]</code></li>
-</ul>
-<span id="more"></span>
-
-<p>参数（option）：</p>
-<ul>
-<li><code>-v</code> 不显示匹配信息</li>
-<li><code>-i</code> 搜索时忽略大小写</li>
-<li><code>-n</code> 显示行号</li>
-<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
-<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
-<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
-<li>其它<ul>
-<li><code>-c</code> 成功匹配数量</li>
-<li><code>-w</code> 匹配整个单词</li>
-<li><code>-x</code> 匹配整行</li>
-<li><code>-l</code> 只列出匹配的文件名</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Shell</tag>
-        <tag>grep</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shell文本处理三剑客之awk</title>
     <url>/post/4211206534.html</url>
     <content><![CDATA[<blockquote>
@@ -4118,6 +4079,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Shell文本处理三剑客之grep</title>
+    <url>/post/990120436.html</url>
+    <content><![CDATA[<blockquote>
+<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
+</blockquote>
+<p>语法：</p>
+<ul>
+<li><code>grep [option] [pattern] [file1,file2...]</code></li>
+<li><code>command | grep [option] [pattern]</code></li>
+</ul>
+<span id="more"></span>
+
+<p>参数（option）：</p>
+<ul>
+<li><code>-v</code> 不显示匹配信息</li>
+<li><code>-i</code> 搜索时忽略大小写</li>
+<li><code>-n</code> 显示行号</li>
+<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
+<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
+<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
+<li>其它<ul>
+<li><code>-c</code> 成功匹配数量</li>
+<li><code>-w</code> 匹配整个单词</li>
+<li><code>-x</code> 匹配整行</li>
+<li><code>-l</code> 只列出匹配的文件名</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Shell</tag>
+        <tag>grep</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Shell文本处理三剑客之sed</title>
     <url>/post/216593370.html</url>
     <content><![CDATA[<blockquote>
@@ -4286,32 +4286,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 下如何修改 ssh 登录欢迎信息</title>
-    <url>/post/980934396.html</url>
-    <content><![CDATA[<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><center>
-<img data-src="https://static.sqiang.net/image/post/linux_motd.png" width="90%">
-</center>
-
-<span id="more"></span>
-
-<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
-<li><p>新建一个sh脚本文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim motd.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>在文件中添加如下内容（可根据需要自行修改 <code>echo</code> 部分的内容）</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">define the filename to use as output</span></span><br><span class="line">motd=&quot;/etc/motd&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Collect useful information about your system</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$USER</span> is automatically defined</span></span><br><span class="line">HOSTNAME=`uname -n`</span><br><span class="line">KERNEL=`uname -r`</span><br><span class="line">CPU=`uname -p`</span><br><span class="line">ARCH=`uname -m`</span><br><span class="line"><span class="meta">#</span><span class="bash"> The different colours as variables</span></span><br><span class="line">W=&quot;\033[01;37m&quot;</span><br><span class="line">B=&quot;\033[01;34m&quot;</span><br><span class="line">R=&quot;\033[01;31m&quot;</span><br><span class="line">X=&quot;\033[00;37m&quot;</span><br><span class="line">G=&quot;\033[01;32m&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> clear &gt; <span class="variable">$motd</span> <span class="comment"># to clear the screen when showing up</span></span></span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;        Welcome to $B Your-Host-Name $X server.          &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;  $G The world is not you can do, but you should.      $X &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$B&quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;         \   ,__,                                        &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;          \  (oo)____                                    &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;             (__)    )\                                  &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                ||--|| *                                 &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$X&quot; &gt;&gt; $motd</span><br></pre></td></tr></table></figure></li>
-<li><p>以root用户执行该脚本</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./motd.sh </span><br><span class="line">或 </span><br><span class="line">$ sh motd.sh</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>motd</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于 shell 使用 expect 实现 SSH 自动登录远程服务器 </title>
     <url>/post/3553742260.html</url>
     <content><![CDATA[<h3 id="1-效果预览"><a href="#1-效果预览" class="headerlink" title="1. 效果预览"></a>1. 效果预览</h3><center>
@@ -4370,6 +4344,32 @@
         <tag>Linux</tag>
         <tag>Shell</tag>
         <tag>expect</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 下如何修改 ssh 登录欢迎信息</title>
+    <url>/post/980934396.html</url>
+    <content><![CDATA[<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><center>
+<img data-src="https://static.sqiang.net/image/post/linux_motd.png" width="90%">
+</center>
+
+<span id="more"></span>
+
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p>新建一个sh脚本文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim motd.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>在文件中添加如下内容（可根据需要自行修改 <code>echo</code> 部分的内容）</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">define the filename to use as output</span></span><br><span class="line">motd=&quot;/etc/motd&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Collect useful information about your system</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$USER</span> is automatically defined</span></span><br><span class="line">HOSTNAME=`uname -n`</span><br><span class="line">KERNEL=`uname -r`</span><br><span class="line">CPU=`uname -p`</span><br><span class="line">ARCH=`uname -m`</span><br><span class="line"><span class="meta">#</span><span class="bash"> The different colours as variables</span></span><br><span class="line">W=&quot;\033[01;37m&quot;</span><br><span class="line">B=&quot;\033[01;34m&quot;</span><br><span class="line">R=&quot;\033[01;31m&quot;</span><br><span class="line">X=&quot;\033[00;37m&quot;</span><br><span class="line">G=&quot;\033[01;32m&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> clear &gt; <span class="variable">$motd</span> <span class="comment"># to clear the screen when showing up</span></span></span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;        Welcome to $B Your-Host-Name $X server.          &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;  $G The world is not you can do, but you should.      $X &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$B&quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;         \   ,__,                                        &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;          \  (oo)____                                    &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;             (__)    )\                                  &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                ||--|| *                                 &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$X&quot; &gt;&gt; $motd</span><br></pre></td></tr></table></figure></li>
+<li><p>以root用户执行该脚本</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./motd.sh </span><br><span class="line">或 </span><br><span class="line">$ sh motd.sh</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>motd</tag>
       </tags>
   </entry>
   <entry>
@@ -5396,197 +5396,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Redis 与 Memcache 的区别</title>
-    <url>/post/3127178255.html</url>
-    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
-<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
-<li>功能简单，使用内存存储数据</li>
-<li>限制<ul>
-<li>key 小于 250B</li>
-<li>value 小于 1M</li>
-<li>key 最大失效时间小于 30 天</li>
-<li>只支持 K-V 结构，不支持持久化和主从同步</li>
-</ul>
-</li>
-</ul>
-<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
-<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
-<li>异步非阻塞I/O（多路复用）<ul>
-<li>多路：多个网络连接</li>
-<li>复用：复用同一个线程</li>
-</ul>
-</li>
-<li>避免多线程上下文切换的代价</li>
-<li>避免多线程造成各种锁的问题</li>
-</ul>
-</li>
-<li>数据在内存存储，支持持久化</li>
-<li>支持更多的数据类型，list、hash、set等</li>
-<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis 的基本特性和 5 个常用数据结构</title>
-    <url>/post/2119054721.html</url>
-    <content><![CDATA[<h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
-<li><p>速度快</p>
-<ul>
-<li>基于 C 语言开发，源码短小精悍</li>
-<li>数据存在内存中</li>
-<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
-</ul>
-</li>
-<li><p>支持数据持久化，异步保存到磁盘</p>
-</li>
-<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
-</li>
-<li><p>多语言客户端</p>
-</li>
-<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
-</li>
-<li><p>简单</p>
-<ul>
-<li>核心代码量小</li>
-<li>不依赖外部库</li>
-<li>单线程模型</li>
-</ul>
-</li>
-<li><p>支持主从复制</p>
-</li>
-<li><p>原生高可用和分布式解决方案</p>
-<ul>
-<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
-<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
-</ul>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-常用数据结构"><a href="#2-常用数据结构" class="headerlink" title="2. 常用数据结构"></a>2. 常用数据结构</h3><p><img data-src="https://static.sqiang.net/image/post/redis-data-structure-types.jpeg"></p>
-<p>下面是一些通用的 API（不依赖具体数据类型）：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按照规则遍历所有 key</span></span><br><span class="line"><span class="comment"># ⚠️ 注意：生产环境禁用，可以用 scan 替代，或只在从节点执行</span></span><br><span class="line">&gt; keys [patern]</span><br><span class="line">&gt; scan cursor [MATCH pattern] [COUNT count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 key 的数据类型</span></span><br><span class="line">&gt; <span class="built_in">type</span> key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 key 是否存在</span></span><br><span class="line">&gt; exists key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">&gt; del key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 key 的数量</span></span><br><span class="line"><span class="comment"># 时间复杂度 O(1)，通过内部计数器使用</span></span><br><span class="line">&gt; dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置过期时间（单位：秒），到期后自动删除</span></span><br><span class="line">&gt; expire key seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 key 的剩余过期时间</span></span><br><span class="line"><span class="comment"># &gt; 0 剩余时间</span></span><br><span class="line"><span class="comment"># -1 key 存在，但没有设置过期时间</span></span><br><span class="line"><span class="comment"># -2 key 过期后被自动删除</span></span><br><span class="line">&gt; ttl key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除 key 的过期时间</span></span><br><span class="line">&gt; persist key</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-1-sting-字符串"><a href="#2-1-sting-字符串" class="headerlink" title="2.1. sting 字符串"></a>2.1. sting 字符串</h4><h5 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1. 结构"></a>2.1.1. 结构</h5><ul>
-<li>key</li>
-<li>value</li>
-</ul>
-<h5 id="2-1-2-场景"><a href="#2-1-2-场景" class="headerlink" title="2.1.2. 场景"></a>2.1.2. 场景</h5><ul>
-<li>缓存</li>
-<li>计数器</li>
-<li>分布式锁</li>
-<li>……</li>
-</ul>
-<h5 id="2-1-3-专有-API"><a href="#2-1-3-专有-API" class="headerlink" title="2.1.3. 专有 API"></a>2.1.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># key 不管是否存在，都设置：存在则更新，不存在则新增</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; setnx key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 存在才设置 &lt;==&gt; 更新</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value xx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定 key 的 value</span></span><br><span class="line">&gt; get key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量设置</span></span><br><span class="line">&gt; mset key value [key value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量获取</span></span><br><span class="line">&gt; mget key [ key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字符串长度</span></span><br><span class="line">&gt; strlen key</span><br></pre></td></tr></table></figure>
-
-<p>子串</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加子串</span></span><br><span class="line"><span class="comment"># 返回追加成功的字符串长度</span></span><br><span class="line">&gt; append key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取子串</span></span><br><span class="line">&gt; getrange key start end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 覆盖子串</span></span><br><span class="line">&gt; setrange key offset value</span><br></pre></td></tr></table></figure>
-
-<p>计数器</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 递增</span></span><br><span class="line"><span class="comment"># 不能超过 Long.Max 9223372036854775807</span></span><br><span class="line">&gt; incr key</span><br><span class="line">&gt; incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递减</span></span><br><span class="line"><span class="comment"># 不能低于 Long.Min -9223372036854775808</span></span><br><span class="line">&gt; decr key</span><br><span class="line">&gt; decrby key decrement</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-hash-哈希"><a href="#2-2-hash-哈希" class="headerlink" title="2.2. hash 哈希"></a>2.2. hash 哈希</h4><h5 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1. 结构"></a>2.2.1. 结构</h5><ul>
-<li><p>key</p>
-</li>
-<li><p>value</p>
-<ul>
-<li><p>field 不能相同</p>
-</li>
-<li><p>value 可以相同</p>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="2-2-3-专有-API"><a href="#2-2-3-专有-API" class="headerlink" title="2.2.3. 专有 API"></a>2.2.3. 专有 API</h5><p>基本操作</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 为 key 增加一个键值对</span></span><br><span class="line"><span class="comment"># field 存在则修改，不存在，则新增</span></span><br><span class="line">&gt; hset key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># field 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; hsetnx key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 key 增加多个键值对</span></span><br><span class="line">&gt; hmset key field value [field value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 key 中指定的键</span></span><br><span class="line">&gt; hdel key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递增</span></span><br><span class="line">&gt; hincrby key field increment</span><br><span class="line">&gt; hincrbyfloat key field increment</span><br></pre></td></tr></table></figure>
-
-<p>查询</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取 key 的一个键的值</span></span><br><span class="line">&gt; hget key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的多个键的值</span></span><br><span class="line">&gt; hmget key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的所有 field 和 value</span></span><br><span class="line">&gt; hgetall key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 field</span></span><br><span class="line">&gt; hkeys key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 value</span></span><br><span class="line">&gt; hvals key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中的一个 field 是否存在</span></span><br><span class="line">&gt; hexists key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中所有 field 的数量</span></span><br><span class="line">&gt; hlen key</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-list-列表"><a href="#2-3-list-列表" class="headerlink" title="2.3.  list 列表"></a>2.3.  list 列表</h4><h5 id="2-3-1-特点"><a href="#2-3-1-特点" class="headerlink" title="2.3.1. 特点"></a>2.3.1. 特点</h5><ul>
-<li>有序</li>
-<li>可重复</li>
-<li>左右两端插入、弹出</li>
-</ul>
-<h5 id="2-3-2-场景"><a href="#2-3-2-场景" class="headerlink" title="2.3.2. 场景"></a>2.3.2. 场景</h5><ul>
-<li><p>Stack 栈 <code>lpush</code> + <code>lpop</code></p>
-</li>
-<li><p>Queue 队列 <code>lpush</code> + <code>rpop</code></p>
-</li>
-<li><p>Capped Collection 有限队列集合（固定数量） <code>lpush</code> + <code>ltrim</code></p>
-</li>
-<li><p>Message Queue 消息队列 <code>lpush</code> + <code>brpop</code></p>
-</li>
-</ul>
-<h5 id="2-3-3-专有-API"><a href="#2-3-3-专有-API" class="headerlink" title="2.3.3. 专有 API"></a>2.3.3. 专有 API</h5><p>增（<strong>入</strong>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边添加</span></span><br><span class="line">&gt; lpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边添加</span></span><br><span class="line">&gt; rpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在列表元素 pivot 的前面或后面插入一个新元素</span></span><br><span class="line">&gt; linsert key BEFORE|AFTER pivot newValue</span><br></pre></td></tr></table></figure>
-
-<p>删（<strong>出</strong>）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边弹出一个 value</span></span><br><span class="line">&gt; lpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边弹出一个 value</span></span><br><span class="line">&gt; rpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有 value 相等的项</span></span><br><span class="line">&gt; lrem key count value</span><br><span class="line"><span class="comment"># count = 0 删除所有 value 相等的项</span></span><br><span class="line"><span class="comment"># count &gt; 0 从左到右，删除最多 count 个 value 相等的项</span></span><br><span class="line"><span class="comment"># count &lt; 0 从右到左，删除最多 Math.abs(count) 个 value 相等的项</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照索引范围修剪列表</span></span><br><span class="line">&gt; ltrim key start stop</span><br></pre></td></tr></table></figure>
-
-<p>改</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改指定下标的元素</span></span><br><span class="line">&gt; lset key index newValue</span><br></pre></td></tr></table></figure>
-
-<p>查</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围的所有项（包含 stop 的项）</span></span><br><span class="line">&gt; lrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询一个 key 下的所有项</span></span><br><span class="line">&gt; lrange key 0 -1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定下标的项</span></span><br><span class="line">&gt; lindex key index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取列表长度</span></span><br><span class="line">&gt; llen key</span><br></pre></td></tr></table></figure>
-
-<p>其它</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] timeout</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-set-集合"><a href="#2-4-set-集合" class="headerlink" title="2.4. set 集合"></a>2.4. set 集合</h4><h5 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1. 特点"></a>2.4.1. 特点</h5><ul>
-<li>无序</li>
-<li>不可以重复</li>
-<li>集合之间的操作</li>
-</ul>
-<h5 id="2-4-2-场景"><a href="#2-4-2-场景" class="headerlink" title="2.4.2. 场景"></a>2.4.2. 场景</h5><ul>
-<li><p>Tagging 标签化 <code>sadd</code></p>
-</li>
-<li><p>Random Item 随机元素 <code>srandmember</code> 或 <code>spop</code></p>
-</li>
-<li><p>Social Graph 社交图谱 <code>sadd</code> + <code>sinter</code></p>
-</li>
-</ul>
-<h5 id="2-4-3-专有-API"><a href="#2-4-3-专有-API" class="headerlink" title="2.4.3. 专有 API"></a>2.4.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素到集合中（重复的元素会被忽略）</span></span><br><span class="line">&gt; sadd key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中删除元素</span></span><br><span class="line">&gt; srem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算集合中元素个数</span></span><br><span class="line">&gt; scard key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查集合中是否存在指定的元素</span></span><br><span class="line">&gt; sismember key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中随机取出 count 个元素</span></span><br><span class="line"><span class="comment"># 不会破坏集合</span></span><br><span class="line">&gt; srandmember key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment">#从集合中随机弹出 count 个元素</span></span><br><span class="line"><span class="comment">#会破坏集合（元素的顺序）</span></span><br><span class="line">&gt; spop key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出集合中所有元素</span></span><br><span class="line">&gt; smembers key</span><br><span class="line"><span class="comment"># 注意：1. 获取到的元素是无序的；2. 元素较多时会阻塞其它操作</span></span><br><span class="line"><span class="comment"># 替代：sscan ?</span></span><br></pre></td></tr></table></figure>
-
-<p>集合间</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取一个集合与其它集合的差集</span></span><br><span class="line">&gt; sdiff key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的交集</span></span><br><span class="line">&gt; sinter key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的并集</span></span><br><span class="line">&gt; sunion key [key ...]</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-zset-有序集合"><a href="#2-5-zset-有序集合" class="headerlink" title="2.5. zset 有序集合"></a>2.5. zset 有序集合</h4><h5 id="2-5-1-特点"><a href="#2-5-1-特点" class="headerlink" title="2.5.1. 特点"></a>2.5.1. 特点</h5><ul>
-<li>有序</li>
-<li>不可以重复</li>
-<li>元素多一个 score 用于排序</li>
-</ul>
-<h5 id="2-5-2-场景"><a href="#2-5-2-场景" class="headerlink" title="2.5.2. 场景"></a>2.5.2. 场景</h5><ul>
-<li>排行榜</li>
-</ul>
-<h5 id="2-5-3-专有-API"><a href="#2-5-3-专有-API" class="headerlink" title="2.5.3. 专有 API"></a>2.5.3. 专有 API</h5><p>基本操作</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line"><span class="comment"># score 可重复，member 不可以重复</span></span><br><span class="line">&gt; zadd key score member [score member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">&gt; zrem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加或减少元素的分数（score）</span></span><br><span class="line"><span class="comment"># increment 传负数表示减少</span></span><br><span class="line">&gt; zincrby key increment member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回元素总个数</span></span><br><span class="line">&gt; zcard key</span><br></pre></td></tr></table></figure>
-
-<p>排名和分数</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 返回元素分数（score）</span></span><br><span class="line">&gt; zscore key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的升序（score 从小到大）排名</span></span><br><span class="line">&gt; zrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的降序（score 从大到小）排名</span></span><br><span class="line">&gt; zrevrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定分数间的成员数量</span></span><br><span class="line">&gt; zcount</span><br></pre></td></tr></table></figure>
-
-<p>根据范围获取元素</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围内的升序（score 从小到大）元素[分数]</span></span><br><span class="line"><span class="comment"># star 0 第一条；stop -1 最后一条</span></span><br><span class="line">zrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定索引范围内的降序（score 从大到小）元素[分数]</span></span><br><span class="line">zrevrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的升序元素[分数]</span></span><br><span class="line">&gt; zrangebyscore key min max [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的降序元素[分数]</span></span><br><span class="line">&gt; zrevrangebyscore key max min [withscores]</span><br></pre></td></tr></table></figure>
-
-<p>根据范围移除元素</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定排名范围内的元素</span></span><br><span class="line">&gt; zremrangebyrank key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定分数范围内的元素</span></span><br><span class="line">&gt; zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL int(M) 中 M 的作用</title>
     <url>/post/1100143026.html</url>
     <content><![CDATA[<p>在数据库设计时，我们经常会这样设置 <strong>int(M)</strong></p>
@@ -6411,6 +6220,197 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 与 Memcache 的区别</title>
+    <url>/post/3127178255.html</url>
+    <content><![CDATA[<h4 id="MemCache"><a href="#MemCache" class="headerlink" title="MemCache"></a>MemCache</h4><ul>
+<li>多线程、异步I/O，可以充分利用多核 CPU 的优势，性能优秀</li>
+<li>功能简单，使用内存存储数据</li>
+<li>限制<ul>
+<li>key 小于 250B</li>
+<li>value 小于 1M</li>
+<li>key 最大失效时间小于 30 天</li>
+<li>只支持 K-V 结构，不支持持久化和主从同步</li>
+</ul>
+</li>
+</ul>
+<h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><ul>
+<li>单线程（可以借助多进程，以更好的发挥单机性能）<ul>
+<li>异步非阻塞I/O（多路复用）<ul>
+<li>多路：多个网络连接</li>
+<li>复用：复用同一个线程</li>
+</ul>
+</li>
+<li>避免多线程上下文切换的代价</li>
+<li>避免多线程造成各种锁的问题</li>
+</ul>
+</li>
+<li>数据在内存存储，支持持久化</li>
+<li>支持更多的数据类型，list、hash、set等</li>
+<li>主从 Sentinel +集群 Cluster，能够提供高可用服务</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis 的基本特性和 5 个常用数据结构</title>
+    <url>/post/2119054721.html</url>
+    <content><![CDATA[<h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
+<li><p>速度快</p>
+<ul>
+<li>基于 C 语言开发，源码短小精悍</li>
+<li>数据存在内存中</li>
+<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
+</ul>
+</li>
+<li><p>支持数据持久化，异步保存到磁盘</p>
+</li>
+<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
+</li>
+<li><p>多语言客户端</p>
+</li>
+<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
+</li>
+<li><p>简单</p>
+<ul>
+<li>核心代码量小</li>
+<li>不依赖外部库</li>
+<li>单线程模型</li>
+</ul>
+</li>
+<li><p>支持主从复制</p>
+</li>
+<li><p>原生高可用和分布式解决方案</p>
+<ul>
+<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
+<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-常用数据结构"><a href="#2-常用数据结构" class="headerlink" title="2. 常用数据结构"></a>2. 常用数据结构</h3><p><img data-src="https://static.sqiang.net/image/post/redis-data-structure-types.jpeg"></p>
+<p>下面是一些通用的 API（不依赖具体数据类型）：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 按照规则遍历所有 key</span></span><br><span class="line"><span class="comment"># ⚠️ 注意：生产环境禁用，可以用 scan 替代，或只在从节点执行</span></span><br><span class="line">&gt; keys [patern]</span><br><span class="line">&gt; scan cursor [MATCH pattern] [COUNT count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回 key 的数据类型</span></span><br><span class="line">&gt; <span class="built_in">type</span> key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查 key 是否存在</span></span><br><span class="line">&gt; exists key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除</span></span><br><span class="line">&gt; del key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 key 的数量</span></span><br><span class="line"><span class="comment"># 时间复杂度 O(1)，通过内部计数器使用</span></span><br><span class="line">&gt; dbsize</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置过期时间（单位：秒），到期后自动删除</span></span><br><span class="line">&gt; expire key seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看 key 的剩余过期时间</span></span><br><span class="line"><span class="comment"># &gt; 0 剩余时间</span></span><br><span class="line"><span class="comment"># -1 key 存在，但没有设置过期时间</span></span><br><span class="line"><span class="comment"># -2 key 过期后被自动删除</span></span><br><span class="line">&gt; ttl key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除 key 的过期时间</span></span><br><span class="line">&gt; persist key</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-sting-字符串"><a href="#2-1-sting-字符串" class="headerlink" title="2.1. sting 字符串"></a>2.1. sting 字符串</h4><h5 id="2-1-1-结构"><a href="#2-1-1-结构" class="headerlink" title="2.1.1. 结构"></a>2.1.1. 结构</h5><ul>
+<li>key</li>
+<li>value</li>
+</ul>
+<h5 id="2-1-2-场景"><a href="#2-1-2-场景" class="headerlink" title="2.1.2. 场景"></a>2.1.2. 场景</h5><ul>
+<li>缓存</li>
+<li>计数器</li>
+<li>分布式锁</li>
+<li>……</li>
+</ul>
+<h5 id="2-1-3-专有-API"><a href="#2-1-3-专有-API" class="headerlink" title="2.1.3. 专有 API"></a>2.1.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># key 不管是否存在，都设置：存在则更新，不存在则新增</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; setnx key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># key 存在才设置 &lt;==&gt; 更新</span></span><br><span class="line">&gt; <span class="built_in">set</span> key value xx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定 key 的 value</span></span><br><span class="line">&gt; get key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量设置</span></span><br><span class="line">&gt; mset key value [key value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 批量获取</span></span><br><span class="line">&gt; mget key [ key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取字符串长度</span></span><br><span class="line">&gt; strlen key</span><br></pre></td></tr></table></figure>
+
+<p>子串</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 追加子串</span></span><br><span class="line"><span class="comment"># 返回追加成功的字符串长度</span></span><br><span class="line">&gt; append key value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取子串</span></span><br><span class="line">&gt; getrange key start end</span><br><span class="line"></span><br><span class="line"><span class="comment"># 覆盖子串</span></span><br><span class="line">&gt; setrange key offset value</span><br></pre></td></tr></table></figure>
+
+<p>计数器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 递增</span></span><br><span class="line"><span class="comment"># 不能超过 Long.Max 9223372036854775807</span></span><br><span class="line">&gt; incr key</span><br><span class="line">&gt; incrby key increment</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递减</span></span><br><span class="line"><span class="comment"># 不能低于 Long.Min -9223372036854775808</span></span><br><span class="line">&gt; decr key</span><br><span class="line">&gt; decrby key decrement</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-hash-哈希"><a href="#2-2-hash-哈希" class="headerlink" title="2.2. hash 哈希"></a>2.2. hash 哈希</h4><h5 id="2-2-1-结构"><a href="#2-2-1-结构" class="headerlink" title="2.2.1. 结构"></a>2.2.1. 结构</h5><ul>
+<li><p>key</p>
+</li>
+<li><p>value</p>
+<ul>
+<li><p>field 不能相同</p>
+</li>
+<li><p>value 可以相同</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-2-3-专有-API"><a href="#2-2-3-专有-API" class="headerlink" title="2.2.3. 专有 API"></a>2.2.3. 专有 API</h5><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 为 key 增加一个键值对</span></span><br><span class="line"><span class="comment"># field 存在则修改，不存在，则新增</span></span><br><span class="line">&gt; hset key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># field 不存在才设置 &lt;==&gt; 新增</span></span><br><span class="line">&gt; hsetnx key field value</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为 key 增加多个键值对</span></span><br><span class="line">&gt; hmset key field value [field value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 key 中指定的键</span></span><br><span class="line">&gt; hdel key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递增</span></span><br><span class="line">&gt; hincrby key field increment</span><br><span class="line">&gt; hincrbyfloat key field increment</span><br></pre></td></tr></table></figure>
+
+<p>查询</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取 key 的一个键的值</span></span><br><span class="line">&gt; hget key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的多个键的值</span></span><br><span class="line">&gt; hmget key field [field ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取 key 的所有 field 和 value</span></span><br><span class="line">&gt; hgetall key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 field</span></span><br><span class="line">&gt; hkeys key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回所有 value</span></span><br><span class="line">&gt; hvals key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中的一个 field 是否存在</span></span><br><span class="line">&gt; hexists key field</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断 hash 中所有 field 的数量</span></span><br><span class="line">&gt; hlen key</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-list-列表"><a href="#2-3-list-列表" class="headerlink" title="2.3.  list 列表"></a>2.3.  list 列表</h4><h5 id="2-3-1-特点"><a href="#2-3-1-特点" class="headerlink" title="2.3.1. 特点"></a>2.3.1. 特点</h5><ul>
+<li>有序</li>
+<li>可重复</li>
+<li>左右两端插入、弹出</li>
+</ul>
+<h5 id="2-3-2-场景"><a href="#2-3-2-场景" class="headerlink" title="2.3.2. 场景"></a>2.3.2. 场景</h5><ul>
+<li><p>Stack 栈 <code>lpush</code> + <code>lpop</code></p>
+</li>
+<li><p>Queue 队列 <code>lpush</code> + <code>rpop</code></p>
+</li>
+<li><p>Capped Collection 有限队列集合（固定数量） <code>lpush</code> + <code>ltrim</code></p>
+</li>
+<li><p>Message Queue 消息队列 <code>lpush</code> + <code>brpop</code></p>
+</li>
+</ul>
+<h5 id="2-3-3-专有-API"><a href="#2-3-3-专有-API" class="headerlink" title="2.3.3. 专有 API"></a>2.3.3. 专有 API</h5><p>增（<strong>入</strong>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边添加</span></span><br><span class="line">&gt; lpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边添加</span></span><br><span class="line">&gt; rpush key value [value ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在列表元素 pivot 的前面或后面插入一个新元素</span></span><br><span class="line">&gt; linsert key BEFORE|AFTER pivot newValue</span><br></pre></td></tr></table></figure>
+
+<p>删（<strong>出</strong>）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从列表左边弹出一个 value</span></span><br><span class="line">&gt; lpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从列表右边弹出一个 value</span></span><br><span class="line">&gt; rpop key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有 value 相等的项</span></span><br><span class="line">&gt; lrem key count value</span><br><span class="line"><span class="comment"># count = 0 删除所有 value 相等的项</span></span><br><span class="line"><span class="comment"># count &gt; 0 从左到右，删除最多 count 个 value 相等的项</span></span><br><span class="line"><span class="comment"># count &lt; 0 从右到左，删除最多 Math.abs(count) 个 value 相等的项</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 按照索引范围修剪列表</span></span><br><span class="line">&gt; ltrim key start stop</span><br></pre></td></tr></table></figure>
+
+<p>改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改指定下标的元素</span></span><br><span class="line">&gt; lset key index newValue</span><br></pre></td></tr></table></figure>
+
+<p>查</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围的所有项（包含 stop 的项）</span></span><br><span class="line">&gt; lrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询一个 key 下的所有项</span></span><br><span class="line">&gt; lrange key 0 -1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定下标的项</span></span><br><span class="line">&gt; lindex key index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取列表长度</span></span><br><span class="line">&gt; llen key</span><br></pre></td></tr></table></figure>
+
+<p>其它</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] timeout</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-set-集合"><a href="#2-4-set-集合" class="headerlink" title="2.4. set 集合"></a>2.4. set 集合</h4><h5 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1. 特点"></a>2.4.1. 特点</h5><ul>
+<li>无序</li>
+<li>不可以重复</li>
+<li>集合之间的操作</li>
+</ul>
+<h5 id="2-4-2-场景"><a href="#2-4-2-场景" class="headerlink" title="2.4.2. 场景"></a>2.4.2. 场景</h5><ul>
+<li><p>Tagging 标签化 <code>sadd</code></p>
+</li>
+<li><p>Random Item 随机元素 <code>srandmember</code> 或 <code>spop</code></p>
+</li>
+<li><p>Social Graph 社交图谱 <code>sadd</code> + <code>sinter</code></p>
+</li>
+</ul>
+<h5 id="2-4-3-专有-API"><a href="#2-4-3-专有-API" class="headerlink" title="2.4.3. 专有 API"></a>2.4.3. 专有 API</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素到集合中（重复的元素会被忽略）</span></span><br><span class="line">&gt; sadd key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中删除元素</span></span><br><span class="line">&gt; srem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算集合中元素个数</span></span><br><span class="line">&gt; scard key</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查集合中是否存在指定的元素</span></span><br><span class="line">&gt; sismember key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从集合中随机取出 count 个元素</span></span><br><span class="line"><span class="comment"># 不会破坏集合</span></span><br><span class="line">&gt; srandmember key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment">#从集合中随机弹出 count 个元素</span></span><br><span class="line"><span class="comment">#会破坏集合（元素的顺序）</span></span><br><span class="line">&gt; spop key [count]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出集合中所有元素</span></span><br><span class="line">&gt; smembers key</span><br><span class="line"><span class="comment"># 注意：1. 获取到的元素是无序的；2. 元素较多时会阻塞其它操作</span></span><br><span class="line"><span class="comment"># 替代：sscan ?</span></span><br></pre></td></tr></table></figure>
+
+<p>集合间</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取一个集合与其它集合的差集</span></span><br><span class="line">&gt; sdiff key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的交集</span></span><br><span class="line">&gt; sinter key [key ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取一个集合与其它集合的并集</span></span><br><span class="line">&gt; sunion key [key ...]</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-zset-有序集合"><a href="#2-5-zset-有序集合" class="headerlink" title="2.5. zset 有序集合"></a>2.5. zset 有序集合</h4><h5 id="2-5-1-特点"><a href="#2-5-1-特点" class="headerlink" title="2.5.1. 特点"></a>2.5.1. 特点</h5><ul>
+<li>有序</li>
+<li>不可以重复</li>
+<li>元素多一个 score 用于排序</li>
+</ul>
+<h5 id="2-5-2-场景"><a href="#2-5-2-场景" class="headerlink" title="2.5.2. 场景"></a>2.5.2. 场景</h5><ul>
+<li>排行榜</li>
+</ul>
+<h5 id="2-5-3-专有-API"><a href="#2-5-3-专有-API" class="headerlink" title="2.5.3. 专有 API"></a>2.5.3. 专有 API</h5><p>基本操作</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line"><span class="comment"># score 可重复，member 不可以重复</span></span><br><span class="line">&gt; zadd key score member [score member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除元素</span></span><br><span class="line">&gt; zrem key member [member ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加或减少元素的分数（score）</span></span><br><span class="line"><span class="comment"># increment 传负数表示减少</span></span><br><span class="line">&gt; zincrby key increment member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回元素总个数</span></span><br><span class="line">&gt; zcard key</span><br></pre></td></tr></table></figure>
+
+<p>排名和分数</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 返回元素分数（score）</span></span><br><span class="line">&gt; zscore key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的升序（score 从小到大）排名</span></span><br><span class="line">&gt; zrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取元素的降序（score 从大到小）排名</span></span><br><span class="line">&gt; zrevrank key member</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定分数间的成员数量</span></span><br><span class="line">&gt; zcount</span><br></pre></td></tr></table></figure>
+
+<p>根据范围获取元素</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围内的升序（score 从小到大）元素[分数]</span></span><br><span class="line"><span class="comment"># star 0 第一条；stop -1 最后一条</span></span><br><span class="line">zrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定索引范围内的降序（score 从大到小）元素[分数]</span></span><br><span class="line">zrevrange key start stop [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的升序元素[分数]</span></span><br><span class="line">&gt; zrangebyscore key min max [withscores]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 返回指定分数（score）范围内的降序元素[分数]</span></span><br><span class="line">&gt; zrevrangebyscore key max min [withscores]</span><br></pre></td></tr></table></figure>
+
+<p>根据范围移除元素</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除指定排名范围内的元素</span></span><br><span class="line">&gt; zremrangebyrank key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除指定分数范围内的元素</span></span><br><span class="line">&gt; zremrangebyscore key min max</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
