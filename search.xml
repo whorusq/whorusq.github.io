@@ -754,21 +754,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vim 常用操作命令</title>
-    <url>/post/2824845466.html</url>
-    <content><![CDATA[<center>
-<img data-src="https://static.sqiang.net/image%2Fpost%2Fvim%20%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.svg" width="95%">
-</center>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vim 基础版配置</title>
     <url>/post/2674273786.html</url>
     <content><![CDATA[<blockquote>
@@ -788,6 +773,21 @@
         <tag>Linux</tag>
         <tag>vim</tag>
         <tag>.vimrc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vim 常用操作命令</title>
+    <url>/post/2824845466.html</url>
+    <content><![CDATA[<center>
+<img data-src="https://static.sqiang.net/image%2Fpost%2Fvim%20%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C.svg" width="95%">
+</center>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -1530,6 +1530,38 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在 Excel 中实现下拉多选、反选</title>
+    <url>/post/366405450.html</url>
+    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
+
+<span id="more"></span>
+
+<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
+<li>选择一列；</li>
+<li>依次点击：<code>数据 &gt; 数据验证</code></li>
+<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
+<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于 Hexo 快速构建个人静态博客系统</title>
     <url>/post/525717070.html</url>
     <content><![CDATA[<p>Hexo 是一个快速、简洁且高效的博客框架。</p>
@@ -1635,38 +1667,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在 Excel 中实现下拉多选、反选</title>
-    <url>/post/366405450.html</url>
-    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
-</center>
-
-<span id="more"></span>
-
-<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
-<li>选择一列；</li>
-<li>依次点击：<code>数据 &gt; 数据验证</code></li>
-<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
-<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
-</ol>
-<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
-</ol>
-<blockquote>
-<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Excel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>怎么使用 Excel 实现二级联动的下拉菜单</title>
     <url>/post/2104705023.html</url>
     <content><![CDATA[<blockquote>
@@ -1703,6 +1703,43 @@
       <tags>
         <tag>其它</tag>
         <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Hexo文章更新时间问题</title>
+    <url>/post/2792803495.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<span id="more"></span>
+
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<ul>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -1747,43 +1784,6 @@
         <tag>Hexo</tag>
         <tag>NexT</tag>
         <tag>Gitalk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Hexo文章更新时间问题</title>
-    <url>/post/2792803495.html</url>
-    <content><![CDATA[<blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
-</blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
-<span id="more"></span>
-
-<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
-<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
-<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
-<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
-<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
-<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
-<ul>
-<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
-<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -4373,6 +4373,58 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 文件权限管理</title>
+    <url>/post/3913386097.html</url>
+    <content><![CDATA[<h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
+
+<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
+<ul>
+<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
+<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><h4 id="方式一：通过r-w-x的-与"><a href="#方式一：通过r-w-x的-与" class="headerlink" title="方式一：通过r/w/x的+与-"></a>方式一：通过r/w/x的+与-</h4><ul>
+<li><code>chmod u+x test</code> 给文件的属主添加执行权限 <strong>+x</strong></li>
+<li><code>chmod u-x test</code> 去除文件属主的执行权限 <strong>-x</strong></li>
+<li><code>chmod u=rwx test</code> 给文件属主添加（读 <strong>r</strong> 、写 <strong>w</strong> 、执行 <strong>x</strong> ）权限</li>
+<li><code> chmod g+w,o+w test</code> 给文件属主的所属组和其它用户添加（写 <strong>w</strong>）权限</li>
+</ul>
+<h4 id="方式二：通过对应的数字组合（4-读、2-写、1-执行）"><a href="#方式二：通过对应的数字组合（4-读、2-写、1-执行）" class="headerlink" title="方式二：通过对应的数字组合（4 读、2 写、1 执行）"></a>方式二：通过对应的数字组合（<em>4 读</em>、<em>2 写</em>、<em>1 执行</em>）</h4><p>示例：给目录属主添加读写（4+2）权限，所属组和其它用户添加读、执行（4+1）权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="权限的意义"><a href="#权限的意义" class="headerlink" title="权限的意义"></a>权限的意义</h3><h4 id="对于目录文件"><a href="#对于目录文件" class="headerlink" title="对于目录文件"></a>对于目录文件</h4><ul>
+<li><p><strong>r：读</strong></p>
+<p>可以查询目录下的内容，ls、ll</p>
+</li>
+<li><p><strong>w：写</strong></p>
+<p>具有修改目录结构的权限，如新建文件和目录，删除此目录下文件和目录，重命名此目录下文件和目录，剪切，mkdir、touch、rm、mv、cp</p>
+</li>
+<li><p><strong>x：执行</strong></p>
+<p>可以进入目录，cd</p>
+</li>
+</ul>
+<h4 id="对于普通文件"><a href="#对于普通文件" class="headerlink" title="对于普通文件"></a>对于普通文件</h4><ul>
+<li><p><strong>r：读</strong></p>
+<p>读取文件内容，可执行cat、more、head、tail、vi（但不能编辑）</p>
+</li>
+<li><p><strong>w：写</strong></p>
+<p>对文件内容编辑、新增、修改，可执行vi、echo</p>
+</li>
+<li><p><strong>x：执行</strong></p>
+<p>可执行</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 下文件类型说明</title>
     <url>/post/2330113912.html</url>
     <content><![CDATA[<blockquote>
@@ -4429,55 +4481,33 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件权限管理</title>
-    <url>/post/3913386097.html</url>
-    <content><![CDATA[<h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
-
-<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
+    <title>Linux系统切换阿里云软件更新源</title>
+    <url>/post/600047155.html</url>
+    <content><![CDATA[<blockquote>
 <ul>
-<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
-<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
+<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
+</li>
+<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
+</li>
+<li><p>官网：<a href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
+</li>
 </ul>
+</blockquote>
 <span id="more"></span>
 
-<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><h4 id="方式一：通过r-w-x的-与"><a href="#方式一：通过r-w-x的-与" class="headerlink" title="方式一：通过r/w/x的+与-"></a>方式一：通过r/w/x的+与-</h4><ul>
-<li><code>chmod u+x test</code> 给文件的属主添加执行权限 <strong>+x</strong></li>
-<li><code>chmod u-x test</code> 去除文件属主的执行权限 <strong>-x</strong></li>
-<li><code>chmod u=rwx test</code> 给文件属主添加（读 <strong>r</strong> 、写 <strong>w</strong> 、执行 <strong>x</strong> ）权限</li>
-<li><code> chmod g+w,o+w test</code> 给文件属主的所属组和其它用户添加（写 <strong>w</strong>）权限</li>
-</ul>
-<h4 id="方式二：通过对应的数字组合（4-读、2-写、1-执行）"><a href="#方式二：通过对应的数字组合（4-读、2-写、1-执行）" class="headerlink" title="方式二：通过对应的数字组合（4 读、2 写、1 执行）"></a>方式二：通过对应的数字组合（<em>4 读</em>、<em>2 写</em>、<em>1 执行</em>）</h4><p>示例：给目录属主添加读写（4+2）权限，所属组和其它用户添加读、执行（4+1）权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="comment"># 以下两个文件，在某些版本中可能不存在，可忽略</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup</span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注：</span></span><br><span class="line"><span class="comment"># 如果系统没有安装 wget 则提示：-bash: wget: command not found</span></span><br><span class="line"><span class="comment"># 可以使用 curl -o 替代 wget -O</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 6.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 7.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 8.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo yum clean metadata</span><br><span class="line">$ sudo yum makecache</span><br></pre></td></tr></table></figure>
 
-<h3 id="权限的意义"><a href="#权限的意义" class="headerlink" title="权限的意义"></a>权限的意义</h3><h4 id="对于目录文件"><a href="#对于目录文件" class="headerlink" title="对于目录文件"></a>对于目录文件</h4><ul>
-<li><p><strong>r：读</strong></p>
-<p>可以查询目录下的内容，ls、ll</p>
-</li>
-<li><p><strong>w：写</strong></p>
-<p>具有修改目录结构的权限，如新建文件和目录，删除此目录下文件和目录，重命名此目录下文件和目录，剪切，mkdir、touch、rm、mv、cp</p>
-</li>
-<li><p><strong>x：执行</strong></p>
-<p>可以进入目录，cd</p>
-</li>
-</ul>
-<h4 id="对于普通文件"><a href="#对于普通文件" class="headerlink" title="对于普通文件"></a>对于普通文件</h4><ul>
-<li><p><strong>r：读</strong></p>
-<p>读取文件内容，可执行cat、more、head、tail、vi（但不能编辑）</p>
-</li>
-<li><p><strong>w：写</strong></p>
-<p>对文件内容编辑、新增、修改，可执行vi、echo</p>
-</li>
-<li><p><strong>x：执行</strong></p>
-<p>可执行</p>
-</li>
-</ul>
+<p>⚠️ 注意：如果非阿里云 ECS 出现类似 <code>Couldn&#39;t resolve host &#39;mirrors.cloud.aliyuncs.com&#39;</code> 的信息，解决方法 <code>sed -i -e &#39;/mirrors.cloud.aliyuncs.com/d&#39; -e &#39;/mirrors.aliyuncs.com/d&#39; /etc/yum.repos.d/CentOS-Base.repo</code></p>
+<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 14.04 (trusty) ----------</span></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">## Not recommended</span></span><br><span class="line"><span class="comment"># deb https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># deb-src https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 16.04 (xenial) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 18.04 (bionic) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 20.04 (focal) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 将以下指定系统的内容插入文件头部</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 7.x (wheezy) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 8.x (jessie) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 9.x (stretch) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>Linux</tag>
+        <tag>软件更新源</tag>
       </tags>
   </entry>
   <entry>
@@ -4525,66 +4555,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>分区</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux系统切换阿里云软件更新源</title>
-    <url>/post/600047155.html</url>
-    <content><![CDATA[<blockquote>
-<ul>
-<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
-</li>
-<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
-</li>
-<li><p>官网：<a href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
-</li>
-</ul>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="comment"># 以下两个文件，在某些版本中可能不存在，可忽略</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup</span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注：</span></span><br><span class="line"><span class="comment"># 如果系统没有安装 wget 则提示：-bash: wget: command not found</span></span><br><span class="line"><span class="comment"># 可以使用 curl -o 替代 wget -O</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 6.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 7.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 8.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo yum clean metadata</span><br><span class="line">$ sudo yum makecache</span><br></pre></td></tr></table></figure>
-
-<p>⚠️ 注意：如果非阿里云 ECS 出现类似 <code>Couldn&#39;t resolve host &#39;mirrors.cloud.aliyuncs.com&#39;</code> 的信息，解决方法 <code>sed -i -e &#39;/mirrors.cloud.aliyuncs.com/d&#39; -e &#39;/mirrors.aliyuncs.com/d&#39; /etc/yum.repos.d/CentOS-Base.repo</code></p>
-<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 14.04 (trusty) ----------</span></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">## Not recommended</span></span><br><span class="line"><span class="comment"># deb https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># deb-src https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 16.04 (xenial) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 18.04 (bionic) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 20.04 (focal) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 将以下指定系统的内容插入文件头部</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 7.x (wheezy) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 8.x (jessie) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 9.x (stretch) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>软件更新源</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
-    <url>/post/438064550.html</url>
-    <content><![CDATA[<blockquote>
-<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
-</blockquote>
-<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
-<p>同时这是一个开源项目，相关地址如下：</p>
-<ul>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
-<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
-</ul>
-<p>下载下来后，按以下步骤操作：</p>
-<ol>
-<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
-<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
-<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
-</ol>
-<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>ipx</tag>
-        <tag>IPXWrapper</tag>
       </tags>
   </entry>
   <entry>
@@ -4687,6 +4657,36 @@
         <tag>游戏</tag>
         <tag>红色警戒2</tag>
         <tag>共和国之辉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
+    <url>/post/438064550.html</url>
+    <content><![CDATA[<blockquote>
+<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
+</blockquote>
+<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
+<p>同时这是一个开源项目，相关地址如下：</p>
+<ul>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
+<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
+</ul>
+<p>下载下来后，按以下步骤操作：</p>
+<ol>
+<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
+<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
+<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
+</ol>
+<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>ipx</tag>
+        <tag>IPXWrapper</tag>
       </tags>
   </entry>
   <entry>
