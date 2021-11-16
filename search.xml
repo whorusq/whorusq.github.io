@@ -1,6 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>jdk1.8、jdk11安装文件下载</title>
+    <url>/post/1948692156.html</url>
+    <content><![CDATA[<blockquote>
+<p>这里提供的安装文件是从官网下载，可比对 sha256 进行确认。</p>
+<p>只提供 jdk 的 <strong>LTS</strong> 版本，并且对应系统只提供 <strong>Windows</strong>、<strong>macOS</strong>、<strong>Linux</strong>。</p>
+<p>关于官网下载的说明：</p>
+<ol>
+<li><p>非最新维护版本，需要登录账号才能下载，这个可以搜一下，有别人分享出来的账号；</p>
+</li>
+<li><p>下载速度略慢，需要挂代理才能最快下载。</p>
+</li>
+</ol>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="jdk-11-0-5"><a href="#jdk-11-0-5" class="headerlink" title="jdk-11.0.5"></a>jdk-11.0.5</h3><ul>
+<li><p>官网下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html">https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html</a></p>
+</li>
+<li><p>Checksum 地址：<a href="https://www.oracle.com/webfolder/s/digest/11-0-5-checksum.html">https://www.oracle.com/webfolder/s/digest/11-0-5-checksum.html</a></p>
+</li>
+<li><p>百度网盘链接:<a href="https://pan.baidu.com/s/1d_c2rlCh7jfgOtgeES5zHg">https://pan.baidu.com/s/1d_c2rlCh7jfgOtgeES5zHg</a>  密码:jsd2</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Checksum</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jdk-11.0.5_linux-x64_bin.deb</td>
+<td>sha256: e97ed71931e733e312925464890cbfc9fc4d07fed13d63c5d6b26065d122e360</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_linux-x64_bin.rpm</td>
+<td>sha256: d0ce6501e47b776590bfe297c8ea4854e0fd1e2d3d7f8dcacba5c0a37c4c12d5</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_linux-x64_bin.tar.gz</td>
+<td>sha256: 387e60bdad6d6fc20d41cd712536f0f7adbb086fa73bc3cb225b3edad0bfa0a6</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_osx-x64_bin.dmg</td>
+<td>sha256: 05e41051d023af9c3ae94933f452a16121969cc700e44e6254bf8c6388a49552</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_osx-x64_bin.tar.gz</td>
+<td>sha256: a18a038cd76982fd99384b77c8c87bd661eac3035c6b7e6e163d4479a9c9a0ec</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_windows-x64_bin.exe</td>
+<td>sha256: 184b73cb3e6c63102c9ad4a914da11faf3bd9ea8caafbe0a0c79d7f94ed3685f</td>
+</tr>
+<tr>
+<td>jdk-11.0.5_windows-x64_bin.zip</td>
+<td>sha256: 8cda919c402e92d6782e9a68bcb9fe462ac29304de48b4377eb4112891f351b2</td>
+</tr>
+</tbody></table>
+<h3 id="jdk-8u231"><a href="#jdk-8u231" class="headerlink" title="jdk-8u231"></a>jdk-8u231</h3><ul>
+<li><p>官网下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
+</li>
+<li><p>Checksum 地址：<a href="https://www.oracle.com/webfolder/s/digest/8u231checksum.html">https://www.oracle.com/webfolder/s/digest/8u231checksum.html</a></p>
+</li>
+<li><p>百度网盘链接:<a href="https://pan.baidu.com/s/1knhAqfsj2Q1VCVpPQdId3Q">https://pan.baidu.com/s/1knhAqfsj2Q1VCVpPQdId3Q</a>  密码:y5vj</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Filename</th>
+<th>Checksum</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>jdk-8u231-linux-i586.rpm</td>
+<td>sha256: 9b5e22a987eba90c2487e2f7a6e3a3a304db0ae366bd1971a3d017069fd74639</td>
+</tr>
+<tr>
+<td>jdk-8u231-linux-i586.tar.gz</td>
+<td>sha256: 875207cd152b6c445234b20c2b5824b6a736b659eb8aab83f2a107a179d198a5</td>
+</tr>
+<tr>
+<td>jdk-8u231-linux-x64.rpm</td>
+<td>sha256: cfa09684b6a797e15b0369c480cb9a7ecafe01e464606a7df9c250d9c2da311d</td>
+</tr>
+<tr>
+<td>jdk-8u231-linux-x64.tar.gz</td>
+<td>sha256: a011584a2c9378bf70c6903ef5fbf101b30b08937441dc2ec67932fb3620b2cf</td>
+</tr>
+<tr>
+<td>jdk-8u231-macosx-x64.dmg</td>
+<td>sha256: f808d11b34fa9ee7b6326b5b6dd18544496e02c84b839d94e062bd4493df5d45</td>
+</tr>
+<tr>
+<td>jdk-8u231-windows-i586.exe</td>
+<td>sha256: 2395128a66cb2cbc0824bbc59657f249dc4f6d3bb00ec752c094ef4f97d3d28d</td>
+</tr>
+<tr>
+<td>jdk-8u231-windows-x64.exe</td>
+<td>sha256: 1a88b2054ebe972c5618d4199f79afdd5a4cba87fffdd1f1a4f1eddff9fb56c1</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>jdk</tag>
+        <tag>jre</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Less 的基本使用入门</title>
     <url>/post/48640546.html</url>
     <content><![CDATA[<blockquote>
@@ -127,120 +241,6 @@
         <tag>HTML&amp;CSS</tag>
         <tag>CSS</tag>
         <tag>Less</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jdk1.8、jdk11安装文件下载</title>
-    <url>/post/1948692156.html</url>
-    <content><![CDATA[<blockquote>
-<p>这里提供的安装文件是从官网下载，可比对 sha256 进行确认。</p>
-<p>只提供 jdk 的 <strong>LTS</strong> 版本，并且对应系统只提供 <strong>Windows</strong>、<strong>macOS</strong>、<strong>Linux</strong>。</p>
-<p>关于官网下载的说明：</p>
-<ol>
-<li><p>非最新维护版本，需要登录账号才能下载，这个可以搜一下，有别人分享出来的账号；</p>
-</li>
-<li><p>下载速度略慢，需要挂代理才能最快下载。</p>
-</li>
-</ol>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="jdk-11-0-5"><a href="#jdk-11-0-5" class="headerlink" title="jdk-11.0.5"></a>jdk-11.0.5</h3><ul>
-<li><p>官网下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html">https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html</a></p>
-</li>
-<li><p>Checksum 地址：<a href="https://www.oracle.com/webfolder/s/digest/11-0-5-checksum.html">https://www.oracle.com/webfolder/s/digest/11-0-5-checksum.html</a></p>
-</li>
-<li><p>百度网盘链接:<a href="https://pan.baidu.com/s/1d_c2rlCh7jfgOtgeES5zHg">https://pan.baidu.com/s/1d_c2rlCh7jfgOtgeES5zHg</a>  密码:jsd2</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Filename</th>
-<th>Checksum</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>jdk-11.0.5_linux-x64_bin.deb</td>
-<td>sha256: e97ed71931e733e312925464890cbfc9fc4d07fed13d63c5d6b26065d122e360</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_linux-x64_bin.rpm</td>
-<td>sha256: d0ce6501e47b776590bfe297c8ea4854e0fd1e2d3d7f8dcacba5c0a37c4c12d5</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_linux-x64_bin.tar.gz</td>
-<td>sha256: 387e60bdad6d6fc20d41cd712536f0f7adbb086fa73bc3cb225b3edad0bfa0a6</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_osx-x64_bin.dmg</td>
-<td>sha256: 05e41051d023af9c3ae94933f452a16121969cc700e44e6254bf8c6388a49552</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_osx-x64_bin.tar.gz</td>
-<td>sha256: a18a038cd76982fd99384b77c8c87bd661eac3035c6b7e6e163d4479a9c9a0ec</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_windows-x64_bin.exe</td>
-<td>sha256: 184b73cb3e6c63102c9ad4a914da11faf3bd9ea8caafbe0a0c79d7f94ed3685f</td>
-</tr>
-<tr>
-<td>jdk-11.0.5_windows-x64_bin.zip</td>
-<td>sha256: 8cda919c402e92d6782e9a68bcb9fe462ac29304de48b4377eb4112891f351b2</td>
-</tr>
-</tbody></table>
-<h3 id="jdk-8u231"><a href="#jdk-8u231" class="headerlink" title="jdk-8u231"></a>jdk-8u231</h3><ul>
-<li><p>官网下载地址：<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a></p>
-</li>
-<li><p>Checksum 地址：<a href="https://www.oracle.com/webfolder/s/digest/8u231checksum.html">https://www.oracle.com/webfolder/s/digest/8u231checksum.html</a></p>
-</li>
-<li><p>百度网盘链接:<a href="https://pan.baidu.com/s/1knhAqfsj2Q1VCVpPQdId3Q">https://pan.baidu.com/s/1knhAqfsj2Q1VCVpPQdId3Q</a>  密码:y5vj</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Filename</th>
-<th>Checksum</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>jdk-8u231-linux-i586.rpm</td>
-<td>sha256: 9b5e22a987eba90c2487e2f7a6e3a3a304db0ae366bd1971a3d017069fd74639</td>
-</tr>
-<tr>
-<td>jdk-8u231-linux-i586.tar.gz</td>
-<td>sha256: 875207cd152b6c445234b20c2b5824b6a736b659eb8aab83f2a107a179d198a5</td>
-</tr>
-<tr>
-<td>jdk-8u231-linux-x64.rpm</td>
-<td>sha256: cfa09684b6a797e15b0369c480cb9a7ecafe01e464606a7df9c250d9c2da311d</td>
-</tr>
-<tr>
-<td>jdk-8u231-linux-x64.tar.gz</td>
-<td>sha256: a011584a2c9378bf70c6903ef5fbf101b30b08937441dc2ec67932fb3620b2cf</td>
-</tr>
-<tr>
-<td>jdk-8u231-macosx-x64.dmg</td>
-<td>sha256: f808d11b34fa9ee7b6326b5b6dd18544496e02c84b839d94e062bd4493df5d45</td>
-</tr>
-<tr>
-<td>jdk-8u231-windows-i586.exe</td>
-<td>sha256: 2395128a66cb2cbc0824bbc59657f249dc4f6d3bb00ec752c094ef4f97d3d28d</td>
-</tr>
-<tr>
-<td>jdk-8u231-windows-x64.exe</td>
-<td>sha256: 1a88b2054ebe972c5618d4199f79afdd5a4cba87fffdd1f1a4f1eddff9fb56c1</td>
-</tr>
-</tbody></table>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>jdk</tag>
-        <tag>jre</tag>
       </tags>
   </entry>
   <entry>
@@ -1309,43 +1309,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Python 如何安装 pip 包管理工具</title>
-    <url>/post/4186504541.html</url>
-    <content><![CDATA[<blockquote>
-<p>⚠️ <strong>注意</strong>：</p>
-<ol>
-<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
-</li>
-<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
-</li>
-<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
-<ol>
-<li><p>下载 <code>get-pip.py</code></p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
-<li><p>安装 pip</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>包管理工具</tag>
-        <tag>Python</tag>
-        <tag>pip</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo最佳实践推荐</title>
     <url>/post/1938539149.html</url>
     <content><![CDATA[<blockquote>
@@ -1497,71 +1460,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown 的锚点链接如何写</title>
-    <url>/post/2762528363.html</url>
-    <content><![CDATA[<blockquote>
-<p>HTML 形式的锚点链接在 Markdown 中并不能被很好的支持，尤其是以 Github 为代表的平台上，其实它有自己的规则，将在本文详细进行阐述。</p>
-</blockquote>
-<span id="more"></span>
-
-<p>可把鼠标放到 Github 的标题上进行观察，如下图</p>
-<p><img data-src="https://static.sqiang.net/image/post/markdown_anchor.png"></p>
-<ol>
-<li><p>任意 1-6 个 <strong>#</strong> 标注的标题都会被添加上同名的锚点链接</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[标题1](#标题1)</span><br><span class="line">[标题2](#标题2)</span><br><span class="line">[标题3](#标题3)</span><br><span class="line"></span><br><span class="line"># 标题1</span><br><span class="line">## 标题2</span><br><span class="line">### 标题3</span><br></pre></td></tr></table></figure></li>
-<li><p>锚点跳转的标识名称，可使用任意字符，大写字母要转换成小写</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github标题1](#github标题1)</span><br><span class="line"></span><br><span class="line">### Github标题1</span><br></pre></td></tr></table></figure></li>
-<li><p>多单词锚点的空格用 <strong>-</strong> 代替</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github 标题2 Test](#github-标题2-test)</span><br><span class="line"></span><br><span class="line">### Github 标题2 Test</span><br></pre></td></tr></table></figure></li>
-<li><p>多级序号需要去除 <strong>.</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[2.3. Github 标题](#23-github-标题)</span><br><span class="line"></span><br><span class="line">### 2.3. Github 标题</span><br></pre></td></tr></table></figure></li>
-</ol>
-<blockquote>
-<p>⚠️ 注意：</p>
-<p>非英文的锚点字符，在单击跳转时，在浏览器的 url 中会按照规则进行 encode 和 decode</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-        <tag>文档编写工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何在 Excel 中实现下拉多选、反选</title>
-    <url>/post/366405450.html</url>
-    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
-</center>
-
-<span id="more"></span>
-
-<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
-<li>选择一列；</li>
-<li>依次点击：<code>数据 &gt; 数据验证</code></li>
-<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
-<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
-</ol>
-<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
-</ol>
-<blockquote>
-<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Excel</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于 Hexo 快速构建个人静态博客系统</title>
     <url>/post/525717070.html</url>
     <content><![CDATA[<p>Hexo 是一个快速、简洁且高效的博客框架。</p>
@@ -1667,6 +1565,71 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown 的锚点链接如何写</title>
+    <url>/post/2762528363.html</url>
+    <content><![CDATA[<blockquote>
+<p>HTML 形式的锚点链接在 Markdown 中并不能被很好的支持，尤其是以 Github 为代表的平台上，其实它有自己的规则，将在本文详细进行阐述。</p>
+</blockquote>
+<span id="more"></span>
+
+<p>可把鼠标放到 Github 的标题上进行观察，如下图</p>
+<p><img data-src="https://static.sqiang.net/image/post/markdown_anchor.png"></p>
+<ol>
+<li><p>任意 1-6 个 <strong>#</strong> 标注的标题都会被添加上同名的锚点链接</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[标题1](#标题1)</span><br><span class="line">[标题2](#标题2)</span><br><span class="line">[标题3](#标题3)</span><br><span class="line"></span><br><span class="line"># 标题1</span><br><span class="line">## 标题2</span><br><span class="line">### 标题3</span><br></pre></td></tr></table></figure></li>
+<li><p>锚点跳转的标识名称，可使用任意字符，大写字母要转换成小写</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github标题1](#github标题1)</span><br><span class="line"></span><br><span class="line">### Github标题1</span><br></pre></td></tr></table></figure></li>
+<li><p>多单词锚点的空格用 <strong>-</strong> 代替</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github 标题2 Test](#github-标题2-test)</span><br><span class="line"></span><br><span class="line">### Github 标题2 Test</span><br></pre></td></tr></table></figure></li>
+<li><p>多级序号需要去除 <strong>.</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[2.3. Github 标题](#23-github-标题)</span><br><span class="line"></span><br><span class="line">### 2.3. Github 标题</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>⚠️ 注意：</p>
+<p>非英文的锚点字符，在单击跳转时，在浏览器的 url 中会按照规则进行 encode 和 decode</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+        <tag>文档编写工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 Excel 中实现下拉多选、反选</title>
+    <url>/post/366405450.html</url>
+    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
+
+<span id="more"></span>
+
+<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
+<li>选择一列；</li>
+<li>依次点击：<code>数据 &gt; 数据验证</code></li>
+<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
+<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>怎么使用 Excel 实现二级联动的下拉菜单</title>
     <url>/post/2104705023.html</url>
     <content><![CDATA[<blockquote>
@@ -1703,43 +1666,6 @@
       <tags>
         <tag>其它</tag>
         <tag>Excel</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Hexo文章更新时间问题</title>
-    <url>/post/2792803495.html</url>
-    <content><![CDATA[<blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
-</blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
-<span id="more"></span>
-
-<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
-<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
-<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
-<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
-<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
-<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
-<ul>
-<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
-<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -1784,6 +1710,80 @@
         <tag>Hexo</tag>
         <tag>NexT</tag>
         <tag>Gitalk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决Hexo文章更新时间问题</title>
+    <url>/post/2792803495.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<span id="more"></span>
+
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<ul>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 如何安装 pip 包管理工具</title>
+    <url>/post/4186504541.html</url>
+    <content><![CDATA[<blockquote>
+<p>⚠️ <strong>注意</strong>：</p>
+<ol>
+<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
+</li>
+<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
+</li>
+<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
+<ol>
+<li><p>下载 <code>get-pip.py</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 pip</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>包管理工具</tag>
+        <tag>Python</tag>
+        <tag>pip</tag>
       </tags>
   </entry>
   <entry>
@@ -2365,6 +2365,97 @@
       </tags>
   </entry>
   <entry>
+    <title>JetBrains系软件设置和使用技巧笔记</title>
+    <url>/post/2109815221.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文适用于 JetBrains 系软件，包含通用及单个软件的设置、使用技巧等，主要是在工作使用过程中遇到的问题及解决方式笔记。</p>
+</blockquote>
+<h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-通用设置"><a href="#1-1-通用设置" class="headerlink" title="1.1. 通用设置"></a>1.1. 通用设置</h4><h5 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h5><p>菜单：<code>Appearance &amp; Behavior &gt; System Settings &gt; Synchronization</code></p>
+<p>取消勾选：</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Synchronize files on frame or editor tab activation</code></li>
+<li><input disabled="" type="checkbox"> <code>Save files on frame deactiation</code></li>
+<li><input disabled="" type="checkbox"> <code>Use &quot;safe write&quot;(save changes to a temporary file first)</code></li>
+</ul>
+<h5 id="打开修改文件未保存标识"><a href="#打开修改文件未保存标识" class="headerlink" title="打开修改文件未保存标识"></a>打开修改文件未保存标识</h5><p>菜单：<code>Editor &gt; General &gt; Editor Tabs &gt; Appearance</code></p>
+<p>勾选：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <code>Mark modified (*)</code></li>
+</ul>
+<span id="more"></span>
+
+<h5 id="注释时使用缩进（而不直接添加到行首）"><a href="#注释时使用缩进（而不直接添加到行首）" class="headerlink" title="注释时使用缩进（而不直接添加到行首）"></a>注释时使用缩进（而不直接添加到行首）</h5><ol>
+<li><p>菜单：<code>Editor &gt; Code Style &gt; Java &gt; Wrapping and Braces &gt; Keep when reformatting</code></p>
+<p> 取消勾选</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Comment at first column</code></li>
+</ul>
+</li>
+<li><p>菜单：<code>Editor &gt; Code Style &gt; Java &gt; Code Generation &gt; Comment Code</code></p>
+<p> 取消勾选</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Line comment at first column</code></li>
+<li><input disabled="" type="checkbox"> <code>Block comment at first column</code></li>
+</ul>
+<p> 如果需要在注释的开始位置后面追加一个空格（比如 <code>// 这是注释</code>），则勾选</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <code>Add a space at comment start</code></li>
+</ul>
+</li>
+</ol>
+<h5 id="设置列宽提示线"><a href="#设置列宽提示线" class="headerlink" title="设置列宽提示线"></a>设置列宽提示线</h5><p>菜单：<code>Editor &gt; Code Style &gt; General</code></p>
+<p>分别修改：</p>
+<ul>
+<li><code>Hard wrap at</code></li>
+<li><code>Visual guides</code></li>
+</ul>
+<h5 id="取消一些警告提示"><a href="#取消一些警告提示" class="headerlink" title="取消一些警告提示"></a>取消一些警告提示</h5><ul>
+<li><p>关闭拼写检查</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Editor &gt; Code Style &gt; Inspections &gt; Spelling</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-IDEA设置"><a href="#1-2-IDEA设置" class="headerlink" title="1.2. IDEA设置"></a>1.2. IDEA设置</h4><h5 id="取消一些警告提示-1"><a href="#取消一些警告提示-1" class="headerlink" title="取消一些警告提示"></a>取消一些警告提示</h5><ul>
+<li><p><code>field injection is not recommended</code></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <code>Spring &gt; Spring Core &gt; Code &gt; Autowiring for Bean Class</code> 设置 <code>Severity</code> 为 <code>Warning</code>。</li>
+</ul>
+</li>
+<li><p><code>could not autowire. No beans of &#39;SysLogininforMapper&#39; type found.</code></p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Spring &gt; Spring Core &gt; Code &gt; Field injection warning</code></li>
+</ul>
+</li>
+<li><p>去除 MyBatis XML 文件中的黄、绿背景</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>Prefernces &gt; Editor &gt; Inspections &gt; SQL &gt; No data sources configure</code></li>
+<li><input disabled="" type="checkbox"> <code>Prefernces &gt; Editor &gt; Inspections &gt; SQL &gt; SQL dialect detection</code></li>
+<li><input disabled="" type="checkbox"> <code>Prefernces &gt; Editor &gt; Colors Scheme &gt; General &gt; Code &gt; Injected language fragment &gt; Background</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="2-快捷键"><a href="#2-快捷键" class="headerlink" title="2. 快捷键"></a>2. 快捷键</h3><h4 id="2-1-通用快捷键"><a href="#2-1-通用快捷键" class="headerlink" title="2.1. 通用快捷键"></a>2.1. 通用快捷键</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在当前文件中查找字符</span></span><br><span class="line"><span class="built_in">command</span> + F</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局查找</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + F</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前文件中查找并替换</span></span><br><span class="line"><span class="built_in">command</span> + R</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局查找并替换</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + R</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最近打开过的文件</span></span><br><span class="line"><span class="built_in">command</span> + E</span><br><span class="line"></span><br><span class="line"><span class="comment"># 最近编辑过的文件</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + E</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据类名快速打开文件</span></span><br><span class="line"><span class="built_in">command</span> + O</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据文件名快速打开文件</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + O</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据方法名打开文件</span></span><br><span class="line"><span class="built_in">command</span> + alt + O</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跳转到行和列，输入如：200:3 表示第 200 行，第3列</span></span><br><span class="line"><span class="built_in">command</span> + L</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制当前文件绝对路径</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + C</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从历史记录中粘贴</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + V</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快速查看、选择当前类结构</span></span><br><span class="line"><span class="built_in">command</span> + F12</span><br><span class="line"></span><br><span class="line"><span class="comment"># 跳到顶部面包屑导航条，使用方向键切换，回车下拉菜单</span></span><br><span class="line"><span class="built_in">command</span> + ⬆️</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改文件名，及所有引用它的地方</span></span><br><span class="line"><span class="built_in">shift</span> + F6</span><br><span class="line"></span><br><span class="line"><span class="comment"># 折叠整个类，展开方法，方法体还折叠</span></span><br><span class="line"><span class="built_in">command</span> + <span class="built_in">shift</span> + -</span><br><span class="line"><span class="built_in">command</span> + +</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-IDEA快捷键"><a href="#2-2-IDEA快捷键" class="headerlink" title="2.2. IDEA快捷键"></a>2.2. IDEA快捷键</h4><h5 id="类相关（在一个类文件中）"><a href="#类相关（在一个类文件中）" class="headerlink" title="类相关（在一个类文件中）"></a>类相关（在一个类文件中）</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 快速修复</span></span><br><span class="line"><span class="comment"># 在类名、属性名、方法名上执行</span></span><br><span class="line">alt + enter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 可以选择快速生成当前类的构造方法、getter、setter、重写方法等</span></span><br><span class="line">ctrl + enter</span><br><span class="line"></span><br><span class="line"><span class="comment"># 快速选择需要重写的方法</span></span><br><span class="line">ctrl + o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 去除未使用的引入包</span></span><br><span class="line">ctrl + alt + o</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用技巧"><a href="#3-使用技巧" class="headerlink" title="3. 使用技巧"></a>3. 使用技巧</h3><h4 id="3-1-通用"><a href="#3-1-通用" class="headerlink" title="3.1. 通用"></a>3.1. 通用</h4><h5 id="快速定位当前打开文件的位置"><a href="#快速定位当前打开文件的位置" class="headerlink" title="快速定位当前打开文件的位置"></a>快速定位当前打开文件的位置</h5><ul>
+<li>方式一：单击侧边栏顶部的「<strong>准星</strong>」按钮（如果没有，则是开启了方式二）；</li>
+<li>方式二：单击侧边栏顶部的「<strong>设置</strong>」按钮，勾选「Always Select Opened File」，则打开新文件时，左侧树形菜单自动定位目录位置。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>JetBrains</tag>
+        <tag>IDEA</tag>
+        <tag>PHPStorm</tag>
+        <tag>WebStorm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Webpack入门及常用配置速查</title>
     <url>/post/2411996818.html</url>
     <content><![CDATA[<blockquote>
@@ -2812,6 +2903,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
+    <url>/post/2159656190.html</url>
+    <content><![CDATA[<blockquote>
+<p>当前最新稳定版本：<strong>Version 95.0.4638.69 (Official Build)</strong></p>
+</blockquote>
+<h3 id="谷歌官网直接下载地址"><a href="#谷歌官网直接下载地址" class="headerlink" title="谷歌官网直接下载地址"></a>谷歌官网直接下载地址</h3><p><strong>注意</strong>：需要科学上网！无法科学上网的，请使用后面的网盘备份地址。</p>
+<ul>
+<li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dstable-arch_x86-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup.exe">Windows 32位</a></li>
+<li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup64.exe">Windows 64位</a></li>
+<li><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb">Linux （.deb）</a></li>
+<li><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm">Linux （.rpm）</a></li>
+<li><a href="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg">macOS（.dmg）</a></li>
+</ul>
+<h3 id="备份下载地址"><a href="#备份下载地址" class="headerlink" title="备份下载地址"></a>备份下载地址</h3><ul>
+<li>百度网盘（含最新及部分历史版本）：<a href="https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg">https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg</a> 密码: <code>oig4</code></li>
+<li>阿里云盘（只有最新版）：<a href="https://www.aliyundrive.com/s/tQDPe57hBPx">https://www.aliyundrive.com/s/tQDPe57hBPx</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>系统和软件</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>Linux</tag>
+        <tag>系统和软件</tag>
+        <tag>Google Chrome</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
+    <url>/post/1732007690.html</url>
+    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
+<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
+
+<p>重启系统，然后重新安装出错的程序就可以了。</p>
+<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
+<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
+<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
+</a></p>
+]]></content>
+      <categories>
+        <category>系统和软件</category>
+      </categories>
+      <tags>
+        <tag>系统和软件</tag>
+        <tag>数字签名</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《最后的舞动 The Last Dance》</title>
     <url>/post/3209780963.html</url>
     <content><![CDATA[<table>
@@ -2866,57 +3008,6 @@
       <tags>
         <tag>迈克尔·乔丹</tag>
         <tag>美剧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Chrome 浏览器最新稳定版完整离线安装包下载</title>
-    <url>/post/2159656190.html</url>
-    <content><![CDATA[<blockquote>
-<p>当前最新稳定版本：<strong>Version 95.0.4638.69 (Official Build)</strong></p>
-</blockquote>
-<h3 id="谷歌官网直接下载地址"><a href="#谷歌官网直接下载地址" class="headerlink" title="谷歌官网直接下载地址"></a>谷歌官网直接下载地址</h3><p><strong>注意</strong>：需要科学上网！无法科学上网的，请使用后面的网盘备份地址。</p>
-<ul>
-<li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dstable-arch_x86-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup.exe">Windows 32位</a></li>
-<li><a href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup64.exe">Windows 64位</a></li>
-<li><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb">Linux （.deb）</a></li>
-<li><a href="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm">Linux （.rpm）</a></li>
-<li><a href="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg">macOS（.dmg）</a></li>
-</ul>
-<h3 id="备份下载地址"><a href="#备份下载地址" class="headerlink" title="备份下载地址"></a>备份下载地址</h3><ul>
-<li>百度网盘（含最新及部分历史版本）：<a href="https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg">https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg</a> 密码: <code>oig4</code></li>
-<li>阿里云盘（只有最新版）：<a href="https://www.aliyundrive.com/s/tQDPe57hBPx">https://www.aliyundrive.com/s/tQDPe57hBPx</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>系统和软件</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>Linux</tag>
-        <tag>系统和软件</tag>
-        <tag>Google Chrome</tag>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>弹窗提示「Windows要求已数字签名的驱动程序」怎么办</title>
-    <url>/post/1732007690.html</url>
-    <content><![CDATA[<p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
-<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
-<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
-
-<p>重启系统，然后重新安装出错的程序就可以了。</p>
-<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
-<p>Windows 7 32bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
-<p>Windows 7 64bit：<a href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
-</a></p>
-]]></content>
-      <categories>
-        <category>系统和软件</category>
-      </categories>
-      <tags>
-        <tag>系统和软件</tag>
-        <tag>数字签名</tag>
       </tags>
   </entry>
   <entry>
@@ -4373,58 +4464,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux 文件权限管理</title>
-    <url>/post/3913386097.html</url>
-    <content><![CDATA[<h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
-
-<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
-<ul>
-<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
-<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><h4 id="方式一：通过r-w-x的-与"><a href="#方式一：通过r-w-x的-与" class="headerlink" title="方式一：通过r/w/x的+与-"></a>方式一：通过r/w/x的+与-</h4><ul>
-<li><code>chmod u+x test</code> 给文件的属主添加执行权限 <strong>+x</strong></li>
-<li><code>chmod u-x test</code> 去除文件属主的执行权限 <strong>-x</strong></li>
-<li><code>chmod u=rwx test</code> 给文件属主添加（读 <strong>r</strong> 、写 <strong>w</strong> 、执行 <strong>x</strong> ）权限</li>
-<li><code> chmod g+w,o+w test</code> 给文件属主的所属组和其它用户添加（写 <strong>w</strong>）权限</li>
-</ul>
-<h4 id="方式二：通过对应的数字组合（4-读、2-写、1-执行）"><a href="#方式二：通过对应的数字组合（4-读、2-写、1-执行）" class="headerlink" title="方式二：通过对应的数字组合（4 读、2 写、1 执行）"></a>方式二：通过对应的数字组合（<em>4 读</em>、<em>2 写</em>、<em>1 执行</em>）</h4><p>示例：给目录属主添加读写（4+2）权限，所属组和其它用户添加读、执行（4+1）权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="权限的意义"><a href="#权限的意义" class="headerlink" title="权限的意义"></a>权限的意义</h3><h4 id="对于目录文件"><a href="#对于目录文件" class="headerlink" title="对于目录文件"></a>对于目录文件</h4><ul>
-<li><p><strong>r：读</strong></p>
-<p>可以查询目录下的内容，ls、ll</p>
-</li>
-<li><p><strong>w：写</strong></p>
-<p>具有修改目录结构的权限，如新建文件和目录，删除此目录下文件和目录，重命名此目录下文件和目录，剪切，mkdir、touch、rm、mv、cp</p>
-</li>
-<li><p><strong>x：执行</strong></p>
-<p>可以进入目录，cd</p>
-</li>
-</ul>
-<h4 id="对于普通文件"><a href="#对于普通文件" class="headerlink" title="对于普通文件"></a>对于普通文件</h4><ul>
-<li><p><strong>r：读</strong></p>
-<p>读取文件内容，可执行cat、more、head、tail、vi（但不能编辑）</p>
-</li>
-<li><p><strong>w：写</strong></p>
-<p>对文件内容编辑、新增、修改，可执行vi、echo</p>
-</li>
-<li><p><strong>x：执行</strong></p>
-<p>可执行</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 下文件类型说明</title>
     <url>/post/2330113912.html</url>
     <content><![CDATA[<blockquote>
@@ -4481,33 +4520,55 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux系统切换阿里云软件更新源</title>
-    <url>/post/600047155.html</url>
-    <content><![CDATA[<blockquote>
+    <title>Linux 文件权限管理</title>
+    <url>/post/3913386097.html</url>
+    <content><![CDATA[<h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
+
+<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
 <ul>
-<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
-</li>
-<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
-</li>
-<li><p>官网：<a href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
-</li>
+<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
+<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
 </ul>
-</blockquote>
 <span id="more"></span>
 
-<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="comment"># 以下两个文件，在某些版本中可能不存在，可忽略</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup</span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注：</span></span><br><span class="line"><span class="comment"># 如果系统没有安装 wget 则提示：-bash: wget: command not found</span></span><br><span class="line"><span class="comment"># 可以使用 curl -o 替代 wget -O</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 6.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 7.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 8.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo yum clean metadata</span><br><span class="line">$ sudo yum makecache</span><br></pre></td></tr></table></figure>
+<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><h4 id="方式一：通过r-w-x的-与"><a href="#方式一：通过r-w-x的-与" class="headerlink" title="方式一：通过r/w/x的+与-"></a>方式一：通过r/w/x的+与-</h4><ul>
+<li><code>chmod u+x test</code> 给文件的属主添加执行权限 <strong>+x</strong></li>
+<li><code>chmod u-x test</code> 去除文件属主的执行权限 <strong>-x</strong></li>
+<li><code>chmod u=rwx test</code> 给文件属主添加（读 <strong>r</strong> 、写 <strong>w</strong> 、执行 <strong>x</strong> ）权限</li>
+<li><code> chmod g+w,o+w test</code> 给文件属主的所属组和其它用户添加（写 <strong>w</strong>）权限</li>
+</ul>
+<h4 id="方式二：通过对应的数字组合（4-读、2-写、1-执行）"><a href="#方式二：通过对应的数字组合（4-读、2-写、1-执行）" class="headerlink" title="方式二：通过对应的数字组合（4 读、2 写、1 执行）"></a>方式二：通过对应的数字组合（<em>4 读</em>、<em>2 写</em>、<em>1 执行</em>）</h4><p>示例：给目录属主添加读写（4+2）权限，所属组和其它用户添加读、执行（4+1）权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
-<p>⚠️ 注意：如果非阿里云 ECS 出现类似 <code>Couldn&#39;t resolve host &#39;mirrors.cloud.aliyuncs.com&#39;</code> 的信息，解决方法 <code>sed -i -e &#39;/mirrors.cloud.aliyuncs.com/d&#39; -e &#39;/mirrors.aliyuncs.com/d&#39; /etc/yum.repos.d/CentOS-Base.repo</code></p>
-<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 14.04 (trusty) ----------</span></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">## Not recommended</span></span><br><span class="line"><span class="comment"># deb https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># deb-src https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 16.04 (xenial) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 18.04 (bionic) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 20.04 (focal) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 将以下指定系统的内容插入文件头部</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 7.x (wheezy) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 8.x (jessie) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 9.x (stretch) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
+<h3 id="权限的意义"><a href="#权限的意义" class="headerlink" title="权限的意义"></a>权限的意义</h3><h4 id="对于目录文件"><a href="#对于目录文件" class="headerlink" title="对于目录文件"></a>对于目录文件</h4><ul>
+<li><p><strong>r：读</strong></p>
+<p>可以查询目录下的内容，ls、ll</p>
+</li>
+<li><p><strong>w：写</strong></p>
+<p>具有修改目录结构的权限，如新建文件和目录，删除此目录下文件和目录，重命名此目录下文件和目录，剪切，mkdir、touch、rm、mv、cp</p>
+</li>
+<li><p><strong>x：执行</strong></p>
+<p>可以进入目录，cd</p>
+</li>
+</ul>
+<h4 id="对于普通文件"><a href="#对于普通文件" class="headerlink" title="对于普通文件"></a>对于普通文件</h4><ul>
+<li><p><strong>r：读</strong></p>
+<p>读取文件内容，可执行cat、more、head、tail、vi（但不能编辑）</p>
+</li>
+<li><p><strong>w：写</strong></p>
+<p>对文件内容编辑、新增、修改，可执行vi、echo</p>
+</li>
+<li><p><strong>x：执行</strong></p>
+<p>可执行</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>Linux</category>
       </categories>
       <tags>
         <tag>Linux</tag>
-        <tag>软件更新源</tag>
       </tags>
   </entry>
   <entry>
@@ -4558,135 +4619,33 @@
       </tags>
   </entry>
   <entry>
-    <title>怀旧游戏《红色警戒2：共和国之辉》</title>
-    <url>/post/3045142832.html</url>
+    <title>Linux系统切换阿里云软件更新源</title>
+    <url>/post/600047155.html</url>
     <content><![CDATA[<blockquote>
-<p>《红色警戒2：共和国之辉》是即时战略游戏《红色警戒2》的一个非官方游戏模组（MOD），由中国爱好者 <strong>Lord Hero</strong> 制作，将古巴阵营从游戏中剔除，以中国阵营替代，并新增了解放军战士、轻坦克、训练中心等中国阵营特有的兵种及建筑。</p>
+<ul>
+<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
+</li>
+<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
+</li>
+<li><p>官网：<a href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
+</li>
+</ul>
 </blockquote>
-<p><img data-src="https://static.sqiang.net/image/post/red_alert_2.jpg?imageView2/2/w/600" alt="《红色警戒2：共和国之辉》"></p>
 <span id="more"></span>
 
-<h3 id="1-游戏信息"><a href="#1-游戏信息" class="headerlink" title="1. 游戏信息"></a>1. 游戏信息</h3><table>
-  <thead>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="right"><b>中文名</b></td>
-      <td>红色警戒2：共和国之辉</td>
-      <td align="right"><b>开发商</b></td>
-      <td>Westwood公司</td>
-    </tr>
-    <tr>
-      <td align="right"><b>原版名称</b></td>
-      <td>Red Alert 2</td>
-      <td align="right"><b>发行日期</b></td>
-      <td>2001年</td>
-    </tr>
-        <tr>
-      <td align="right"><b>游戏类型</b></td>
-      <td>即时战略</td>
-      <td align="right"><b>制作人</b></td>
-      <td>Lord Hero</td>
-    </tr>
-        <tr>
-      <td align="right"><b>内容主题</b></td>
-      <td>战争</td>
-      <td align="right"><b>游戏平台</b></td>
-      <td>PC</td>
-    </tr>
-        <tr>
-      <td align="right"><b>玩家人数</b></td>
-      <td>2 到 8 人</td>
-      <td align="right"><b>游戏画面</b></td>
-      <td>2D</td>
-    </tr>
-  </tbody>
-  <tfoot>
-  </tfoot>
-</table>
+<h3 id="CentOS"><a href="#CentOS" class="headerlink" title="CentOS"></a>CentOS</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="comment"># 以下两个文件，在某些版本中可能不存在，可忽略</span></span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup</span><br><span class="line">$ sudo mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 注：</span></span><br><span class="line"><span class="comment"># 如果系统没有安装 wget 则提示：-bash: wget: command not found</span></span><br><span class="line"><span class="comment"># 可以使用 curl -o 替代 wget -O</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 6.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-6.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 7.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- CentOS 8.x ----------</span></span><br><span class="line">$ sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo yum clean metadata</span><br><span class="line">$ sudo yum makecache</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h3><ul>
-<li><a href="https://pan.baidu.com/s/1YWrcQ8qrethEGhV24Z7rGQ">百度网盘</a> 提取码: <code>xrqt</code></li>
-<li>阿里云网盘(暂不支持)</li>
-</ul>
-<h3 id="3-安装说明"><a href="#3-安装说明" class="headerlink" title="3. 安装说明"></a>3. 安装说明</h3><h4 id="3-1-基本设置"><a href="#3-1-基本设置" class="headerlink" title="3.1. 基本设置"></a>3.1. 基本设置</h4><blockquote>
-<p>提示：操作之前，建议修改系统设置，显示文件扩展名。</p>
-</blockquote>
-<ol>
-<li><p>解压下载的文件到任意位置，包含 <code>GHra2.rar</code>、<code>ddraw.zip</code>、<code>ipxwrapper-0.6.1.zip</code> 三个压缩包。</p>
-</li>
-<li><p>解压主程序文件 <code>GHra2.rar</code> 到系统的一个目录下，<strong>注意不要使用包含中文的路径</strong>。比如，我的最终目录为 <code>C:\game\GHra2</code></p>
-</li>
-<li><p>解决游戏卡顿问题</p>
-<ul>
-<li>解压 <code>ddraw.zip</code> 得到 <code>ddraw.dll</code>，拷贝到游戏根目录下；</li>
-<li>找到游戏根目录下的 <code>Ra2.ini</code> 文件，右键选择编辑打开，然后把 <code>[Video]</code> 部分全部替换为以下内容：</li>
-</ul>
- <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Video]</span></span><br><span class="line"><span class="attr">VideoBackBuffer</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">AllowHiResModes</span>=<span class="literal">yes</span></span><br><span class="line"><span class="attr">AllowVRAMSidebar</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">ScreenWidth</span>=<span class="number">1024</span></span><br><span class="line"><span class="attr">ScreenHeight</span>=<span class="number">768</span></span><br><span class="line"><span class="attr">StretchMovies</span>=<span class="literal">no</span></span><br></pre></td></tr></table></figure></li>
-<li><p>兼容性设置（这里以 <code>Windows 7</code> 系统为例）</p>
-<p> 在 <code>ra2.exe</code> 文件上右键单击，依次选择「属性」 &gt; 「兼容性」：</p>
-<ul>
-<li>勾选<strong>以兼容模式运行这个程序</strong>，并选择<strong>Windows XP（Service Pack 3）</strong>；</li>
-<li>勾选<strong>以管理员身份运行此程序</strong>。</li>
-</ul>
-</li>
-<li><p>双击 <code>ra2.exe</code> 启动游戏。因为绿色免安装版，如果启动游戏没反应，可重试两次；如果还是不行，则先双击运行游戏根目录下的 <code>RegSetup.exe</code> 文件，并根据提示完成安装以修复注册表，然后再打开游戏。</p>
-</li>
-</ol>
-<h4 id="3-2-局域网对战设置"><a href="#3-2-局域网对战设置" class="headerlink" title="3.2. 局域网对战设置"></a>3.2. 局域网对战设置</h4><p>由于该游戏在局域网对战时使用的 <code>IPX</code> 网络协议在高版本系统中已经被抛弃，所以我们需要使用一个工具 <code>IPXWrapper</code> 进行模拟。</p>
-<ol>
-<li><p>解压 <code>ipxwrapper-0.6.1.zip</code> 到任意目录下，并把所有文件拷贝到游戏根目录下，具体安装说明详见 <a href="/post/438064550.html">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题
-</a>。</p>
-</li>
-<li><p>启动游戏后，依次选择菜单「选项」 &gt; 「网络」，并做如下修改：</p>
-<ul>
-<li><strong>网卡</strong>：选择连接网络使用的网卡（注意，下拉框里显示的是网卡的 mac 地址）；</li>
-<li><strong>Socket 号码</strong>：设置为 <code>0</code></li>
-<li><strong>目标网络</strong>：设置为 <code>00.00.00.00</code></li>
-</ul>
-<p> <strong>注意</strong>：此处的设置，所有准备联网对战的机器需要<strong>保持一致</strong>，否则也会找不到。</p>
-</li>
-<li><p>返回主菜单，单击「网络」，修改你自己的游戏玩家名称，最后创建或参与游戏。</p>
-</li>
-</ol>
+<p>⚠️ 注意：如果非阿里云 ECS 出现类似 <code>Couldn&#39;t resolve host &#39;mirrors.cloud.aliyuncs.com&#39;</code> 的信息，解决方法 <code>sed -i -e &#39;/mirrors.cloud.aliyuncs.com/d&#39; -e &#39;/mirrors.aliyuncs.com/d&#39; /etc/yum.repos.d/CentOS-Base.repo</code></p>
+<h3 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 替换更新源</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 14.04 (trusty) ----------</span></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment">## Not recommended</span></span><br><span class="line"><span class="comment"># deb https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="comment"># deb-src https://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 16.04 (xenial) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 18.04 (bionic) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Ubuntu 20.04 (focal) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h3 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 备份</span></span><br><span class="line">$ sudo cp -fp /etc/apt/sources.list /etc/apt/sources.list.back</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 将以下指定系统的内容插入文件头部</span></span><br><span class="line">$ sudo vi /etc/apt/sources.list</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 7.x (wheezy) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ wheezy-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 8.x (jessie) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- Debian 9.x (stretch) ----------</span></span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian-security stretch/updates main</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-updates main non-free contrib</span><br><span class="line">deb http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line">deb-src http://mirrors.aliyun.com/debian/ stretch-backports main non-free contrib</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 重建缓存</span></span><br><span class="line">$ sudo apt-get update</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>游戏</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>游戏</tag>
-        <tag>红色警戒2</tag>
-        <tag>共和国之辉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
-    <url>/post/438064550.html</url>
-    <content><![CDATA[<blockquote>
-<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
-</blockquote>
-<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
-<p>同时这是一个开源项目，相关地址如下：</p>
-<ul>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
-<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
-<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
-</ul>
-<p>下载下来后，按以下步骤操作：</p>
-<ol>
-<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
-<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
-<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
-</ol>
-<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
-]]></content>
-      <categories>
-        <category>游戏</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>ipx</tag>
-        <tag>IPXWrapper</tag>
+        <tag>Linux</tag>
+        <tag>软件更新源</tag>
       </tags>
   </entry>
   <entry>
@@ -4889,6 +4848,36 @@
       </tags>
   </entry>
   <entry>
+    <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
+    <url>/post/438064550.html</url>
+    <content><![CDATA[<blockquote>
+<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
+</blockquote>
+<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
+<p>同时这是一个开源项目，相关地址如下：</p>
+<ul>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
+<li><a href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
+<li><a href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
+</ul>
+<p>下载下来后，按以下步骤操作：</p>
+<ol>
+<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
+<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
+<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
+</ol>
+<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>ipx</tag>
+        <tag>IPXWrapper</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何在 CentOS 6.x/7.x 上安装 Git 及最新版</title>
     <url>/post/2026663390.html</url>
     <content><![CDATA[<blockquote>
@@ -4939,6 +4928,28 @@
         <tag>开发工具</tag>
         <tag>版本管理</tag>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL int(M) 中 M 的作用</title>
+    <url>/post/1100143026.html</url>
+    <content><![CDATA[<p>在数据库设计时，我们经常会这样设置 <strong>int(M)</strong></p>
+<p>⚠️ <strong>误区</strong>：<em>大部分人把这个 M 当做能够存储多少位的数据，其实不然，这个M表示的是“显示宽度”。</em></p>
+<p><strong>使用场景</strong>：在前端的要显示一个 <code>integer</code> 类型的数据，数据库里设置对应的数据类型 <code>int(4)</code>，但是写入的数据不足 <code>4</code> 位时，那么就会在左侧填充空格（如果开启 <code>zerofill</code>，则填充 <code>0</code>），以保证够 <code>4</code> 位，那么在前端显示的时候就是对应 <code>4</code> 个宽度的要求了。</p>
+<span id="more"></span>
+
+<p><img data-src="https://static.sqiang.net/image%2Fpost%2Fmysql_int_m.png"></p>
+<blockquote>
+<p>官方强调，用不用这个 <code>M</code> 主要取决于你程序的需要 （ <code>Whether it is used or not is up to the application</code>），因为这个“<strong>显示宽度</strong>”并不限制可以存储在列中的值的范围。</p>
+</blockquote>
+<p>以上是根据上面官方截图的理解，详见：<a href="http://dev.mysql.com/doc/refman/5.6/en/numeric-type-attributes.html">http://dev.mysql.com/doc/refman/5.6/en/numeric-type-attributes.html</a></p>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -5014,423 +5025,6 @@
         <tag>开发工具</tag>
         <tag>版本管理</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn 常用操作命令及问题处理</title>
-    <url>/post/1634855012.html</url>
-    <content><![CDATA[<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a>1. 常用命令</h3><h4 id="1-1-基本使用"><a href="#1-1-基本使用" class="headerlink" title="1.1. 基本使用"></a>1.1. 基本使用</h4><ul>
-<li><p>检出 checkout</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检出代码</span></span><br><span class="line">➜  svn co repo_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检出代码，并指定目录名</span></span><br><span class="line">➜  svn co repo_url saved_dir_name</span><br></pre></td></tr></table></figure></li>
-<li><p>加入版本控制 add</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加指定文件</span></span><br><span class="line">➜  svn add /path/to/file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加所有 .sh 后缀的文件</span></span><br><span class="line">➜  svn add *.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归添加当前目录下的所有新文件</span></span><br><span class="line"><span class="comment"># 如果使用参数 --no-ignore 则新增时会包含被设置为忽略的文件</span></span><br><span class="line">➜  svn add . --force</span><br></pre></td></tr></table></figure></li>
-</ul>
-<span id="more"></span>
-
-<ul>
-<li><p>提交 commit</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;提交更改&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>更新 update</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up [file|path]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新到指定版本 11</span></span><br><span class="line">➜  svn up -r 11 [file|path]</span><br></pre></td></tr></table></figure></li>
-<li><p>清除锁定 <code>svn cleanup</code></p>
-</li>
-<li><p>重定向仓库地址到新地址</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch --relocate old_repo_url new_repo_url</span><br></pre></td></tr></table></figure></li>
-<li><p>切换当前项目到指定分支</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch svn://branch_url</span><br></pre></td></tr></table></figure></li>
-<li><p>检查工作副本下的文件状态 <code>svn st</code></p>
-</li>
-<li><p>查看工作副本的版本库概览信息 <code>svn info</code></p>
-</li>
-<li><p>查看版本库上某个目录下的文件列表（不需要本地检出）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list svn://192.168.1.15/blog</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="1-2-分支和标签"><a href="#1-2-分支和标签" class="headerlink" title="1.2. 分支和标签"></a>1.2. 分支和标签</h4><ul>
-<li><p>创建 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cp svn://trunk_url svn://branch_url -m <span class="string">&#x27;创建分支&#x27;</span></span><br><span class="line">➜  svn mkdir svn://branch_url -m <span class="string">&#x27;创建空分支&#x27;</span></span><br><span class="line">➜  svn cp svn://trunk_url tag_url -m <span class="string">&#x27;创建标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>删除 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除分支&#x27;</span></span><br><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>查看 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ls ^/branches --verbose</span><br><span class="line">➜  svn ls ^/tags --verbose</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="1-3-历史记录"><a href="#1-3-历史记录" class="headerlink" title="1.3. 历史记录"></a>1.3. 历史记录</h4><ul>
-<li><p>查看提交记录</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看整个项目或指定文件目录的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个指定版本之间的提交记录</span></span><br><span class="line">➜   svn <span class="built_in">log</span> -r 11:5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最新的 5 条提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看带目录信息的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 -v [file|dir]</span><br></pre></td></tr></table></figure></li>
-<li><p>查看指定版本号的文件内容</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cat file -r 版本号</span><br></pre></td></tr></table></figure></li>
-<li><p>查看文件的修改详情（行级）</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 比较工作副本下的文件与缓存在 .svn 的“原始”拷贝</span></span><br><span class="line">➜  svn diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较工作副本下的文件与指定版本号 5 下的文件</span></span><br><span class="line">➜  svn diff -r 5 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较两个版本库下的文件</span></span><br><span class="line">➜  svn diff -r 11:2 file</span><br></pre></td></tr></table></figure></li>
-<li><p>查看文件每一行的最后修改人</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn blame file</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="1-4-忽略文件"><a href="#1-4-忽略文件" class="headerlink" title="1.4. 忽略文件"></a>1.4. 忽略文件</h4><ul>
-<li><p>基本使用</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 忽略指定文件或目录</span></span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;file|dir&#x27;</span> dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略当前目录中所有以 .log 结尾的文件</span></span><br><span class="line"><span class="comment"># . 表示当前目录，当指定具体目录时，该目录需处于版本控制状态</span></span><br><span class="line">➜  svn propset svn:ignore -R <span class="string">&#x27;*.log&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;ignore *.log file&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>要忽略的文件已经被 add 过了</p>
-<ul>
-<li>未提交</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R [file|dir]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>已提交</li>
-</ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn del [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只从 svn 中忽略，而不删除本地文件</span></span><br><span class="line">➜  svn del --keep-local [file|dir]</span><br></pre></td></tr></table></figure>
-
-<p>  然后再执行忽略设置并提交。</p>
-</li>
-<li><p>使用配置文件</p>
-<p>  新建 .svnignore 文件，写入类似如下内容：</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">runtime</span><br><span class="line">*.log</span><br><span class="line">*.apk</span><br><span class="line">*.class</span><br></pre></td></tr></table></figure>
-
-<p>  然后执行设置</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn add .svnignore</span><br><span class="line">➜  svn propset svn:ignore -R -F .svnignore .</span><br></pre></td></tr></table></figure>
-
-<p>  提交设置</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;add .svnignore and set some ignore&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="1-5-小技巧"><a href="#1-5-小技巧" class="headerlink" title="1.5. 小技巧"></a>1.5. 小技巧</h4><ul>
-<li><p>创建了一个文件夹，并且把它加入版本控制，但忽略文件夹中的所有内容</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn mkdir dir2</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;*&#x27;</span> dir2</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Adding &quot;dir2&quot; and ignoring its contents.&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>创建一个不加入版本控制（忽略）的文件夹</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir dir1</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;dir1&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Ignoring a directory called &quot;dir1&quot;.&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>导入一个目录 import</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/upload svn://192.168.0.1/repo1 -m <span class="string">&#x27;add module upload&#x27;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="2-合并-merge"><a href="#2-合并-merge" class="headerlink" title="2. 合并 merge"></a>2. 合并 merge</h3><h4 id="2-1-分支合并到主干"><a href="#2-1-分支合并到主干" class="headerlink" title="2.1. 分支合并到主干"></a>2.1. 分支合并到主干</h4><blockquote>
-<p>⚠️<strong>注意</strong>：分支合并到主干后应当删除该分支，因为在 SVN 中该分支已经不能进行刷新也不能合并到主干。</p>
-</blockquote>
-<p>操作步骤：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入主干目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看创建分支时的版本号</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -q -v -l 1 --stop-on-copy svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支上的最新代码到主干</span></span><br><span class="line"><span class="comment"># svn1.8+ 可以不加参数 --reintegrate</span></span><br><span class="line">➜  svn merge --reintegrate svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支中哪些改动已经被合并到主干</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支哪些改动还未合并</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url --show-revs eligible</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from branch r11:r5 into trunk&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="2-2-主干合并到分支"><a href="#2-2-主干合并到分支" class="headerlink" title="2.2. 主干合并到分支"></a>2.2. 主干合并到分支</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入分支目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并之前，可以使用 svn mergeinfo 命令查看主干上有哪些待合并的版本信息</span></span><br><span class="line">➜  svn mergeinfo -v svn://trunk_url --show-revs eligible --<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并主干上最新代码到分支</span></span><br><span class="line">➜  svn merge svn://trunk_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from trunk r11:r5 into branch&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-回滚-rollback"><a href="#3-回滚-rollback" class="headerlink" title="3. 回滚 rollback"></a>3. 回滚 rollback</h3><h4 id="3-1-未提交使用-revert"><a href="#3-1-未提交使用-revert" class="headerlink" title="3.1. 未提交使用 revert"></a>3.1. 未提交使用 <code>revert</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看文件状态</span></span><br><span class="line">➜  svn status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚单个文件</span></span><br><span class="line">➜  svn revert /path/to/file_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚一个目录</span></span><br><span class="line">➜  svn revert dir_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚整个项目</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn revert -R .</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-已提交使用-merge-r"><a href="#3-2-已提交使用-merge-r" class="headerlink" title="3.2. 已提交使用 merge -r"></a>3.2. 已提交使用 <code>merge -r</code></h4><ol>
-<li><p>先更新到最新代码</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里得到最新版本号 11</span></span><br><span class="line">➜  svn up</span><br><span class="line">Updating <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">At revision 11.</span><br></pre></td></tr></table></figure></li>
-<li><p>找到要回滚到的版本号</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看最新的 50 次提交记录</span></span><br><span class="line"><span class="comment"># 最后的参数可以指定文件或目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn <span class="built_in">log</span> -l 50 [file|dir]</span><br></pre></td></tr></table></figure>
-
-<p> 假如我们想要回退到的版本是 5，可以执行命令 <code>svn diff -r 11:5 [file|dir]</code> 简单查看两个版本的区别。</p>
-</li>
-<li><p>回滚到指定版本号</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn merge -r 11:5 [file|dir]</span><br></pre></td></tr></table></figure>
-
-<p> 验证回滚是否成功</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn diff -r [file|dir]</span><br></pre></td></tr></table></figure></li>
-<li><p>提交本次回滚操作到仓库</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&quot;Revert revision from r28 to r25,because of ...&quot;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>其它地方更新本次回滚操作</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="3-3-回退误操作的-svn-up"><a href="#3-3-回退误操作的-svn-up" class="headerlink" title="3.3. 回退误操作的 svn up"></a>3.3. 回退误操作的 <code>svn up</code></h4><p><strong>场景</strong>：我们有一个目录是稳定版本的环境，因为误操作执行了 <code>svn up</code> 后，代码被更新到了仓库中的最新版本，而最新版还没有测试通过，所以我们需要先将更新的代码回滚，如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn merge -r 13410:13962 .</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：千万不要提交，否则仓库中的代码也会回滚，而我们只希望本地目录回滚。</p>
-<p>等到可以执行 <code>svn up</code> 的时候，再恢复：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R .</span><br><span class="line">➜  svn up</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="4-附录1"><a href="#4-附录1" class="headerlink" title="4. 附录1"></a>4. 附录1</h3><h4 id="4-1-命令简写对照"><a href="#4-1-命令简写对照" class="headerlink" title="4.1. 命令简写对照"></a>4.1. 命令简写对照</h4><ul>
-<li><code>svn checkout</code> <strong>—&gt;</strong> <code>svn co</code></li>
-<li><code>svn update</code> <strong>—&gt;</strong> <code>svn up</code></li>
-<li><code>svn commit</code> <strong>—&gt;</strong> <code>svn ci</code></li>
-<li><code>svn delete</code> <strong>—&gt;</strong> <code>svn rm</code> 或 <code>svn del</code></li>
-<li><code>svn copy</code> <strong>—&gt;</strong> <code>svn cp</code></li>
-<li><code>svn list</code> <strong>—&gt;</strong> <code>svn ls</code></li>
-<li><code>svn status</code> <strong>—&gt;</strong> <code>svn st</code></li>
-<li><code>svn switch</code> <strong>—&gt;</strong> <code>svn sw</code></li>
-<li><code>svn diff</code> <strong>—&gt;</strong> <code>svn di</code></li>
-</ul>
-<h4 id="4-2-处理冲突"><a href="#4-2-处理冲突" class="headerlink" title="4.2. 处理冲突"></a>4.2. 处理冲突</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找合并时的冲突文件，手工解决冲突</span></span><br><span class="line">➜  svn st | grep ^C</span><br><span class="line"><span class="comment"># 告知svn冲突已解决</span></span><br><span class="line">➜  svn resolved filename</span><br><span class="line"><span class="comment"># 提示合并后的版本</span></span><br><span class="line">➜  svn commit -m <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>(<strong>p</strong>) postpone    暂时推后处理，我可能要和那个和我冲突的家伙商量一番</li>
-<li>(<strong>df</strong>) diff-full        把所有的修改列出来，比比看</li>
-<li>(<strong>e</strong>) edit              直接编辑冲突的文件</li>
-<li>(<strong>mc</strong>) mine-conflict 如果你很有自信可以只用你的修改，把别人的修改干掉</li>
-<li>(<strong>tc</strong>) theirs-conflict  底气不足，还是用别人修改的吧</li>
-<li>(<strong>s</strong>) show all options  显示其他可用的命令</li>
-</ul>
-<h4 id="4-3-文件符号状态"><a href="#4-3-文件符号状态" class="headerlink" title="4.3. 文件符号状态"></a>4.3. 文件符号状态</h4><ul>
-<li><strong>U</strong>: 表示从服务器收到文件更新了</li>
-<li><strong>G</strong>: 表示本地文件以及服务器文件都已更新,而且成功的合并了</li>
-<li><strong>A</strong>: 表示有文件或者目录添加到工作目录</li>
-<li><strong>R</strong>: 表示文件或者目录被替换了.</li>
-<li><strong>C</strong>: 表示文件的本地修改和服务器修改发生冲突</li>
-</ul>
-<h4 id="4-4-如何迁移仓库"><a href="#4-4-如何迁移仓库" class="headerlink" title="4.4. 如何迁移仓库"></a>4.4. 如何迁移仓库</h4><ol>
-<li><p>备份源仓库</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin dump /path/to/repo &gt; repo.dump</span><br></pre></td></tr></table></figure></li>
-<li><p>新建仓库</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin create new_repo</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：如果是迁移到 Windows 下，使用 VisualSVN 创建新仓库时，不要创建默认目录结构（branches、trunk、tags），否则在导入备份时候可能因为目录冲突发生报错而中断。</p>
-</blockquote>
-</li>
-<li><p>从备份文件导入新建的仓库</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin load /path/to/new_repo &lt; repo.dump</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p><strong>建议：切换代码的 svn 仓库地址时，最好使用新 svn 地址进行重新检出的方式操作；如果直接使用 <code>svn switch --relocate svn://svn_old svn://svn_new </code> 进行切换，有可能报类似 <code>uuid</code> 冲突的错误。</strong></p>
-<h3 id="5-附录2：常见问题处理"><a href="#5-附录2：常见问题处理" class="headerlink" title="5. 附录2：常见问题处理"></a>5. 附录2：常见问题处理</h3><h4 id="5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding"><a href="#5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding" class="headerlink" title="5.1. svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding"></a>5.1. <code>svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding</code></h4><p><strong>解决</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export LC_ALL=zh_CN.UTF-8&quot;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected"><a href="#5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected" class="headerlink" title="5.2. SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected."></a>5.2. <code>SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected.</code></h4><p><strong>场景</strong>：在 CentOS 服务器上，通过 svn 命令检出 VisualSVN 管理的仓库代码时。</p>
-<p><strong>解决</strong>：安装高版本的 svn ，如下</p>
-<ul>
-<li><p>添加软件源 <code>vim /etc/yum.repos.d/wandisco-svn.repo</code></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[WandiscoSVN]</span><br><span class="line">name=Wandisco SVN Repo</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/$releasever/svn-1.8/RPMS/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></li>
-<li><p>删除旧版本 <code>yum remove subversion*</code></p>
-</li>
-<li><p>安装新版本</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum clean all</span><br><span class="line">➜  yum install subversion</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>版本管理</tag>
-        <tag>svn</tag>
-        <tag>Subversion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>svn 服务端配置</title>
-    <url>/post/1709980602.html</url>
-    <content><![CDATA[<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><blockquote>
-<p>单版本库与多版本库各有优点和缺点，主要根据具体项目情况进行选择。</p>
-</blockquote>
-<h4 id="1-1-多库模式"><a href="#1-1-多库模式" class="headerlink" title="1.1. 多库模式"></a>1.1. 多库模式</h4><ol>
-<li><p>创建</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /home/repos</span><br><span class="line">➜  svnadmin create /home/repos/resume</span><br><span class="line">➜  svnadmin create /home/repos/blog</span><br><span class="line">➜  <span class="built_in">cd</span> /home/repos</span><br><span class="line">➜  tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- blog</span><br><span class="line">|   |-- README.txt</span><br><span class="line">|   |-- conf</span><br><span class="line">|   |-- db</span><br><span class="line">|   |-- format</span><br><span class="line">|   |-- hooks</span><br><span class="line">|   `-- locks</span><br><span class="line">`-- resume</span><br><span class="line">    |-- README.txt</span><br><span class="line">    |-- conf</span><br><span class="line">    |-- db</span><br><span class="line">    |-- format</span><br><span class="line">    |-- hooks</span><br><span class="line">    `-- locks</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>公用一份 authz 和 passwd 文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mv blog/conf/authz ./</span><br><span class="line">➜  mv blog/conf/passwd ./</span><br><span class="line">➜  rm -rf resume/conf/authz resume/conf/passwd</span><br></pre></td></tr></table></figure></li>
-<li><p>分别设置每个库的 <strong>svnserve.conf</strong> 文件</p>
-<p> 以 blog 为例 <code>vim /home/repos/blog/conf/svnserve.conf</code></p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名用户只读(read或none)</span></span><br><span class="line">anon-access = none</span><br><span class="line"></span><br><span class="line"><span class="comment"># 认证用户可写</span></span><br><span class="line">auth-access = write</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 passwd 文件的位置</span></span><br><span class="line">password-db = ../../passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 authz 文件的位置</span></span><br><span class="line">authz-db = ../../authz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仓库的文件名(具体在客户端更新下载的时候能看到仓库名字)</span></span><br><span class="line">realm = blog</span><br></pre></td></tr></table></figure></li>
-<li><p>修改公用的 <strong>passwd</strong> 设置用户名、密码</p>
-<p> <code># vim /home/repos/passwd</code></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[users]</span><br><span class="line">admin = admin</span><br><span class="line">lisi = pwdls</span><br><span class="line">zhansan = pwdzs</span><br></pre></td></tr></table></figure></li>
-<li><p>修改公用的 <strong>authz</strong> 设置用户访问权限</p>
-<p> <code>vim /home/repos/authz</code></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">blog_rw = zhangsan</span><br><span class="line">resume_rw = lisi</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[blog:/]</span><br><span class="line">@blog_rw = rw</span><br><span class="line"></span><br><span class="line">[resume:/]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
-
-<p> 说明：admin 可以读写 blog、resume；zhangsan 只能读写 blog；lisi 只能读写 resume。</p>
-</li>
-</ol>
-<h4 id="1-2-单库模式"><a href="#1-2-单库模式" class="headerlink" title="1.2. 单库模式"></a>1.2. 单库模式</h4><blockquote>
-<p>单库方式比较简单，只针对于单一项目的开发管理，并且在单库方式下一台服务器只能创建一个样本库，限制较大！</p>
-</blockquote>
-<p>创建一个新的单库 cms</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p /home/repos2</span><br><span class="line">➜ svnadmin create /home/repos2/cms</span><br></pre></td></tr></table></figure>
-
-<p>单库模式下，配置文件在 <code>/home/repos2/cms/conf</code> 下，其中 svnserv.conf 和 passwd 的配置方式与多库相似，authz 的配置有较大区别，如下：</p>
-<p><code>vim /home/repos2/cms/conf/authz</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">dev = wanger</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line">@dev = rw</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-启动"><a href="#2-启动" class="headerlink" title="2. 启动"></a>2. 启动</h3><blockquote>
-<p>注意：svn 默认监听端口 TCP 3690，如果开启了防火墙需提前加入可访问列表；或者在启动时候，使用参数 <code>--listen-port</code>。</p>
-</blockquote>
-<p>多库 <code>svnserve -d -r /home/repos</code></p>
-<p>单库 <code>svnserve -d -r /home/repos/cms</code></p>
-<ul>
-<li><code>-d</code> 以守护模式运行</li>
-<li><code>-r</code> 指定 svn 服务的根目录</li>
-<li><code>--listen-port</code> 指定 svn 服务监听的端口号</li>
-</ul>
-<h3 id="3-访问"><a href="#3-访问" class="headerlink" title="3. 访问"></a>3. 访问</h3><p>多库模式需要指定具体的库名，如：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1/blog</span><br><span class="line">➜  svn co svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure>
-
-<p>单库模式只需要输入ip或域名地址，如：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-停止服务"><a href="#4-停止服务" class="headerlink" title="4. 停止服务"></a>4. 停止服务</h3><p><code>killall svnserve</code></p>
-<p>或</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ps -aux|grep svnserv</span><br><span class="line">➜  <span class="built_in">kill</span> -9 <span class="variable">$pid</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h3><h4 id="5-1-创建通用版本库布局"><a href="#5-1-创建通用版本库布局" class="headerlink" title="5.1. 创建通用版本库布局"></a>5.1. 创建通用版本库布局</h4><p>在开发过程中，推荐创建如下布局文件：</p>
-<ul>
-<li>trunk</li>
-<li>branches</li>
-<li>tags</li>
-</ul>
-<p>步骤：</p>
-<ol>
-<li><p>创建目录布局临时文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /tmp/repos_layout/&#123;trunk,branches,tags&#125;</span><br><span class="line">➜  tree /tmp/repos_layout/</span><br><span class="line">/tmp/repos_layout/</span><br><span class="line">|-- branches</span><br><span class="line">|-- tags</span><br><span class="line">`-- trunk</span><br></pre></td></tr></table></figure></li>
-<li><p>导入到版本库中</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/repos_layout svn://192.168.0.1/resume -m <span class="string">&#x27;init&#x27;</span></span><br><span class="line">Adding         /tmp/repos_layout/branches</span><br><span class="line">Adding         /tmp/repos_layout/tags</span><br><span class="line">Adding         /tmp/repos_layout/trunk</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 1.</span><br></pre></td></tr></table></figure>
-
-<p> 查看是否导入成功</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list --verbose svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure></li>
-<li><p>修改权限</p>
-<p> 编辑权限文件 <code>vim /home/repos/authz</code>，设置普通用户访问 trunk，管理员访问版本库根目录 trunk、branches、tags，如下：</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[resume:/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[resume:/trunk]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：权限是继承的，管理员既然能访问根目录，那么根下的子目录也是有权限访问的；而普通用户一般设置较小的权限集，只能访问指定的目录，比如这里的 trunk。</p>
-</blockquote>
-</li>
-<li><p>访问</p>
-<p> 普通用户 <code>svn co svn://192.168.1.1/resume/trunk</code></p>
-<p> 管理员 <code>svn co svn://192.168.1.1/resume/</code></p>
-</li>
-</ol>
-<h4 id="5-x-参照资料"><a href="#5-x-参照资料" class="headerlink" title="5.x. 参照资料"></a>5.x. 参照资料</h4><ul>
-<li><a href="https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html">https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html</a></li>
-<li><a href="http://wangying.sinaapp.com/archives/1352">http://wangying.sinaapp.com/archives/1352</a></li>
-<li><a href="http://www.runoob.com/svn/svn-tutorial.html">http://www.runoob.com/svn/svn-tutorial.html</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>版本管理</tag>
-        <tag>svn</tag>
-        <tag>Subversion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安装 svn 最新版本 1.10.x</title>
-    <url>/post/3349016682.html</url>
-    <content><![CDATA[<p>SVN 的全称是 <strong>Subversion</strong>，即版本控制系统。它曾经是最流行的一个开放源代码的版本控制系统（现在肯定是 Git）。</p>
-<p>Subversion 是一个通用的系统，可用来管理任何类型的文件，其中包括程序源码。</p>
-<span id="more"></span>
-
-<h3 id="一、使用包管理器自动安装"><a href="#一、使用包管理器自动安装" class="headerlink" title="一、使用包管理器自动安装"></a>一、使用包管理器自动安装</h3><p>官网提供了常见 Linux 发行版的安装命令，此处仅以 <em>CentOS</em>、<em>Debian</em> 及 <em>Ubuntu</em> 为例进行说明，其它系统详见官网：<a href="https://subversion.apache.org/packages.html">https://subversion.apache.org/packages.html</a></p>
-<blockquote>
-<p>⚠️ <strong>注意</strong>：一般各发行版系统中内置的软件包都不是最新的，如果需要安装最新稳定版的 Subversion，请使用方法二中的源码安装。</p>
-</blockquote>
-<ul>
-<li><p>CentOS</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install subversion</span><br><span class="line">➜  yum install mod_dav_svn</span><br></pre></td></tr></table></figure></li>
-<li><p>Debian</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  apt-get install subversion</span><br><span class="line">➜  apt-get install libapache2-mod-svn</span><br></pre></td></tr></table></figure></li>
-<li><p>Ubuntu</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  apt-get install subversion</span><br><span class="line">➜  apt-get install libapache2-svn</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="二、源码编译安装"><a href="#二、源码编译安装" class="headerlink" title="二、源码编译安装"></a>二、源码编译安装</h3><p>官网源码下载页：<a href="https://subversion.apache.org/download.cgi">https://subversion.apache.org/download.cgi</a></p>
-<table>
-<thead>
-<tr>
-<th>最新稳定版（推荐）</th>
-<th>上一稳定版</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.bz2">subversion-1.10.2.tar.bz2</a></td>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.tar.bz2">subversion-1.9.9.tar.bz2</a></td>
-</tr>
-<tr>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.gz">subversion-1.10.2.tar.gz</a></td>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.tar.gz">subversion-1.9.9.tar.gz</a></td>
-</tr>
-<tr>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.zip">subversion-1.10.2.zip</a></td>
-<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.zip">subversion-1.9.9.zip</a></td>
-</tr>
-</tbody></table>
-<h4 id="2-1-安装依赖"><a href="#2-1-安装依赖" class="headerlink" title="2.1 安装依赖"></a>2.1 安装依赖</h4><p>本文安装的最新 subversion-1.10.x 版本，需要安装依赖 <strong>apr</strong> 和 <strong>apr-uti</strong>，官网下载地址在这里： <a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a>。</p>
-<p>低于当前最新版本的源码，可能还需要下面的基础依赖，请根据安装过程是否报错自行选择：</p>
-<ul>
-<li><code>yum install -y zlib zlib-devel</code></li>
-<li><code>yum install -y openssl openssl-devel</code></li>
-<li><code>yum install -y expat-devel</code></li>
-<li><code>yum install -y bzip2</code> 解压 ***.bz2** 文件时需要用到。</li>
-<li><a href="https://www.sqlite.org/2018/sqlite-autoconf-3250100.tar.gz">sqlite-autoconf-3250100.tar.gz</a> 在高版本的 Subversion 源码包中已内置。</li>
-</ul>
-<p>另外，对于 <strong>v1.7</strong> 以下的版本，官方有直接提供依赖包的安装下载，比如：<a href="http://subversion.tigris.org/downloads/subversion-deps-1.6.12.tar.gz">subversion-deps-1.6.12.tar.gz</a>、 <a href="http://subversion.tigris.org/downloads/subversion-1.6.12.tar.gz">subversion-1.6.12.tar.gz</a>，直接进入 <code>subversion-deps*</code> 目录下安装所需依赖即可。</p>
-<ul>
-<li><p>安装 <strong>apr</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache//apr/apr-1.6.5.tar.gz</span><br><span class="line">➜  tar  -zxvf apr-1.6.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> apr-1.6.5</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure></li>
-<li><p>安装 <strong>apr-util</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache//apr/apr-util-1.6.1.tar.gz</span><br><span class="line">➜  tar  -zxvf apr-util-1.6.1.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> apr-util-1.6.1</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/apr-util --with-apr=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-2-安装-Subversion"><a href="#2-2-安装-Subversion" class="headerlink" title="2.2. 安装 Subversion"></a>2.2. 安装 Subversion</h4><p>下载、编译、安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.gz</span><br><span class="line">➜  tar -zxvf subversion-1.10.2.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> subversion-1.10.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/subversion --with-apr=/usr/<span class="built_in">local</span>/apr --with-apr-util=/usr/<span class="built_in">local</span>/apr-util --with-lz4=internal --with-utf8proc=internal</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure>
-
-<p>其中：</p>
-<ul>
-<li><p><code>--with-lz4=internal</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">configure: error: Subversion requires LZ4 &gt;= r129, or use --with-lz4=internal --with-serf=/usr/local/serf</span><br></pre></td></tr></table></figure></li>
-<li><p><code>--with-utf8proc=internal</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">configure: error: Subversion requires UTF8PROC</span><br></pre></td></tr></table></figure></li>
-<li><p><code>--with-serf=/usr/local/serf</code> 开启 HTTP 和 HTTPS 访问支持</p>
-<p>可能报错：<code>configure: error: Serf was explicitly enabled but an appropriate version was not found.</code></p>
-<p>解决：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 scons 编译、安装</span></span><br><span class="line">➜  wget https://svwh.dl.sourceforge.net/project/scons/scons/2.3.3/scons-2.3.3.tar.gz</span><br><span class="line">➜  tar xvf scons-2.3.3.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> scons-2.3.3</span><br><span class="line">➜  python setup.py install</span><br><span class="line"></span><br><span class="line">➜  wget https://archive.apache.org/dist/serf/serf-1.3.9.tar.bz2</span><br><span class="line">➜  tar xjvf serf-1.3.9.tar.bz2</span><br><span class="line">➜  scons PREFIX=/usr/<span class="built_in">local</span>/serf APR=/usr/<span class="built_in">local</span>/apr APU=/usr/<span class="built_in">local</span>/apr-util</span><br><span class="line">➜  scons install</span><br><span class="line">➜  scons -c</span><br></pre></td></tr></table></figure>
-
-<p>报错：<code>svn: error while loading shared libraries: libserf-1.so.1: cannot open shared object file: No such file or directory</code></p>
-<p>解决：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/subversion/lib</span><br><span class="line">➜  cp /usr/<span class="built_in">local</span>/serf/lib/libserf-1.so.1 ./</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h4 id="2-3-添加环境变量"><a href="#2-3-添加环境变量" class="headerlink" title="2.3. 添加环境变量"></a>2.3. 添加环境变量</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=/usr/local/subversion/bin:<span class="variable">$PATH</span>&quot;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-验证安装"><a href="#2-4-验证安装" class="headerlink" title="2.4. 验证安装"></a>2.4. 验证安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn --version</span><br><span class="line">➜  svnserve --version</span><br></pre></td></tr></table></figure>
-
-<p>当遇到下面的问题时：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn --version</span><br><span class="line">svn: warning: cannot <span class="built_in">set</span> LC_CTYPE locale</span><br><span class="line">svn: warning: environment variable LC_CTYPE is UTF-8</span><br><span class="line">svn: warning: please check that your locale name is correct</span><br></pre></td></tr></table></figure>
-
-<p>修复</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export LC_ALL=C&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>版本管理</tag>
-        <tag>svn</tag>
-        <tag>Subversion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL int(M) 中 M 的作用</title>
-    <url>/post/1100143026.html</url>
-    <content><![CDATA[<p>在数据库设计时，我们经常会这样设置 <strong>int(M)</strong></p>
-<p>⚠️ <strong>误区</strong>：<em>大部分人把这个 M 当做能够存储多少位的数据，其实不然，这个M表示的是“显示宽度”。</em></p>
-<p><strong>使用场景</strong>：在前端的要显示一个 <code>integer</code> 类型的数据，数据库里设置对应的数据类型 <code>int(4)</code>，但是写入的数据不足 <code>4</code> 位时，那么就会在左侧填充空格（如果开启 <code>zerofill</code>，则填充 <code>0</code>），以保证够 <code>4</code> 位，那么在前端显示的时候就是对应 <code>4</code> 个宽度的要求了。</p>
-<span id="more"></span>
-
-<p><img data-src="https://static.sqiang.net/image%2Fpost%2Fmysql_int_m.png"></p>
-<blockquote>
-<p>官方强调，用不用这个 <code>M</code> 主要取决于你程序的需要 （ <code>Whether it is used or not is up to the application</code>），因为这个“<strong>显示宽度</strong>”并不限制可以存储在列中的值的范围。</p>
-</blockquote>
-<p>以上是根据上面官方截图的理解，详见：<a href="http://dev.mysql.com/doc/refman/5.6/en/numeric-type-attributes.html">http://dev.mysql.com/doc/refman/5.6/en/numeric-type-attributes.html</a></p>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL 导入数据时查看实时进度</title>
-    <url>/post/2437365066.html</url>
-    <content><![CDATA[<h3 id="1-安装-pv-工具"><a href="#1-安装-pv-工具" class="headerlink" title="1. 安装 pv 工具"></a>1. 安装 pv 工具</h3><p>pv 全名为 Pipe Viewer，利用它我们可以查看到命令执行的进度，更多功能详见其参数 <code>pv --help</code>。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">➜  yum install pv</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">➜  sudo apt-get install pv</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-导出"><a href="#2-导出" class="headerlink" title="2. 导出"></a>2. 导出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pv -t -p back_20181109_020001.sql | mysql -uroot -p123123 -D dbname1</span><br><span class="line">Warning: Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">0:02:28 [======================================================================================================================&gt;] 100%</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>数据库</tag>
-        <tag>pv</tag>
       </tags>
   </entry>
   <entry>
@@ -5517,6 +5111,22 @@
         <tag>MySQL</tag>
         <tag>数据库</tag>
         <tag>索引</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 导入数据时查看实时进度</title>
+    <url>/post/2437365066.html</url>
+    <content><![CDATA[<h3 id="1-安装-pv-工具"><a href="#1-安装-pv-工具" class="headerlink" title="1. 安装 pv 工具"></a>1. 安装 pv 工具</h3><p>pv 全名为 Pipe Viewer，利用它我们可以查看到命令执行的进度，更多功能详见其参数 <code>pv --help</code>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">➜  yum install pv</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">➜  sudo apt-get install pv</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-导出"><a href="#2-导出" class="headerlink" title="2. 导出"></a>2. 导出</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pv -t -p back_20181109_020001.sql | mysql -uroot -p123123 -D dbname1</span><br><span class="line">Warning: Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">0:02:28 [======================================================================================================================&gt;] 100%</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
+        <tag>pv</tag>
       </tags>
   </entry>
   <entry>
@@ -6411,6 +6021,487 @@
       <tags>
         <tag>Redis</tag>
         <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn 常用操作命令及问题处理</title>
+    <url>/post/1634855012.html</url>
+    <content><![CDATA[<h3 id="1-常用命令"><a href="#1-常用命令" class="headerlink" title="1. 常用命令"></a>1. 常用命令</h3><h4 id="1-1-基本使用"><a href="#1-1-基本使用" class="headerlink" title="1.1. 基本使用"></a>1.1. 基本使用</h4><ul>
+<li><p>检出 checkout</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 检出代码</span></span><br><span class="line">➜  svn co repo_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检出代码，并指定目录名</span></span><br><span class="line">➜  svn co repo_url saved_dir_name</span><br></pre></td></tr></table></figure></li>
+<li><p>加入版本控制 add</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 添加指定文件</span></span><br><span class="line">➜  svn add /path/to/file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加所有 .sh 后缀的文件</span></span><br><span class="line">➜  svn add *.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归添加当前目录下的所有新文件</span></span><br><span class="line"><span class="comment"># 如果使用参数 --no-ignore 则新增时会包含被设置为忽略的文件</span></span><br><span class="line">➜  svn add . --force</span><br></pre></td></tr></table></figure></li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li><p>提交 commit</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;提交更改&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>更新 update</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up [file|path]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新到指定版本 11</span></span><br><span class="line">➜  svn up -r 11 [file|path]</span><br></pre></td></tr></table></figure></li>
+<li><p>清除锁定 <code>svn cleanup</code></p>
+</li>
+<li><p>重定向仓库地址到新地址</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch --relocate old_repo_url new_repo_url</span><br></pre></td></tr></table></figure></li>
+<li><p>切换当前项目到指定分支</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn switch svn://branch_url</span><br></pre></td></tr></table></figure></li>
+<li><p>检查工作副本下的文件状态 <code>svn st</code></p>
+</li>
+<li><p>查看工作副本的版本库概览信息 <code>svn info</code></p>
+</li>
+<li><p>查看版本库上某个目录下的文件列表（不需要本地检出）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list svn://192.168.1.15/blog</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-2-分支和标签"><a href="#1-2-分支和标签" class="headerlink" title="1.2. 分支和标签"></a>1.2. 分支和标签</h4><ul>
+<li><p>创建 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cp svn://trunk_url svn://branch_url -m <span class="string">&#x27;创建分支&#x27;</span></span><br><span class="line">➜  svn mkdir svn://branch_url -m <span class="string">&#x27;创建空分支&#x27;</span></span><br><span class="line">➜  svn cp svn://trunk_url tag_url -m <span class="string">&#x27;创建标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>删除 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除分支&#x27;</span></span><br><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>查看 branch、tag</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ls ^/branches --verbose</span><br><span class="line">➜  svn ls ^/tags --verbose</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-3-历史记录"><a href="#1-3-历史记录" class="headerlink" title="1.3. 历史记录"></a>1.3. 历史记录</h4><ul>
+<li><p>查看提交记录</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看整个项目或指定文件目录的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个指定版本之间的提交记录</span></span><br><span class="line">➜   svn <span class="built_in">log</span> -r 11:5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最新的 5 条提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看带目录信息的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 -v [file|dir]</span><br></pre></td></tr></table></figure></li>
+<li><p>查看指定版本号的文件内容</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cat file -r 版本号</span><br></pre></td></tr></table></figure></li>
+<li><p>查看文件的修改详情（行级）</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 比较工作副本下的文件与缓存在 .svn 的“原始”拷贝</span></span><br><span class="line">➜  svn diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较工作副本下的文件与指定版本号 5 下的文件</span></span><br><span class="line">➜  svn diff -r 5 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较两个版本库下的文件</span></span><br><span class="line">➜  svn diff -r 11:2 file</span><br></pre></td></tr></table></figure></li>
+<li><p>查看文件每一行的最后修改人</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn blame file</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-4-忽略文件"><a href="#1-4-忽略文件" class="headerlink" title="1.4. 忽略文件"></a>1.4. 忽略文件</h4><ul>
+<li><p>基本使用</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 忽略指定文件或目录</span></span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;file|dir&#x27;</span> dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略当前目录中所有以 .log 结尾的文件</span></span><br><span class="line"><span class="comment"># . 表示当前目录，当指定具体目录时，该目录需处于版本控制状态</span></span><br><span class="line">➜  svn propset svn:ignore -R <span class="string">&#x27;*.log&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;ignore *.log file&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>要忽略的文件已经被 add 过了</p>
+<ul>
+<li>未提交</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R [file|dir]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>已提交</li>
+</ul>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn del [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只从 svn 中忽略，而不删除本地文件</span></span><br><span class="line">➜  svn del --keep-local [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p>  然后再执行忽略设置并提交。</p>
+</li>
+<li><p>使用配置文件</p>
+<p>  新建 .svnignore 文件，写入类似如下内容：</p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">runtime</span><br><span class="line">*.log</span><br><span class="line">*.apk</span><br><span class="line">*.class</span><br></pre></td></tr></table></figure>
+
+<p>  然后执行设置</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn add .svnignore</span><br><span class="line">➜  svn propset svn:ignore -R -F .svnignore .</span><br></pre></td></tr></table></figure>
+
+<p>  提交设置</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&#x27;add .svnignore and set some ignore&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="1-5-小技巧"><a href="#1-5-小技巧" class="headerlink" title="1.5. 小技巧"></a>1.5. 小技巧</h4><ul>
+<li><p>创建了一个文件夹，并且把它加入版本控制，但忽略文件夹中的所有内容</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn mkdir dir2</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;*&#x27;</span> dir2</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Adding &quot;dir2&quot; and ignoring its contents.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>创建一个不加入版本控制（忽略）的文件夹</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir dir1</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;dir1&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Ignoring a directory called &quot;dir1&quot;.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>导入一个目录 import</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/upload svn://192.168.0.1/repo1 -m <span class="string">&#x27;add module upload&#x27;</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-合并-merge"><a href="#2-合并-merge" class="headerlink" title="2. 合并 merge"></a>2. 合并 merge</h3><h4 id="2-1-分支合并到主干"><a href="#2-1-分支合并到主干" class="headerlink" title="2.1. 分支合并到主干"></a>2.1. 分支合并到主干</h4><blockquote>
+<p>⚠️<strong>注意</strong>：分支合并到主干后应当删除该分支，因为在 SVN 中该分支已经不能进行刷新也不能合并到主干。</p>
+</blockquote>
+<p>操作步骤：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入主干目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看创建分支时的版本号</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -q -v -l 1 --stop-on-copy svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支上的最新代码到主干</span></span><br><span class="line"><span class="comment"># svn1.8+ 可以不加参数 --reintegrate</span></span><br><span class="line">➜  svn merge --reintegrate svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支中哪些改动已经被合并到主干</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看分支哪些改动还未合并</span></span><br><span class="line">➜  svn mergeinfo svn://branch_url --show-revs eligible</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from branch r11:r5 into trunk&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-2-主干合并到分支"><a href="#2-2-主干合并到分支" class="headerlink" title="2.2. 主干合并到分支"></a>2.2. 主干合并到分支</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入分支目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并之前，可以使用 svn mergeinfo 命令查看主干上有哪些待合并的版本信息</span></span><br><span class="line">➜  svn mergeinfo -v svn://trunk_url --show-revs eligible --<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并主干上最新代码到分支</span></span><br><span class="line">➜  svn merge svn://trunk_url</span><br><span class="line"></span><br><span class="line"><span class="comment"># ⚠️ 提交本次合并（不提交的话，合并不会生效，也会影响后面的更新操作）</span></span><br><span class="line">➜  svn ci -m <span class="string">&#x27;merge from trunk r11:r5 into branch&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-回滚-rollback"><a href="#3-回滚-rollback" class="headerlink" title="3. 回滚 rollback"></a>3. 回滚 rollback</h3><h4 id="3-1-未提交使用-revert"><a href="#3-1-未提交使用-revert" class="headerlink" title="3.1. 未提交使用 revert"></a>3.1. 未提交使用 <code>revert</code></h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看文件状态</span></span><br><span class="line">➜  svn status</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚单个文件</span></span><br><span class="line">➜  svn revert /path/to/file_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚一个目录</span></span><br><span class="line">➜  svn revert dir_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 回滚整个项目</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn revert -R .</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-已提交使用-merge-r"><a href="#3-2-已提交使用-merge-r" class="headerlink" title="3.2. 已提交使用 merge -r"></a>3.2. 已提交使用 <code>merge -r</code></h4><ol>
+<li><p>先更新到最新代码</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里得到最新版本号 11</span></span><br><span class="line">➜  svn up</span><br><span class="line">Updating <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">At revision 11.</span><br></pre></td></tr></table></figure></li>
+<li><p>找到要回滚到的版本号</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看最新的 50 次提交记录</span></span><br><span class="line"><span class="comment"># 最后的参数可以指定文件或目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn <span class="built_in">log</span> -l 50 [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p> 假如我们想要回退到的版本是 5，可以执行命令 <code>svn diff -r 11:5 [file|dir]</code> 简单查看两个版本的区别。</p>
+</li>
+<li><p>回滚到指定版本号</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn merge -r 11:5 [file|dir]</span><br></pre></td></tr></table></figure>
+
+<p> 验证回滚是否成功</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  svn diff -r [file|dir]</span><br></pre></td></tr></table></figure></li>
+<li><p>提交本次回滚操作到仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ci -m <span class="string">&quot;Revert revision from r28 to r25,because of ...&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>其它地方更新本次回滚操作</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn up</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="3-3-回退误操作的-svn-up"><a href="#3-3-回退误操作的-svn-up" class="headerlink" title="3.3. 回退误操作的 svn up"></a>3.3. 回退误操作的 <code>svn up</code></h4><p><strong>场景</strong>：我们有一个目录是稳定版本的环境，因为误操作执行了 <code>svn up</code> 后，代码被更新到了仓库中的最新版本，而最新版还没有测试通过，所以我们需要先将更新的代码回滚，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn merge -r 13410:13962 .</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：千万不要提交，否则仓库中的代码也会回滚，而我们只希望本地目录回滚。</p>
+<p>等到可以执行 <code>svn up</code> 的时候，再恢复：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R .</span><br><span class="line">➜  svn up</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4-附录1"><a href="#4-附录1" class="headerlink" title="4. 附录1"></a>4. 附录1</h3><h4 id="4-1-命令简写对照"><a href="#4-1-命令简写对照" class="headerlink" title="4.1. 命令简写对照"></a>4.1. 命令简写对照</h4><ul>
+<li><code>svn checkout</code> <strong>—&gt;</strong> <code>svn co</code></li>
+<li><code>svn update</code> <strong>—&gt;</strong> <code>svn up</code></li>
+<li><code>svn commit</code> <strong>—&gt;</strong> <code>svn ci</code></li>
+<li><code>svn delete</code> <strong>—&gt;</strong> <code>svn rm</code> 或 <code>svn del</code></li>
+<li><code>svn copy</code> <strong>—&gt;</strong> <code>svn cp</code></li>
+<li><code>svn list</code> <strong>—&gt;</strong> <code>svn ls</code></li>
+<li><code>svn status</code> <strong>—&gt;</strong> <code>svn st</code></li>
+<li><code>svn switch</code> <strong>—&gt;</strong> <code>svn sw</code></li>
+<li><code>svn diff</code> <strong>—&gt;</strong> <code>svn di</code></li>
+</ul>
+<h4 id="4-2-处理冲突"><a href="#4-2-处理冲突" class="headerlink" title="4.2. 处理冲突"></a>4.2. 处理冲突</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查找合并时的冲突文件，手工解决冲突</span></span><br><span class="line">➜  svn st | grep ^C</span><br><span class="line"><span class="comment"># 告知svn冲突已解决</span></span><br><span class="line">➜  svn resolved filename</span><br><span class="line"><span class="comment"># 提示合并后的版本</span></span><br><span class="line">➜  svn commit -m <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>(<strong>p</strong>) postpone    暂时推后处理，我可能要和那个和我冲突的家伙商量一番</li>
+<li>(<strong>df</strong>) diff-full        把所有的修改列出来，比比看</li>
+<li>(<strong>e</strong>) edit              直接编辑冲突的文件</li>
+<li>(<strong>mc</strong>) mine-conflict 如果你很有自信可以只用你的修改，把别人的修改干掉</li>
+<li>(<strong>tc</strong>) theirs-conflict  底气不足，还是用别人修改的吧</li>
+<li>(<strong>s</strong>) show all options  显示其他可用的命令</li>
+</ul>
+<h4 id="4-3-文件符号状态"><a href="#4-3-文件符号状态" class="headerlink" title="4.3. 文件符号状态"></a>4.3. 文件符号状态</h4><ul>
+<li><strong>U</strong>: 表示从服务器收到文件更新了</li>
+<li><strong>G</strong>: 表示本地文件以及服务器文件都已更新,而且成功的合并了</li>
+<li><strong>A</strong>: 表示有文件或者目录添加到工作目录</li>
+<li><strong>R</strong>: 表示文件或者目录被替换了.</li>
+<li><strong>C</strong>: 表示文件的本地修改和服务器修改发生冲突</li>
+</ul>
+<h4 id="4-4-如何迁移仓库"><a href="#4-4-如何迁移仓库" class="headerlink" title="4.4. 如何迁移仓库"></a>4.4. 如何迁移仓库</h4><ol>
+<li><p>备份源仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin dump /path/to/repo &gt; repo.dump</span><br></pre></td></tr></table></figure></li>
+<li><p>新建仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin create new_repo</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：如果是迁移到 Windows 下，使用 VisualSVN 创建新仓库时，不要创建默认目录结构（branches、trunk、tags），否则在导入备份时候可能因为目录冲突发生报错而中断。</p>
+</blockquote>
+</li>
+<li><p>从备份文件导入新建的仓库</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svnadmin load /path/to/new_repo &lt; repo.dump</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>建议：切换代码的 svn 仓库地址时，最好使用新 svn 地址进行重新检出的方式操作；如果直接使用 <code>svn switch --relocate svn://svn_old svn://svn_new </code> 进行切换，有可能报类似 <code>uuid</code> 冲突的错误。</strong></p>
+<h3 id="5-附录2：常见问题处理"><a href="#5-附录2：常见问题处理" class="headerlink" title="5. 附录2：常见问题处理"></a>5. 附录2：常见问题处理</h3><h4 id="5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding"><a href="#5-1-svn-Can-39-t-convert-string-from-39-UTF-8-39-to-native-encoding" class="headerlink" title="5.1. svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding"></a>5.1. <code>svn: Can&#39;t convert string from &#39;UTF-8&#39; to native encoding</code></h4><p><strong>解决</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export LC_ALL=zh_CN.UTF-8&quot;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected"><a href="#5-2-SSL-handshake-failed-SSL-错误：Key-usage-violation-in-certificate-has-been-detected" class="headerlink" title="5.2. SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected."></a>5.2. <code>SSL handshake failed: SSL 错误：Key usage violation in certificate has been detected.</code></h4><p><strong>场景</strong>：在 CentOS 服务器上，通过 svn 命令检出 VisualSVN 管理的仓库代码时。</p>
+<p><strong>解决</strong>：安装高版本的 svn ，如下</p>
+<ul>
+<li><p>添加软件源 <code>vim /etc/yum.repos.d/wandisco-svn.repo</code></p>
+  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[WandiscoSVN]</span><br><span class="line">name=Wandisco SVN Repo</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/$releasever/svn-1.8/RPMS/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></li>
+<li><p>删除旧版本 <code>yum remove subversion*</code></p>
+</li>
+<li><p>安装新版本</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum clean all</span><br><span class="line">➜  yum install subversion</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>版本管理</tag>
+        <tag>svn</tag>
+        <tag>Subversion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>svn 服务端配置</title>
+    <url>/post/1709980602.html</url>
+    <content><![CDATA[<h3 id="1-创建版本库"><a href="#1-创建版本库" class="headerlink" title="1. 创建版本库"></a>1. 创建版本库</h3><blockquote>
+<p>单版本库与多版本库各有优点和缺点，主要根据具体项目情况进行选择。</p>
+</blockquote>
+<h4 id="1-1-多库模式"><a href="#1-1-多库模式" class="headerlink" title="1.1. 多库模式"></a>1.1. 多库模式</h4><ol>
+<li><p>创建</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /home/repos</span><br><span class="line">➜  svnadmin create /home/repos/resume</span><br><span class="line">➜  svnadmin create /home/repos/blog</span><br><span class="line">➜  <span class="built_in">cd</span> /home/repos</span><br><span class="line">➜  tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- blog</span><br><span class="line">|   |-- README.txt</span><br><span class="line">|   |-- conf</span><br><span class="line">|   |-- db</span><br><span class="line">|   |-- format</span><br><span class="line">|   |-- hooks</span><br><span class="line">|   `-- locks</span><br><span class="line">`-- resume</span><br><span class="line">    |-- README.txt</span><br><span class="line">    |-- conf</span><br><span class="line">    |-- db</span><br><span class="line">    |-- format</span><br><span class="line">    |-- hooks</span><br><span class="line">    `-- locks</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>公用一份 authz 和 passwd 文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mv blog/conf/authz ./</span><br><span class="line">➜  mv blog/conf/passwd ./</span><br><span class="line">➜  rm -rf resume/conf/authz resume/conf/passwd</span><br></pre></td></tr></table></figure></li>
+<li><p>分别设置每个库的 <strong>svnserve.conf</strong> 文件</p>
+<p> 以 blog 为例 <code>vim /home/repos/blog/conf/svnserve.conf</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名用户只读(read或none)</span></span><br><span class="line">anon-access = none</span><br><span class="line"></span><br><span class="line"><span class="comment"># 认证用户可写</span></span><br><span class="line">auth-access = write</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 passwd 文件的位置</span></span><br><span class="line">password-db = ../../passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 authz 文件的位置</span></span><br><span class="line">authz-db = ../../authz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仓库的文件名(具体在客户端更新下载的时候能看到仓库名字)</span></span><br><span class="line">realm = blog</span><br></pre></td></tr></table></figure></li>
+<li><p>修改公用的 <strong>passwd</strong> 设置用户名、密码</p>
+<p> <code># vim /home/repos/passwd</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[users]</span><br><span class="line">admin = admin</span><br><span class="line">lisi = pwdls</span><br><span class="line">zhansan = pwdzs</span><br></pre></td></tr></table></figure></li>
+<li><p>修改公用的 <strong>authz</strong> 设置用户访问权限</p>
+<p> <code>vim /home/repos/authz</code></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">blog_rw = zhangsan</span><br><span class="line">resume_rw = lisi</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[blog:/]</span><br><span class="line">@blog_rw = rw</span><br><span class="line"></span><br><span class="line">[resume:/]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
+
+<p> 说明：admin 可以读写 blog、resume；zhangsan 只能读写 blog；lisi 只能读写 resume。</p>
+</li>
+</ol>
+<h4 id="1-2-单库模式"><a href="#1-2-单库模式" class="headerlink" title="1.2. 单库模式"></a>1.2. 单库模式</h4><blockquote>
+<p>单库方式比较简单，只针对于单一项目的开发管理，并且在单库方式下一台服务器只能创建一个样本库，限制较大！</p>
+</blockquote>
+<p>创建一个新的单库 cms</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p /home/repos2</span><br><span class="line">➜ svnadmin create /home/repos2/cms</span><br></pre></td></tr></table></figure>
+
+<p>单库模式下，配置文件在 <code>/home/repos2/cms/conf</code> 下，其中 svnserv.conf 和 passwd 的配置方式与多库相似，authz 的配置有较大区别，如下：</p>
+<p><code>vim /home/repos2/cms/conf/authz</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[groups]</span><br><span class="line">admin = admin</span><br><span class="line">dev = wanger</span><br><span class="line"></span><br><span class="line">[/]</span><br><span class="line">@admin = rw</span><br><span class="line">@dev = rw</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-启动"><a href="#2-启动" class="headerlink" title="2. 启动"></a>2. 启动</h3><blockquote>
+<p>注意：svn 默认监听端口 TCP 3690，如果开启了防火墙需提前加入可访问列表；或者在启动时候，使用参数 <code>--listen-port</code>。</p>
+</blockquote>
+<p>多库 <code>svnserve -d -r /home/repos</code></p>
+<p>单库 <code>svnserve -d -r /home/repos/cms</code></p>
+<ul>
+<li><code>-d</code> 以守护模式运行</li>
+<li><code>-r</code> 指定 svn 服务的根目录</li>
+<li><code>--listen-port</code> 指定 svn 服务监听的端口号</li>
+</ul>
+<h3 id="3-访问"><a href="#3-访问" class="headerlink" title="3. 访问"></a>3. 访问</h3><p>多库模式需要指定具体的库名，如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1/blog</span><br><span class="line">➜  svn co svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure>
+
+<p>单库模式只需要输入ip或域名地址，如：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn co svn://192.168.0.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-停止服务"><a href="#4-停止服务" class="headerlink" title="4. 停止服务"></a>4. 停止服务</h3><p><code>killall svnserve</code></p>
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ps -aux|grep svnserv</span><br><span class="line">➜  <span class="built_in">kill</span> -9 <span class="variable">$pid</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-其它"><a href="#5-其它" class="headerlink" title="5. 其它"></a>5. 其它</h3><h4 id="5-1-创建通用版本库布局"><a href="#5-1-创建通用版本库布局" class="headerlink" title="5.1. 创建通用版本库布局"></a>5.1. 创建通用版本库布局</h4><p>在开发过程中，推荐创建如下布局文件：</p>
+<ul>
+<li>trunk</li>
+<li>branches</li>
+<li>tags</li>
+</ul>
+<p>步骤：</p>
+<ol>
+<li><p>创建目录布局临时文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /tmp/repos_layout/&#123;trunk,branches,tags&#125;</span><br><span class="line">➜  tree /tmp/repos_layout/</span><br><span class="line">/tmp/repos_layout/</span><br><span class="line">|-- branches</span><br><span class="line">|-- tags</span><br><span class="line">`-- trunk</span><br></pre></td></tr></table></figure></li>
+<li><p>导入到版本库中</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/repos_layout svn://192.168.0.1/resume -m <span class="string">&#x27;init&#x27;</span></span><br><span class="line">Adding         /tmp/repos_layout/branches</span><br><span class="line">Adding         /tmp/repos_layout/tags</span><br><span class="line">Adding         /tmp/repos_layout/trunk</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 1.</span><br></pre></td></tr></table></figure>
+
+<p> 查看是否导入成功</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn list --verbose svn://192.168.0.1/resume</span><br></pre></td></tr></table></figure></li>
+<li><p>修改权限</p>
+<p> 编辑权限文件 <code>vim /home/repos/authz</code>，设置普通用户访问 trunk，管理员访问版本库根目录 trunk、branches、tags，如下：</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[resume:/]</span><br><span class="line">@admin = rw</span><br><span class="line"></span><br><span class="line">[resume:/trunk]</span><br><span class="line">@resume_rw = rw</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：权限是继承的，管理员既然能访问根目录，那么根下的子目录也是有权限访问的；而普通用户一般设置较小的权限集，只能访问指定的目录，比如这里的 trunk。</p>
+</blockquote>
+</li>
+<li><p>访问</p>
+<p> 普通用户 <code>svn co svn://192.168.1.1/resume/trunk</code></p>
+<p> 管理员 <code>svn co svn://192.168.1.1/resume/</code></p>
+</li>
+</ol>
+<h4 id="5-x-参照资料"><a href="#5-x-参照资料" class="headerlink" title="5.x. 参照资料"></a>5.x. 参照资料</h4><ul>
+<li><a href="https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html">https://tortoisesvn.net/docs/nightly/TortoiseSVN_zh_CN/tsvn-preface-readingguide.html</a></li>
+<li><a href="http://wangying.sinaapp.com/archives/1352">http://wangying.sinaapp.com/archives/1352</a></li>
+<li><a href="http://www.runoob.com/svn/svn-tutorial.html">http://www.runoob.com/svn/svn-tutorial.html</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>版本管理</tag>
+        <tag>svn</tag>
+        <tag>Subversion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安装 svn 最新版本 1.10.x</title>
+    <url>/post/3349016682.html</url>
+    <content><![CDATA[<p>SVN 的全称是 <strong>Subversion</strong>，即版本控制系统。它曾经是最流行的一个开放源代码的版本控制系统（现在肯定是 Git）。</p>
+<p>Subversion 是一个通用的系统，可用来管理任何类型的文件，其中包括程序源码。</p>
+<span id="more"></span>
+
+<h3 id="一、使用包管理器自动安装"><a href="#一、使用包管理器自动安装" class="headerlink" title="一、使用包管理器自动安装"></a>一、使用包管理器自动安装</h3><p>官网提供了常见 Linux 发行版的安装命令，此处仅以 <em>CentOS</em>、<em>Debian</em> 及 <em>Ubuntu</em> 为例进行说明，其它系统详见官网：<a href="https://subversion.apache.org/packages.html">https://subversion.apache.org/packages.html</a></p>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：一般各发行版系统中内置的软件包都不是最新的，如果需要安装最新稳定版的 Subversion，请使用方法二中的源码安装。</p>
+</blockquote>
+<ul>
+<li><p>CentOS</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install subversion</span><br><span class="line">➜  yum install mod_dav_svn</span><br></pre></td></tr></table></figure></li>
+<li><p>Debian</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  apt-get install subversion</span><br><span class="line">➜  apt-get install libapache2-mod-svn</span><br></pre></td></tr></table></figure></li>
+<li><p>Ubuntu</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  apt-get install subversion</span><br><span class="line">➜  apt-get install libapache2-svn</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="二、源码编译安装"><a href="#二、源码编译安装" class="headerlink" title="二、源码编译安装"></a>二、源码编译安装</h3><p>官网源码下载页：<a href="https://subversion.apache.org/download.cgi">https://subversion.apache.org/download.cgi</a></p>
+<table>
+<thead>
+<tr>
+<th>最新稳定版（推荐）</th>
+<th>上一稳定版</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.bz2">subversion-1.10.2.tar.bz2</a></td>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.tar.bz2">subversion-1.9.9.tar.bz2</a></td>
+</tr>
+<tr>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.gz">subversion-1.10.2.tar.gz</a></td>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.tar.gz">subversion-1.9.9.tar.gz</a></td>
+</tr>
+<tr>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.zip">subversion-1.10.2.zip</a></td>
+<td><a href="http://mirrors.shu.edu.cn/apache/subversion/subversion-1.9.9.zip">subversion-1.9.9.zip</a></td>
+</tr>
+</tbody></table>
+<h4 id="2-1-安装依赖"><a href="#2-1-安装依赖" class="headerlink" title="2.1 安装依赖"></a>2.1 安装依赖</h4><p>本文安装的最新 subversion-1.10.x 版本，需要安装依赖 <strong>apr</strong> 和 <strong>apr-uti</strong>，官网下载地址在这里： <a href="http://apr.apache.org/download.cgi">http://apr.apache.org/download.cgi</a>。</p>
+<p>低于当前最新版本的源码，可能还需要下面的基础依赖，请根据安装过程是否报错自行选择：</p>
+<ul>
+<li><code>yum install -y zlib zlib-devel</code></li>
+<li><code>yum install -y openssl openssl-devel</code></li>
+<li><code>yum install -y expat-devel</code></li>
+<li><code>yum install -y bzip2</code> 解压 ***.bz2** 文件时需要用到。</li>
+<li><a href="https://www.sqlite.org/2018/sqlite-autoconf-3250100.tar.gz">sqlite-autoconf-3250100.tar.gz</a> 在高版本的 Subversion 源码包中已内置。</li>
+</ul>
+<p>另外，对于 <strong>v1.7</strong> 以下的版本，官方有直接提供依赖包的安装下载，比如：<a href="http://subversion.tigris.org/downloads/subversion-deps-1.6.12.tar.gz">subversion-deps-1.6.12.tar.gz</a>、 <a href="http://subversion.tigris.org/downloads/subversion-1.6.12.tar.gz">subversion-1.6.12.tar.gz</a>，直接进入 <code>subversion-deps*</code> 目录下安装所需依赖即可。</p>
+<ul>
+<li><p>安装 <strong>apr</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache//apr/apr-1.6.5.tar.gz</span><br><span class="line">➜  tar  -zxvf apr-1.6.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> apr-1.6.5</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 <strong>apr-util</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache//apr/apr-util-1.6.1.tar.gz</span><br><span class="line">➜  tar  -zxvf apr-util-1.6.1.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> apr-util-1.6.1</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/apr-util --with-apr=/usr/<span class="built_in">local</span>/apr</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-2-安装-Subversion"><a href="#2-2-安装-Subversion" class="headerlink" title="2.2. 安装 Subversion"></a>2.2. 安装 Subversion</h4><p>下载、编译、安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget -c http://mirrors.shu.edu.cn/apache/subversion/subversion-1.10.2.tar.gz</span><br><span class="line">➜  tar -zxvf subversion-1.10.2.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> subversion-1.10.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/subversion --with-apr=/usr/<span class="built_in">local</span>/apr --with-apr-util=/usr/<span class="built_in">local</span>/apr-util --with-lz4=internal --with-utf8proc=internal</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><p><code>--with-lz4=internal</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">configure: error: Subversion requires LZ4 &gt;= r129, or use --with-lz4=internal --with-serf=/usr/local/serf</span><br></pre></td></tr></table></figure></li>
+<li><p><code>--with-utf8proc=internal</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">configure: error: Subversion requires UTF8PROC</span><br></pre></td></tr></table></figure></li>
+<li><p><code>--with-serf=/usr/local/serf</code> 开启 HTTP 和 HTTPS 访问支持</p>
+<p>可能报错：<code>configure: error: Serf was explicitly enabled but an appropriate version was not found.</code></p>
+<p>解决：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 scons 编译、安装</span></span><br><span class="line">➜  wget https://svwh.dl.sourceforge.net/project/scons/scons/2.3.3/scons-2.3.3.tar.gz</span><br><span class="line">➜  tar xvf scons-2.3.3.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> scons-2.3.3</span><br><span class="line">➜  python setup.py install</span><br><span class="line"></span><br><span class="line">➜  wget https://archive.apache.org/dist/serf/serf-1.3.9.tar.bz2</span><br><span class="line">➜  tar xjvf serf-1.3.9.tar.bz2</span><br><span class="line">➜  scons PREFIX=/usr/<span class="built_in">local</span>/serf APR=/usr/<span class="built_in">local</span>/apr APU=/usr/<span class="built_in">local</span>/apr-util</span><br><span class="line">➜  scons install</span><br><span class="line">➜  scons -c</span><br></pre></td></tr></table></figure>
+
+<p>报错：<code>svn: error while loading shared libraries: libserf-1.so.1: cannot open shared object file: No such file or directory</code></p>
+<p>解决：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/subversion/lib</span><br><span class="line">➜  cp /usr/<span class="built_in">local</span>/serf/lib/libserf-1.so.1 ./</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="2-3-添加环境变量"><a href="#2-3-添加环境变量" class="headerlink" title="2.3. 添加环境变量"></a>2.3. 添加环境变量</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=/usr/local/subversion/bin:<span class="variable">$PATH</span>&quot;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-验证安装"><a href="#2-4-验证安装" class="headerlink" title="2.4. 验证安装"></a>2.4. 验证安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn --version</span><br><span class="line">➜  svnserve --version</span><br></pre></td></tr></table></figure>
+
+<p>当遇到下面的问题时：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn --version</span><br><span class="line">svn: warning: cannot <span class="built_in">set</span> LC_CTYPE locale</span><br><span class="line">svn: warning: environment variable LC_CTYPE is UTF-8</span><br><span class="line">svn: warning: please check that your locale name is correct</span><br></pre></td></tr></table></figure>
+
+<p>修复</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export LC_ALL=C&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>版本管理</tag>
+        <tag>svn</tag>
+        <tag>Subversion</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>怀旧游戏《红色警戒2：共和国之辉》</title>
+    <url>/post/3045142832.html</url>
+    <content><![CDATA[<blockquote>
+<p>《红色警戒2：共和国之辉》是即时战略游戏《红色警戒2》的一个非官方游戏模组（MOD），由中国爱好者 <strong>Lord Hero</strong> 制作，将古巴阵营从游戏中剔除，以中国阵营替代，并新增了解放军战士、轻坦克、训练中心等中国阵营特有的兵种及建筑。</p>
+</blockquote>
+<p><img data-src="https://static.sqiang.net/image/post/red_alert_2.jpg?imageView2/2/w/600" alt="《红色警戒2：共和国之辉》"></p>
+<span id="more"></span>
+
+<h3 id="1-游戏信息"><a href="#1-游戏信息" class="headerlink" title="1. 游戏信息"></a>1. 游戏信息</h3><table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="right"><b>中文名</b></td>
+      <td>红色警戒2：共和国之辉</td>
+      <td align="right"><b>开发商</b></td>
+      <td>Westwood公司</td>
+    </tr>
+    <tr>
+      <td align="right"><b>原版名称</b></td>
+      <td>Red Alert 2</td>
+      <td align="right"><b>发行日期</b></td>
+      <td>2001年</td>
+    </tr>
+        <tr>
+      <td align="right"><b>游戏类型</b></td>
+      <td>即时战略</td>
+      <td align="right"><b>制作人</b></td>
+      <td>Lord Hero</td>
+    </tr>
+        <tr>
+      <td align="right"><b>内容主题</b></td>
+      <td>战争</td>
+      <td align="right"><b>游戏平台</b></td>
+      <td>PC</td>
+    </tr>
+        <tr>
+      <td align="right"><b>玩家人数</b></td>
+      <td>2 到 8 人</td>
+      <td align="right"><b>游戏画面</b></td>
+      <td>2D</td>
+    </tr>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+<h3 id="2-下载地址"><a href="#2-下载地址" class="headerlink" title="2. 下载地址"></a>2. 下载地址</h3><ul>
+<li><a href="https://pan.baidu.com/s/1YWrcQ8qrethEGhV24Z7rGQ">百度网盘</a> 提取码: <code>xrqt</code></li>
+<li>阿里云网盘(暂不支持)</li>
+</ul>
+<h3 id="3-安装说明"><a href="#3-安装说明" class="headerlink" title="3. 安装说明"></a>3. 安装说明</h3><h4 id="3-1-基本设置"><a href="#3-1-基本设置" class="headerlink" title="3.1. 基本设置"></a>3.1. 基本设置</h4><blockquote>
+<p>提示：操作之前，建议修改系统设置，显示文件扩展名。</p>
+</blockquote>
+<ol>
+<li><p>解压下载的文件到任意位置，包含 <code>GHra2.rar</code>、<code>ddraw.zip</code>、<code>ipxwrapper-0.6.1.zip</code> 三个压缩包。</p>
+</li>
+<li><p>解压主程序文件 <code>GHra2.rar</code> 到系统的一个目录下，<strong>注意不要使用包含中文的路径</strong>。比如，我的最终目录为 <code>C:\game\GHra2</code></p>
+</li>
+<li><p>解决游戏卡顿问题</p>
+<ul>
+<li>解压 <code>ddraw.zip</code> 得到 <code>ddraw.dll</code>，拷贝到游戏根目录下；</li>
+<li>找到游戏根目录下的 <code>Ra2.ini</code> 文件，右键选择编辑打开，然后把 <code>[Video]</code> 部分全部替换为以下内容：</li>
+</ul>
+ <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Video]</span></span><br><span class="line"><span class="attr">VideoBackBuffer</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">AllowHiResModes</span>=<span class="literal">yes</span></span><br><span class="line"><span class="attr">AllowVRAMSidebar</span>=<span class="literal">no</span></span><br><span class="line"><span class="attr">ScreenWidth</span>=<span class="number">1024</span></span><br><span class="line"><span class="attr">ScreenHeight</span>=<span class="number">768</span></span><br><span class="line"><span class="attr">StretchMovies</span>=<span class="literal">no</span></span><br></pre></td></tr></table></figure></li>
+<li><p>兼容性设置（这里以 <code>Windows 7</code> 系统为例）</p>
+<p> 在 <code>ra2.exe</code> 文件上右键单击，依次选择「属性」 &gt; 「兼容性」：</p>
+<ul>
+<li>勾选<strong>以兼容模式运行这个程序</strong>，并选择<strong>Windows XP（Service Pack 3）</strong>；</li>
+<li>勾选<strong>以管理员身份运行此程序</strong>。</li>
+</ul>
+</li>
+<li><p>双击 <code>ra2.exe</code> 启动游戏。因为绿色免安装版，如果启动游戏没反应，可重试两次；如果还是不行，则先双击运行游戏根目录下的 <code>RegSetup.exe</code> 文件，并根据提示完成安装以修复注册表，然后再打开游戏。</p>
+</li>
+</ol>
+<h4 id="3-2-局域网对战设置"><a href="#3-2-局域网对战设置" class="headerlink" title="3.2. 局域网对战设置"></a>3.2. 局域网对战设置</h4><p>由于该游戏在局域网对战时使用的 <code>IPX</code> 网络协议在高版本系统中已经被抛弃，所以我们需要使用一个工具 <code>IPXWrapper</code> 进行模拟。</p>
+<ol>
+<li><p>解压 <code>ipxwrapper-0.6.1.zip</code> 到任意目录下，并把所有文件拷贝到游戏根目录下，具体安装说明详见 <a href="/post/438064550.html">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题
+</a>。</p>
+</li>
+<li><p>启动游戏后，依次选择菜单「选项」 &gt; 「网络」，并做如下修改：</p>
+<ul>
+<li><strong>网卡</strong>：选择连接网络使用的网卡（注意，下拉框里显示的是网卡的 mac 地址）；</li>
+<li><strong>Socket 号码</strong>：设置为 <code>0</code></li>
+<li><strong>目标网络</strong>：设置为 <code>00.00.00.00</code></li>
+</ul>
+<p> <strong>注意</strong>：此处的设置，所有准备联网对战的机器需要<strong>保持一致</strong>，否则也会找不到。</p>
+</li>
+<li><p>返回主菜单，单击「网络」，修改你自己的游戏玩家名称，最后创建或参与游戏。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>游戏</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>红色警戒2</tag>
+        <tag>共和国之辉</tag>
       </tags>
   </entry>
   <entry>
