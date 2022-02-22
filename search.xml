@@ -1115,42 +1115,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ThinkPHP 框架执行流程浅析</title>
-    <url>/post/2410148889.html</url>
-    <content><![CDATA[<blockquote>
-<p>版本：v5.1.x LTS</p>
-<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
-</blockquote>
-<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
-<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
-<p>其中入口文件位置：<strong>public/index.php</strong></p>
-<span id="more"></span>
-
-<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
-<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
-<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
-<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
-<blockquote>
-<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
-</blockquote>
-<blockquote>
-<p>详见如下三个函数的文档：</p>
-<ul>
-<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>ThinkPHP</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PHP 之命令行模式</title>
     <url>/post/954645501.html</url>
     <content><![CDATA[<h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
@@ -1190,40 +1154,39 @@
       </tags>
   </entry>
   <entry>
-    <title>Python 如何安装 pip 包管理工具</title>
-    <url>/post/4186504541.html</url>
+    <title>ThinkPHP 框架执行流程浅析</title>
+    <url>/post/2410148889.html</url>
     <content><![CDATA[<blockquote>
-<p>⚠️ <strong>注意</strong>：</p>
-<ol>
-<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
-</li>
-<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
-</li>
-<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
-</li>
-</ol>
+<p>版本：v5.1.x LTS</p>
+<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
 </blockquote>
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
-<ol>
-<li><p>下载 <code>get-pip.py</code></p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
-<li><p>安装 pip</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
-</ol>
+<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
+<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
+<p>其中入口文件位置：<strong>public/index.php</strong></p>
 <span id="more"></span>
 
-<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
-
+<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
+<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
+<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
+<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
+<blockquote>
+<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
+</blockquote>
+<blockquote>
+<p>详见如下三个函数的文档：</p>
+<ul>
+<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
+</ul>
+</blockquote>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>PHP</category>
       </categories>
       <tags>
-        <tag>包管理工具</tag>
-        <tag>Python</tag>
-        <tag>pip</tag>
+        <tag>PHP</tag>
+        <tag>ThinkPHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,34 +1309,40 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo添加自定义404页面</title>
-    <url>/post/2039108116.html</url>
-    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
+    <title>Python 如何安装 pip 包管理工具</title>
+    <url>/post/4186504541.html</url>
+    <content><![CDATA[<blockquote>
+<p>⚠️ <strong>注意</strong>：</p>
+<ol>
+<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
+</li>
+<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
+</li>
+<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
+<ol>
+<li><p>下载 <code>get-pip.py</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 pip</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
+</ol>
 <span id="more"></span>
 
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
-</blockquote>
-<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
 
-<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
-<li>Github Pages 不需要特殊处理</li>
-</ul>
-<ul>
-<li><p>Nginx</p>
-  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
+]]></content>
       <categories>
-        <category>其它</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
+        <tag>包管理工具</tag>
+        <tag>Python</tag>
+        <tag>pip</tag>
       </tags>
   </entry>
   <entry>
@@ -1426,36 +1395,34 @@
       </tags>
   </entry>
   <entry>
-    <title>Markdown 的锚点链接如何写</title>
-    <url>/post/2762528363.html</url>
-    <content><![CDATA[<blockquote>
-<p>HTML 形式的锚点链接在 Markdown 中并不能被很好的支持，尤其是以 Github 为代表的平台上，其实它有自己的规则，将在本文详细进行阐述。</p>
-</blockquote>
+    <title>Hexo添加自定义404页面</title>
+    <url>/post/2039108116.html</url>
+    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
 <span id="more"></span>
 
-<p>可把鼠标放到 Github 的标题上进行观察，如下图</p>
-<p><img data-src="https://static.sqiang.net/image/post/markdown_anchor.png"></p>
-<ol>
-<li><p>任意 1-6 个 <strong>#</strong> 标注的标题都会被添加上同名的锚点链接</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[标题1](#标题1)</span><br><span class="line">[标题2](#标题2)</span><br><span class="line">[标题3](#标题3)</span><br><span class="line"></span><br><span class="line"># 标题1</span><br><span class="line">## 标题2</span><br><span class="line">### 标题3</span><br></pre></td></tr></table></figure></li>
-<li><p>锚点跳转的标识名称，可使用任意字符，大写字母要转换成小写</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github标题1](#github标题1)</span><br><span class="line"></span><br><span class="line">### Github标题1</span><br></pre></td></tr></table></figure></li>
-<li><p>多单词锚点的空格用 <strong>-</strong> 代替</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github 标题2 Test](#github-标题2-test)</span><br><span class="line"></span><br><span class="line">### Github 标题2 Test</span><br></pre></td></tr></table></figure></li>
-<li><p>多级序号需要去除 <strong>.</strong></p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[2.3. Github 标题](#23-github-标题)</span><br><span class="line"></span><br><span class="line">### 2.3. Github 标题</span><br></pre></td></tr></table></figure></li>
-</ol>
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
-<p>⚠️ 注意：</p>
-<p>非英文的锚点字符，在单击跳转时，在浏览器的 url 中会按照规则进行 encode 和 decode</p>
+<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
 </blockquote>
-]]></content>
+<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
+<li>Github Pages 不需要特殊处理</li>
+</ul>
+<ul>
+<li><p>Nginx</p>
+  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
       <categories>
         <category>其它</category>
       </categories>
       <tags>
-        <tag>文档编写工具</tag>
-        <tag>Markdown</tag>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1525,40 +1492,41 @@
         <category>其它</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
         <tag>文档工具</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
-    <title>如何在 Excel 中实现下拉多选、反选</title>
-    <url>/post/366405450.html</url>
-    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
-<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
-</center>
-
+    <title>Markdown 的锚点链接如何写</title>
+    <url>/post/2762528363.html</url>
+    <content><![CDATA[<blockquote>
+<p>HTML 形式的锚点链接在 Markdown 中并不能被很好的支持，尤其是以 Github 为代表的平台上，其实它有自己的规则，将在本文详细进行阐述。</p>
+</blockquote>
 <span id="more"></span>
 
-<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
-<li>选择一列；</li>
-<li>依次点击：<code>数据 &gt; 数据验证</code></li>
-<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
-<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
-</ol>
-<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+<p>可把鼠标放到 Github 的标题上进行观察，如下图</p>
+<p><img data-src="https://static.sqiang.net/image/post/markdown_anchor.png"></p>
+<ol>
+<li><p>任意 1-6 个 <strong>#</strong> 标注的标题都会被添加上同名的锚点链接</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[标题1](#标题1)</span><br><span class="line">[标题2](#标题2)</span><br><span class="line">[标题3](#标题3)</span><br><span class="line"></span><br><span class="line"># 标题1</span><br><span class="line">## 标题2</span><br><span class="line">### 标题3</span><br></pre></td></tr></table></figure></li>
+<li><p>锚点跳转的标识名称，可使用任意字符，大写字母要转换成小写</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github标题1](#github标题1)</span><br><span class="line"></span><br><span class="line">### Github标题1</span><br></pre></td></tr></table></figure></li>
+<li><p>多单词锚点的空格用 <strong>-</strong> 代替</p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[Github 标题2 Test](#github-标题2-test)</span><br><span class="line"></span><br><span class="line">### Github 标题2 Test</span><br></pre></td></tr></table></figure></li>
+<li><p>多级序号需要去除 <strong>.</strong></p>
+ <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[2.3. Github 标题](#23-github-标题)</span><br><span class="line"></span><br><span class="line">### 2.3. Github 标题</span><br></pre></td></tr></table></figure></li>
 </ol>
 <blockquote>
-<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+<p>⚠️ 注意：</p>
+<p>非英文的锚点字符，在单击跳转时，在浏览器的 url 中会按照规则进行 encode 和 decode</p>
 </blockquote>
 ]]></content>
       <categories>
         <category>其它</category>
       </categories>
       <tags>
-        <tag>其它</tag>
-        <tag>Excel</tag>
+        <tag>Markdown</tag>
+        <tag>文档编写工具</tag>
       </tags>
   </entry>
   <entry>
@@ -1706,6 +1674,38 @@
       </tags>
   </entry>
   <entry>
+    <title>如何在 Excel 中实现下拉多选、反选</title>
+    <url>/post/366405450.html</url>
+    <content><![CDATA[<h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
+
+<span id="more"></span>
+
+<h4 id="操作步骤（文字）："><a href="#操作步骤（文字）：" class="headerlink" title="操作步骤（文字）："></a>操作步骤（文字）：</h4><ol>
+<li>选择一列；</li>
+<li>依次点击：<code>数据 &gt; 数据验证</code></li>
+<li>类型选择「<strong>列表</strong>」，然后输入待选择的下拉项：<code>PHP,Java,Python</code></li>
+<li>在 「<strong>sheet</strong>」上右击，选择「<strong>查看代码</strong>」，添加如下处理多选逻辑的宏代码：</li>
+</ol>
+<figure class="highlight vb"><table><tr><td class="code"><pre><span class="line"><span class="keyword">Private</span> <span class="keyword">Sub</span> Worksheet_Change(<span class="keyword">ByVal</span> Target <span class="keyword">As</span> Range)</span><br><span class="line"><span class="comment">&#x27; Developed by Contextures Inc.</span></span><br><span class="line"><span class="comment">&#x27; www.contextures.com</span></span><br><span class="line"><span class="keyword">Dim</span> rngDV <span class="keyword">As</span> Range</span><br><span class="line"><span class="keyword">Dim</span> oldVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">Dim</span> newVal <span class="keyword">As</span> <span class="type">String</span></span><br><span class="line"><span class="keyword">If</span> Target.Count &gt; <span class="number">1</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">Resume</span> <span class="keyword">Next</span></span><br><span class="line"><span class="keyword">Set</span> rngDV = Cells.SpecialCells(xlCellTypeAllValidation)</span><br><span class="line"><span class="keyword">On</span> <span class="keyword">Error</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> rngDV <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span> <span class="keyword">GoTo</span> exitHandler</span><br><span class="line"></span><br><span class="line"><span class="keyword">If</span> Intersect(Target, rngDV) <span class="built_in">Is</span> <span class="literal">Nothing</span> <span class="keyword">Then</span></span><br><span class="line">   <span class="comment">&#x27;do nothing</span></span><br><span class="line"><span class="keyword">Else</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">False</span></span><br><span class="line">  newVal = Target.Value</span><br><span class="line">  Application.Undo</span><br><span class="line">  oldVal = Target.Value</span><br><span class="line">  Target.Value = newVal</span><br><span class="line">  <span class="keyword">If</span> Target.Column = <span class="number">1</span> <span class="keyword">Then</span></span><br><span class="line">    <span class="keyword">If</span> oldVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">      <span class="keyword">If</span> newVal = <span class="string">&quot;&quot;</span> <span class="keyword">Then</span></span><br><span class="line">      <span class="comment">&#x27;do nothing</span></span><br><span class="line">      <span class="keyword">Else</span></span><br><span class="line">        <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) &lt;&gt; <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">          <span class="keyword">If</span> InStr(<span class="number">1</span>, oldVal, newVal) + Len(newVal) - <span class="number">1</span> = Len(oldVal) <span class="keyword">Then</span></span><br><span class="line">            Target.Value = Left(oldVal, Len(oldVal) - Len(newVal) - <span class="number">1</span>)</span><br><span class="line">          <span class="keyword">Else</span></span><br><span class="line">            Target.Value = Replace(oldVal, newVal &amp; <span class="string">&quot;,&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">          <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">        <span class="keyword">Else</span></span><br><span class="line">        Target.Value = oldVal &amp; <span class="string">&quot;,&quot;</span> &amp; newVal</span><br><span class="line"><span class="comment">&#x27;      <span class="doctag">NOTE:</span> you can use a line break,</span></span><br><span class="line"><span class="comment">&#x27;      instead of a comma</span></span><br><span class="line"><span class="comment">&#x27;      Target.Value = oldVal _</span></span><br><span class="line"><span class="comment">&#x27;        &amp; Chr(10) &amp; newVal</span></span><br><span class="line">        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">      <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">    <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">  <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">exitHandler:</span></span><br><span class="line">  Application.EnableEvents = <span class="literal">True</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>修改代码 <code>Target.Column = 1</code> 为对应的列，多个列使用 <code>Or</code> 连接</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>注意：该操作是借助 Excel 宏功能实现，所以之后重新打开时要允许宏，否则不生效。</strong></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Excel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自建跨域代理解决Gitalk无法登录的问题</title>
     <url>/post/3973669864.html</url>
     <content><![CDATA[<blockquote>
@@ -1747,43 +1747,6 @@
         <tag>Hexo</tag>
         <tag>NexT</tag>
         <tag>Gitalk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决Hexo文章更新时间问题</title>
-    <url>/post/2792803495.html</url>
-    <content><![CDATA[<blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
-</blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
-<span id="more"></span>
-
-<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
-<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
-<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
-<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
-<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
-<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
-<ul>
-<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
-<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -2025,6 +1988,97 @@
       </tags>
   </entry>
   <entry>
+    <title>Emmet 基础使用之 HTML 篇</title>
+    <url>/post/4009129433.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>Emmet</strong>（以前名为 <em>Zen Coding</em>）是一套面向文本编辑器的插件，它允许通过内容辅助高速度的编写和编辑HTML、XML、XSL和其他结构化的代码格式。</p>
+<p>本文主要介绍 HTML 相关快捷操作。</p>
+</blockquote>
+<span id="more"></span>
+
+<hr>
+<h3 id="1-内嵌元素"><a href="#1-内嵌元素" class="headerlink" title="1. 内嵌元素"></a>1. 内嵌元素</h3><h4 id="1-1-gt-子元素"><a href="#1-1-gt-子元素" class="headerlink" title="1.1. &gt; 子元素"></a>1.1. <code>&gt;</code> 子元素</h4><p>如：<code>div&gt;ul&gt;li</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-兄弟元素"><a href="#1-2-兄弟元素" class="headerlink" title="1.2. + 兄弟元素"></a>1.2. <code>+</code> 兄弟元素</h4><p>如：<code>div+p+bq</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="1-3-提升元素级次"><a href="#1-3-提升元素级次" class="headerlink" title="1.3. ^ 提升元素级次"></a>1.3. <code>^</code> 提升元素级次</h4><p>如：<code>div+div&gt;p&gt;span+em</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>追加 <code>^</code> 后，如 <code>div+div&gt;p&gt;span+em^bq</code> 输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>追加多个 <code>^</code> 后，如 <code>div+div&gt;p&gt;span+em^^^bq</code> 输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-n-重复输出-n-个元素"><a href="#1-4-n-重复输出-n-个元素" class="headerlink" title="1.4. *n 重复输出 n 个元素"></a>1.4. <code>*n</code> 重复输出 <strong>n</strong> 个元素</h4><p>如：<code>ul&gt;li*3</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="1-5-分组子元素，用以生成比较复杂的-Dom-结构"><a href="#1-5-分组子元素，用以生成比较复杂的-Dom-结构" class="headerlink" title="1.5. () 分组子元素，用以生成比较复杂的 Dom 结构"></a>1.5. <code>()</code> 分组子元素，用以生成比较复杂的 Dom 结构</h4><p>如：<code>div&gt;(header&gt;ul&gt;li*2&gt;a)+footer&gt;p</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>支持嵌套，如 <code>(div&gt;dl&gt;(dt+dd)*2)+footer&gt;p</code> 输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-元素属性"><a href="#2-元素属性" class="headerlink" title="2. 元素属性"></a>2. 元素属性</h3><h4 id="2-1-元素的后面跟-id-或-class，生成元素的同时将添加指定名称的属性"><a href="#2-1-元素的后面跟-id-或-class，生成元素的同时将添加指定名称的属性" class="headerlink" title="2.1. 元素的后面跟 #id 或 .class，生成元素的同时将添加指定名称的属性"></a>2.1. 元素的后面跟 #id 或 .class，生成元素的同时将添加指定名称的属性</h4><p>如：<code>div#header+div.page+div#footer.class1.class2.class3</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;header&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;page&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;class1 class2 class3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="2-2-使用-attr-添加其它属性"><a href="#2-2-使用-attr-添加其它属性" class="headerlink" title="2.2. 使用 [attr] 添加其它属性"></a>2.2. 使用 <code>[attr]</code> 添加其它属性</h4><p>如：<code>td[title=&quot;Hello world!&quot; colspan=3]</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">title</span>=<span class="string">&quot;Hello world!&quot;</span> <span class="attr">colspan</span>=<span class="string">&quot;3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<ul>
+<li>方括号内的属性可以添加任意多个。</li>
+<li>属性也可以不指定值，如 <code>td[colspan title]</code> 将输出 <code>&lt;td colspan=&quot;&quot; title=&quot;&quot;&gt;&lt;/td&gt;</code>，然后使用 tab 键可依次切换属性填充值。</li>
+<li>属性值用单引号或双引号都可以。</li>
+<li>如果属性值没有空格，也可以不用添加引号。</li>
+</ul>
+<h4 id="2-3-使用-给属性值编号"><a href="#2-3-使用-给属性值编号" class="headerlink" title="2.3. 使用 $ 给属性值编号"></a>2.3. 使用 $ 给属性值编号</h4><p>如：<code>ul&gt;li.item$*5</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用多个 $ 可填充 0 ，如 <code>ul&gt;li.item$$$*5</code> 输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item001&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item002&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item003&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item004&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item005&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>@-</code> 可以改变编号的方向（递增、递减），如 <code>ul&gt;li.item$@-*5</code> 输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>@n</code> 可以修改编号的基数值，如 <code>ul&gt;li.item$@3*5</code> 输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item7&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个综合示例，如 <code>ul&gt;li.item$@-3*5</code> 输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item7&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-元素文本内容"><a href="#3-元素文本内容" class="headerlink" title="3. 元素文本内容"></a>3. 元素文本内容</h3><h4 id="3-1-使用-text-跟元素添加内容"><a href="#3-1-使用-text-跟元素添加内容" class="headerlink" title="3.1 使用 {text} 跟元素添加内容"></a>3.1 使用 <code>&#123;text&#125;</code> 跟元素添加内容</h4><p>如：<code>a&#123;Click me&#125;</code></p>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>一个复杂点的例子，如 <code>p&gt;&#123;Click &#125;+a&#123;here&#125;+&#123; to continue&#125;</code> 输出</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Click <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>here<span class="tag">&lt;/<span class="name">a</span>&gt;</span> to continue<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>提示：<code>&#123;text&#125;</code> 放在紧跟着元素分隔符的右侧，则不会影响父级的 Dom 级次。如上例中的 <code>p&gt;&#123;Click &#125;</code> 不会影响 <strong>&gt;</strong> 右边的所有元素作为 <strong>p</strong> 的下级。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>Emmet</tag>
+        <tag>Zen Coding</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何做好一场技术演讲</title>
     <url>/post/2259619543.html</url>
     <content><![CDATA[<blockquote>
@@ -2134,151 +2188,40 @@
       </tags>
   </entry>
   <entry>
-    <title>《最后的舞动 The Last Dance》</title>
-    <url>/post/3209780963.html</url>
-    <content><![CDATA[<table>
-  <thead>
-    <tr>
-      <th colspan="2">
-        片名：最后的舞动 The Last Dance（2020）
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="5">
-      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
-      </td>
-      <td><b>导演</b>：杰森·海希尔</td>
-    </tr>
-    <tr>
-      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
-    </tr>
-    <tr>
-      <td><b>类型</b>：纪录片</td>
-    </tr>
-    <tr>
-      <td><b>地区</b>：欧美</td>
-    </tr>
-    <tr>
-      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="2">
-        下载（磁力链接）：
-        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E01</a>
-        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E02</a>
-        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E03</a>
-        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E04</a>
-        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E05</a>
-        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E06</a>
-        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E07</a>
-        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E08</a>
-        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E09</a>
-        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E10</a>
-      </td>
-    </tr>
-  </tfoot>
-</table>]]></content>
-      <categories>
-        <category>影视音乐</category>
-      </categories>
-      <tags>
-        <tag>迈克尔·乔丹</tag>
-        <tag>美剧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Emmet 基础使用之 HTML 篇</title>
-    <url>/post/4009129433.html</url>
+    <title>解决Hexo文章更新时间问题</title>
+    <url>/post/2792803495.html</url>
     <content><![CDATA[<blockquote>
-<p><strong>Emmet</strong>（以前名为 <em>Zen Coding</em>）是一套面向文本编辑器的插件，它允许通过内容辅助高速度的编写和编辑HTML、XML、XSL和其他结构化的代码格式。</p>
-<p>本文主要介绍 HTML 相关快捷操作。</p>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
 </blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
 <span id="more"></span>
 
-<hr>
-<h3 id="1-内嵌元素"><a href="#1-内嵌元素" class="headerlink" title="1. 内嵌元素"></a>1. 内嵌元素</h3><h4 id="1-1-gt-子元素"><a href="#1-1-gt-子元素" class="headerlink" title="1.1. &gt; 子元素"></a>1.1. <code>&gt;</code> 子元素</h4><p>如：<code>div&gt;ul&gt;li</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="1-2-兄弟元素"><a href="#1-2-兄弟元素" class="headerlink" title="1.2. + 兄弟元素"></a>1.2. <code>+</code> 兄弟元素</h4><p>如：<code>div+p+bq</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-
-<h4 id="1-3-提升元素级次"><a href="#1-3-提升元素级次" class="headerlink" title="1.3. ^ 提升元素级次"></a>1.3. <code>^</code> 提升元素级次</h4><p>如：<code>div+div&gt;p&gt;span+em</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>追加 <code>^</code> 后，如 <code>div+div&gt;p&gt;span+em^bq</code> 输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>追加多个 <code>^</code> 后，如 <code>div+div&gt;p&gt;span+em^^^bq</code> 输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">em</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">blockquote</span>&gt;</span><span class="tag">&lt;/<span class="name">blockquote</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-n-重复输出-n-个元素"><a href="#1-4-n-重复输出-n-个元素" class="headerlink" title="1.4. *n 重复输出 n 个元素"></a>1.4. <code>*n</code> 重复输出 <strong>n</strong> 个元素</h4><p>如：<code>ul&gt;li*3</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="1-5-分组子元素，用以生成比较复杂的-Dom-结构"><a href="#1-5-分组子元素，用以生成比较复杂的-Dom-结构" class="headerlink" title="1.5. () 分组子元素，用以生成比较复杂的 Dom 结构"></a>1.5. <code>()</code> 分组子元素，用以生成比较复杂的 Dom 结构</h4><p>如：<code>div&gt;(header&gt;ul&gt;li*2&gt;a)+footer&gt;p</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>支持嵌套，如 <code>(div&gt;dl&gt;(dt+dd)*2)+footer&gt;p</code> 输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="2-元素属性"><a href="#2-元素属性" class="headerlink" title="2. 元素属性"></a>2. 元素属性</h3><h4 id="2-1-元素的后面跟-id-或-class，生成元素的同时将添加指定名称的属性"><a href="#2-1-元素的后面跟-id-或-class，生成元素的同时将添加指定名称的属性" class="headerlink" title="2.1. 元素的后面跟 #id 或 .class，生成元素的同时将添加指定名称的属性"></a>2.1. 元素的后面跟 #id 或 .class，生成元素的同时将添加指定名称的属性</h4><p>如：<code>div#header+div.page+div#footer.class1.class2.class3</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;header&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;page&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;class1 class2 class3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-<h4 id="2-2-使用-attr-添加其它属性"><a href="#2-2-使用-attr-添加其它属性" class="headerlink" title="2.2. 使用 [attr] 添加其它属性"></a>2.2. 使用 <code>[attr]</code> 添加其它属性</h4><p>如：<code>td[title=&quot;Hello world!&quot; colspan=3]</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">td</span> <span class="attr">title</span>=<span class="string">&quot;Hello world!&quot;</span> <span class="attr">colspan</span>=<span class="string">&quot;3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>提示：</p>
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
 <ul>
-<li>方括号内的属性可以添加任意多个。</li>
-<li>属性也可以不指定值，如 <code>td[colspan title]</code> 将输出 <code>&lt;td colspan=&quot;&quot; title=&quot;&quot;&gt;&lt;/td&gt;</code>，然后使用 tab 键可依次切换属性填充值。</li>
-<li>属性值用单引号或双引号都可以。</li>
-<li>如果属性值没有空格，也可以不用添加引号。</li>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
 </ul>
-<h4 id="2-3-使用-给属性值编号"><a href="#2-3-使用-给属性值编号" class="headerlink" title="2.3. 使用 $ 给属性值编号"></a>2.3. 使用 $ 给属性值编号</h4><p>如：<code>ul&gt;li.item$*5</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用多个 $ 可填充 0 ，如 <code>ul&gt;li.item$$$*5</code> 输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item001&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item002&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item003&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item004&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item005&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用 <code>@-</code> 可以改变编号的方向（递增、递减），如 <code>ul&gt;li.item$@-*5</code> 输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item2&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>使用 <code>@n</code> 可以修改编号的基数值，如 <code>ul&gt;li.item$@3*5</code> 输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item7&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>一个综合示例，如 <code>ul&gt;li.item$@-3*5</code> 输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item7&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item6&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item5&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item4&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;item3&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-元素文本内容"><a href="#3-元素文本内容" class="headerlink" title="3. 元素文本内容"></a>3. 元素文本内容</h3><h4 id="3-1-使用-text-跟元素添加内容"><a href="#3-1-使用-text-跟元素添加内容" class="headerlink" title="3.1 使用 {text} 跟元素添加内容"></a>3.1 使用 <code>&#123;text&#125;</code> 跟元素添加内容</h4><p>如：<code>a&#123;Click me&#125;</code></p>
-<p>输出：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>Click me<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>一个复杂点的例子，如 <code>p&gt;&#123;Click &#125;+a&#123;here&#125;+&#123; to continue&#125;</code> 输出</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Click <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&quot;</span>&gt;</span>here<span class="tag">&lt;/<span class="name">a</span>&gt;</span> to continue<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>提示：<code>&#123;text&#125;</code> 放在紧跟着元素分隔符的右侧，则不会影响父级的 Dom 级次。如上例中的 <code>p&gt;&#123;Click &#125;</code> 不会影响 <strong>&gt;</strong> 右边的所有元素作为 <strong>p</strong> 的下级。</p>
 ]]></content>
       <categories>
-        <category>开发工具</category>
+        <category>其它</category>
       </categories>
       <tags>
-        <tag>开发工具</tag>
-        <tag>Emmet</tag>
-        <tag>Zen Coding</tag>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -2332,6 +2275,9 @@
     <url>/post/1904459089.html</url>
     <content><![CDATA[<blockquote>
 <p>此插件来自 <a href="https://zhile.io/2020/11/18/jetbrains-eval-reset-da33a93d.html">https://zhile.io</a>，仅供学习研究项目的，请勿无休止的一直试用，更多说明信息详见原文。</p>
+</blockquote>
+<blockquote>
+<p>备注：这是个学习研究项目，<strong>只支持到 2021.2.2 及以下版本</strong>。因为大佬觉得这东西已经搞得挺好，没啥好学习研究的了，所以转到了新的学习领域，针对 2021.3.x+ 参照最新方法 《<a href="/post/3632131313.html">一个NB闪闪的开源库ja-netfilter</a>》。</p>
 </blockquote>
 <h3 id="1-如何安装"><a href="#1-如何安装" class="headerlink" title="1. 如何安装"></a>1. 如何安装</h3><h4 id="1-1-在线安装"><a href="#1-1-在线安装" class="headerlink" title="1.1. 在线安装"></a>1.1. 在线安装</h4><ol>
 <li>打开插件市场 <code>Settings/Preferences... -&gt; Plugins</code>；</li>
@@ -2524,6 +2470,62 @@
         <tag>IDEA</tag>
         <tag>PHPStorm</tag>
         <tag>WebStorm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一个NB闪闪的开源库ja-netfilter</title>
+    <url>/post/3632131313.html</url>
+    <content><![CDATA[<p>正如标题，这是一个NB闪闪的开源库，名字为 <code>ja-netfilter</code>，关于这个开源库的详细说明，参见这里 <a href="https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html">zhile.io</a></p>
+<p>本文以 IDEA 为例，说一下这个工具怎么用：</p>
+<blockquote>
+<p>适用版本：jb <strong>2021.3.x +</strong></p>
+</blockquote>
+<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>从仓库下载最新程序包 <a href="https://github.com/ja-netfilter/ja-netfilter/releases">https://github.com/ja-netfilter/ja-netfilter/releases</a></p>
+<h3 id="2-解压配置"><a href="#2-解压配置" class="headerlink" title="2. 解压配置"></a>2. 解压配置</h3><p>解压后打开 <code>readme.txt</code> 文件，这里面主要介绍了两种使用方式。</p>
+<p>方式一：激活码</p>
+<ul>
+<li><ol>
+<li>在软件的 <code>xx.vmoptions</code> 中追加 <code>-javaagent:/path/to/ja-netfilter.jar=jetbrains</code>；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>退出已经登录的 jb 账号；</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>在这里 <code>https://jetbra.in/5d84466e31722979266057664941a71893322460</code> 找到对应软件的 key 进行激活。</li>
+</ol>
+</li>
+</ul>
+<p>方式二：激活服务器</p>
+<ul>
+<li><ol>
+<li>在软件的 <code>xx.vmoptions</code> 中追加 <code>-javaagent:/path/to/ja-netfilter.jar=jetbrains</code>；</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>退出已经登录的 jb 账号；</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>卸载之前安装的 <code>IDE Eval Reset</code> 插件；</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>填写激活服务器地址 <code>https://jetbra.in</code> 。</li>
+</ol>
+</li>
+</ul>
+<p>备注：对于找不到 <code>xx.vmoptions</code> 文件，也可以使用程序包中的脚本自动设置，具体路径如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># macOS or Linux</span></span><br><span class="line">scripts/install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">scripts\install-current-user.vbs</span><br><span class="line">scripts\install-all-users.vbs</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>开发工具</tag>
+        <tag>JetBrains</tag>
+        <tag>IDEA</tag>
       </tags>
   </entry>
   <entry>
@@ -2841,48 +2843,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
-    <url>/post/2445402303.html</url>
-    <content><![CDATA[<blockquote>
-<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
-</blockquote>
-<p>涉及 vscode 配置：</p>
-<ul>
-<li><code>.vscode/tasks.json</code> 启动</li>
-<li><code>.vscode/launch.json</code> 调试</li>
-</ul>
-<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
-<span id="more"></span>
-
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置-tasks-json"><a href="#启动配置-tasks-json" class="headerlink" title="启动配置 tasks.json"></a>启动配置 tasks.json</h4><ul>
-<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
-<li>2、此时会列出 <code>package.json</code> 中定义的 <code>script</code> 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
-</ul>
-<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    <span class="comment">// 这是一个使用 npm 启动项目到示例，指定脚本 dev</span></span><br><span class="line">    <span class="comment">// 注意：设置不同 type 类型时，相应的可用参数是跟随变化的</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 这是另一种启动方式</span></span><br><span class="line">    <span class="comment">// 1. 使用 nvm 切换到指定 Node 版本；2. 紧接着使用 npm 启动；3. 通过 options 追加额外参数</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;start dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;source ~/.zshrc &amp;&amp; nvm use 10 &amp;&amp; npm run dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:*&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
-<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
-<blockquote>
-<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
-</blockquote>
-<h4 id="调试配置-launch-json"><a href="#调试配置-launch-json" class="headerlink" title="调试配置 launch.json"></a>调试配置 launch.json</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
-<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
-<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>vscode</tag>
-        <tag>Node.js</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</title>
     <url>/post/567149842.html</url>
     <content><![CDATA[<h3 id="1-Visual-Studio-Code"><a href="#1-Visual-Studio-Code" class="headerlink" title="1. Visual Studio Code"></a>1. Visual Studio Code</h3><h4 id="1-1-安装主程序"><a href="#1-1-安装主程序" class="headerlink" title="1.1. 安装主程序"></a>1.1. 安装主程序</h4><ul>
@@ -2952,6 +2912,48 @@
       </tags>
   </entry>
   <entry>
+    <title>如何使用 vscode 启动、调试 Node.js 项目</title>
+    <url>/post/2445402303.html</url>
+    <content><![CDATA[<blockquote>
+<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
+</blockquote>
+<p>涉及 vscode 配置：</p>
+<ul>
+<li><code>.vscode/tasks.json</code> 启动</li>
+<li><code>.vscode/launch.json</code> 调试</li>
+</ul>
+<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
+<span id="more"></span>
+
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><h4 id="启动配置-tasks-json"><a href="#启动配置-tasks-json" class="headerlink" title="启动配置 tasks.json"></a>启动配置 tasks.json</h4><ul>
+<li>1、直接输入 <code>command + shift + p</code> 进入命令窗口，输入 <code>run task</code> 关键字，然后选择 <code>npm</code>。</li>
+<li>2、此时会列出 <code>package.json</code> 中定义的 <code>script</code> 名称，可以选择一个进行编辑；或单击一个直接运行。</li>
+</ul>
+<p>tasks 的使用说明<a href="https://code.visualstudio.com/docs/editor/tasks">详见官方文档</a>，下面是我在用的一个自定义 task 示例：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;tasks&quot;</span>: [</span><br><span class="line">    <span class="comment">// 这是一个使用 npm 启动项目到示例，指定脚本 dev</span></span><br><span class="line">    <span class="comment">// 注意：设置不同 type 类型时，相应的可用参数是跟随变化的</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;npm: dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;npm&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;script&quot;</span>: <span class="string">&quot;dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;problemMatcher&quot;</span>: [],</span><br><span class="line">      <span class="attr">&quot;detail&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development DEBUG=xx:mysql:client webpack-cli -w --hide-modules --config webpack.dev.js&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:client&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 这是另一种启动方式</span></span><br><span class="line">    <span class="comment">// 1. 使用 nvm 切换到指定 Node 版本；2. 紧接着使用 npm 启动；3. 通过 options 追加额外参数</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;start dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;source ~/.zshrc &amp;&amp; nvm use 10 &amp;&amp; npm run dev&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">&quot;NODE_ENV&quot;</span>: <span class="string">&quot;development&quot;</span>,</span><br><span class="line">          <span class="attr">&quot;DEBUG&quot;</span>: <span class="string">&quot;xx:mysql:*&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置完之后保存，此时在根目录下自动添加 <code>tasks.json</code> 文件（如果没有 .vscode 目录则先创建）。</p>
+<p>使用的时候直接输入 <code>command + shift + p</code>，然后输入 <code>run tasks</code> 回车，选择我们上一步配置并运行过的任务，回车即可，</p>
+<blockquote>
+<p>提示：在 vscode 中，最近使用过的命令会排在最上面，可以<strong>借助方向键+回车键便捷操作</strong>。</p>
+</blockquote>
+<h4 id="调试配置-launch-json"><a href="#调试配置-launch-json" class="headerlink" title="调试配置 launch.json"></a>调试配置 launch.json</h4><p>单击左侧边栏的调试图标，创建一个调试配置，如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;debug&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;port&quot;</span>: <span class="number">9230</span>,</span><br><span class="line">      <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;attach&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;skipFiles&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;&lt;node_internals&gt;/**&quot;</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;pwa-node&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个 <code>attach</code> 方式的调试配置，通过监听已启动 Node 服务开放的调试端口（如：9230）进行工作。</p>
+<p>设置好之后保存，将生成 <code>.vscode/launch.json</code> 文件。</p>
+<p>需要 debug 时，先打好断点，然后按 <code>F5</code> 或单击侧边栏的调试图标，手动启动对应的调试服务。</p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>vscode</tag>
+        <tag>Node.js</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>替换国内镜像源让 Homebrew 起飞</title>
     <url>/post/3431125306.html</url>
     <content><![CDATA[<blockquote>
@@ -2971,6 +2973,63 @@
         <tag>开发工具</tag>
         <tag>Homebrew</tag>
         <tag>brew</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《最后的舞动 The Last Dance》</title>
+    <url>/post/3209780963.html</url>
+    <content><![CDATA[<table>
+  <thead>
+    <tr>
+      <th colspan="2">
+        片名：最后的舞动 The Last Dance（2020）
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5">
+      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
+      </td>
+      <td><b>导演</b>：杰森·海希尔</td>
+    </tr>
+    <tr>
+      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
+    </tr>
+    <tr>
+      <td><b>类型</b>：纪录片</td>
+    </tr>
+    <tr>
+      <td><b>地区</b>：欧美</td>
+    </tr>
+    <tr>
+      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">
+        下载（磁力链接）：
+        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E01</a>
+        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E02</a>
+        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E03</a>
+        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E04</a>
+        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E05</a>
+        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E06</a>
+        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E07</a>
+        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E08</a>
+        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E09</a>
+        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337">S01E10</a>
+      </td>
+    </tr>
+  </tfoot>
+</table>]]></content>
+      <categories>
+        <category>影视音乐</category>
+      </categories>
+      <tags>
+        <tag>迈克尔·乔丹</tag>
+        <tag>美剧</tag>
       </tags>
   </entry>
   <entry>
@@ -3061,61 +3120,6 @@
       </tags>
   </entry>
   <entry>
-    <title>dayjs时间处理库</title>
-    <url>/post/3076911137.html</url>
-    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
-</blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
-<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
-<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>dayjs</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>PM2 入门指南</title>
     <url>/post/1046389609.html</url>
     <content><![CDATA[<h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 = Process Manager 2</p>
@@ -3201,6 +3205,61 @@
       <tags>
         <tag>Node.js</tag>
         <tag>PM2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dayjs时间处理库</title>
+    <url>/post/3076911137.html</url>
+    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
+<blockquote>
+<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
+</blockquote>
+<p>其主要特性如下：</p>
+<ul>
+<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
+<li>不可变数据（Immutable）</li>
+<li>支持链式操作（Chainable）</li>
+<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
+<li>全浏览器兼容</li>
+<li>强大的国际化支持（I18n）</li>
+</ul>
+<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
+<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
+<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
+<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>dayjs</tag>
       </tags>
   </entry>
   <entry>
@@ -3630,45 +3689,6 @@
       </tags>
   </entry>
   <entry>
-    <title>基于 Docker 的 PHP 如何连接 MySQL</title>
-    <url>/post/2161195361.html</url>
-    <content><![CDATA[<p>环境</p>
-<ul>
-<li>基于 docker-compose 管理的 PHP 和 MySQL 服务</li>
-<li>PHP 容器中的程序连接 MySQL 容器中的服务， 采用 PDO 形式</li>
-</ul>
-<p>测试代码片段</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$pdo</span> = <span class="keyword">new</span> PDO(<span class="string">&#x27;mysql:dbname=test;host=127.0.0.1;charset=utf8mb4;port=3306&#x27;</span>,<span class="string">&#x27;root&#x27;</span>,<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException <span class="variable">$pe</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$pe</span>-&gt;getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>报错</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SQLSTATE[HY000] [2002] Connection refused</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<p>解决方法</p>
-<blockquote>
-<p>以上错误主要是对 Docker 容器的隔离机制理解不够，其实每个容器之间都是隔离的，如果有相互依赖的服务，需要进行显示的关联，比如使用选项 <code>--link</code>。</p>
-</blockquote>
-<blockquote>
-<p>同理，使用 docker-compose 时候，容器之间关联是采用类似如下的方式：</p>
-</blockquote>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker-compose.xml 缩减版</span></span><br><span class="line">version: <span class="string">&#x27;2&#x27;</span></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  php:</span><br><span class="line">    build: ./php</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    links:</span><br><span class="line">      - <span class="string">&quot;mysql&quot;</span></span><br><span class="line"></span><br><span class="line">  mysql:</span><br><span class="line">    build: ./mysql</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_PASSWORD: root</span><br></pre></td></tr></table></figure>
-
-<p>注意，关键地方来了：测试连接 MySQL 的代码其实是运行在 PHP 对应的容器里，而 MySQL 服务是在它自己对应的容器里，当我们的 host 填写 127.0.0.1 时候，其实对应的是 PHP 容器里面，所以不可能找到对应的服务，从而引起上面拒绝连接的错误。</p>
-<p>那么，怎么进行连接呢？</p>
-<p><strong>其实容器之间关联之后，可以通过容器名进行连接，是的，容器名！</strong></p>
-<p>在上面的 docker-compose.xml 文件中，MySQL 服务对应的容器名是 mysql，PHP 容器与它关联的名字也是 MySQL，所以把 127.0.0.1 改成 <code>mysql</code> 再进行连接即可！</p>
-]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>PHP</tag>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>基于 Docker 的 Redis 服务</title>
     <url>/post/3425556216.html</url>
     <content><![CDATA[<blockquote>
@@ -3729,6 +3749,45 @@
         <tag>Docker</tag>
         <tag>redis-server</tag>
         <tag>redis-cli</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于 Docker 的 PHP 如何连接 MySQL</title>
+    <url>/post/2161195361.html</url>
+    <content><![CDATA[<p>环境</p>
+<ul>
+<li>基于 docker-compose 管理的 PHP 和 MySQL 服务</li>
+<li>PHP 容器中的程序连接 MySQL 容器中的服务， 采用 PDO 形式</li>
+</ul>
+<p>测试代码片段</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$pdo</span> = <span class="keyword">new</span> PDO(<span class="string">&#x27;mysql:dbname=test;host=127.0.0.1;charset=utf8mb4;port=3306&#x27;</span>,<span class="string">&#x27;root&#x27;</span>,<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException <span class="variable">$pe</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$pe</span>-&gt;getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>报错</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SQLSTATE[HY000] [2002] Connection refused</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>解决方法</p>
+<blockquote>
+<p>以上错误主要是对 Docker 容器的隔离机制理解不够，其实每个容器之间都是隔离的，如果有相互依赖的服务，需要进行显示的关联，比如使用选项 <code>--link</code>。</p>
+</blockquote>
+<blockquote>
+<p>同理，使用 docker-compose 时候，容器之间关联是采用类似如下的方式：</p>
+</blockquote>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="comment"># docker-compose.xml 缩减版</span></span><br><span class="line">version: <span class="string">&#x27;2&#x27;</span></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">	...</span><br><span class="line"></span><br><span class="line">  php:</span><br><span class="line">    build: ./php</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    links:</span><br><span class="line">      - <span class="string">&quot;mysql&quot;</span></span><br><span class="line"></span><br><span class="line">  mysql:</span><br><span class="line">    build: ./mysql</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;3306:3306&quot;</span></span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_PASSWORD: root</span><br></pre></td></tr></table></figure>
+
+<p>注意，关键地方来了：测试连接 MySQL 的代码其实是运行在 PHP 对应的容器里，而 MySQL 服务是在它自己对应的容器里，当我们的 host 填写 127.0.0.1 时候，其实对应的是 PHP 容器里面，所以不可能找到对应的服务，从而引起上面拒绝连接的错误。</p>
+<p>那么，怎么进行连接呢？</p>
+<p><strong>其实容器之间关联之后，可以通过容器名进行连接，是的，容器名！</strong></p>
+<p>在上面的 docker-compose.xml 文件中，MySQL 服务对应的容器名是 mysql，PHP 容器与它关联的名字也是 MySQL，所以把 127.0.0.1 改成 <code>mysql</code> 再进行连接即可！</p>
+]]></content>
+      <categories>
+        <category>Docker</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>PHP</tag>
+        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>

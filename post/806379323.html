@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
@@ -24,9 +23,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/orange/pace-theme-flash.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="🔗 关于 Composer 的详细安装使用，详见之前的文章：在 PHP 中安装、使用 Composer 包管理工具  Composer 在国内不管是更新还是安装都有一个「慢」的问题，有的时候真的很煎熬。 因此我们一般会替换为 Packagist &#x2F; Composer 中国全量镜像，然而在使用过程发现，这个镜像并不稳定，有时候也会挂掉，所以本文介绍另外两种加速 composer 的方式。">
-<meta property="og:type" content="article">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.10.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+  <meta name="description" content="🔗 关于 Composer 的详细安装使用，详见之前的文章：在 PHP 中安装、使用 Composer 包管理工具  Composer 在国内不管是更新还是安装都有一个「慢」的问题，有的时候真的很煎熬。 因此我们一般会替换为 Packagist &#x2F; Composer 中国全量镜像，然而在使用过程发现，这个镜像并不稳定，有时候也会挂掉，所以本文介绍另外两种加速 composer 的方式。">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Composer 很慢怎么办？">
 <meta property="og:url" content="https://sqiang.net/post/806379323.html">
 <meta property="og:site_name" content="whoru">
@@ -50,6 +50,7 @@
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Composer 很慢怎么办？ | whoru</title>
   
+
 
 
 
@@ -78,7 +79,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">whoru</h1>
+      <p class="site-title">whoru</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
@@ -98,7 +99,7 @@
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">107</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">96</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">97</span></a></li>
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
@@ -354,7 +355,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
