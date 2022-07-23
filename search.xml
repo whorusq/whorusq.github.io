@@ -280,53 +280,6 @@
       </tags>
   </entry>
   <entry>
-    <title>基于 Lodop 的单据单打印实例及连打的实现</title>
-    <url>/post/486127644.html</url>
-    <content><![CDATA[<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>Lodop &amp; C-Lodop 是一款专业共享软件，公开版本未限制功能，多数用户可免费长期使用。</p>
-<p>仅如下情况需要 <strong>注册收费</strong>：</p>
-<ul>
-<li>你希望用到（不经过弹出预览窗口的）「直接打印」功能时，如果不注册，该功能直接打印的纸张左下角会有“<em>本页由XXX试用版输出</em>”小字样水印。</li>
-<li>另外，导出 Excel 文件或图片也需要注册。</li>
-</ul>
-<h3 id="2-相关资源"><a href="#2-相关资源" class="headerlink" title="2. 相关资源"></a>2. 相关资源</h3><ul>
-<li>官网下载中心（程序+文档）：<a href="http://www.lodop.net/download.html">http://www.lodop.net/download.html</a></li>
-<li>官方打印示例：<a href="http://www.lodop.net/demo.html">http://www.lodop.net/demo.html</a></li>
-<li>常见问题列表：<a href="http://www.lodop.net/problem.html">http://www.lodop.net/problem.html</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="3-一个发运单打印的实例"><a href="#3-一个发运单打印的实例" class="headerlink" title="3. 一个发运单打印的实例"></a>3. 一个发运单打印的实例</h3><p>目录结构说明（源码地址：<a href="https://github.com/whorusq/web-printer-with-Lodop">https://github.com/whorusq/web-printer-with-Lodop</a>）</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── assets</span><br><span class="line">│   ├── images</span><br><span class="line">│   │   ├── layer-btn-cancel-hover.png</span><br><span class="line">│   │   ├── layer-btn-cancel.png</span><br><span class="line">│   │   ├── layer-btn-ok-hover.png</span><br><span class="line">│   │   ├── layer-btn-ok.png</span><br><span class="line">│   │   ├── layui-layer-title-close-hover.png</span><br><span class="line">│   │   ├── layui-layer-title-close.png</span><br><span class="line">│   │   └── layui-layer-title-info.png</span><br><span class="line">│   ├── jquery.min.js</span><br><span class="line">│   ├── jquery.tmpl.js     &lt;----- 一个简单的模块数据渲染插件</span><br><span class="line">│   ├── layer     &lt;----- 本示例使用 layer 处理消息弹窗</span><br><span class="line">│   │   ├── extend</span><br><span class="line">│   │   │   └── layer.ext.js</span><br><span class="line">│   │   ├── layer.js</span><br><span class="line">│   │   └── skin</span><br><span class="line">│   │       ├── default</span><br><span class="line">│   │       │   ├── icon-ext.png</span><br><span class="line">│   │       │   ├── icon.png</span><br><span class="line">│   │       │   ├── loading-0.gif</span><br><span class="line">│   │       │   ├── loading-1.gif</span><br><span class="line">│   │       │   └── loading-2.gif</span><br><span class="line">│   │       ├── layer.css</span><br><span class="line">│   │       └── layer.ext.css</span><br><span class="line">│   ├── lodop     &lt;----- 打印插件相关文件</span><br><span class="line">│   │   ├── CLodop_Setup_for_Win32NT.exe</span><br><span class="line">│   │   ├── LodopFuncs.js</span><br><span class="line">│   │   ├── install_lodop32.exe</span><br><span class="line">│   │   └── install_lodop64.exe</span><br><span class="line">│   └── my.js     &lt;----- 一些用到的公共函数：转换金额、时间，调用弹窗</span><br><span class="line">├── data.json     &lt;----- 模拟数据</span><br><span class="line">└── index.html     &lt;----- 示例页：打印控件的调用及打印样式设置等</span><br></pre></td></tr></table></figure>
-
-<p>点击打印后，打印预览效果如下</p>
-<p><img data-src="https://static.sqiang.net/image/post/lodop_screenhot.png" alt="预览图片）"></p>
-<h3 id="4-关于连打"><a href="#4-关于连打" class="headerlink" title="4. 关于连打"></a>4. 关于连打</h3><h4 id="4-1-连打关键点"><a href="#4-1-连打关键点" class="headerlink" title="4.1. 连打关键点"></a>4.1. 连打关键点</h4><p>连打时主要是通过「针式打印机」，使用三联 <strong>n</strong> 等分（关于纸型的说明，详见附录：<a href="#5-2-%E7%BA%B8%E5%9E%8B%E8%AF%B4%E6%98%8E">5.2. 纸型说明</a>）的打印纸进行批量打印。</p>
-<ol>
-<li><p>通过 <strong>进纸调节器按钮</strong>，调整打印机的默认纸型。如果你的打印机没有这个类似的按钮，可询问客服具体调节方法。</p>
-</li>
-<li><p>调整打印模板，在程序里设置打印纸型</p>
-</li>
-</ol>
-<h4 id="4-2-具体实现方法"><a href="#4-2-具体实现方法" class="headerlink" title="4.2. 具体实现方法"></a>4.2. 具体实现方法</h4><p>基于上述 Demo，主要作如下修改：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">…略…</span><br><span class="line"></span><br><span class="line">LODOP = getLodop();</span><br><span class="line">LODOP.PRINT_INITA(<span class="number">0</span>,<span class="number">10</span>,<span class="string">&quot;24.1cm&quot;</span>,<span class="string">&quot;13.9cm&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">LODOP.SET_PRINT_PAGESIZE(<span class="number">1</span>,<span class="string">&quot;24.1cm&quot;</span>,<span class="string">&quot;13.9cm&quot;</span>,<span class="string">&quot;CreateCustomPage&quot;</span>);</span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;CREATE_CUSTOM_PAGE_NAME&quot;</span>,<span class="string">&quot;fyd_print_1&quot;</span>);</span><br><span class="line"><span class="comment">// LODOP.SET_PRINT_MODE(&quot;POS_BASEON_PAPER&quot;,true);</span></span><br><span class="line"><span class="comment">// LODOP.SET_PREVIEW_WINDOW(1,0,0,1000,600,&quot;&quot;); // 初始预览窗口大小</span></span><br><span class="line"><span class="comment">// LODOP.SET_SHOW_MODE(&quot;LANDSCAPE_DEFROTATED&quot;,1); // 横向打印时正向显示</span></span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;AUTO_CLOSE_PREWINDOW&quot;</span>,<span class="number">1</span>); <span class="comment">// 打印后自动关闭预览</span></span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;CUSTOM_TASK_NAME&quot;</span>,<span class="string">&quot;发运单打印&quot;</span>); <span class="comment">// 打印队列中的文档名</span></span><br><span class="line">LODOP.SET_SHOW_MODE(<span class="string">&quot;HIDE_PAPER_BOARD&quot;</span>,<span class="number">1</span>); <span class="comment">// 去除背景滚动线</span></span><br><span class="line"></span><br><span class="line">…略…</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>⚠️ 注意：<strong>对于打印模板的调整，可使用 Lodop 打印设计功能，或一点点打印预览进行调节</strong>。</p>
-<h3 id="5-附录"><a href="#5-附录" class="headerlink" title="5. 附录"></a>5. 附录</h3><h4 id="5-1-相关常见问题"><a href="#5-1-相关常见问题" class="headerlink" title="5.1. 相关常见问题"></a>5.1. 相关常见问题</h4><ul>
-<li><a href="http://www.c-lodop.com/faq/pp9.html">如何避免Lodop本地配置影响</a></li>
-<li><a href="http://www.c-lodop.com/faq/pp17.html">打印位置不同，偏移量问题</a></li>
-</ul>
-<h4 id="5-2-纸型说明"><a href="#5-2-纸型说明" class="headerlink" title="5.2. 纸型说明"></a>5.2. 纸型说明</h4><p><img data-src="https://static.sqiang.net/image/post/lodop_paper1.jpg" alt="预览图片）"></p>
-<p><img data-src="https://static.sqiang.net/image/post/lodop_paper2.jpg" alt="预览图片）"></p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>Lodop</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>curl 命令速查</title>
     <url>/post/2208464112.html</url>
     <content><![CDATA[<blockquote>
@@ -776,6 +729,19 @@
       </tags>
   </entry>
   <entry>
+    <title>zip分卷压缩命令</title>
+    <url>/post/4078650632.html</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>zip</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vim 常用操作命令</title>
     <url>/post/2824845466.html</url>
     <content><![CDATA[<center>
@@ -788,19 +754,6 @@
       <tags>
         <tag>Linux</tag>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>zip分卷压缩命令</title>
-    <url>/post/4078650632.html</url>
-    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>zip</tag>
       </tags>
   </entry>
   <entry>
@@ -1012,6 +965,90 @@
       </tags>
   </entry>
   <entry>
+    <title>基于 Lodop 的单据单打印实例及连打的实现</title>
+    <url>/post/486127644.html</url>
+    <content><![CDATA[<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><p>Lodop &amp; C-Lodop 是一款专业共享软件，公开版本未限制功能，多数用户可免费长期使用。</p>
+<p>仅如下情况需要 <strong>注册收费</strong>：</p>
+<ul>
+<li>你希望用到（不经过弹出预览窗口的）「直接打印」功能时，如果不注册，该功能直接打印的纸张左下角会有“<em>本页由XXX试用版输出</em>”小字样水印。</li>
+<li>另外，导出 Excel 文件或图片也需要注册。</li>
+</ul>
+<h3 id="2-相关资源"><a href="#2-相关资源" class="headerlink" title="2. 相关资源"></a>2. 相关资源</h3><ul>
+<li>官网下载中心（程序+文档）：<a href="http://www.lodop.net/download.html">http://www.lodop.net/download.html</a></li>
+<li>官方打印示例：<a href="http://www.lodop.net/demo.html">http://www.lodop.net/demo.html</a></li>
+<li>常见问题列表：<a href="http://www.lodop.net/problem.html">http://www.lodop.net/problem.html</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="3-一个发运单打印的实例"><a href="#3-一个发运单打印的实例" class="headerlink" title="3. 一个发运单打印的实例"></a>3. 一个发运单打印的实例</h3><p>目录结构说明（源码地址：<a href="https://github.com/whorusq/web-printer-with-Lodop">https://github.com/whorusq/web-printer-with-Lodop</a>）</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.</span><br><span class="line">├── assets</span><br><span class="line">│   ├── images</span><br><span class="line">│   │   ├── layer-btn-cancel-hover.png</span><br><span class="line">│   │   ├── layer-btn-cancel.png</span><br><span class="line">│   │   ├── layer-btn-ok-hover.png</span><br><span class="line">│   │   ├── layer-btn-ok.png</span><br><span class="line">│   │   ├── layui-layer-title-close-hover.png</span><br><span class="line">│   │   ├── layui-layer-title-close.png</span><br><span class="line">│   │   └── layui-layer-title-info.png</span><br><span class="line">│   ├── jquery.min.js</span><br><span class="line">│   ├── jquery.tmpl.js     &lt;----- 一个简单的模块数据渲染插件</span><br><span class="line">│   ├── layer     &lt;----- 本示例使用 layer 处理消息弹窗</span><br><span class="line">│   │   ├── extend</span><br><span class="line">│   │   │   └── layer.ext.js</span><br><span class="line">│   │   ├── layer.js</span><br><span class="line">│   │   └── skin</span><br><span class="line">│   │       ├── default</span><br><span class="line">│   │       │   ├── icon-ext.png</span><br><span class="line">│   │       │   ├── icon.png</span><br><span class="line">│   │       │   ├── loading-0.gif</span><br><span class="line">│   │       │   ├── loading-1.gif</span><br><span class="line">│   │       │   └── loading-2.gif</span><br><span class="line">│   │       ├── layer.css</span><br><span class="line">│   │       └── layer.ext.css</span><br><span class="line">│   ├── lodop     &lt;----- 打印插件相关文件</span><br><span class="line">│   │   ├── CLodop_Setup_for_Win32NT.exe</span><br><span class="line">│   │   ├── LodopFuncs.js</span><br><span class="line">│   │   ├── install_lodop32.exe</span><br><span class="line">│   │   └── install_lodop64.exe</span><br><span class="line">│   └── my.js     &lt;----- 一些用到的公共函数：转换金额、时间，调用弹窗</span><br><span class="line">├── data.json     &lt;----- 模拟数据</span><br><span class="line">└── index.html     &lt;----- 示例页：打印控件的调用及打印样式设置等</span><br></pre></td></tr></table></figure>
+
+<p>点击打印后，打印预览效果如下</p>
+<p><img data-src="https://static.sqiang.net/image/post/lodop_screenhot.png" alt="预览图片）"></p>
+<h3 id="4-关于连打"><a href="#4-关于连打" class="headerlink" title="4. 关于连打"></a>4. 关于连打</h3><h4 id="4-1-连打关键点"><a href="#4-1-连打关键点" class="headerlink" title="4.1. 连打关键点"></a>4.1. 连打关键点</h4><p>连打时主要是通过「针式打印机」，使用三联 <strong>n</strong> 等分（关于纸型的说明，详见附录：<a href="#5-2-%E7%BA%B8%E5%9E%8B%E8%AF%B4%E6%98%8E">5.2. 纸型说明</a>）的打印纸进行批量打印。</p>
+<ol>
+<li><p>通过 <strong>进纸调节器按钮</strong>，调整打印机的默认纸型。如果你的打印机没有这个类似的按钮，可询问客服具体调节方法。</p>
+</li>
+<li><p>调整打印模板，在程序里设置打印纸型</p>
+</li>
+</ol>
+<h4 id="4-2-具体实现方法"><a href="#4-2-具体实现方法" class="headerlink" title="4.2. 具体实现方法"></a>4.2. 具体实现方法</h4><p>基于上述 Demo，主要作如下修改：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">…略…</span><br><span class="line"></span><br><span class="line">LODOP = getLodop();</span><br><span class="line">LODOP.PRINT_INITA(<span class="number">0</span>,<span class="number">10</span>,<span class="string">&quot;24.1cm&quot;</span>,<span class="string">&quot;13.9cm&quot;</span>,<span class="string">&quot;&quot;</span>);</span><br><span class="line">LODOP.SET_PRINT_PAGESIZE(<span class="number">1</span>,<span class="string">&quot;24.1cm&quot;</span>,<span class="string">&quot;13.9cm&quot;</span>,<span class="string">&quot;CreateCustomPage&quot;</span>);</span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;CREATE_CUSTOM_PAGE_NAME&quot;</span>,<span class="string">&quot;fyd_print_1&quot;</span>);</span><br><span class="line"><span class="comment">// LODOP.SET_PRINT_MODE(&quot;POS_BASEON_PAPER&quot;,true);</span></span><br><span class="line"><span class="comment">// LODOP.SET_PREVIEW_WINDOW(1,0,0,1000,600,&quot;&quot;); // 初始预览窗口大小</span></span><br><span class="line"><span class="comment">// LODOP.SET_SHOW_MODE(&quot;LANDSCAPE_DEFROTATED&quot;,1); // 横向打印时正向显示</span></span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;AUTO_CLOSE_PREWINDOW&quot;</span>,<span class="number">1</span>); <span class="comment">// 打印后自动关闭预览</span></span><br><span class="line">LODOP.SET_PRINT_MODE(<span class="string">&quot;CUSTOM_TASK_NAME&quot;</span>,<span class="string">&quot;发运单打印&quot;</span>); <span class="comment">// 打印队列中的文档名</span></span><br><span class="line">LODOP.SET_SHOW_MODE(<span class="string">&quot;HIDE_PAPER_BOARD&quot;</span>,<span class="number">1</span>); <span class="comment">// 去除背景滚动线</span></span><br><span class="line"></span><br><span class="line">…略…</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>⚠️ 注意：<strong>对于打印模板的调整，可使用 Lodop 打印设计功能，或一点点打印预览进行调节</strong>。</p>
+<h3 id="5-附录"><a href="#5-附录" class="headerlink" title="5. 附录"></a>5. 附录</h3><h4 id="5-1-相关常见问题"><a href="#5-1-相关常见问题" class="headerlink" title="5.1. 相关常见问题"></a>5.1. 相关常见问题</h4><ul>
+<li><a href="http://www.c-lodop.com/faq/pp9.html">如何避免Lodop本地配置影响</a></li>
+<li><a href="http://www.c-lodop.com/faq/pp17.html">打印位置不同，偏移量问题</a></li>
+</ul>
+<h4 id="5-2-纸型说明"><a href="#5-2-纸型说明" class="headerlink" title="5.2. 纸型说明"></a>5.2. 纸型说明</h4><p><img data-src="https://static.sqiang.net/image/post/lodop_paper1.jpg" alt="预览图片）"></p>
+<p><img data-src="https://static.sqiang.net/image/post/lodop_paper2.jpg" alt="预览图片）"></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>Lodop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python 如何安装 pip 包管理工具</title>
+    <url>/post/4186504541.html</url>
+    <content><![CDATA[<blockquote>
+<p>⚠️ <strong>注意</strong>：</p>
+<ol>
+<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
+</li>
+<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
+</li>
+<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
+<ol>
+<li><p>下载 <code>get-pip.py</code></p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
+<li><p>安装 pip</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>pip</tag>
+        <tag>包管理工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Composer 很慢怎么办？</title>
     <url>/post/806379323.html</url>
     <content><![CDATA[<blockquote>
@@ -1044,8 +1081,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
-        <tag>Composer</tag>
         <tag>包管理工具</tag>
+        <tag>Composer</tag>
       </tags>
   </entry>
   <entry>
@@ -1304,45 +1341,8 @@
       </categories>
       <tags>
         <tag>PHP</tag>
+        <tag>包管理工具</tag>
         <tag>Composer</tag>
-        <tag>包管理工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python 如何安装 pip 包管理工具</title>
-    <url>/post/4186504541.html</url>
-    <content><![CDATA[<blockquote>
-<p>⚠️ <strong>注意</strong>：</p>
-<ol>
-<li><p>如果你是 macOS 系统，默认安装的是 python2.x 版本，只需执行 <code>sudo easy_install pip</code> 即可。</p>
-</li>
-<li><p>如果你是 macOS 下使用 <code>brew install python3</code> 安装的 python3，则 pip 已经安装。</p>
-</li>
-<li><p>如果你安装了 <code>virtualenv</code> 或 <code>pyvenv</code> ，则 pip 也已经安装。</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><p>官方推荐的安装方式是通过 <strong><a href="https://bootstrap.pypa.io/get-pip.py">get-pip.py</a></strong> 安装，<a href="https://pip.readthedocs.io/en/stable/installing/">详见这里</a></p>
-<ol>
-<li><p>下载 <code>get-pip.py</code></p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</span><br></pre></td></tr></table></figure></li>
-<li><p>安装 pip</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python2 --&gt; pip</span></span><br><span class="line"><span class="comment"># -V 是 --version 的简写</span></span><br><span class="line">➜  python get-pip.py</span><br><span class="line">➜  pip -V</span><br><span class="line"></span><br><span class="line"><span class="comment"># python3 --&gt; pip3</span></span><br><span class="line">➜  python3 get-pip.py</span><br><span class="line">➜  pip3 -V</span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<h3 id="2-升级"><a href="#2-升级" class="headerlink" title="2. 升级"></a>2. 升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Linux 或 macOS</span></span><br><span class="line"><span class="comment"># -U 是 --upgrade 的简写</span></span><br><span class="line">➜  pip install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果升级 pip3 ，则执行</span></span><br><span class="line"><span class="comment"># 注意：后面的包名 pip 不需要加 3</span></span><br><span class="line">➜  pip3 install -U pip</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">➜  python -m pip install -U pip</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-常用命令"><a href="#3-常用命令" class="headerlink" title="3. 常用命令"></a>3. 常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看帮助</span></span><br><span class="line">➜  pip --<span class="built_in">help</span></span><br><span class="line">➜  pip3 --<span class="built_in">help</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的包</span></span><br><span class="line">➜  pip list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看可升级的包</span></span><br><span class="line">➜  pip list -o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示安装包信息</span></span><br><span class="line">➜  pip show package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定包的详细信息</span></span><br><span class="line">➜  pip show -f package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索包</span></span><br><span class="line">➜  pip search package_name</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装包（默认最新版本）</span></span><br><span class="line"><span class="comment"># 部分库可能需要较高的权限，执行命令的时候追加 sudo 或使用较高权限的用户</span></span><br><span class="line">➜  pip install package_name</span><br><span class="line"><span class="comment"># 也可以通过 == &gt;= &lt;= &gt; &lt; 来指定一个版本号</span></span><br><span class="line">➜  pip install package_name==1.0.5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级包</span></span><br><span class="line">➜  pip install --upgrade package_name</span><br><span class="line">➜  pip install --upgrade package_name==1.2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载包</span></span><br><span class="line">➜  pip uninstall package_name</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Python</category>
-      </categories>
-      <tags>
-        <tag>包管理工具</tag>
-        <tag>Python</tag>
-        <tag>pip</tag>
       </tags>
   </entry>
   <entry>
@@ -1706,6 +1706,43 @@
       </tags>
   </entry>
   <entry>
+    <title>解决Hexo文章更新时间问题</title>
+    <url>/post/2792803495.html</url>
+    <content><![CDATA[<blockquote>
+<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+</blockquote>
+<blockquote>
+<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
+</blockquote>
+<p>解决步骤如下：</p>
+<span id="more"></span>
+
+<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
+
+<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
+<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
+<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
+<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
+<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
+<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<ul>
+<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
+<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>自建跨域代理解决Gitalk无法登录的问题</title>
     <url>/post/3973669864.html</url>
     <content><![CDATA[<blockquote>
@@ -1750,40 +1787,350 @@
       </tags>
   </entry>
   <entry>
-    <title>解决Hexo文章更新时间问题</title>
-    <url>/post/2792803495.html</url>
+    <title>一堂技术管理课</title>
+    <url>/post/895189460.html</url>
     <content><![CDATA[<blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+<p>本文整理自： 极客时间专栏<a href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
 </blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
+<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
+<ol>
+<li>向你问问题和各种琐事的人越来越多；</li>
+<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
+</ol>
+<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
+<ul>
+<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
+<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
+</li>
+<li><p>其次，如何引导？</p>
+<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
+</li>
+<li><p>最后，引导的好处。</p>
+<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
+</li>
+</ul>
 <span id="more"></span>
 
-<h4 id="1-修改-scaffolds-post-md-文件"><a href="#1-修改-scaffolds-post-md-文件" class="headerlink" title="1. 修改 /scaffolds/post.md 文件"></a>1. 修改 /scaffolds/post.md 文件</h4><figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">updated: &#123;&#123; date &#125;&#125;</span><br><span class="line"><span class="section">tags:</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
-
-<p>这样每次新建文章后，会自动添加 <code>updated</code> 标签，并且与 <code>date</code> 的创建时间一致。</p>
-<p>如果是历史文章，则需要<strong>手动给每篇文章增加这个更新时间</strong>，或者自己写个脚本批量处理下。</p>
-<h4 id="2-主题相关配置"><a href="#2-主题相关配置" class="headerlink" title="2. 主题相关配置"></a>2. 主题相关配置</h4><p>本文是以 NexT 主题为例，相关设置保持默认就可以，类似如下：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Post meta display settings</span></span><br><span class="line"><span class="attr">post_meta:</span></span><br><span class="line">  <span class="attr">item_text:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">created_at:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 主要是这一部分</span></span><br><span class="line">  <span class="attr">updated_at:</span></span><br><span class="line">    <span class="comment"># 显示更新时间</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># 与创建时间不同时才显示</span></span><br><span class="line">    <span class="attr">another_day:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<p>其它主题应该也不需要什么特殊设置，如果没有效果或产生异常，则需要查询一下对应主题的相关配置说明。</p>
-<h4 id="3-ok"><a href="#3-ok" class="headerlink" title="3. ok"></a>3. ok</h4><p>当对文章进行修改的时候，更新这个 <code>updated</code> 的值就可以了。</p>
-<p>如果不需要时间，就把文章的创建时间复制过来，把日期改为当天就可以了。</p>
-<p>如果需要准确的时间，则可以查找快捷插入日期时间的方法，因为每个人使用的工具不同，这里只以 vscode 为例说明：</p>
+<h3 id="Bug引发事故，该不该追究责任？"><a href="#Bug引发事故，该不该追究责任？" class="headerlink" title="Bug引发事故，该不该追究责任？"></a>Bug引发事故，该不该追究责任？</h3><h4 id="追究"><a href="#追究" class="headerlink" title="追究"></a>追究</h4><p>假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免：</p>
 <ul>
-<li>方法一：使用快捷键，macOS: <code>⌘ + ⇧ + I</code>；Windows 或 Linux: <code>Ctrl + Shift + I</code>。</li>
-<li>方法二：通过按 <code>F1</code> 打开命令面板，并键入 <code>Insert DateTime</code>，然后按回车键即可。如果想指定格式，则输入 <code>Insert Formatted DateTime</code>，然后更改成你需要的格式。</li>
+<li>大家都怕闯祸，所以风险高的事没人做，或者总是那几个靠谱的“老司机”做，其他人则永远没有机会得到锻炼。</li>
+<li>如果有人搞砸了什么事情，会因为担心承担后果而推卸责任，从而尽可能掩盖错误的坏影响，不让人知道。</li>
+<li>如果别人犯了错，会觉得不关自己的事。</li>
+<li>指出别人的错误就会导致别人被追究责任，因此看到有问题也会犹豫要不要指出。</li>
+</ul>
+<h4 id="不追究"><a href="#不追究" class="headerlink" title="不追究"></a>不追究</h4><p>反之，如果无论发生什么错误，都不需要承担后果或进行反省，没有任何担当，那可能又会出现以下情况：</p>
+<ul>
+<li>同样的错误可能会一再发生。</li>
+<li>小错酿成大错。</li>
+<li>做事仔细的人会觉得不公平。</li>
+</ul>
+<h4 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h4><p>对于工作中的错误，尤其是 Bug 导致的错误，我们应该采取什么态度和措施呢？</p>
+<ol>
+<li>追究责任，但不是惩罚。</li>
+<li>对事儿不对人。</li>
+<li>反复问“为什么”，从根本上发现问题。</li>
+<li>员工关系的建立也很关键。我们需要培养的是大家相互信任、互帮互助，为了共同的目标努力的氛围，而不是一种不安全感。</li>
+</ol>
+<h3 id="如何帮助团队成员成长？"><a href="#如何帮助团队成员成长？" class="headerlink" title="如何帮助团队成员成长？"></a>如何帮助团队成员成长？</h3><p>包括通过指导、反馈、监督、交流、协调资源等方式帮助下属提升能力，迅速成长。</p>
+<p>作为管理者，应该经常思考的是：</p>
+<ul>
+<li>怎样做能够让员工进步到更高层次？</li>
+<li>他的潜力在哪，哪些地方是可以培养和挖掘的？</li>
+<li>怎么帮助员工改进他与组内组外同事的关系，让他有机会更好地发挥他的长处？</li>
+<li>怎样尽早地发现他的错误和缺点，并帮助他认识和改进，而不是在错误变成后果后，去追究责任。</li>
+<li>怎样帮助他在不擅长的领域建立信心？</li>
+<li>怎样帮助他学会处理各种压力和矛盾？</li>
+</ul>
+<p>切忌陷入静态思维去看待动态发展的问题。</p>
+<ul>
+<li>多和自己对话，想想自己哪些时候、哪些方面会用静态的眼光去看待别人的能力。</li>
+<li>把自己有这种心态时的表现或内心的一些想法写出来。</li>
+<li>再遇到类似的情况，停一下，想一想是不是自己可以有所改变。</li>
+<li>诚恳地告诉组员希望帮助他成长，多交流并听取对方的想法。</li>
+</ul>
+<blockquote>
+<p><strong>一个技术管理者的成功并不在于自己代码多好、能力多强，他的成功一定建立在团队成功的基础之上。只有团队成员不断成长，这个团队才可以做成更大的事情，而你才可以在团队的基础上，站得更高、看得更远。</strong></p>
+</blockquote>
+<h3 id="当我们给别人提意见时，要注意些什么？"><a href="#当我们给别人提意见时，要注意些什么？" class="headerlink" title="当我们给别人提意见时，要注意些什么？"></a>当我们给别人提意见时，要注意些什么？</h3><ul>
+<li><p>首先，要思考自己是不是合适提这个意见。</p>
+<p>  也就是说，对方会不会产生 “就凭你” 的逆反心理。</p>
+<p>  在工作中适当放低姿态，往往更容易获得尊重。</p>
+<p>  <strong>不要总是试图居高临下地提意见，尤其是你在对方心里还没有建立任何信任和威信的时候，不要贸然给别人提负面意见。</strong></p>
+</li>
+<li><p>其次，提意见要讲究合适的时机</p>
+<p>  确定什么时候应该提什么样的意见。</p>
+<p>  直接给出意见时，需注意：</p>
+<ol>
+<li>地点很重要，尽量找个安静的地方，避开其他人；</li>
+<li>可能的话，稍微用几句闲聊来导入正题；</li>
+<li>提意见时，语气不应该是责备，而是描述问题；</li>
+<li>不要加入太多个人感觉、观点和情绪，避免使用一些像 “你总是”“你从来都” 的评价。</li>
+</ol>
+<p>  <strong>有效的讨论需要心平气和</strong>，找出问题的最优解才是关键。</p>
+</li>
+<li><p>最后，多夸夸对方做得好的地方，多给予正向反馈</p>
+<p>  很多时候，正向反馈能更好地帮助对方成长。表扬的力量永远大于批评，他会试图把事情做得更好。</p>
+<p>  正向的沟通还能帮助你与对方构建良好的沟通渠道，让你们未来的合作更为顺畅和有效。</p>
+</li>
+</ul>
+<h3 id="当别人给我们提意见时，该如何应对？"><a href="#当别人给我们提意见时，该如何应对？" class="headerlink" title="当别人给我们提意见时，该如何应对？"></a>当别人给我们提意见时，该如何应对？</h3><ol>
+<li><p>尽量排除情绪以及偏见对我们的干扰。</p>
+</li>
+<li><p>假定对方是善意的。</p>
+<p> 尽可能以感激的心态去听取意见，尽管这一点很难，但是我们还是要尽力为之。</p>
+</li>
+<li><p>了解意见的具体细节，把关注点放在对方的出发点，以及对方希望我们改进的地方。</p>
+</li>
+<li><p>对意见里的信息进行分类和过滤。</p>
+<p> 思考一下：哪些是误解，哪些是自己的不足，哪些是自己可以通过沟通去改变的，哪些是自己需要尝试改进的。</p>
+<p> 再三确定后，如果确实不是自己的问题，也不用反感，一笑而过就好。</p>
+</li>
+</ol>
+<h3 id="项目延期了，作为负责人该怎么办？"><a href="#项目延期了，作为负责人该怎么办？" class="headerlink" title="项目延期了，作为负责人该怎么办？"></a>项目延期了，作为负责人该怎么办？</h3><blockquote>
+<p>先问自己几个问题：为什么项目延期了，你是什么时候第一次感觉到项目可能会延期，在此之后你做了什么？</p>
+</blockquote>
+<p>对于<strong>不可控因素</strong>，我们能做的并不多，只能权衡取舍，对项目期限、人员或者需求范围做出调整。</p>
+<p>如果是计划本身的问题，或者是因为项目成员没有很好地跟进同一个计划并保持一致，那我们应该尽最大可能避免这些问题的发生。</p>
+<p>具体措施：</p>
+<ol>
+<li><p>建立一定的流程。</p>
+<p> 这里包括计划制定流程和计划跟进流程，也许是每周一次的同步会议，也许是一个共享的任务管理工具，不要过分相信自己随机跟进的能力。</p>
+</li>
+<li><p>在整个项目计划中，要有明确的优先级。</p>
+<p> 知道哪些任务是非做不可的；哪些任务是别的任务所依赖，需要提前完成的等等。</p>
+<p> 人们往往有先处理简单任务的惰性，如果没有搞清楚轻重缓急，那就有可能出现不太重要的杂事都做完了，而重要的事却没有太大进展的情况。</p>
+</li>
+<li><p>制作一个共享的项目状态表，让团队成员可以一眼就看清楚项目进展，并保持该图表的更新。</p>
+<p> 进度表可以作为大家对进度评估的工具，也可以是负责人判断哪里需要重点跟进的依据。</p>
+<p> 确保这个计划是每个主要相关者都确认并同意的，并在同意后让他们每天都能看到这个计划的所有更新。</p>
+</li>
+<li><p>不要漏掉任何一个人。</p>
+<p> 不要觉得暂时还没有他的活儿，可以先不用跟他沟通。当一个项目的计划落实后，应该第一时间让所有相关的人了解到。临时通知会让合作者或帮忙的人没有参与感，并且很容易因为对方没有提前准备在时间上无法达成一致。</p>
+</li>
+<li><p>提供一个有效的反馈渠道。</p>
+<p> 任何人在任何时候对项目有担心或者质疑，确保他可以通过有效的途径让你第一时间知道他的担心。</p>
+</li>
+</ol>
+<h3 id="管理者在进行工作分配时，会考虑哪些问题？"><a href="#管理者在进行工作分配时，会考虑哪些问题？" class="headerlink" title="管理者在进行工作分配时，会考虑哪些问题？"></a>管理者在进行工作分配时，会考虑哪些问题？</h3><ol>
+<li><p>建立参考基线</p>
+<p> 当和一个人没有任何直接接触的时候，我们可以通过第三方评价、个人履历以及该员工做过的项目或产品来衡量他的能力。</p>
+</li>
+<li><p>问对问题比正确答案更重要</p>
+<p> 把任务交到员工手里之前，要和他进行充分的沟通。告诉他任务的详细情形，看他会问出什么样的问题，提出哪些想法。</p>
+<p> 这能帮助我们进一步评估他是不是真的了解任务的状况，有没有综合去考虑任务中的问题。</p>
+</li>
+<li><p>工期估算</p>
+<p> 估算完成任务的工期是分配任务中必不可少的环节。可以让接受任务的员工试着去估算：需要多久完成，大概什么时候完成，需要什么样的资源等。</p>
+<p> 如果一个人不能花费足够的时间去了解自己未知的部分，我们很难放心地把任务交给他独立完成。</p>
+</li>
+<li><p>执行力</p>
+<p> 工作中有一些人，他们的沟通能力、计划能力都很强，但是执行力却比较差，或者没有粘滞力，执行过程中容易遇难就退、虎头蛇尾。这些人属于能说但不能把事情做好的人，难以托付大事。如果你的项目中有重要的任务，切记不要交给这样的人去做。</p>
+</li>
+<li><p>后期维护</p>
+<p> 完成一个项目并不意味着项目的结束，很多时候，项目上线了还需要一段时间的维护工作。这包括了 Bug 修复，排查用户反馈的问题，完成后续的迭代开发等等。</p>
+<p> 于是，你需要去观察：一个人是不是可以自觉地维护产品，有没有责任感，会不会推卸责任，出了问题，能不能第一时间冲到一线解决。这些都是很重要的品质，也是你判断他是否能够承担更重要任务的参考。</p>
+</li>
+</ol>
+<p>在分配工作的过程中，你还需要注意一些细节问题：</p>
+<ul>
+<li><p>如何对待职场新人</p>
+<p>  一些职场新人很有潜力，但经验不足，也许他们在项目初期有很多地方考虑不完善。这个时候，不要轻易地否定他们的工作。如果你可以耐心地花些时间悉心指导，他们可以快速地学习并且进步。</p>
+</li>
+<li><p>如何针对不同类型的员工分配工作</p>
+<p>  在分配任务的时候，你需要根据每个人的特点安排不同类型的任务，并提供相应的支持和帮助，扬长避短，才能发挥人员的最大效力。</p>
+</li>
+<li><p>大项目的工作分配</p>
+<p>  指定项目负责人，其同样需要拥有分配任务的能力，对于大部分事情不要亲力亲为，而是分配给合适的人，整个过程中沟通、协调为主。</p>
+</li>
+</ul>
+<h3 id="管理者不用亲力亲为：关键是什么？"><a href="#管理者不用亲力亲为：关键是什么？" class="headerlink" title="管理者不用亲力亲为：关键是什么？"></a>管理者不用亲力亲为：关键是什么？</h3><p>把关注点放在如何帮助别人把事情做好上面。比如，接受任务的人需要哪些支持和帮助才能很好的完成任务呢，我们应该在什么样的时间点去提供这样的帮助。</p>
+<p>作为一个管理者，我们在授权和分配任务的时候应该注意：</p>
+<ul>
+<li>让对方明确目标，知道最终想要达到的结果是什么，对这个任务完成的期望值是怎样的。</li>
+<li>制定一个计划，并保持跟进。</li>
+<li>给出反馈，尤其是正面的反馈。</li>
+</ul>
+<p>项目管理中的三个技巧：</p>
+<ol>
+<li><p>在做项目计划的时候，要对多个项目进行细分重组</p>
+<p> 对要做的任务重新细分重组，把大任务变成一个个均匀的小任务，然后根据个人能力，任务的相互依赖情况等重新分配下去。</p>
+</li>
+<li><p>工期估算</p>
+<p> 管理者和任务的负责人要达成一致，并且注意到，工程师门在进行时间预算的时候都是比较乐观、理想的，最好为项目预留缓冲的时间。</p>
+</li>
+<li><p>实时跟进，并准备好 B 计划</p>
+<p> 为项目合理设置里程碑，并实时跟进，一旦出现问题，就要启动 B 计划。</p>
+</li>
+</ol>
+<p>如何处理工作中的人际关系？</p>
+<p>人际关系是一个特别复杂的话题，因人而异，更因情形而异。</p>
+<p>那么如何处理人际关系呢？在这里，我有几点建议，内容可能更偏向于个人感悟，仅供你的参考：</p>
+<ol>
+<li>对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要。</li>
+<li>在交往过程中，尽可能对别人的分享、工作、交流持一种积极、友善和鼓励的态度。</li>
+<li>加入一些有利于自己成长的社交圈子。</li>
+<li>适当的寻求帮助。</li>
+<li>对于别人的意见要尽可能认真对待。</li>
+</ol>
+<h3 id="如何激发团队人员的责任心？"><a href="#如何激发团队人员的责任心？" class="headerlink" title="如何激发团队人员的责任心？"></a>如何激发团队人员的责任心？</h3><ol>
+<li><p>明确责任制，尽可能通过规则来明确和规范与责任心、责任感相关的事情；</p>
+<p> 适当放权，让他去主导一些事情。</p>
+<p> 适当的奖励机制，对于主动承担责任的员工表示认可和感激。</p>
+</li>
+<li><p>让责任制变得有效，而不是形同虚设。</p>
+<p> 有效的责任制，在开始的时候就要让所有人明确责任与权利，而不是最后追究责任或推卸责任。</p>
+<p> 在这个基础上，根据每个人的不同情况，在执行过程中适度跟进。</p>
+</li>
+<li><p>尽可能地让团队成员充满归属感，进而激发他们的责任心。</p>
+<p> 归属感是指一个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
+<p> 如何增加员工的归属感呢？</p>
+<ul>
+<li>在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上。</li>
+<li>管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。</li>
+<li>真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励。</li>
+<li>同时做一些仪式感比较强的团队活动和建设。</li>
+</ul>
+</li>
+</ol>
+<h3 id="理解并建立自己的工作弹性"><a href="#理解并建立自己的工作弹性" class="headerlink" title="理解并建立自己的工作弹性"></a>理解并建立自己的工作弹性</h3><p>人为什么会焦虑呢？可能是自身的弹性能力不够，事实上人的弹性能力也是可以锻炼和提升的：</p>
+<ul>
+<li>正确思考而不是钻牛角尖，找到需要改进的地方持续改进；</li>
+<li>偶尔放纵，不担心犯错，从错误中成长；</li>
+<li>多结识乐观积极向上的朋友；</li>
+<li>一直做自己认为有价值的事情。</li>
+</ul>
+<p>想要构建出自己的弹性能力，还要具备以下两个心态：</p>
+<ol>
+<li>不论你多努力，也不是所有的付出都会有回报，或者有等比的回报。</li>
+<li>不只是你，每个人都有自己搞不定的时候。</li>
+</ol>
+<p><strong>日拱一卒，不期速成。</strong></p>
+<h3 id="如何对更多的工作说“不”？"><a href="#如何对更多的工作说“不”？" class="headerlink" title="如何对更多的工作说“不”？"></a>如何对更多的工作说“不”？</h3><p>要对更多的工作说“不”，需要搞清楚两件事：</p>
+<ol>
+<li>分清事情的轻重缓急，有些紧急的事情和优先级高的事情很难拒绝；</li>
+<li>正确评估自己的能力和时间资源。</li>
+</ol>
+<p>与生活中相比，在工作中说“不”需要更理性，避免强硬拒绝，让对方觉得你是因为不愿帮忙才拒绝的。</p>
+<p>应开门见山，把自己的想法和事实清晰的表达出来。</p>
+<p>对自己力不能及的事情，提早说“不”，无论对人对己，都是负责任的表现。</p>
+<p>答应一件事情之后，尽可能地兑现自己的承诺，如果出现计划外的情况或者难处，要及时的进行沟通。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>技术管理</tag>
+        <tag>管理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何做好一场技术演讲</title>
+    <url>/post/2259619543.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
+</blockquote>
+<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
+<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
+<ul>
+<li>听众组成？</li>
+<li>对要演讲主题的了解程度？</li>
+<li>听众想听什么？</li>
+<li>演讲能给听众带来什么价值？</li>
+<li>……</li>
+</ul>
+<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
+<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
+<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
+<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
+<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
+<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
+<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
+</ol>
+<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
+<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
+<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
+<li>合理的排版；</li>
+<li>合理而有意义的动效（一定不要太多）；</li>
+<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
+<li>Who 1 页</li>
+<li>What&amp;When 1～2 页</li>
+<li>Why 1 页</li>
+<li>How 展开 3～4 点，每点 2～3 页</li>
+<li>Future 1 页</li>
+<li>Recap 1 页</li>
+</ul>
+</li>
+<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
+<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
+<li>找安静的地方，自我练习。</li>
+<li>请信任的朋友来试听。</li>
+<li>公司内部试讲。</li>
+<li>冥想。</li>
+</ul>
+<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
+<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
+<p>其中：</p>
+<ul>
+<li><p>姿态</p>
+<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
+<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
+</li>
+<li><p>手势</p>
+<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
+<p>  参见下图的乔老师：</p>
+<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
+<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
+</li>
+<li><p>声音</p>
+<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
+<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
+<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
+</li>
+</ul>
+<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
+<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
+<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
+<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
+<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
+<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
+<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
+</ul>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
+<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
+<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
+<ul>
+<li>首先，具体让人产生画面感，产生更多的钩子。</li>
+<li>其次，具体让人更容易产生情绪。</li>
+<li>第三，具体让人产生可信感。</li>
+</ul>
+<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
+<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
+<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
+<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
+<li><p>将不太熟悉的问题转化成自己擅长的。</p>
+</li>
+<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
+</li>
+<li><p>委婉避开尴尬的问题</p>
+<blockquote>
+<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
+</blockquote>
+<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
+</li>
 </ul>
 ]]></content>
       <categories>
-        <category>其它</category>
+        <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
-        <tag>NexT</tag>
+        <tag>学习笔记</tag>
+        <tag>技术演讲</tag>
+        <tag>演讲</tag>
       </tags>
   </entry>
   <entry>
@@ -2297,46 +2644,29 @@
     <content><![CDATA[<p>正如标题，这是一个NB闪闪的开源库，名字为 <code>ja-netfilter</code>，关于这个开源库的详细说明，参见这里 <a href="https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html">zhile.io</a></p>
 <p>本文以 IDEA 为例，说一下这个工具怎么用：</p>
 <blockquote>
-<p>适用版本：jb <strong>2021.3.x +</strong></p>
+<p>适用版本：jb **2021.3.x +**，这之前的版本，可以继续使用 <a href="/post/1904459089.html">IDE Eval Reset</a> 插件。</p>
 </blockquote>
-<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>从仓库下载最新程序包 <a href="https://github.com/ja-netfilter/ja-netfilter/releases">https://github.com/ja-netfilter/ja-netfilter/releases</a></p>
-<h3 id="2-解压配置"><a href="#2-解压配置" class="headerlink" title="2. 解压配置"></a>2. 解压配置</h3><p>解压后打开 <code>readme.txt</code> 文件，这里面主要介绍了两种使用方式。</p>
-<p>方式一：激活码</p>
+<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>从仓库下载最新程序包 <a href="https://gitee.com/ja-netfilter/ja-netfilter/releases">https://gitee.com/ja-netfilter/ja-netfilter/releases</a></p>
+<h3 id="2-解压后开始配置"><a href="#2-解压后开始配置" class="headerlink" title="2. 解压后开始配置"></a>2. 解压后开始配置</h3><h4 id="2-1-配置-xx-vmoptions"><a href="#2-1-配置-xx-vmoptions" class="headerlink" title="2.1. 配置 xx.vmoptions"></a>2.1. 配置 xx.vmoptions</h4><p>以下两种方式可选：</p>
 <ul>
-<li><ol>
-<li>在软件的 <code>xx.vmoptions</code> 中追加 <code>-javaagent:/path/to/ja-netfilter.jar=jetbrains</code>；</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>退出已经登录的 jb 账号；</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>在这里 <code>https://jetbra.in/5d84466e31722979266057664941a71893322460</code> 找到对应软件的 key 进行激活。</li>
-</ol>
-</li>
+<li>方式一：手动定位到对应软件的 <code>xx.vmoptions</code> 文件，添加下面这一行 <code>-javaagent:/absolute/path/to/ja-netfilter.jar</code>；</li>
+<li>方式二：执行命令 <code>java -jar /path/to/ja-netfilter.jar</code> 进行注入；</li>
 </ul>
-<p>方式二：激活服务器</p>
-<ul>
-<li><ol>
-<li>在软件的 <code>xx.vmoptions</code> 中追加 <code>-javaagent:/path/to/ja-netfilter.jar=jetbrains</code>；</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>退出已经登录的 jb 账号；</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>卸载之前安装的 <code>IDE Eval Reset</code> 插件；</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>填写激活服务器地址 <code>https://jetbra.in</code> 。</li>
-</ol>
-</li>
-</ul>
-<p>备注：对于找不到 <code>xx.vmoptions</code> 文件，也可以使用程序包中的脚本自动设置，具体路径如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># macOS or Linux</span></span><br><span class="line">scripts/install.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows</span></span><br><span class="line">scripts\install-current-user.vbs</span><br><span class="line">scripts\install-all-users.vbs</span><br></pre></td></tr></table></figure>]]></content>
+<p>如果你使用最新的 Java 17，还需要添加以下两行：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED</span><br><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-修改-config-目录中对应的配置文件"><a href="#2-2-修改-config-目录中对应的配置文件" class="headerlink" title="2.2. 修改 config 目录中对应的配置文件"></a>2.2. 修改 config 目录中对应的配置文件</h4><p>这里以 jb 软件为例，主要修改如下：</p>
+<p><strong>dns.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[DNS]</span></span><br><span class="line">EQUAL,jetbrains.com</span><br><span class="line">EQUAL,brucege.com</span><br><span class="line">EQUAL,plugin.obroom.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>power.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[Result]</span></span><br><span class="line"><span class="comment">; Suit 220701</span></span><br><span class="line">EQUAL,108391492724719606277191711676038310454333436786970899072879934267610324870870961974305689698304529291751931883693569275416671653649715395540162187908455880751887548211257780817773830153477469379663893839249632010489688404104740814832791608983255964373246023808678041003248593298915323068020141515280275870731964298697511434302901212533563571472947179437111243030002421474283363073021442715554541318313064598900684758246291687123240210640543678544269324094608551763049140564128299834843381841274260516105408318037686490277144538983963856617365418526798235932271319705894170543971766101775628884107261100637290512593943587295268337137890353216997114446658051251047509442298463526766678103653729776506979657957966027949436493606289520405331110453990512846697802196701678785414928082416405650857741201229183421400567636999723106788808933737428330992184832395299929033666381663232693108552887968738513151493044369308652310586803160326722967115451573652070286501044484503083240302303438554529551204609089966636092666792347623413483134664670641246129954999815529917163967761617333572567787618346281658716181608204191963817312534492517480248086896060880038259592723773361709406277837609546030729611710076711450268767610513506889086815865283,65537,860106576952879101192782278876319243486072481962999610484027161162448933268423045647258145695082284265933019120714643752088997312766689988016808929265129401027490891810902278465065056686129972085119605237470899952751915070244375173428976413406363879128531449407795115913715863867259163957682164040613505040314747660800424242248055421184038777878268502955477482203711835548014501087778959157112423823275878824729132393281517778742463067583320091009916141454657614089600126948087954465055321987012989937065785013284988096504657892738536613208311013047138019418152103262155848541574327484510025594166239784429845180875774012229784878903603491426732347994359380330103328705981064044872334790365894924494923595382470094461546336020961505275530597716457288511366082299255537762891238136381924520749228412559219346777184174219999640906007205260040707839706131662149325151230558316068068139406816080119906833578907759960298749494098180107991752250725928647349597506532778539709852254478061194098069801549845163358315116260915270480057699929968468068015735162890213859113563672040630687357054902747438421559817252127187138838514773245413540030800888215961904267348727206110582505606182944023582459006406137831940959195566364811905585377246353-&gt;31872219281407242025505148642475109331663948030010491344733687844358944945421064967310388547820970408352359213697487269225694990179009814674781374751323403257628081559561462351695605167675284372388551941279783515209238245831229026662363729380633136520288327292047232179909791526492877475417113579821717193807584807644097527647305469671333646868883650312280989663788656507661713409911267085806708237966730821529702498972114194166091819277582149433578383639532136271637219758962252614390071122773223025154710411681628917523557526099053858210363406122853294409830276270946292893988830514538950951686480580886602618927728470029090747400687617046511462665469446846624685614084264191213318074804549715573780408305977947238915527798680393538207482620648181504876534152430149355791756374642327623133843473947861771150672096834149014464956451480803326284417202116346454345929350148770746553056995922154382822307758515805142704373984019252210715650875853634697920708113806880196144197384637328982263167395073688501517286678083973976140696077590122053014085412828620051470085033364773099146103525313018873319293728800442101520384088109603555959893639842091339193857485407672132882577840295039058621747654642202620767068924079813640067442975</span><br><span class="line">EQUAL,820563695837794062003013052431566406311160519459527861500703856031109754642079235583817632608600538427437617602262999609013304012507897813563718719720856177652850327961467224291449089135680755288577504536702620359129295482393325960269624080511269764101665311320956470015613044808066402568798693281462244978128867910557946603386047729514659336854309276651962414690113978708520364504328849058883417158186751315886080272834506502242438553969507697483002851232580211232007222134718334176577725640440791904351641362718652452524224349310214787836932692511798322090590491010282507213990514918561984012596822561474687437143,65537,24521566609765666164947017540032021599255701751860227819512057581863724253675446227963662825786216373422117712052647819939094618512591273903731385388945941620956494535886991119537555521717683289574562412249381695575366776196301290570457146763799416784211789775179394339350479765228864277544252534115220169733628333836919758657866915165201332480467127194998195481209996470680276955438320553419743409285076366446411459237915876713514676197204668785300100857270615348770478845912795954436677863461158442534283102154396294509903255539003316675136070586165787963286744036831353098283719024130881707718857451774498022915819-&gt;986236757547332986472011617696226561292849812918563355472727826767720188564083584387121625107510786855734801053524719833194566624465665316622563244215340671405971599343902468620306327831715457360719532421388780770165778156818229863337344187575566725786793391480600129482653072861971002459947277805295727097226389568776499707662505334062639449916265137796823793276300221537201727072401742985542559596685092673521228140822200236743113743661549252453726123450722876929538747702356573783116366629850199080495560991841329893037291900147497007197055572787780928474439121332736213562021554409579596714683101113281773829</span><br><span class="line"></span><br><span class="line"><span class="section">[Args]</span></span><br><span class="line">EQUAL,65537,24773058818499217187577663886010908531303294206336895556072197892590450942803807164562754911175164262596715237551312004078542654996496301487027034803410086499747369353221485073240039340641397198525027728751956658900801359887190562885573922317930300068615009483578963467556425525328780085523172495307229112069939166202511721671904748968934606589702999279663332403655662225374084460291376706916679151764149324177444374590606643838366605181996272409014933080082205048098737253668016260658830645459388519595314928290853199112791333551144805347785109465401055719331231478162870216035573012645710763533896540021550083104281-&gt;3,24773058818499217187577663886010908531303294206336895556072197892590450942803807164562754911175164262596715237551312004078542654996496301487027034803410086499747369353221485073240039340641397198525027728751956658900801359887190562885573922317930300068615009483578963467556425525328780085523172495307229112069939166202511721671904748968934606589702999279663332403655662225374084460291376706916679151764149324177444374590606643838366605181996272409014933080082205048098737253668016260658830645459388519595314928290853199112791333551144805347785109465401055719331231478162870216035573012645710763533896540021550083104281</span><br><span class="line">EQUAL,65537,112990544699464667379805164176191940546242208117491544203358534026745357579006792084392734842374059845912387257283707238075863959850326589016727302942528968334782467185179054600102556548201786183972872728459057873984508534595649484729912852626347880177196897414735118804133099744542685440257890337513274043513-&gt;3,112990544699464667379805164176191940546242208117491544203358534026745357579006792084392734842374059845912387257283707238075863959850326589016727302942528968334782467185179054600102556548201786183972872728459057873984508534595649484729912852626347880177196897414735118804133099744542685440257890337513274043513</span><br></pre></td></tr></table></figure>
+
+<p><strong>url.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[URL]</span></span><br><span class="line">PREFIX,https://account.jetbrains.com/lservice/rpc/validateKey.action</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-启动软件激活"><a href="#2-3-启动软件激活" class="headerlink" title="2.3. 启动软件激活"></a>2.3. 启动软件激活</h4><p>打开软件后，从这里 <a href="https://jetbra.in/s">https://jetbra.in/s</a> 找到对应软件的 key 进行激活。</p>
+]]></content>
       <categories>
         <category>开发工具</category>
       </categories>
@@ -2629,353 +2959,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一堂技术管理课</title>
-    <url>/post/895189460.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文整理自： 极客时间专栏<a href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
-</blockquote>
-<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
-<ol>
-<li>向你问问题和各种琐事的人越来越多；</li>
-<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
-</ol>
-<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
-<ul>
-<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
-<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
-</li>
-<li><p>其次，如何引导？</p>
-<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
-</li>
-<li><p>最后，引导的好处。</p>
-<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
-</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="Bug引发事故，该不该追究责任？"><a href="#Bug引发事故，该不该追究责任？" class="headerlink" title="Bug引发事故，该不该追究责任？"></a>Bug引发事故，该不该追究责任？</h3><h4 id="追究"><a href="#追究" class="headerlink" title="追究"></a>追究</h4><p>假如每个错误都会受到惩罚，不难想象，以下情况一定难以避免：</p>
-<ul>
-<li>大家都怕闯祸，所以风险高的事没人做，或者总是那几个靠谱的“老司机”做，其他人则永远没有机会得到锻炼。</li>
-<li>如果有人搞砸了什么事情，会因为担心承担后果而推卸责任，从而尽可能掩盖错误的坏影响，不让人知道。</li>
-<li>如果别人犯了错，会觉得不关自己的事。</li>
-<li>指出别人的错误就会导致别人被追究责任，因此看到有问题也会犹豫要不要指出。</li>
-</ul>
-<h4 id="不追究"><a href="#不追究" class="headerlink" title="不追究"></a>不追究</h4><p>反之，如果无论发生什么错误，都不需要承担后果或进行反省，没有任何担当，那可能又会出现以下情况：</p>
-<ul>
-<li>同样的错误可能会一再发生。</li>
-<li>小错酿成大错。</li>
-<li>做事仔细的人会觉得不公平。</li>
-</ul>
-<h4 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h4><p>对于工作中的错误，尤其是 Bug 导致的错误，我们应该采取什么态度和措施呢？</p>
-<ol>
-<li>追究责任，但不是惩罚。</li>
-<li>对事儿不对人。</li>
-<li>反复问“为什么”，从根本上发现问题。</li>
-<li>员工关系的建立也很关键。我们需要培养的是大家相互信任、互帮互助，为了共同的目标努力的氛围，而不是一种不安全感。</li>
-</ol>
-<h3 id="如何帮助团队成员成长？"><a href="#如何帮助团队成员成长？" class="headerlink" title="如何帮助团队成员成长？"></a>如何帮助团队成员成长？</h3><p>包括通过指导、反馈、监督、交流、协调资源等方式帮助下属提升能力，迅速成长。</p>
-<p>作为管理者，应该经常思考的是：</p>
-<ul>
-<li>怎样做能够让员工进步到更高层次？</li>
-<li>他的潜力在哪，哪些地方是可以培养和挖掘的？</li>
-<li>怎么帮助员工改进他与组内组外同事的关系，让他有机会更好地发挥他的长处？</li>
-<li>怎样尽早地发现他的错误和缺点，并帮助他认识和改进，而不是在错误变成后果后，去追究责任。</li>
-<li>怎样帮助他在不擅长的领域建立信心？</li>
-<li>怎样帮助他学会处理各种压力和矛盾？</li>
-</ul>
-<p>切忌陷入静态思维去看待动态发展的问题。</p>
-<ul>
-<li>多和自己对话，想想自己哪些时候、哪些方面会用静态的眼光去看待别人的能力。</li>
-<li>把自己有这种心态时的表现或内心的一些想法写出来。</li>
-<li>再遇到类似的情况，停一下，想一想是不是自己可以有所改变。</li>
-<li>诚恳地告诉组员希望帮助他成长，多交流并听取对方的想法。</li>
-</ul>
-<blockquote>
-<p><strong>一个技术管理者的成功并不在于自己代码多好、能力多强，他的成功一定建立在团队成功的基础之上。只有团队成员不断成长，这个团队才可以做成更大的事情，而你才可以在团队的基础上，站得更高、看得更远。</strong></p>
-</blockquote>
-<h3 id="当我们给别人提意见时，要注意些什么？"><a href="#当我们给别人提意见时，要注意些什么？" class="headerlink" title="当我们给别人提意见时，要注意些什么？"></a>当我们给别人提意见时，要注意些什么？</h3><ul>
-<li><p>首先，要思考自己是不是合适提这个意见。</p>
-<p>  也就是说，对方会不会产生 “就凭你” 的逆反心理。</p>
-<p>  在工作中适当放低姿态，往往更容易获得尊重。</p>
-<p>  <strong>不要总是试图居高临下地提意见，尤其是你在对方心里还没有建立任何信任和威信的时候，不要贸然给别人提负面意见。</strong></p>
-</li>
-<li><p>其次，提意见要讲究合适的时机</p>
-<p>  确定什么时候应该提什么样的意见。</p>
-<p>  直接给出意见时，需注意：</p>
-<ol>
-<li>地点很重要，尽量找个安静的地方，避开其他人；</li>
-<li>可能的话，稍微用几句闲聊来导入正题；</li>
-<li>提意见时，语气不应该是责备，而是描述问题；</li>
-<li>不要加入太多个人感觉、观点和情绪，避免使用一些像 “你总是”“你从来都” 的评价。</li>
-</ol>
-<p>  <strong>有效的讨论需要心平气和</strong>，找出问题的最优解才是关键。</p>
-</li>
-<li><p>最后，多夸夸对方做得好的地方，多给予正向反馈</p>
-<p>  很多时候，正向反馈能更好地帮助对方成长。表扬的力量永远大于批评，他会试图把事情做得更好。</p>
-<p>  正向的沟通还能帮助你与对方构建良好的沟通渠道，让你们未来的合作更为顺畅和有效。</p>
-</li>
-</ul>
-<h3 id="当别人给我们提意见时，该如何应对？"><a href="#当别人给我们提意见时，该如何应对？" class="headerlink" title="当别人给我们提意见时，该如何应对？"></a>当别人给我们提意见时，该如何应对？</h3><ol>
-<li><p>尽量排除情绪以及偏见对我们的干扰。</p>
-</li>
-<li><p>假定对方是善意的。</p>
-<p> 尽可能以感激的心态去听取意见，尽管这一点很难，但是我们还是要尽力为之。</p>
-</li>
-<li><p>了解意见的具体细节，把关注点放在对方的出发点，以及对方希望我们改进的地方。</p>
-</li>
-<li><p>对意见里的信息进行分类和过滤。</p>
-<p> 思考一下：哪些是误解，哪些是自己的不足，哪些是自己可以通过沟通去改变的，哪些是自己需要尝试改进的。</p>
-<p> 再三确定后，如果确实不是自己的问题，也不用反感，一笑而过就好。</p>
-</li>
-</ol>
-<h3 id="项目延期了，作为负责人该怎么办？"><a href="#项目延期了，作为负责人该怎么办？" class="headerlink" title="项目延期了，作为负责人该怎么办？"></a>项目延期了，作为负责人该怎么办？</h3><blockquote>
-<p>先问自己几个问题：为什么项目延期了，你是什么时候第一次感觉到项目可能会延期，在此之后你做了什么？</p>
-</blockquote>
-<p>对于<strong>不可控因素</strong>，我们能做的并不多，只能权衡取舍，对项目期限、人员或者需求范围做出调整。</p>
-<p>如果是计划本身的问题，或者是因为项目成员没有很好地跟进同一个计划并保持一致，那我们应该尽最大可能避免这些问题的发生。</p>
-<p>具体措施：</p>
-<ol>
-<li><p>建立一定的流程。</p>
-<p> 这里包括计划制定流程和计划跟进流程，也许是每周一次的同步会议，也许是一个共享的任务管理工具，不要过分相信自己随机跟进的能力。</p>
-</li>
-<li><p>在整个项目计划中，要有明确的优先级。</p>
-<p> 知道哪些任务是非做不可的；哪些任务是别的任务所依赖，需要提前完成的等等。</p>
-<p> 人们往往有先处理简单任务的惰性，如果没有搞清楚轻重缓急，那就有可能出现不太重要的杂事都做完了，而重要的事却没有太大进展的情况。</p>
-</li>
-<li><p>制作一个共享的项目状态表，让团队成员可以一眼就看清楚项目进展，并保持该图表的更新。</p>
-<p> 进度表可以作为大家对进度评估的工具，也可以是负责人判断哪里需要重点跟进的依据。</p>
-<p> 确保这个计划是每个主要相关者都确认并同意的，并在同意后让他们每天都能看到这个计划的所有更新。</p>
-</li>
-<li><p>不要漏掉任何一个人。</p>
-<p> 不要觉得暂时还没有他的活儿，可以先不用跟他沟通。当一个项目的计划落实后，应该第一时间让所有相关的人了解到。临时通知会让合作者或帮忙的人没有参与感，并且很容易因为对方没有提前准备在时间上无法达成一致。</p>
-</li>
-<li><p>提供一个有效的反馈渠道。</p>
-<p> 任何人在任何时候对项目有担心或者质疑，确保他可以通过有效的途径让你第一时间知道他的担心。</p>
-</li>
-</ol>
-<h3 id="管理者在进行工作分配时，会考虑哪些问题？"><a href="#管理者在进行工作分配时，会考虑哪些问题？" class="headerlink" title="管理者在进行工作分配时，会考虑哪些问题？"></a>管理者在进行工作分配时，会考虑哪些问题？</h3><ol>
-<li><p>建立参考基线</p>
-<p> 当和一个人没有任何直接接触的时候，我们可以通过第三方评价、个人履历以及该员工做过的项目或产品来衡量他的能力。</p>
-</li>
-<li><p>问对问题比正确答案更重要</p>
-<p> 把任务交到员工手里之前，要和他进行充分的沟通。告诉他任务的详细情形，看他会问出什么样的问题，提出哪些想法。</p>
-<p> 这能帮助我们进一步评估他是不是真的了解任务的状况，有没有综合去考虑任务中的问题。</p>
-</li>
-<li><p>工期估算</p>
-<p> 估算完成任务的工期是分配任务中必不可少的环节。可以让接受任务的员工试着去估算：需要多久完成，大概什么时候完成，需要什么样的资源等。</p>
-<p> 如果一个人不能花费足够的时间去了解自己未知的部分，我们很难放心地把任务交给他独立完成。</p>
-</li>
-<li><p>执行力</p>
-<p> 工作中有一些人，他们的沟通能力、计划能力都很强，但是执行力却比较差，或者没有粘滞力，执行过程中容易遇难就退、虎头蛇尾。这些人属于能说但不能把事情做好的人，难以托付大事。如果你的项目中有重要的任务，切记不要交给这样的人去做。</p>
-</li>
-<li><p>后期维护</p>
-<p> 完成一个项目并不意味着项目的结束，很多时候，项目上线了还需要一段时间的维护工作。这包括了 Bug 修复，排查用户反馈的问题，完成后续的迭代开发等等。</p>
-<p> 于是，你需要去观察：一个人是不是可以自觉地维护产品，有没有责任感，会不会推卸责任，出了问题，能不能第一时间冲到一线解决。这些都是很重要的品质，也是你判断他是否能够承担更重要任务的参考。</p>
-</li>
-</ol>
-<p>在分配工作的过程中，你还需要注意一些细节问题：</p>
-<ul>
-<li><p>如何对待职场新人</p>
-<p>  一些职场新人很有潜力，但经验不足，也许他们在项目初期有很多地方考虑不完善。这个时候，不要轻易地否定他们的工作。如果你可以耐心地花些时间悉心指导，他们可以快速地学习并且进步。</p>
-</li>
-<li><p>如何针对不同类型的员工分配工作</p>
-<p>  在分配任务的时候，你需要根据每个人的特点安排不同类型的任务，并提供相应的支持和帮助，扬长避短，才能发挥人员的最大效力。</p>
-</li>
-<li><p>大项目的工作分配</p>
-<p>  指定项目负责人，其同样需要拥有分配任务的能力，对于大部分事情不要亲力亲为，而是分配给合适的人，整个过程中沟通、协调为主。</p>
-</li>
-</ul>
-<h3 id="管理者不用亲力亲为：关键是什么？"><a href="#管理者不用亲力亲为：关键是什么？" class="headerlink" title="管理者不用亲力亲为：关键是什么？"></a>管理者不用亲力亲为：关键是什么？</h3><p>把关注点放在如何帮助别人把事情做好上面。比如，接受任务的人需要哪些支持和帮助才能很好的完成任务呢，我们应该在什么样的时间点去提供这样的帮助。</p>
-<p>作为一个管理者，我们在授权和分配任务的时候应该注意：</p>
-<ul>
-<li>让对方明确目标，知道最终想要达到的结果是什么，对这个任务完成的期望值是怎样的。</li>
-<li>制定一个计划，并保持跟进。</li>
-<li>给出反馈，尤其是正面的反馈。</li>
-</ul>
-<p>项目管理中的三个技巧：</p>
-<ol>
-<li><p>在做项目计划的时候，要对多个项目进行细分重组</p>
-<p> 对要做的任务重新细分重组，把大任务变成一个个均匀的小任务，然后根据个人能力，任务的相互依赖情况等重新分配下去。</p>
-</li>
-<li><p>工期估算</p>
-<p> 管理者和任务的负责人要达成一致，并且注意到，工程师门在进行时间预算的时候都是比较乐观、理想的，最好为项目预留缓冲的时间。</p>
-</li>
-<li><p>实时跟进，并准备好 B 计划</p>
-<p> 为项目合理设置里程碑，并实时跟进，一旦出现问题，就要启动 B 计划。</p>
-</li>
-</ol>
-<p>如何处理工作中的人际关系？</p>
-<p>人际关系是一个特别复杂的话题，因人而异，更因情形而异。</p>
-<p>那么如何处理人际关系呢？在这里，我有几点建议，内容可能更偏向于个人感悟，仅供你的参考：</p>
-<ol>
-<li>对于自己的上下级，保持开放的心态和愿意沟通的态度十分重要。</li>
-<li>在交往过程中，尽可能对别人的分享、工作、交流持一种积极、友善和鼓励的态度。</li>
-<li>加入一些有利于自己成长的社交圈子。</li>
-<li>适当的寻求帮助。</li>
-<li>对于别人的意见要尽可能认真对待。</li>
-</ol>
-<h3 id="如何激发团队人员的责任心？"><a href="#如何激发团队人员的责任心？" class="headerlink" title="如何激发团队人员的责任心？"></a>如何激发团队人员的责任心？</h3><ol>
-<li><p>明确责任制，尽可能通过规则来明确和规范与责任心、责任感相关的事情；</p>
-<p> 适当放权，让他去主导一些事情。</p>
-<p> 适当的奖励机制，对于主动承担责任的员工表示认可和感激。</p>
-</li>
-<li><p>让责任制变得有效，而不是形同虚设。</p>
-<p> 有效的责任制，在开始的时候就要让所有人明确责任与权利，而不是最后追究责任或推卸责任。</p>
-<p> 在这个基础上，根据每个人的不同情况，在执行过程中适度跟进。</p>
-</li>
-<li><p>尽可能地让团队成员充满归属感，进而激发他们的责任心。</p>
-<p> 归属感是指一个人对某样事物、组织的从属感觉，是一种主观的个人感受。</p>
-<p> 如何增加员工的归属感呢？</p>
-<ul>
-<li>在有利公司发展的基础上建立独特的企业文化，创新、公开透明、积极向上。</li>
-<li>管理者还应该以身作则，让员工看到自己的努力，对公司目标的追求，对企业文化的践行。</li>
-<li>真诚对人，能够从员工角度考虑问题，对好的行为认可并加以鼓励。</li>
-<li>同时做一些仪式感比较强的团队活动和建设。</li>
-</ul>
-</li>
-</ol>
-<h3 id="理解并建立自己的工作弹性"><a href="#理解并建立自己的工作弹性" class="headerlink" title="理解并建立自己的工作弹性"></a>理解并建立自己的工作弹性</h3><p>人为什么会焦虑呢？可能是自身的弹性能力不够，事实上人的弹性能力也是可以锻炼和提升的：</p>
-<ul>
-<li>正确思考而不是钻牛角尖，找到需要改进的地方持续改进；</li>
-<li>偶尔放纵，不担心犯错，从错误中成长；</li>
-<li>多结识乐观积极向上的朋友；</li>
-<li>一直做自己认为有价值的事情。</li>
-</ul>
-<p>想要构建出自己的弹性能力，还要具备以下两个心态：</p>
-<ol>
-<li>不论你多努力，也不是所有的付出都会有回报，或者有等比的回报。</li>
-<li>不只是你，每个人都有自己搞不定的时候。</li>
-</ol>
-<p><strong>日拱一卒，不期速成。</strong></p>
-<h3 id="如何对更多的工作说“不”？"><a href="#如何对更多的工作说“不”？" class="headerlink" title="如何对更多的工作说“不”？"></a>如何对更多的工作说“不”？</h3><p>要对更多的工作说“不”，需要搞清楚两件事：</p>
-<ol>
-<li>分清事情的轻重缓急，有些紧急的事情和优先级高的事情很难拒绝；</li>
-<li>正确评估自己的能力和时间资源。</li>
-</ol>
-<p>与生活中相比，在工作中说“不”需要更理性，避免强硬拒绝，让对方觉得你是因为不愿帮忙才拒绝的。</p>
-<p>应开门见山，把自己的想法和事实清晰的表达出来。</p>
-<p>对自己力不能及的事情，提早说“不”，无论对人对己，都是负责任的表现。</p>
-<p>答应一件事情之后，尽可能地兑现自己的承诺，如果出现计划外的情况或者难处，要及时的进行沟通。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>技术管理</tag>
-        <tag>管理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>如何做好一场技术演讲</title>
-    <url>/post/2259619543.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文整理自：<a href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
-</blockquote>
-<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
-<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
-<ul>
-<li>听众组成？</li>
-<li>对要演讲主题的了解程度？</li>
-<li>听众想听什么？</li>
-<li>演讲能给听众带来什么价值？</li>
-<li>……</li>
-</ul>
-<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
-<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
-<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
-<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
-<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
-<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
-<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
-</ol>
-<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
-<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
-<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
-<li>合理的排版；</li>
-<li>合理而有意义的动效（一定不要太多）；</li>
-<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
-<li>Who 1 页</li>
-<li>What&amp;When 1～2 页</li>
-<li>Why 1 页</li>
-<li>How 展开 3～4 点，每点 2～3 页</li>
-<li>Future 1 页</li>
-<li>Recap 1 页</li>
-</ul>
-</li>
-<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
-<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-刻意训练"><a href="#2-刻意训练" class="headerlink" title="2. 刻意训练"></a>2. 刻意训练</h3><ul>
-<li>找安静的地方，自我练习。</li>
-<li>请信任的朋友来试听。</li>
-<li>公司内部试讲。</li>
-<li>冥想。</li>
-</ul>
-<p><strong>注意，刻意训练不等于重复训练，两者最大的差别在于是否根据反馈不断进行迭代改进。</strong></p>
-<h3 id="3-演讲中的肢体语言"><a href="#3-演讲中的肢体语言" class="headerlink" title="3. 演讲中的肢体语言"></a>3. 演讲中的肢体语言</h3><p>在沟通效果上，<strong>讲话的方式</strong>比讲话的内容重要得多。你的思维内容以语言的形式传递出去，而非语言的暗示却会以它十倍的感染力让听众深信不疑。</p>
-<p>其中：</p>
-<ul>
-<li><p>姿态</p>
-<p>  姿态其实是用一种很自然很舒服的交流态势向台下的听众传递信息的方式。所谓最好的设计就是让人感觉不到设计的存在，如果你的姿态让人感到做作和不自然，那就是失败的表现。</p>
-<p>  <strong>保持自然</strong>，<strong>目光坚定</strong>，勇敢地面对台下千百双眼睛的注视并熟视无睹，就是成功的第一步。</p>
-</li>
-<li><p>手势</p>
-<p>  一个非常自然的<strong>手势</strong>是“切西瓜”，伸出手臂，摊开手掌，让手掌与地面垂直，然后小幅度上下挥动。</p>
-<p>  参见下图的乔老师：</p>
-<p>  <img data-src="https://oscimg.oschina.net/oscnet/25619ed99f181010fcf6d89126a2627ed20.jpg" alt="乔布斯"></p>
-<p>  我们还可以双手切，左手切，右手切，千变万化，无往不利。但是切记，<strong>千万不要做出过于夸张的身体姿势</strong>。</p>
-</li>
-<li><p>声音</p>
-<p>  掌握你说话中的阴阳平仄、抑扬顿挫非常重要。</p>
-<p>  人们已经习惯了在声音和音调中寻找信息的结构，升调让人觉得充满疑虑，降调让人坚定而充满信心。</p>
-<p>  在演讲的过程中，时刻提醒自己要<strong>放慢语速</strong>，语速慢一点，会让听众觉得演讲人更稳重，也给了自己更多的思考时间，以把控好演讲的整体节奏。</p>
-</li>
-</ul>
-<h3 id="4-如何缓解演讲前的焦虑和紧张"><a href="#4-如何缓解演讲前的焦虑和紧张" class="headerlink" title="4. 如何缓解演讲前的焦虑和紧张"></a>4. 如何缓解演讲前的焦虑和紧张</h3><ul>
-<li>首先从心里要明确的是，这种焦虑与紧张是普遍存在的，当面对那么多双盯着你的眼睛，每个人都会遇到，并不是只有你才有；</li>
-<li>微笑和热情能让人更加自信，也能在一定程度上消除紧张感；</li>
-<li><strong>做好前面提到的准备和训练工作，这是关键</strong>；</li>
-<li>提前熟悉场地，提前到场，熟悉会场和听众情况，以便快速进行调整；</li>
-<li>开场互动，一方面活跃现场气氛，另一方面了解听众情况，以便演讲时对内容进行调整；</li>
-<li>也可以提前准备一些幽默段子，适当的时候穿插到演讲中。</li>
-</ul>
-<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-讲故事"><a href="#5-1-讲故事" class="headerlink" title="5.1. 讲故事"></a>5.1. 讲故事</h4><p>以<strong>类比</strong>和讲<strong>故事</strong>的方式进行演讲，更容易把你的观点深深地刻在别人的脑海中。</p>
-<p>而故事是什么呢？<strong>凡是能让人在脑海中产生画面感的话语或文字就是故事。</strong></p>
-<p>而故事之所以成为故事，最重要的诀窍就是 —— “具体”：</p>
-<ul>
-<li>首先，具体让人产生画面感，产生更多的钩子。</li>
-<li>其次，具体让人更容易产生情绪。</li>
-<li>第三，具体让人产生可信感。</li>
-</ul>
-<h4 id="5-2-收尾"><a href="#5-2-收尾" class="headerlink" title="5.2. 收尾"></a>5.2. 收尾</h4><p>一场演讲通常涉及比如架构、流程、方案等众多技术细节，真正能被记住的内容其实没有多少，所以随着演讲进入尾声，最后做一个总结就显得格外重要。</p>
-<p>根据心理学中的“近因效应”：<strong>人对演讲末尾部分的印象最为深刻，记忆也最为清晰。</strong></p>
-<p>总结部分的内容<strong>在精不在多</strong>，让听众记住你期望他记住的 2-3 个关键点，听众有收获就达到目的了。并且总结的时候可以反复强调结论、强调实践。</p>
-<h4 id="5-3-回答问题"><a href="#5-3-回答问题" class="headerlink" title="5.3. 回答问题"></a>5.3. 回答问题</h4><ul>
-<li><p>将不太熟悉的问题转化成自己擅长的。</p>
-</li>
-<li><p>面对自己不擅长的问题，也大方承认自己不确定答案，但可以讲讲自己的思路。</p>
-</li>
-<li><p>委婉避开尴尬的问题</p>
-<blockquote>
-<p>这是个很好的问题，但几句话可能讲不清楚，感兴趣的话，我们线下交流一下。</p>
-</blockquote>
-<p>  切记不要与提问者起冲突，特别是针对“你讲的我完全不赞同”这类观点。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>技术演讲</tag>
-        <tag>演讲</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>《最后的舞动 The Last Dance》</title>
     <url>/post/3209780963.html</url>
     <content><![CDATA[<table>
@@ -3081,189 +3064,6 @@
       <tags>
         <tag>系统和软件</tag>
         <tag>数字签名</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>dayjs时间处理库</title>
-    <url>/post/3076911137.html</url>
-    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
-</blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
-
-<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
-<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
-<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>dayjs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PM2 入门指南</title>
-    <url>/post/1046389609.html</url>
-    <content><![CDATA[<h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 = Process Manager 2</p>
-<blockquote>
-<p>ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS</p>
-</blockquote>
-<blockquote>
-<p>PM2 is a daemon process manager that will help you manage and keep your application online 24/7</p>
-</blockquote>
-<p>上面是官网给出的 title，简单来说：<strong>它是在后台运行的 <code>Node.js</code> 进程管理器，提供一套针对生产环境运行时的工具集，可以保障你的程序 7 * 24 小时在线。</strong></p>
-<p>官网：<a href="https://pm2.keymetrics.io/">https://pm2.keymetrics.io</a></p>
-<p>文档：<a href="https://pm2.keymetrics.io/docs/usage/quick-start">https://pm2.keymetrics.io/docs/usage/quick-start</a></p>
-<p>总结其主要特性如下：</p>
-<ul>
-<li>日志管理：应用程序日志保存在服务器的硬盘中 <code>~/.pm2/logs/</code></li>
-<li>负载均衡：使用 <code>Node cluster</code> 集群模块，可以通过创建共享同一服务器端口的多个子进程来扩展您的应用程序。这样做还允许您以零秒停机时间重新启动应用程序，实现热重载。</li>
-<li>终端监控：可以在终端中监控您的应用程序运行状况，包括CPU使用率，使用的内存，请求/分钟等。</li>
-<li>自动停止不稳定的进程（避免无限循环）</li>
-<li>支持静态服务器功能</li>
-<li>提供 <code>HTTP API</code></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">$ yarn global add pm2</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>可以使用工具 <code>nvm</code> 安装管理 <code>Node.js</code> 和 <code>npm</code> ，参见我的另一篇文章：<a href="https://blog.sqiang.net/post/3176262256.html">借助 nvm 安装、管理多个 NodeJS 版本</a></p>
-</blockquote>
-<p>检查是否安装成功：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 --version</span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">__/\\\\\\\\\\\\\____/\\\\____________/\\\\____/\\\\\\\\\_____</span><br><span class="line"> _\/\\\/////////\\\_\/\\\\\\________/\\\\\\__/\\\///////\\\___</span><br><span class="line">  _\/\\\_______\/\\\_\/\\\//\\\____/\\\//\\\_\///______\//\\\__</span><br><span class="line">   _\/\\\\\\\\\\\\\/__\/\\\\///\\\/\\\/_\/\\\___________/\\\/___</span><br><span class="line">    _\/\\\/////////____\/\\\__\///\\\/___\/\\\________/\\\//_____</span><br><span class="line">     _\/\\\_____________\/\\\____\///_____\/\\\_____/\\\//________</span><br><span class="line">      _\/\\\_____________\/\\\_____________\/\\\___/\\\/___________</span><br><span class="line">       _\/\\\_____________\/\\\_____________\/\\\__/\\\\\\\\\\\\\\\_</span><br><span class="line">        _\///______________\///______________\///__\///////////////__</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          Runtime Edition</span><br><span class="line"></span><br><span class="line">        PM2 is a Production Process Manager <span class="keyword">for</span> Node.js applications</span><br><span class="line">                     with a built-in Load Balancer.</span><br><span class="line"></span><br><span class="line">                Start and Daemonize any application:</span><br><span class="line">                $ pm2 start app.js</span><br><span class="line"></span><br><span class="line">                Load Balance 4 instances of api.js:</span><br><span class="line">                $ pm2 start api.js -i 4</span><br><span class="line"></span><br><span class="line">                Monitor <span class="keyword">in</span> production:</span><br><span class="line">                $ pm2 monitor</span><br><span class="line"></span><br><span class="line">                Make pm2 auto-boot at server restart:</span><br><span class="line">                $ pm2 startup</span><br><span class="line"></span><br><span class="line">                To go further checkout:</span><br><span class="line">                http://pm2.io/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">[PM2] Spawning PM2 daemon with pm2_home=/Users/sunqiang/.pm2</span><br><span class="line">[PM2] PM2 Successfully daemonized</span><br><span class="line">4.4.0</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-基本使用"><a href="#3-基本使用" class="headerlink" title="3. 基本使用"></a>3. 基本使用</h3><h4 id="3-1-启动"><a href="#3-1-启动" class="headerlink" title="3.1. 启动"></a>3.1. 启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以指定的 Node server 入口文件启动应用</span></span><br><span class="line">$ pm2 start app.js</span><br><span class="line">[PM2] Starting /Users/sunqiang/mydev/NodeProjects/demo/demo-koa2/app.js <span class="keyword">in</span> fork_mode (1 instance)</span><br><span class="line">[PM2] Done.</span><br><span class="line">┌─────┬────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐</span><br><span class="line">│ id  │ name   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │</span><br><span class="line">├─────┼────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤</span><br><span class="line">│ 0   │ app    │ default     │ 0.1.0   │ fork    │ 28381    │ 0s     │ 0    │ online    │ 0%       │ 11.9mb   │ sunqiang │ disabled │</span><br><span class="line">└─────┴────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动时，指定应用名</span></span><br><span class="line">$ pm2 start app.js --name demo</span><br></pre></td></tr></table></figure>
-
-<p>其它可用选项：</p>
-<ul>
-<li><code>--watch</code> 以监听模式启动，当文件发生变化时自动重启</li>
-<li><code>--max-memory-restart &lt;200MB&gt;</code> 设置应用重载占用的最大内存</li>
-<li><code>--log &lt;log_path&gt;</code> 指定日志文件</li>
-<li><code>-- arg1 arg2 arg3</code> 给启动脚本传递额外的参数</li>
-<li><code>--restart-delay &lt;delay in ms&gt;</code> 延时 x 毫秒自动重启</li>
-<li><code>--time</code> 日志里添加时间前缀</li>
-<li><code>--no-autorestart</code> 不自动重启</li>
-<li><code>--cron &lt;cron_pattern&gt;</code> 按指定的定时任务规则强制重启</li>
-<li><code>--no-daemon</code> 以非守护进程模式启动</li>
-</ul>
-<h4 id="3-2-查看"><a href="#3-2-查看" class="headerlink" title="3.2. 查看"></a>3.2. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看所有已启动应用的基本信息</span></span><br><span class="line"><span class="comment"># 同 pm2 ls 或 pm2 status</span></span><br><span class="line">$ pm2 list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有应用的日志（历史 + 实时）</span></span><br><span class="line">$ pm2 logs</span><br><span class="line">$ pm2 logs www <span class="comment"># 只查看应用 www 的日志</span></span><br><span class="line">$ pm2 logs --lines 10 <span class="comment"># 查看最后10条历史，默认 15 条</span></span><br><span class="line">$ pm2 logs --timestamp <span class="comment"># 实时日志添加时间前缀</span></span><br><span class="line">$ pm2 logs www --lines 10 --err <span class="comment"># 只查看应用 www 的最新 10 条错误日志</span></span><br><span class="line">$ pm2 flush <span class="comment"># ❗️清空所有日志文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进程详情</span></span><br><span class="line">$ pm2 show app_name|app_id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看每个应用的CPU和内存资源实时占用情况</span></span><br><span class="line">$ pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在线的 Web 诊断系统，跨服务器</span></span><br><span class="line"><span class="comment"># 需要注册登录或使用 Github、Google 账户授权登录</span></span><br><span class="line">$ pm2 monitor</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-管理应用状态"><a href="#3-3-管理应用状态" class="headerlink" title="3.3. 管理应用状态"></a>3.3. 管理应用状态</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 重启 ❗️</span></span><br><span class="line"><span class="comment"># 同时杀死并重启所有进程，短时间内服务不可用。</span></span><br><span class="line"><span class="comment"># 生成环境推荐使用 reload</span></span><br><span class="line">$ pm2 restart app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载 👍</span></span><br><span class="line"><span class="comment"># 始终保持一个进程在线，避免宕机</span></span><br><span class="line">$ pm2 reload app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ pm2 stop app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭并删除</span></span><br><span class="line">$ pm2 delete app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接杀死 pm2 守护进程</span></span><br><span class="line">$ pm2 <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-静态服务器"><a href="#3-4-静态服务器" class="headerlink" title="3.4. 静态服务器"></a>3.4. 静态服务器</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将目录 dist 作为静态服务器根目录，端口为 3333</span></span><br><span class="line">$ pm2 serve ./dist 3333</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-5-集群模式（自动负载均衡）"><a href="#3-5-集群模式（自动负载均衡）" class="headerlink" title="3.5. 集群模式（自动负载均衡）"></a>3.5. 集群模式（自动负载均衡）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># max 表示 PM2 将自动检测可用 CPU 的数量并运行尽可能多的进程</span></span><br><span class="line"><span class="comment"># max 可以自定义，如果是 4 核 CPU，设置为 2 则只占用 2 核</span></span><br><span class="line">pm2 start app.js -i max</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-6-开机自启动"><a href="#3-6-开机自启动" class="headerlink" title="3.6. 开机自启动"></a>3.6. 开机自启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 startup</span><br><span class="line">$ pm2 unstartup</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-7-应用列表"><a href="#3-7-应用列表" class="headerlink" title="3.7. 应用列表"></a>3.7. 应用列表</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存当前应用列表，以后可以恢复</span></span><br><span class="line">$ pm2 save  <span class="comment"># 同 pm2 dump</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载之前保存的应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除保存的应用列表</span></span><br><span class="line">$ pm2 cleardump</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4. 配置文件"></a>4. 配置文件</h3><p>生成示例配置文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 ecosystem <span class="comment"># 或 pm2 init</span></span><br></pre></td></tr></table></figure>
-
-<p>示例配置如下（根据实际项目需要添加、删除配置项）</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">apps</span> : [&#123;</span><br><span class="line">  <span class="attr">name</span>      : <span class="string">&#x27;demo&#x27;</span>,      <span class="comment">// 应用名</span></span><br><span class="line">  <span class="attr">script</span>    : <span class="string">&#x27;app.js&#x27;</span>,   <span class="comment">// 应用文件位置</span></span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">PM2_SERVE_PATH</span>: <span class="string">&quot;.&quot;</span>,    <span class="comment">// 静态服务路径</span></span><br><span class="line">    <span class="attr">PM2_SERVE_PORT</span>: <span class="number">8080</span>,   <span class="comment">// 静态服务器访问端口</span></span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;development&#x27;</span> <span class="comment">// 设置开发环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">env_production</span> : &#123;</span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;production&#x27;</span>  <span class="comment">// 设置生产环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">instances</span>: <span class="string">&quot;max&quot;</span>,         <span class="comment">// 将应用程序分布在所有CPU核心上,可以是整数或负数</span></span><br><span class="line">  <span class="attr">watch</span>: <span class="literal">true</span>,              <span class="comment">// 监听模式</span></span><br><span class="line">  <span class="attr">output</span>: <span class="string">&#x27;./out.log&#x27;</span>,      <span class="comment">// 指定日志标准输出文件及位置</span></span><br><span class="line">  <span class="attr">error</span>: <span class="string">&#x27;./error.log&#x27;</span>,     <span class="comment">// 错误输出日志文件及位置</span></span><br><span class="line">  <span class="attr">merge_logs</span>: <span class="literal">true</span>,         <span class="comment">// 集群情况下，可以合并日志</span></span><br><span class="line">  <span class="attr">log_type</span>: <span class="string">&quot;json&quot;</span>,         <span class="comment">// 日志类型</span></span><br><span class="line">  <span class="attr">log_date_format</span>: <span class="string">&quot;DD-MM-YYYY&quot;</span>,  <span class="comment">// 日志的日期格式</span></span><br><span class="line">  &#125;],</span><br><span class="line">  <span class="attr">deploy</span> : &#123;</span><br><span class="line">    <span class="attr">production</span> : &#123;</span><br><span class="line">      <span class="attr">user</span> : <span class="string">&#x27;SSH_USERNAME&#x27;</span>,</span><br><span class="line">      <span class="attr">host</span> : <span class="string">&#x27;SSH_HOSTMACHINE&#x27;</span>,</span><br><span class="line">      <span class="attr">ref</span>  : <span class="string">&#x27;origin/master&#x27;</span>,</span><br><span class="line">      <span class="attr">repo</span> : <span class="string">&#x27;GIT_REPOSITORY&#x27;</span>,</span><br><span class="line">      <span class="attr">path</span> : <span class="string">&#x27;DESTINATION_PATH&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-deploy-local&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;post-deploy&#x27;</span> : <span class="string">&#x27;npm install &amp;&amp; pm2 reload ecosystem.config.js --env production&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-setup&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以配置文件启动示例</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 start ecosystem.config.js --env production</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ 注意：配置文件支持 js 和 yaml 格式，还有一些没有列举的参数项，详见官方文档：<a href="https://pm2.keymetrics.io/docs/usage/application-declaration">https://pm2.keymetrics.io/docs/usage/application-declaration</a></p>
-</blockquote>
-<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-升级-PM2"><a href="#5-1-升级-PM2" class="headerlink" title="5.1. 升级 PM2"></a>5.1. 升级 PM2</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新前推荐先保存当前应用列表，方便更新后直接恢复</span></span><br><span class="line">$ pm2 save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新主程序</span></span><br><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 紧接着更新内存中的程序</span></span><br><span class="line">$ pm2 update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-2-日志切割"><a href="#5-2-日志切割" class="headerlink" title="5.2. 日志切割"></a>5.2. 日志切割</h4><p>安装 <code>pm2-logrotate-ext</code> 扩展模块</p>
-<p>项目地址：<a href="https://github.com/Lujo5/pm2-logrotate-ext">https://github.com/Lujo5/pm2-logrotate-ext</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 install pm2-logrotate-ext</span><br></pre></td></tr></table></figure>
-
-<p>重新启动应用后，<code>pm2-logrotate-ext</code> 以模块的形式被加载、启动。</p>
-<p>可以通过以下命令对其配置进行修改：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当文件大小超过此设置则执行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:max_size 1M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保留最新的几个日志文件</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:retain 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启 gzip 压缩</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:compress <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件名的日期部分格式</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:dateFormat YYYY-MM-DD_HH-mm-ss</span><br><span class="line"></span><br><span class="line"><span class="comment"># 几秒钟检查一次日志文件大小</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:workerInterval 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类似于系统的定时任务，当满足指定规则时，</span></span><br><span class="line"><span class="comment"># 不管日志文件大小是否达到设置的最大值，直接对日志文件进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateInterval 0 0 * * *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对 pm2 模块产生的日志同样进行切割处理</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateModule <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否按定时任务设置规则强制执行</span></span><br><span class="line"><span class="comment"># 如果设置为否，则只有当日志文件大小超过设置时才进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:forced <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-        <tag>PM2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用 nrm 管理 npm 源</title>
-    <url>/post/316987977.html</url>
-    <content><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ npm i nrm -g</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 nrm 内置的几个 npm 源</span></span><br><span class="line">➜  ~ nrm ls</span><br><span class="line">  npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">* taobao - https://registry.npm.taobao.org/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br><span class="line">  npmMirror  https://skimdb.npmjs.com/registry/</span><br><span class="line">  edunpm - http://registry.enpmjs.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换源</span></span><br><span class="line">➜  ~ nrm use cnpm</span><br><span class="line">    Registry has been <span class="built_in">set</span> to: http://r.cnpmjs.org/</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>nrm</tag>
-        <tag>npm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>借助 nvm 安装、管理多个 NodeJS 版本</title>
-    <url>/post/3176262256.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍如何使用 <a href="https://github.com/creationix/nvm">nvm</a> 对 Node 的版本进行管理，当然你也可以选择另一个工具 <a href="https://github.com/tj/n">n</a>。</p>
-</blockquote>
-<h3 id="安装或升级（参见这里）"><a href="#安装或升级（参见这里）" class="headerlink" title="安装或升级（参见这里）"></a>安装或升级（<a href="https://github.com/nvm-sh/nvm#install--update-script">参见这里</a>）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
-
-<p>脚本的作用是将 nvm 仓库源码克隆到 <code>~/.nvm</code> 下面，之后将环境变量添加到配置文件中，如：<code>~/.bash_profile</code>， <code>~/.zshrc</code>，<code>~/.profile</code>，或 <code>~/.bashrc</code>。</p>
-<p>所以会用到 git 命令，如果没有 Git，请先安装。</p>
-<span id="more"></span>
-
-<p><em><strong>安装完成之后，需要重新打开终端。</strong></em></p>
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前安装的 nvm 版本</span></span><br><span class="line">➜  ~ nvm --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有帮助信息</span></span><br><span class="line">➜  ~ nvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出全部可安装的 LTS 版本</span></span><br><span class="line">➜  ~ nvm ls-remote --lts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Node</span></span><br><span class="line"><span class="comment"># 10 表示安装 10 系列的最新版；</span></span><br><span class="line"><span class="comment"># 也可以指定具体的版本号，如 10.15.0</span></span><br><span class="line">➜  ~ nvm install 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推荐</span></span><br><span class="line"><span class="comment"># 升级 Node 的同时，把旧版本安装的全局包也一块装上（因为升级时会把全局 node_modules 删除）</span></span><br><span class="line"><span class="comment"># 最后检查升级 npm</span></span><br><span class="line">➜  ~ nvm install 10.21 --reinstall-packages-from=8.17 --latest-npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用淘宝镜像安装</span></span><br><span class="line">➜  ~ NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node nvm install 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装的版本</span></span><br><span class="line">➜  ~ nvm ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装的版本（通过目录）</span></span><br><span class="line">➜  ~ ls -a ~/.nvm/versions/node</span><br><span class="line">.        ..       v10.15.0 v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前使用的版本</span></span><br><span class="line">➜  ~ nvm current</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换版本</span></span><br><span class="line">➜  ~ nvm use v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设定默认的 node 版本</span></span><br><span class="line">➜  ~ nvm <span class="built_in">alias</span> default v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完全删除指定版本</span></span><br><span class="line">➜  ~ sudo chown -R $(whoami) <span class="string">&quot;<span class="variable">$NVM_DIR</span>/versions/node/v6.6.0&quot;</span></span><br><span class="line">➜  ~ sudo chmod -R u+w <span class="string">&quot;<span class="variable">$NVM_DIR</span>/versions/node/v6.6.0&quot;</span></span><br><span class="line">➜  ~ nvm uninstall v6.6.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级 npm</span></span><br><span class="line">➜  ~ nvm install-latest-npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前版本的 Node 中重新安装之前在  &lt;version&gt; 安装的全局包</span></span><br><span class="line">➜  ~ nvm reinstall-packages &lt;version&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>Node.js</tag>
-        <tag>npm</tag>
-        <tag>nvm</tag>
       </tags>
   </entry>
   <entry>
@@ -3566,11 +3366,15 @@
 <li>CentOS7 +</li>
 </ul>
 <blockquote>
-<p>提示：macOS 和 Windows 都有对应的客户端 GUI 版本，详见官方文档。</p>
+<p>提示：如果你要安装 Docker 的操作系统是图形界面，macOS、Windows、Linux 都有对应的桌面客户端 GUI 程序，各自下载地址如下：</p>
 <ul>
-<li><a href="https://docs.docker.com/docker-for-mac">docker-for-mac</a></li>
-<li><a href="https://docs.docker.com/docker-for-windows">docker-for-windows</a></li>
+<li><a href="https://docs.docker.com/desktop/install/mac-install/">Docker Desktop for Mac</a></li>
+<li><a href="https://docs.docker.com/desktop/install/windows-install/">Docker Desktop for Windows</a></li>
+<li><a href="https://docs.docker.com/desktop/install/linux-install/">Docker Desktop for Linux</a></li>
 </ul>
+</blockquote>
+<blockquote>
+<p>说明：Docker Desktop 包含了 Docker 的所有东西，安装了这个就不需要看后续安装步骤了。<strong>后续的安装说明，适用于非图形界面的服务器系统</strong>。</p>
 </blockquote>
 <h4 id="1-2-一键安装脚本"><a href="#1-2-一键安装脚本" class="headerlink" title="1.2. 一键安装脚本"></a>1.2. 一键安装脚本</h4><p>此脚本适用于 Ubuntu、Debian、CentOS 系统，其中：官方版在某些情况下可能安装比较慢，阿里云的脚本在 CentOS7.4 下多次尝试都失败，所以推荐 DaoCloud 版。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 官方</span></span><br><span class="line">➜  curl -sSL https://get.docker.com/ | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># DaoCloud（推荐）</span></span><br><span class="line">➜  curl -sSL https://get.daocloud.io/docker | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 阿里云</span></span><br><span class="line">➜  curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh</span><br><span class="line">或</span><br><span class="line">➜  wget -qO- http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh</span><br></pre></td></tr></table></figure>
@@ -3586,10 +3390,10 @@
 <p>安装成功之后，如果想让普通用户拥有 docker 的所有权限，需执行 <code>sudo usermod -aG docker your-user</code> 将普通用户加入到 docker 组，否则需要使用 <code>sudo docker commands</code> 的形式执行所有 docker 命令。</p>
 <p>加入 docker 组后，需重启系统才能生效。</p>
 </blockquote>
-<h4 id="1-3-手动安装"><a href="#1-3-手动安装" class="headerlink" title="1.3. 手动安装"></a>1.3. 手动安装</h4><ul>
-<li><a href="https://www.docker.com/docker-ubuntu">Ubuntu</a></li>
-<li><a href="https://www.docker.com/docker-debian">Debian</a></li>
-<li><a href="https://www.docker.com/docker-centos-distribution">CentOS</a></li>
+<h4 id="1-3-手动安装官方参考文档"><a href="#1-3-手动安装官方参考文档" class="headerlink" title="1.3. 手动安装官方参考文档"></a>1.3. 手动安装官方参考文档</h4><ul>
+<li><a href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a></li>
+<li><a href="https://docs.docker.com/engine/install/debian/">Debian</a></li>
+<li><a href="https://docs.docker.com/engine/install/centos/">CentOS</a></li>
 </ul>
 <h3 id="2-基础入门篇"><a href="#2-基础入门篇" class="headerlink" title="2. 基础入门篇"></a>2. 基础入门篇</h3><h4 id="2-1-镜像"><a href="#2-1-镜像" class="headerlink" title="2.1. 镜像"></a>2.1. 镜像</h4><p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。<strong>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</strong></p>
 <p>Docker 镜像是怎么实现增量的修改和维护的？ 每个镜像都由很多层次构成，Docker 使用 <a href="https://en.wikipedia.org/wiki/Union_mount">Union FS</a> 将这些不同的层结合到一个镜像中去。</p>
@@ -3615,11 +3419,9 @@
 <p>按照 Docker 最佳实践的要求，<strong>容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化</strong>。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
 </blockquote>
 <p>常用操作命令：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输出一个“hello world”后终止容器</span></span><br><span class="line">$ docker run ubuntu:16.04 /bin/<span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个 bash 终端，允许用户进行交互</span></span><br><span class="line">$ docker run -it ubuntu:16.04 /bin/bash</span><br><span class="line">root@0eb917598209:/<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行，主要使用 -d 参数</span></span><br><span class="line">$ docker run -d ubuntu:16.04 /bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">$ docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line"><span class="comment"># 方法一：attach 此方法会受命令阻塞影响，并且 exit 退出后将同时关闭容器</span></span><br><span class="line">$ docker attach &lt;容器id&gt;</span><br><span class="line"><span class="comment"># 方法二：exec（推荐）</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it <span class="variable">$CONTAINER_ID</span> /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭容器</span></span><br><span class="line">$ docker stop <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已关闭的容器</span></span><br><span class="line">$ docker start <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的输出信息（-f 选项用于持续获取）</span></span><br><span class="line">$ docker logs <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的相关信息</span></span><br><span class="line">$ docker inspect <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">$ docker rm <span class="variable">$CONTAINER_ID</span>-1 <span class="variable">$CONTAINER_ID</span>-2 <span class="variable">$CONTAINER_ID</span>-3 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有未运行的容器</span></span><br><span class="line">$ docker rm $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出容器快照（将丢弃历史记录和元数据信息）</span></span><br><span class="line">$ docker <span class="built_in">export</span> &lt;容器ID&gt; &gt; &lt;导出文件名&gt;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从容器快照导入镜像</span></span><br><span class="line">$ cat &lt;导出文件名&gt;.tar | docker import - &lt;导入之后的镜像名:标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机与容器之间相互拷贝文件</span></span><br><span class="line">$ docker cp [OPTIONS] <span class="variable">$CONTAINER_ID</span>:容器中的文件路径 本地目标路径</span><br><span class="line">$ docker cp [OPTIONS] 本地文件路径 <span class="variable">$CONTAINER_ID</span>:容器中的目标路径</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输出一个“hello world”后终止容器</span></span><br><span class="line">$ docker run ubuntu:16.04 /bin/<span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个 bash 终端，允许用户进行交互</span></span><br><span class="line">$ docker run -it ubuntu:16.04 /bin/bash</span><br><span class="line">root@0eb917598209:/<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行，主要使用 -d 参数</span></span><br><span class="line">$ docker run -d ubuntu:16.04 /bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">$ docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化输出：容器ID ｜ 容器名称 ｜ 容器端口映射 ｜ 容器状态</span></span><br><span class="line"><span class="comment"># 更多格式参考官方文档：https://docs.docker.com/engine/reference/commandline/ps/#formatting</span></span><br><span class="line">$ docker ps -a --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;\t&#123;&#123;.Status&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line"><span class="comment"># 方法一：attach 此方法会受命令阻塞影响，并且 exit 退出后将同时关闭容器</span></span><br><span class="line">$ docker attach &lt;容器id&gt;</span><br><span class="line"><span class="comment"># 方法二：exec（推荐）</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it <span class="variable">$CONTAINER_ID</span> /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭容器</span></span><br><span class="line">$ docker stop <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已关闭的容器</span></span><br><span class="line">$ docker start <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的输出信息（-f 选项用于持续获取）</span></span><br><span class="line">$ docker logs <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看容器的最新100条日志</span></span><br><span class="line">$ docker logs -f --tail=100 <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空对应容器的日志文件</span></span><br><span class="line">$ docker ps -a | grep <span class="variable">$CONTAINER_NAME</span></span><br><span class="line">$ find /var/lib/docker/containers/ -name *-json.log | grep 959a80270bbc</span><br><span class="line">$ cat /dev/null &gt; /absolute/path/to/959a80270bbc.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的相关信息</span></span><br><span class="line">$ docker inspect <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">$ docker rm <span class="variable">$CONTAINER_ID</span>-1 <span class="variable">$CONTAINER_ID</span>-2 <span class="variable">$CONTAINER_ID</span>-3 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有未运行的容器</span></span><br><span class="line">$ docker rm $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出容器快照（将丢弃历史记录和元数据信息）</span></span><br><span class="line">$ docker <span class="built_in">export</span> &lt;容器ID&gt; &gt; &lt;导出文件名&gt;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从容器快照导入镜像</span></span><br><span class="line">$ cat &lt;导出文件名&gt;.tar | docker import - &lt;导入之后的镜像名:标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机与容器之间相互拷贝文件</span></span><br><span class="line">$ docker cp [OPTIONS] <span class="variable">$CONTAINER_ID</span>:容器中的文件路径 本地目标路径</span><br><span class="line">$ docker cp [OPTIONS] 本地文件路径 <span class="variable">$CONTAINER_ID</span>:容器中的目标路径</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-3-Docker-常用命令图解"><a href="#2-3-Docker-常用命令图解" class="headerlink" title="2.3. Docker 常用命令图解"></a>2.3. Docker 常用命令图解</h4><p><img data-src="https://static.sqiang.net/image/post/docker_commands.png"></p>
-<hr>
-<p>持续更新：<a href="https://github.com/whorusq/docker-learning">https://github.com/whorusq/docker-learning</a></p>
 ]]></content>
       <categories>
         <category>Docker</category>
@@ -3844,6 +3646,35 @@
       </tags>
   </entry>
   <entry>
+    <title>配置 Nginx 输入用户名和密码才能访问</title>
+    <url>/post/2256713588.html</url>
+    <content><![CDATA[<blockquote>
+<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
+</blockquote>
+<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
+
+<p>如果没有这个工具，需要先安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="2-生成密钥文件"><a href="#2-生成密钥文件" class="headerlink" title="2. 生成密钥文件"></a>2. 生成密钥文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/.htpasswd 是生成的用户名、密码文件及存放路径。</span></span><br><span class="line"><span class="comment"># 根据自己的情况存放到一个合适位置，后面修改 Nginx 配置文件的时候会用到。</span></span><br><span class="line">$ htpasswd -c /etc/nginx/.htpasswd admin</span><br><span class="line">New password:</span><br><span class="line">Re-type new password:</span><br><span class="line">Adding password <span class="keyword">for</span> user admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看生成的文件内容如下</span></span><br><span class="line">$ cat /etc/nginx/.htpasswd</span><br><span class="line">admin:$apr1$pCPJOCsr<span class="variable">$pyVB5i</span>.K/CuUPHGeWm6XN1</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-配置-Nginx-并重启"><a href="#3-配置-Nginx-并重启" class="headerlink" title="3. 配置 Nginx 并重启"></a>3. 配置 Nginx 并重启</h3><p>如下修改 Nginx 配置：</p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  demo.xxx.com; <span class="comment"># 需要控制访问的域名</span></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span>   /data/wwwroot/demo;</span><br><span class="line">    <span class="attribute">index</span>  index.htm index.html;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">auth_basic</span> <span class="string">&quot;Restricted&quot;</span>; <span class="comment"># 弹窗上的提示信息（有些浏览器不显示）</span></span><br><span class="line">    <span class="attribute">auth_basic_user_file</span> /etc/nginx/.htpasswd; <span class="comment"># 生成的用户名、密码文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>重启 Nginx，访问 <code>demo.xxx.com</code> 即可看到用户名、密码输入框。</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Nginx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 下 MySQL 自动备份脚本</title>
     <url>/post/3905919184.html</url>
     <content><![CDATA[<blockquote>
@@ -3876,35 +3707,6 @@
         <tag>Linux</tag>
         <tag>MySQL</tag>
         <tag>Shell</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>配置 Nginx 输入用户名和密码才能访问</title>
-    <url>/post/2256713588.html</url>
-    <content><![CDATA[<blockquote>
-<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
-</blockquote>
-<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
-
-<p>如果没有这个工具，需要先安装：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h3 id="2-生成密钥文件"><a href="#2-生成密钥文件" class="headerlink" title="2. 生成密钥文件"></a>2. 生成密钥文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># /etc/nginx/.htpasswd 是生成的用户名、密码文件及存放路径。</span></span><br><span class="line"><span class="comment"># 根据自己的情况存放到一个合适位置，后面修改 Nginx 配置文件的时候会用到。</span></span><br><span class="line">$ htpasswd -c /etc/nginx/.htpasswd admin</span><br><span class="line">New password:</span><br><span class="line">Re-type new password:</span><br><span class="line">Adding password <span class="keyword">for</span> user admin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看生成的文件内容如下</span></span><br><span class="line">$ cat /etc/nginx/.htpasswd</span><br><span class="line">admin:$apr1$pCPJOCsr<span class="variable">$pyVB5i</span>.K/CuUPHGeWm6XN1</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-配置-Nginx-并重启"><a href="#3-配置-Nginx-并重启" class="headerlink" title="3. 配置 Nginx 并重启"></a>3. 配置 Nginx 并重启</h3><p>如下修改 Nginx 配置：</p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  demo.xxx.com; <span class="comment"># 需要控制访问的域名</span></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">root</span>   /data/wwwroot/demo;</span><br><span class="line">    <span class="attribute">index</span>  index.htm index.html;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">auth_basic</span> <span class="string">&quot;Restricted&quot;</span>; <span class="comment"># 弹窗上的提示信息（有些浏览器不显示）</span></span><br><span class="line">    <span class="attribute">auth_basic_user_file</span> /etc/nginx/.htpasswd; <span class="comment"># 生成的用户名、密码文件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>重启 Nginx，访问 <code>demo.xxx.com</code> 即可看到用户名、密码输入框。</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Nginx</tag>
       </tags>
   </entry>
   <entry>
@@ -4207,6 +4009,45 @@
       </tags>
   </entry>
   <entry>
+    <title>Shell文本处理三剑客之grep</title>
+    <url>/post/990120436.html</url>
+    <content><![CDATA[<blockquote>
+<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
+</blockquote>
+<p>语法：</p>
+<ul>
+<li><code>grep [option] [pattern] [file1,file2...]</code></li>
+<li><code>command | grep [option] [pattern]</code></li>
+</ul>
+<span id="more"></span>
+
+<p>参数（option）：</p>
+<ul>
+<li><code>-v</code> 不显示匹配信息</li>
+<li><code>-i</code> 搜索时忽略大小写</li>
+<li><code>-n</code> 显示行号</li>
+<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
+<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
+<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
+<li>其它<ul>
+<li><code>-c</code> 成功匹配数量</li>
+<li><code>-w</code> 匹配整个单词</li>
+<li><code>-x</code> 匹配整行</li>
+<li><code>-l</code> 只列出匹配的文件名</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Shell</tag>
+        <tag>grep</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Shell文本处理三剑客之sed</title>
     <url>/post/216593370.html</url>
     <content><![CDATA[<blockquote>
@@ -4286,45 +4127,6 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 删除以 sys 开头、并且以/sbin/nologin 结尾的行</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;/^sys.*\/sbin\/nologin$/d&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除注释行、空行</span></span><br><span class="line">sed -i <span class="string">&#x27;/[:blank:]*#/d;/^$/d&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找在以 vagrant 开头的行，下一行追加内容</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;/^vagrant/a 这是追加的一行内容&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把所有的 root 替换为 root123</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;s/root/root123/ig&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在所有以 sys 开头、以 nologin 结尾的行，尾部追加 _666</span></span><br><span class="line"><span class="comment"># 其中 &amp; 表示前面正则匹配到的内容</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;s/^sys.*nologin$/&amp;_666/g&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把所有以 sys 开头、以 nologin_666 结尾的行 改为</span></span><br><span class="line"><span class="comment"># 以 SYS_ 开头、以 _777 结尾，其中 \1 表示前面括号中匹配的中间部分内容</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;s/^sys\(.*\)nologin_666$/SYS_\1_777/g&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把 1 ～ 10 行所有的 sys 改为 SYS</span></span><br><span class="line">➜  sed -i <span class="string">&#x27;1,10s/sys/SYS/ig&#x27;</span> passwd_bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 统计 my.cnf 文件中 mysqld 的子配置项数量</span></span><br><span class="line"><span class="comment"># sed 查找从 [mysqld] 到 下一个[.*] 之间的行</span></span><br><span class="line"><span class="comment"># grep -v 过滤注释、空行和 [.*] 行</span></span><br><span class="line"><span class="comment"># wc -l 统计最后的行数</span></span><br><span class="line">➜  sed -n <span class="string">&quot;/^\[mysqld\]$/,/^\[.*\]$/p&quot;</span> /etc/my.cnf | grep -Ev <span class="string">&#x27;^$|[#;]|^\[.*&#x27;</span> | wc -l</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意</strong>：如果匹配模式中存在变量，则建议使用双引号，如 <code>sed -i &quot;s/$OLD_STR/$NEW_STR/g&quot; passwd_bak</code></p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Shell</tag>
-        <tag>grep</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Shell文本处理三剑客之grep</title>
-    <url>/post/990120436.html</url>
-    <content><![CDATA[<blockquote>
-<p>过滤器，主要用于过滤文件内容，查找匹配信息。</p>
-</blockquote>
-<p>语法：</p>
-<ul>
-<li><code>grep [option] [pattern] [file1,file2...]</code></li>
-<li><code>command | grep [option] [pattern]</code></li>
-</ul>
-<span id="more"></span>
-
-<p>参数（option）：</p>
-<ul>
-<li><code>-v</code> 不显示匹配信息</li>
-<li><code>-i</code> 搜索时忽略大小写</li>
-<li><code>-n</code> 显示行号</li>
-<li><code>-r</code> 递归搜索（当前目录下所有目录）</li>
-<li><code>-E</code> 支持扩展的正则表达式，相当于 <code>egrep</code> 命令</li>
-<li><code>-F</code> 不按正则表达式匹配，按字符串字面意思匹配</li>
-<li>其它<ul>
-<li><code>-c</code> 成功匹配数量</li>
-<li><code>-w</code> 匹配整个单词</li>
-<li><code>-x</code> 匹配整行</li>
-<li><code>-l</code> 只列出匹配的文件名</li>
-</ul>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>Linux</category>
@@ -4475,6 +4277,32 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux 下如何修改 ssh 登录欢迎信息</title>
+    <url>/post/980934396.html</url>
+    <content><![CDATA[<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><center>
+<img data-src="https://static.sqiang.net/image/post/linux_motd.png" width="90%">
+</center>
+
+<span id="more"></span>
+
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
+<li><p>新建一个sh脚本文件</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim motd.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>在文件中添加如下内容（可根据需要自行修改 <code>echo</code> 部分的内容）</p>
+ <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">define the filename to use as output</span></span><br><span class="line">motd=&quot;/etc/motd&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Collect useful information about your system</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$USER</span> is automatically defined</span></span><br><span class="line">HOSTNAME=`uname -n`</span><br><span class="line">KERNEL=`uname -r`</span><br><span class="line">CPU=`uname -p`</span><br><span class="line">ARCH=`uname -m`</span><br><span class="line"><span class="meta">#</span><span class="bash"> The different colours as variables</span></span><br><span class="line">W=&quot;\033[01;37m&quot;</span><br><span class="line">B=&quot;\033[01;34m&quot;</span><br><span class="line">R=&quot;\033[01;31m&quot;</span><br><span class="line">X=&quot;\033[00;37m&quot;</span><br><span class="line">G=&quot;\033[01;32m&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> clear &gt; <span class="variable">$motd</span> <span class="comment"># to clear the screen when showing up</span></span></span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;        Welcome to $B Your-Host-Name $X server.          &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;  $G The world is not you can do, but you should.      $X &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$B&quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;         \   ,__,                                        &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;          \  (oo)____                                    &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;             (__)    )\                                  &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                ||--|| *                                 &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$X&quot; &gt;&gt; $motd</span><br></pre></td></tr></table></figure></li>
+<li><p>以root用户执行该脚本</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./motd.sh </span><br><span class="line">或 </span><br><span class="line">$ sh motd.sh</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>motd</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 下文件类型说明</title>
     <url>/post/2330113912.html</url>
     <content><![CDATA[<blockquote>
@@ -4528,32 +4356,6 @@
       </categories>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux 下如何修改 ssh 登录欢迎信息</title>
-    <url>/post/980934396.html</url>
-    <content><![CDATA[<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><center>
-<img data-src="https://static.sqiang.net/image/post/linux_motd.png" width="90%">
-</center>
-
-<span id="more"></span>
-
-<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ol>
-<li><p>新建一个sh脚本文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim motd.sh</span><br></pre></td></tr></table></figure></li>
-<li><p>在文件中添加如下内容（可根据需要自行修改 <code>echo</code> 部分的内容）</p>
- <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span><span class="bash">define the filename to use as output</span></span><br><span class="line">motd=&quot;/etc/motd&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> Collect useful information about your system</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="variable">$USER</span> is automatically defined</span></span><br><span class="line">HOSTNAME=`uname -n`</span><br><span class="line">KERNEL=`uname -r`</span><br><span class="line">CPU=`uname -p`</span><br><span class="line">ARCH=`uname -m`</span><br><span class="line"><span class="meta">#</span><span class="bash"> The different colours as variables</span></span><br><span class="line">W=&quot;\033[01;37m&quot;</span><br><span class="line">B=&quot;\033[01;34m&quot;</span><br><span class="line">R=&quot;\033[01;31m&quot;</span><br><span class="line">X=&quot;\033[00;37m&quot;</span><br><span class="line">G=&quot;\033[01;32m&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> clear &gt; <span class="variable">$motd</span> <span class="comment"># to clear the screen when showing up</span></span></span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;        Welcome to $B Your-Host-Name $X server.          &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                                                         &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;  $G The world is not you can do, but you should.      $X &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$B&quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;         \   ,__,                                        &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;          \  (oo)____                                    &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;             (__)    )\                                  &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;                ||--|| *                                 &quot; &gt;&gt; $motd</span><br><span class="line">echo -e &quot;$X&quot; &gt;&gt; $motd</span><br></pre></td></tr></table></figure></li>
-<li><p>以root用户执行该脚本</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./motd.sh </span><br><span class="line">或 </span><br><span class="line">$ sh motd.sh</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>motd</tag>
       </tags>
   </entry>
   <entry>
@@ -4686,6 +4488,225 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaScript 中 undefined 与 null 的用法区别</title>
+    <url>/post/2719612904.html</url>
+    <content><![CDATA[<p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
+<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
+<p>二者的主要用法区别如下：</p>
+<ul>
+<li><code>undefined</code><ul>
+<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
+<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
+<li>函数没有返回值时，默认返回 <code>undefined</code></li>
+</ul>
+</li>
+<li><code>null</code><ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
+<ol>
+<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
+<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
+</ol>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>数据类型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>dayjs时间处理库</title>
+    <url>/post/3076911137.html</url>
+    <content><![CDATA[<p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
+<blockquote>
+<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
+</blockquote>
+<p>其主要特性如下：</p>
+<ul>
+<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
+<li>不可变数据（Immutable）</li>
+<li>支持链式操作（Chainable）</li>
+<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
+<li>全浏览器兼容</li>
+<li>强大的国际化支持（I18n）</li>
+</ul>
+<p>官网：<a href="https://day.js.org/en">https://day.js.org/en</a></p>
+<p>Github：<a href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h3><h4 id="1-1-下载"><a href="#1-1-下载" class="headerlink" title="1.1. 下载"></a>1.1. 下载</h4><p>下载地址：<a href="https://github.com/iamkun/dayjs/releases">https://github.com/iamkun/dayjs/releases</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;path/to/dayjs/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">  dayjs().format()</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-CDN"><a href="#1-2-CDN" class="headerlink" title="1.2. CDN"></a>1.2. CDN</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://unpkg.com/dayjs@1.8.21/dayjs.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>dayjs().format()<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-Node-JS"><a href="#1-3-Node-JS" class="headerlink" title="1.3. Node.JS"></a>1.3. Node.JS</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> dayjs = <span class="built_in">require</span>(<span class="string">&#x27;dayjs&#x27;</span>)</span><br><span class="line"><span class="comment">//import dayjs from &#x27;dayjs&#x27; // ES 2015</span></span><br><span class="line"></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-TypeScript"><a href="#1-4-TypeScript" class="headerlink" title="1.4. TypeScript"></a>1.4. TypeScript</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install dayjs --save</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> dayjs <span class="keyword">from</span> <span class="string">&#x27;dayjs&#x27;</span></span><br><span class="line">dayjs().format()</span><br></pre></td></tr></table></figure>
+
+<p>更多见官方文档：<a href="https://day.js.org/docs/en/installation/typescript">https://day.js.org/docs/en/installation/typescript</a></p>
+<h3 id="2-API"><a href="#2-API" class="headerlink" title="2. API"></a>2. API</h3><h4 id="2-1-解析"><a href="#2-1-解析" class="headerlink" title="2.1. 解析"></a>2.1. 解析</h4><p><code>Day.js</code> 并没有改变或覆盖 Javascript 原生的 <code>Date.prototype</code>， 而是创造了一个全新的包含 <code>Javascript Date</code> 的 <strong><code>Day.js</code></strong> 对象，可以直接使用 <strong><code>dayjs()</code></strong> 来调用。</p>
+<p><code>Day.js</code> 对象是不可变的, 所有的 API 操作都将返回一个新的 <code>Day.js</code> 对象。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回包含当前日期和时间的 Day.js 对象</span></span><br><span class="line"><span class="comment">// 什么都不传，相当于 dayjs(new Date())</span></span><br><span class="line"><span class="keyword">let</span> now = dayjs();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个标准的 ISO 8601 时间字符串</span></span><br><span class="line"><span class="comment">// https://en.wikipedia.org/wiki/ISO_8601</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="string">&#x27;2020-06-01&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Unix 时间戳 (13位)</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="number">1591149248030</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入一个 Javascript Date 对象</span></span><br><span class="line"><span class="keyword">let</span> date = dayjs(<span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">6</span>, <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为 Day.js 对象是不可变的，可使用如下方法获取一个对象拷贝</span></span><br><span class="line"><span class="keyword">let</span> date1 = date.clone(); <span class="comment">// 方法一：在一个 Day.js 对象上使用 clone 函数</span></span><br><span class="line"><span class="keyword">let</span> date2 = dayjs(date); <span class="comment">// 方法二：传入一个 Day.js 对象</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查当前 Day.js 对象是否是有效日期时间</span></span><br><span class="line"><span class="keyword">if</span> (dayjs().isValid()) &#123;</span><br><span class="line">  <span class="comment">// 有效</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// 无效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-获取和设置"><a href="#2-2-获取和设置" class="headerlink" title="2.2. 获取和设置"></a>2.2. 获取和设置</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取，返回 number 类型的值</span></span><br><span class="line">dayjs().year(); <span class="comment">// 年 ==&gt; dayjs().get(&#x27;year&#x27;)</span></span><br><span class="line">dayjs().month(); <span class="comment">// 月 ==&gt; dayjs().get(&#x27;month&#x27;)</span></span><br><span class="line">dayjs().date(); <span class="comment">// 日 ==&gt; dayjs().get(&#x27;date&#x27;)</span></span><br><span class="line">dayjs().hour(); <span class="comment">// 时 ==&gt; dayjs().get(&#x27;hour&#x27;)</span></span><br><span class="line">dayjs().minute(); <span class="comment">// 分 ==&gt; dayjs().get(&#x27;minute&#x27;)</span></span><br><span class="line">dayjs().second(); <span class="comment">// 秒 ==&gt; dayjs().get(&#x27;second&#x27;)</span></span><br><span class="line">dayjs().millisecond(); <span class="comment">// 毫秒 ==&gt; dayjs().get(&#x27;millisecond&#x27;)</span></span><br><span class="line">dayjs().day(); <span class="comment">// 本周的第几天 ==&gt; dayjs().get(&#x27;day&#x27;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置，单位对应的值大小写不敏感</span></span><br><span class="line">dayjs().set(<span class="string">&#x27;month&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">dayjs().set(<span class="string">&#x27;second&#x27;</span>, <span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-操作"><a href="#2-3-操作" class="headerlink" title="2.3. 操作"></a>2.3. 操作</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 增加</span></span><br><span class="line">dayjs().add(<span class="number">7</span>, <span class="string">&#x27;day&#x27;</span>); <span class="comment">// 增加 7 天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 减少</span></span><br><span class="line">dayjs().subtract(<span class="number">2</span>, <span class="string">&#x27;month&#x27;</span>); <span class="comment">// 减少 2 个月</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  开头</span></span><br><span class="line">dayjs().startOf(<span class="string">&#x27;month&#x27;</span>); <span class="comment">// 当月第一天</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 末尾</span></span><br><span class="line">dayjs().endOf(<span class="string">&#x27;year&#x27;</span>); <span class="comment">// 当年最后一天</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-显示"><a href="#2-4-显示" class="headerlink" title="2.4. 显示"></a>2.4. 显示</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 格式化</span></span><br><span class="line">dayjs().format(); <span class="comment">// 默认格式，如：2020-06-03T20:06:13+08:00</span></span><br><span class="line">dayjs().format(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">// 指定格式 2020-06-03 20:07:12</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取两个 Day.js 对象的时间差，默认毫秒，可指定单位</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>)); <span class="comment">// 694224000000</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020&#x27;</span>).diff(dayjs(<span class="string">&#x27;1998&#x27;</span>), <span class="string">&#x27;year&#x27;</span>); <span class="comment">// 22</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 时间戳</span></span><br><span class="line">dayjs().valueOf(); <span class="comment">// 毫秒</span></span><br><span class="line">dayjs().unix(); <span class="comment">// 秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 天数</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-07&#x27;</span>).daysInMonth(); <span class="comment">// 31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生 Date 对象</span></span><br><span class="line">dayjs().toDate(); <span class="comment">// Wed Jun 03 2020 20:13:40 GMT+0800 (China Standard Time)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回 ISO 8601 格式的字符串</span></span><br><span class="line">dayjs().toJSON(); <span class="comment">// &quot;2020-06-03T12:15:54.635Z&quot;</span></span><br><span class="line">dayjs().toISOString(); <span class="comment">// &quot;2020-06-03T12:16:48.199Z&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-查询"><a href="#2-5-查询" class="headerlink" title="2.5. 查询"></a>2.5. 查询</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之前</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isBefore(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查一个日期是否在另一个日期之后</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isAfter(dayjs(<span class="string">&#x27;2020-05-03&#x27;</span>)); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查两个日期是否相同</span></span><br><span class="line">dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>).isSame(dayjs(<span class="string">&#x27;2020-06-03&#x27;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+        <tag>dayjs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PM2 入门指南</title>
+    <url>/post/1046389609.html</url>
+    <content><![CDATA[<h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 = Process Manager 2</p>
+<blockquote>
+<p>ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS</p>
+</blockquote>
+<blockquote>
+<p>PM2 is a daemon process manager that will help you manage and keep your application online 24/7</p>
+</blockquote>
+<p>上面是官网给出的 title，简单来说：<strong>它是在后台运行的 <code>Node.js</code> 进程管理器，提供一套针对生产环境运行时的工具集，可以保障你的程序 7 * 24 小时在线。</strong></p>
+<p>官网：<a href="https://pm2.keymetrics.io/">https://pm2.keymetrics.io</a></p>
+<p>文档：<a href="https://pm2.keymetrics.io/docs/usage/quick-start">https://pm2.keymetrics.io/docs/usage/quick-start</a></p>
+<p>总结其主要特性如下：</p>
+<ul>
+<li>日志管理：应用程序日志保存在服务器的硬盘中 <code>~/.pm2/logs/</code></li>
+<li>负载均衡：使用 <code>Node cluster</code> 集群模块，可以通过创建共享同一服务器端口的多个子进程来扩展您的应用程序。这样做还允许您以零秒停机时间重新启动应用程序，实现热重载。</li>
+<li>终端监控：可以在终端中监控您的应用程序运行状况，包括CPU使用率，使用的内存，请求/分钟等。</li>
+<li>自动停止不稳定的进程（避免无限循环）</li>
+<li>支持静态服务器功能</li>
+<li>提供 <code>HTTP API</code></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">$ yarn global add pm2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以使用工具 <code>nvm</code> 安装管理 <code>Node.js</code> 和 <code>npm</code> ，参见我的另一篇文章：<a href="https://blog.sqiang.net/post/3176262256.html">借助 nvm 安装、管理多个 NodeJS 版本</a></p>
+</blockquote>
+<p>检查是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 --version</span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">__/\\\\\\\\\\\\\____/\\\\____________/\\\\____/\\\\\\\\\_____</span><br><span class="line"> _\/\\\/////////\\\_\/\\\\\\________/\\\\\\__/\\\///////\\\___</span><br><span class="line">  _\/\\\_______\/\\\_\/\\\//\\\____/\\\//\\\_\///______\//\\\__</span><br><span class="line">   _\/\\\\\\\\\\\\\/__\/\\\\///\\\/\\\/_\/\\\___________/\\\/___</span><br><span class="line">    _\/\\\/////////____\/\\\__\///\\\/___\/\\\________/\\\//_____</span><br><span class="line">     _\/\\\_____________\/\\\____\///_____\/\\\_____/\\\//________</span><br><span class="line">      _\/\\\_____________\/\\\_____________\/\\\___/\\\/___________</span><br><span class="line">       _\/\\\_____________\/\\\_____________\/\\\__/\\\\\\\\\\\\\\\_</span><br><span class="line">        _\///______________\///______________\///__\///////////////__</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          Runtime Edition</span><br><span class="line"></span><br><span class="line">        PM2 is a Production Process Manager <span class="keyword">for</span> Node.js applications</span><br><span class="line">                     with a built-in Load Balancer.</span><br><span class="line"></span><br><span class="line">                Start and Daemonize any application:</span><br><span class="line">                $ pm2 start app.js</span><br><span class="line"></span><br><span class="line">                Load Balance 4 instances of api.js:</span><br><span class="line">                $ pm2 start api.js -i 4</span><br><span class="line"></span><br><span class="line">                Monitor <span class="keyword">in</span> production:</span><br><span class="line">                $ pm2 monitor</span><br><span class="line"></span><br><span class="line">                Make pm2 auto-boot at server restart:</span><br><span class="line">                $ pm2 startup</span><br><span class="line"></span><br><span class="line">                To go further checkout:</span><br><span class="line">                http://pm2.io/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">[PM2] Spawning PM2 daemon with pm2_home=/Users/sunqiang/.pm2</span><br><span class="line">[PM2] PM2 Successfully daemonized</span><br><span class="line">4.4.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-基本使用"><a href="#3-基本使用" class="headerlink" title="3. 基本使用"></a>3. 基本使用</h3><h4 id="3-1-启动"><a href="#3-1-启动" class="headerlink" title="3.1. 启动"></a>3.1. 启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以指定的 Node server 入口文件启动应用</span></span><br><span class="line">$ pm2 start app.js</span><br><span class="line">[PM2] Starting /Users/sunqiang/mydev/NodeProjects/demo/demo-koa2/app.js <span class="keyword">in</span> fork_mode (1 instance)</span><br><span class="line">[PM2] Done.</span><br><span class="line">┌─────┬────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐</span><br><span class="line">│ id  │ name   │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │</span><br><span class="line">├─────┼────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤</span><br><span class="line">│ 0   │ app    │ default     │ 0.1.0   │ fork    │ 28381    │ 0s     │ 0    │ online    │ 0%       │ 11.9mb   │ sunqiang │ disabled │</span><br><span class="line">└─────┴────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动时，指定应用名</span></span><br><span class="line">$ pm2 start app.js --name demo</span><br></pre></td></tr></table></figure>
+
+<p>其它可用选项：</p>
+<ul>
+<li><code>--watch</code> 以监听模式启动，当文件发生变化时自动重启</li>
+<li><code>--max-memory-restart &lt;200MB&gt;</code> 设置应用重载占用的最大内存</li>
+<li><code>--log &lt;log_path&gt;</code> 指定日志文件</li>
+<li><code>-- arg1 arg2 arg3</code> 给启动脚本传递额外的参数</li>
+<li><code>--restart-delay &lt;delay in ms&gt;</code> 延时 x 毫秒自动重启</li>
+<li><code>--time</code> 日志里添加时间前缀</li>
+<li><code>--no-autorestart</code> 不自动重启</li>
+<li><code>--cron &lt;cron_pattern&gt;</code> 按指定的定时任务规则强制重启</li>
+<li><code>--no-daemon</code> 以非守护进程模式启动</li>
+</ul>
+<h4 id="3-2-查看"><a href="#3-2-查看" class="headerlink" title="3.2. 查看"></a>3.2. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看所有已启动应用的基本信息</span></span><br><span class="line"><span class="comment"># 同 pm2 ls 或 pm2 status</span></span><br><span class="line">$ pm2 list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有应用的日志（历史 + 实时）</span></span><br><span class="line">$ pm2 logs</span><br><span class="line">$ pm2 logs www <span class="comment"># 只查看应用 www 的日志</span></span><br><span class="line">$ pm2 logs --lines 10 <span class="comment"># 查看最后10条历史，默认 15 条</span></span><br><span class="line">$ pm2 logs --timestamp <span class="comment"># 实时日志添加时间前缀</span></span><br><span class="line">$ pm2 logs www --lines 10 --err <span class="comment"># 只查看应用 www 的最新 10 条错误日志</span></span><br><span class="line">$ pm2 flush <span class="comment"># ❗️清空所有日志文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进程详情</span></span><br><span class="line">$ pm2 show app_name|app_id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看每个应用的CPU和内存资源实时占用情况</span></span><br><span class="line">$ pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在线的 Web 诊断系统，跨服务器</span></span><br><span class="line"><span class="comment"># 需要注册登录或使用 Github、Google 账户授权登录</span></span><br><span class="line">$ pm2 monitor</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-管理应用状态"><a href="#3-3-管理应用状态" class="headerlink" title="3.3. 管理应用状态"></a>3.3. 管理应用状态</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 重启 ❗️</span></span><br><span class="line"><span class="comment"># 同时杀死并重启所有进程，短时间内服务不可用。</span></span><br><span class="line"><span class="comment"># 生成环境推荐使用 reload</span></span><br><span class="line">$ pm2 restart app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载 👍</span></span><br><span class="line"><span class="comment"># 始终保持一个进程在线，避免宕机</span></span><br><span class="line">$ pm2 reload app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ pm2 stop app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭并删除</span></span><br><span class="line">$ pm2 delete app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接杀死 pm2 守护进程</span></span><br><span class="line">$ pm2 <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-静态服务器"><a href="#3-4-静态服务器" class="headerlink" title="3.4. 静态服务器"></a>3.4. 静态服务器</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 将目录 dist 作为静态服务器根目录，端口为 3333</span></span><br><span class="line">$ pm2 serve ./dist 3333</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-集群模式（自动负载均衡）"><a href="#3-5-集群模式（自动负载均衡）" class="headerlink" title="3.5. 集群模式（自动负载均衡）"></a>3.5. 集群模式（自动负载均衡）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># max 表示 PM2 将自动检测可用 CPU 的数量并运行尽可能多的进程</span></span><br><span class="line"><span class="comment"># max 可以自定义，如果是 4 核 CPU，设置为 2 则只占用 2 核</span></span><br><span class="line">pm2 start app.js -i max</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-开机自启动"><a href="#3-6-开机自启动" class="headerlink" title="3.6. 开机自启动"></a>3.6. 开机自启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 startup</span><br><span class="line">$ pm2 unstartup</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-应用列表"><a href="#3-7-应用列表" class="headerlink" title="3.7. 应用列表"></a>3.7. 应用列表</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存当前应用列表，以后可以恢复</span></span><br><span class="line">$ pm2 save  <span class="comment"># 同 pm2 dump</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载之前保存的应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除保存的应用列表</span></span><br><span class="line">$ pm2 cleardump</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4. 配置文件"></a>4. 配置文件</h3><p>生成示例配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 ecosystem <span class="comment"># 或 pm2 init</span></span><br></pre></td></tr></table></figure>
+
+<p>示例配置如下（根据实际项目需要添加、删除配置项）</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">apps</span> : [&#123;</span><br><span class="line">  <span class="attr">name</span>      : <span class="string">&#x27;demo&#x27;</span>,      <span class="comment">// 应用名</span></span><br><span class="line">  <span class="attr">script</span>    : <span class="string">&#x27;app.js&#x27;</span>,   <span class="comment">// 应用文件位置</span></span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="attr">PM2_SERVE_PATH</span>: <span class="string">&quot;.&quot;</span>,    <span class="comment">// 静态服务路径</span></span><br><span class="line">    <span class="attr">PM2_SERVE_PORT</span>: <span class="number">8080</span>,   <span class="comment">// 静态服务器访问端口</span></span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;development&#x27;</span> <span class="comment">// 设置开发环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">env_production</span> : &#123;</span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;production&#x27;</span>  <span class="comment">// 设置生产环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">instances</span>: <span class="string">&quot;max&quot;</span>,         <span class="comment">// 将应用程序分布在所有CPU核心上,可以是整数或负数</span></span><br><span class="line">  <span class="attr">watch</span>: <span class="literal">true</span>,              <span class="comment">// 监听模式</span></span><br><span class="line">  <span class="attr">output</span>: <span class="string">&#x27;./out.log&#x27;</span>,      <span class="comment">// 指定日志标准输出文件及位置</span></span><br><span class="line">  <span class="attr">error</span>: <span class="string">&#x27;./error.log&#x27;</span>,     <span class="comment">// 错误输出日志文件及位置</span></span><br><span class="line">  <span class="attr">merge_logs</span>: <span class="literal">true</span>,         <span class="comment">// 集群情况下，可以合并日志</span></span><br><span class="line">  <span class="attr">log_type</span>: <span class="string">&quot;json&quot;</span>,         <span class="comment">// 日志类型</span></span><br><span class="line">  <span class="attr">log_date_format</span>: <span class="string">&quot;DD-MM-YYYY&quot;</span>,  <span class="comment">// 日志的日期格式</span></span><br><span class="line">  &#125;],</span><br><span class="line">  <span class="attr">deploy</span> : &#123;</span><br><span class="line">    <span class="attr">production</span> : &#123;</span><br><span class="line">      <span class="attr">user</span> : <span class="string">&#x27;SSH_USERNAME&#x27;</span>,</span><br><span class="line">      <span class="attr">host</span> : <span class="string">&#x27;SSH_HOSTMACHINE&#x27;</span>,</span><br><span class="line">      <span class="attr">ref</span>  : <span class="string">&#x27;origin/master&#x27;</span>,</span><br><span class="line">      <span class="attr">repo</span> : <span class="string">&#x27;GIT_REPOSITORY&#x27;</span>,</span><br><span class="line">      <span class="attr">path</span> : <span class="string">&#x27;DESTINATION_PATH&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-deploy-local&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;post-deploy&#x27;</span> : <span class="string">&#x27;npm install &amp;&amp; pm2 reload ecosystem.config.js --env production&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-setup&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以配置文件启动示例</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 start ecosystem.config.js --env production</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 注意：配置文件支持 js 和 yaml 格式，还有一些没有列举的参数项，详见官方文档：<a href="https://pm2.keymetrics.io/docs/usage/application-declaration">https://pm2.keymetrics.io/docs/usage/application-declaration</a></p>
+</blockquote>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-升级-PM2"><a href="#5-1-升级-PM2" class="headerlink" title="5.1. 升级 PM2"></a>5.1. 升级 PM2</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更新前推荐先保存当前应用列表，方便更新后直接恢复</span></span><br><span class="line">$ pm2 save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新主程序</span></span><br><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 紧接着更新内存中的程序</span></span><br><span class="line">$ pm2 update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-日志切割"><a href="#5-2-日志切割" class="headerlink" title="5.2. 日志切割"></a>5.2. 日志切割</h4><p>安装 <code>pm2-logrotate-ext</code> 扩展模块</p>
+<p>项目地址：<a href="https://github.com/Lujo5/pm2-logrotate-ext">https://github.com/Lujo5/pm2-logrotate-ext</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pm2 install pm2-logrotate-ext</span><br></pre></td></tr></table></figure>
+
+<p>重新启动应用后，<code>pm2-logrotate-ext</code> 以模块的形式被加载、启动。</p>
+<p>可以通过以下命令对其配置进行修改：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当文件大小超过此设置则执行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:max_size 1M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保留最新的几个日志文件</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:retain 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启 gzip 压缩</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:compress <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件名的日期部分格式</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:dateFormat YYYY-MM-DD_HH-mm-ss</span><br><span class="line"></span><br><span class="line"><span class="comment"># 几秒钟检查一次日志文件大小</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:workerInterval 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类似于系统的定时任务，当满足指定规则时，</span></span><br><span class="line"><span class="comment"># 不管日志文件大小是否达到设置的最大值，直接对日志文件进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateInterval 0 0 * * *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对 pm2 模块产生的日志同样进行切割处理</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateModule <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否按定时任务设置规则强制执行</span></span><br><span class="line"><span class="comment"># 如果设置为否，则只有当日志文件大小超过设置时才进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:forced <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>PM2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 nrm 管理 npm 源</title>
+    <url>/post/316987977.html</url>
+    <content><![CDATA[<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ npm i nrm -g</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 nrm 内置的几个 npm 源</span></span><br><span class="line">➜  ~ nrm ls</span><br><span class="line">  npm ---- https://registry.npmjs.org/</span><br><span class="line">  cnpm --- http://r.cnpmjs.org/</span><br><span class="line">* taobao - https://registry.npm.taobao.org/</span><br><span class="line">  nj ----- https://registry.nodejitsu.com/</span><br><span class="line">  npmMirror  https://skimdb.npmjs.com/registry/</span><br><span class="line">  edunpm - http://registry.enpmjs.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换源</span></span><br><span class="line">➜  ~ nrm use cnpm</span><br><span class="line">    Registry has been <span class="built_in">set</span> to: http://r.cnpmjs.org/</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>nrm</tag>
+        <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>借助 nvm 安装、管理多个 NodeJS 版本</title>
+    <url>/post/3176262256.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍如何使用 <a href="https://github.com/creationix/nvm">nvm</a> 对 Node 的版本进行管理，当然你也可以选择另一个工具 <a href="https://github.com/tj/n">n</a>。</p>
+</blockquote>
+<h3 id="安装或升级（参见这里）"><a href="#安装或升级（参见这里）" class="headerlink" title="安装或升级（参见这里）"></a>安装或升级（<a href="https://github.com/nvm-sh/nvm#install--update-script">参见这里</a>）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>脚本的作用是将 nvm 仓库源码克隆到 <code>~/.nvm</code> 下面，之后将环境变量添加到配置文件中，如：<code>~/.bash_profile</code>， <code>~/.zshrc</code>，<code>~/.profile</code>，或 <code>~/.bashrc</code>。</p>
+<p>所以会用到 git 命令，如果没有 Git，请先安装。</p>
+<span id="more"></span>
+
+<p><em><strong>安装完成之后，需要重新打开终端。</strong></em></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看当前安装的 nvm 版本</span></span><br><span class="line">➜  ~ nvm --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有帮助信息</span></span><br><span class="line">➜  ~ nvm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出全部可安装的 LTS 版本</span></span><br><span class="line">➜  ~ nvm ls-remote --lts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Node</span></span><br><span class="line"><span class="comment"># 10 表示安装 10 系列的最新版；</span></span><br><span class="line"><span class="comment"># 也可以指定具体的版本号，如 10.15.0</span></span><br><span class="line">➜  ~ nvm install 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 推荐</span></span><br><span class="line"><span class="comment"># 升级 Node 的同时，把旧版本安装的全局包也一块装上（因为升级时会把全局 node_modules 删除）</span></span><br><span class="line"><span class="comment"># 最后检查升级 npm</span></span><br><span class="line">➜  ~ nvm install 10.21 --reinstall-packages-from=8.17 --latest-npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用淘宝镜像安装</span></span><br><span class="line">➜  ~ NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node nvm install 10</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装的版本</span></span><br><span class="line">➜  ~ nvm ls</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看已安装的版本（通过目录）</span></span><br><span class="line">➜  ~ ls -a ~/.nvm/versions/node</span><br><span class="line">.        ..       v10.15.0 v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看当前使用的版本</span></span><br><span class="line">➜  ~ nvm current</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换版本</span></span><br><span class="line">➜  ~ nvm use v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设定默认的 node 版本</span></span><br><span class="line">➜  ~ nvm <span class="built_in">alias</span> default v8.15.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 完全删除指定版本</span></span><br><span class="line">➜  ~ sudo chown -R $(whoami) <span class="string">&quot;<span class="variable">$NVM_DIR</span>/versions/node/v6.6.0&quot;</span></span><br><span class="line">➜  ~ sudo chmod -R u+w <span class="string">&quot;<span class="variable">$NVM_DIR</span>/versions/node/v6.6.0&quot;</span></span><br><span class="line">➜  ~ nvm uninstall v6.6.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级 npm</span></span><br><span class="line">➜  ~ nvm install-latest-npm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前版本的 Node 中重新安装之前在  &lt;version&gt; 安装的全局包</span></span><br><span class="line">➜  ~ nvm reinstall-packages &lt;version&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>Node.js</tag>
+        <tag>npm</tag>
+        <tag>nvm</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</title>
     <url>/post/438064550.html</url>
     <content><![CDATA[<blockquote>
@@ -4815,6 +4836,150 @@
         <tag>游戏</tag>
         <tag>红色警戒2</tag>
         <tag>共和国之辉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吴军博士人生进阶三部曲：《态度》</title>
+    <url>/post/1479506599.html</url>
+    <content><![CDATA[<ul>
+<li>夫妻之间的矛盾要在孩子不在场的时候解决。和谐产生快乐。</li>
+<li>永远没有完美的时候。将一个比原来更好的一点的版本按时提供给用户，总比为了追求一个完美的版本，最后什么都提供不了好得多。</li>
+<li>从做每一件小事开始，慢慢形成习惯，习惯塑造来性格，性格决定来命运。</li>
+<li>盖茨和扎克伯格：<ul>
+<li>他们至少都上了哈佛；</li>
+<li>他们都有过人的技术专长；</li>
+<li><code>他们都是在找到了赚钱方法之后，才退学的，而不是在退学之后开始创业的</code>。</li>
+</ul>
+</li>
+<li><strong>好运气后面是三倍的努力</strong>。</li>
+<li>成功固然不错，但更重要的是做个好人（It’s nice to be great, yet it’s great to be great.）。</li>
+<li>J.P.摩根说：“任意让‘小钱’从身边溜走的人，一定留不住‘大钱’。”</li>
+<li>天天操作股票的人，都是在向股市送钱。只有耐得住性子的人，才能赚钱。</li>
+<li>关于投资（与巴菲特的午餐）：<ul>
+<li>不要过于冒险，会导致灭顶之灾的投资；</li>
+<li>不要进行自己不懂的投资。</li>
+</ul>
+</li>
+<li>关于领导力：<ul>
+<li>组织和工作能力，能否将一件事分解，组织大家完成；</li>
+<li>团结大多数人，让每个人能够各尽其才，发挥作用。</li>
+</ul>
+</li>
+<li>关于沟通：<ul>
+<li>有效的沟通要以对方的确认为准；</li>
+<li>以对方听得懂的话来沟通；</li>
+<li>要简洁，切中要害；</li>
+<li>善辩不等于好的沟通。</li>
+</ul>
+</li>
+<li>世界上永远有很多我们觉得无能为力的事情，有些是注定的，或者运气不好，我们能做的事情比较少，但是这些倒霉事如果一再发生，就说明我们做事的方法可能有问题，需要跳出原有的固定思维，寻找更好的方法。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>读书</tag>
+        <tag>吴军</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>吴军博士人生进阶三部曲：《见识》</title>
+    <url>/post/3622989416.html</url>
+    <content><![CDATA[<ul>
+<li>一条河的水量，由它的<strong>长度</strong>、<strong>宽度</strong>和<strong>深度</strong>三个因素决定，一个人的影响力也是如此。</li>
+<li>对于那些试图在金字塔上爬几个台阶的人来讲，要做的不是抱怨社会的不公平，而是需要付出足够多的努力，同时把注意力放到最该关注的事情上去。</li>
+<li>恋爱是激情，是化学物质分泌所带来的愉悦；婚姻则是由两个人一同构造一个<strong>舒适</strong>的共同体，在那个共同体中，双方都将受益。</li>
+<li>很多时候，我们把太多的精力花在了选择上，而不是<strong>经营</strong>上，导致难以精进。</li>
+<li><strong>做减法</strong>。如果一个人不能把一件事做好，他首先想到的就应该是少做事情，而不是让自己更忙碌。</li>
+<li>学习是一件长期的事情、一辈子的事情，是马拉松比赛，而不是百米赛跑。</li>
+<li>如果一定要说有什么起跑线的话，<strong>父母的见识</strong>就是起跑线。从教育下一代的角度看，一个家庭比贫穷更可怕的是<code>缺乏见识</code>、<code>缺乏爱</code>、<code>缺乏规矩</code>。</li>
+<li>但凡那些能够比较长期稳定挣钱的行业，开始的投入都是比较大的，并不存在一种不需要投入就能获得很高回报的行业，否则，这个行业一定太挤，以至一段时间以后行业的回报肯定会急剧下降。</li>
+<li>衡量一个专家水平最可靠的方法，就是看他们是将复杂的问题简单化，让每一个人都理解，还是故作高深，将简单的问题复杂化。</li>
+<li>一个好的产品设计者会想办法<strong>引导顾客</strong>，而不会去做迎合每一个顾客的事情。</li>
+<li><strong>少就是多</strong>。适度的选择给我们自由，但是过多的选择会适得其反。</li>
+<li>对于所喜欢的东西，如果付出的代价是让生活质量变差，那就算了。因为钱和任何东西，都是为了让你生活得更好，而不是给你带来麻烦。</li>
+<li>每个人无论是自己创业还是为别人做事，都应该有<strong>自己独特的能力</strong>，才有可能高效率的挣钱。</li>
+<li>投资大师巴菲特一直在强调长期成功的投资，关键不在于把握了多少次机会，而在于是否能<strong>少犯错误</strong>。</li>
+<li>对于任何演讲者，都不要指望一次演讲能够讲清楚 10 件事，真能把一件事讲清楚，目的就达到了。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>读书</tag>
+        <tag>吴军</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读《习惯的力量》</title>
+    <url>/post/130164364.html</url>
+    <content><![CDATA[<blockquote>
+<p>本书通过大量案例，揭示了我们的习惯是如何形成的，刻画了一张图「习惯回路」，它包含提示、惯常行为、奖励三个主要部分。结合这张图，通过认真分析并找到我们内心深处真正的需求，借助惯常行为的改变，就能达到改变旧习惯的目的。</p>
+</blockquote>
+<p>无意间在网上找到了下面这张图片，它非常好的诠释了本书的主旨：</p>
+<p><img data-src="https://static.sqiang.net/image/post/customay_behavior_1.png?imageView2/2/w/600" alt="《习惯的力量》（图片来源网络）" title="《习惯的力量》（图片来源网络）"></p>
+<span id="more"></span>
+
+<h3 id="关于习惯回路"><a href="#关于习惯回路" class="headerlink" title="关于习惯回路"></a>关于习惯回路</h3><p>上图中的内圈部分主要说明的是<strong>习惯回路</strong>：</p>
+<ul>
+<li><code>看到一个「暗示」</code>：这个「暗示」是任何让你产生某种行为的东西，比如：看到篮球，想到的是去打篮球；看到游戏机，想到的是打游戏；看见烟盒或打火机，想到的是吸烟等。</li>
+<li><code>采取「惯常行为」</code>：承接上一步的「暗示」而产生的习惯性行为。</li>
+<li><code>得到渴望的「奖励」</code>：这一串行为最终会得到什么。比如：喝酒，享受的是那种暂时放下一切的状态；打游戏，得到的是赢得比赛、得到别人膜拜的快感等。当然对于同一样东西，每个人真正的渴求不尽相同，这里只是举例。</li>
+</ul>
+<h3 id="关于习惯改变"><a href="#关于习惯改变" class="headerlink" title="关于习惯改变"></a>关于习惯改变</h3><p>上图中的外圈部分主要说明的是<strong>如何改变习惯</strong>：</p>
+<blockquote>
+<p>留住旧习惯回路中的「暗示」，提供旧习惯回路中的「奖励」，但要插入一个新的惯常行为。</p>
+</blockquote>
+<p>这是书中阐述的一个改变习惯的黄金法则，如果暗示和奖赏不变，几乎所有习惯都是可以改变的。</p>
+<p>推荐步骤：</p>
+<ul>
+<li>1、<code>找出目前的「惯常行为」</code>，也就是你想改变的习惯；</li>
+<li>2、<code>尝试使用不同的「奖励」</code>，以找到真正想要得到的东西；</li>
+<li>3、<code>找出触发习惯的「暗示」</code>，弄清楚是什么触发了这个习惯；</li>
+<li>4、<code>制定计划</code>，采用不同的、更有益的习惯，以得到同样的「奖励」或更好的「奖励」。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>读书</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读《小狗钱钱1》</title>
+    <url>/post/605289230.html</url>
+    <content><![CDATA[<ul>
+<li>成功的故事很少有精彩的翻版，但是故事中包含的道理却可以帮助我们在遇到困境时找到最佳的出路。</li>
+<li>并非困难使我们放弃，而是因为我们放弃，才显得如此困难。</li>
+<li>天下难事，必做于易；天下大事，必做于细。</li>
+<li>太多的人做事犹豫不决，就是因为他们觉得没有完全弄懂这件事情。真正付诸实践比纯粹的思考有用的多。</li>
+<li>当你决定做一件事情的时候，你必须在 72 小时之内完成，否则你很可能永远不会再做了。</li>
+<li>量入为出。</li>
+<li>50% 的收入变成‘鹅’（可以产生收益的钱，永远不要随便动），40% 的收入放入梦想储蓄罐（一些目标性的消费计划），剩下的 10% 用来花（日常支出）。</li>
+<li>一个人觉得最引以为豪的事情，往往是那些做起来最艰难的事情。</li>
+<li>挑选基金时的注意事项：<ul>
+<li>至少有 10 年历史；</li>
+<li>优先选择大型跨国股票基金；</li>
+<li>比较基金走势图，看过去 10 年间哪些年终利润最好。</li>
+</ul>
+</li>
+<li>把钱投在一只大型基金上，5 ～ 10 年内根本不去看他。</li>
+<li>学会把某些自己不喜欢做而又不擅长做的事情交给别人就行了。</li>
+<li>不要为失去的东西而忧伤，而要对拥有它的时光心存感激。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
+        <tag>读书</tag>
       </tags>
   </entry>
   <entry>
@@ -5377,150 +5542,6 @@
         <tag>版本管理</tag>
         <tag>svn</tag>
         <tag>Subversion</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>吴军博士人生进阶三部曲：《态度》</title>
-    <url>/post/1479506599.html</url>
-    <content><![CDATA[<ul>
-<li>夫妻之间的矛盾要在孩子不在场的时候解决。和谐产生快乐。</li>
-<li>永远没有完美的时候。将一个比原来更好的一点的版本按时提供给用户，总比为了追求一个完美的版本，最后什么都提供不了好得多。</li>
-<li>从做每一件小事开始，慢慢形成习惯，习惯塑造来性格，性格决定来命运。</li>
-<li>盖茨和扎克伯格：<ul>
-<li>他们至少都上了哈佛；</li>
-<li>他们都有过人的技术专长；</li>
-<li><code>他们都是在找到了赚钱方法之后，才退学的，而不是在退学之后开始创业的</code>。</li>
-</ul>
-</li>
-<li><strong>好运气后面是三倍的努力</strong>。</li>
-<li>成功固然不错，但更重要的是做个好人（It’s nice to be great, yet it’s great to be great.）。</li>
-<li>J.P.摩根说：“任意让‘小钱’从身边溜走的人，一定留不住‘大钱’。”</li>
-<li>天天操作股票的人，都是在向股市送钱。只有耐得住性子的人，才能赚钱。</li>
-<li>关于投资（与巴菲特的午餐）：<ul>
-<li>不要过于冒险，会导致灭顶之灾的投资；</li>
-<li>不要进行自己不懂的投资。</li>
-</ul>
-</li>
-<li>关于领导力：<ul>
-<li>组织和工作能力，能否将一件事分解，组织大家完成；</li>
-<li>团结大多数人，让每个人能够各尽其才，发挥作用。</li>
-</ul>
-</li>
-<li>关于沟通：<ul>
-<li>有效的沟通要以对方的确认为准；</li>
-<li>以对方听得懂的话来沟通；</li>
-<li>要简洁，切中要害；</li>
-<li>善辩不等于好的沟通。</li>
-</ul>
-</li>
-<li>世界上永远有很多我们觉得无能为力的事情，有些是注定的，或者运气不好，我们能做的事情比较少，但是这些倒霉事如果一再发生，就说明我们做事的方法可能有问题，需要跳出原有的固定思维，寻找更好的方法。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>读书</tag>
-        <tag>吴军</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>吴军博士人生进阶三部曲：《见识》</title>
-    <url>/post/3622989416.html</url>
-    <content><![CDATA[<ul>
-<li>一条河的水量，由它的<strong>长度</strong>、<strong>宽度</strong>和<strong>深度</strong>三个因素决定，一个人的影响力也是如此。</li>
-<li>对于那些试图在金字塔上爬几个台阶的人来讲，要做的不是抱怨社会的不公平，而是需要付出足够多的努力，同时把注意力放到最该关注的事情上去。</li>
-<li>恋爱是激情，是化学物质分泌所带来的愉悦；婚姻则是由两个人一同构造一个<strong>舒适</strong>的共同体，在那个共同体中，双方都将受益。</li>
-<li>很多时候，我们把太多的精力花在了选择上，而不是<strong>经营</strong>上，导致难以精进。</li>
-<li><strong>做减法</strong>。如果一个人不能把一件事做好，他首先想到的就应该是少做事情，而不是让自己更忙碌。</li>
-<li>学习是一件长期的事情、一辈子的事情，是马拉松比赛，而不是百米赛跑。</li>
-<li>如果一定要说有什么起跑线的话，<strong>父母的见识</strong>就是起跑线。从教育下一代的角度看，一个家庭比贫穷更可怕的是<code>缺乏见识</code>、<code>缺乏爱</code>、<code>缺乏规矩</code>。</li>
-<li>但凡那些能够比较长期稳定挣钱的行业，开始的投入都是比较大的，并不存在一种不需要投入就能获得很高回报的行业，否则，这个行业一定太挤，以至一段时间以后行业的回报肯定会急剧下降。</li>
-<li>衡量一个专家水平最可靠的方法，就是看他们是将复杂的问题简单化，让每一个人都理解，还是故作高深，将简单的问题复杂化。</li>
-<li>一个好的产品设计者会想办法<strong>引导顾客</strong>，而不会去做迎合每一个顾客的事情。</li>
-<li><strong>少就是多</strong>。适度的选择给我们自由，但是过多的选择会适得其反。</li>
-<li>对于所喜欢的东西，如果付出的代价是让生活质量变差，那就算了。因为钱和任何东西，都是为了让你生活得更好，而不是给你带来麻烦。</li>
-<li>每个人无论是自己创业还是为别人做事，都应该有<strong>自己独特的能力</strong>，才有可能高效率的挣钱。</li>
-<li>投资大师巴菲特一直在强调长期成功的投资，关键不在于把握了多少次机会，而在于是否能<strong>少犯错误</strong>。</li>
-<li>对于任何演讲者，都不要指望一次演讲能够讲清楚 10 件事，真能把一件事讲清楚，目的就达到了。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>读书</tag>
-        <tag>吴军</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>读《小狗钱钱1》</title>
-    <url>/post/605289230.html</url>
-    <content><![CDATA[<ul>
-<li>成功的故事很少有精彩的翻版，但是故事中包含的道理却可以帮助我们在遇到困境时找到最佳的出路。</li>
-<li>并非困难使我们放弃，而是因为我们放弃，才显得如此困难。</li>
-<li>天下难事，必做于易；天下大事，必做于细。</li>
-<li>太多的人做事犹豫不决，就是因为他们觉得没有完全弄懂这件事情。真正付诸实践比纯粹的思考有用的多。</li>
-<li>当你决定做一件事情的时候，你必须在 72 小时之内完成，否则你很可能永远不会再做了。</li>
-<li>量入为出。</li>
-<li>50% 的收入变成‘鹅’（可以产生收益的钱，永远不要随便动），40% 的收入放入梦想储蓄罐（一些目标性的消费计划），剩下的 10% 用来花（日常支出）。</li>
-<li>一个人觉得最引以为豪的事情，往往是那些做起来最艰难的事情。</li>
-<li>挑选基金时的注意事项：<ul>
-<li>至少有 10 年历史；</li>
-<li>优先选择大型跨国股票基金；</li>
-<li>比较基金走势图，看过去 10 年间哪些年终利润最好。</li>
-</ul>
-</li>
-<li>把钱投在一只大型基金上，5 ～ 10 年内根本不去看他。</li>
-<li>学会把某些自己不喜欢做而又不擅长做的事情交给别人就行了。</li>
-<li>不要为失去的东西而忧伤，而要对拥有它的时光心存感激。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>读书</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>读《习惯的力量》</title>
-    <url>/post/130164364.html</url>
-    <content><![CDATA[<blockquote>
-<p>本书通过大量案例，揭示了我们的习惯是如何形成的，刻画了一张图「习惯回路」，它包含提示、惯常行为、奖励三个主要部分。结合这张图，通过认真分析并找到我们内心深处真正的需求，借助惯常行为的改变，就能达到改变旧习惯的目的。</p>
-</blockquote>
-<p>无意间在网上找到了下面这张图片，它非常好的诠释了本书的主旨：</p>
-<p><img data-src="https://static.sqiang.net/image/post/customay_behavior_1.png?imageView2/2/w/600" alt="《习惯的力量》（图片来源网络）" title="《习惯的力量》（图片来源网络）"></p>
-<span id="more"></span>
-
-<h3 id="关于习惯回路"><a href="#关于习惯回路" class="headerlink" title="关于习惯回路"></a>关于习惯回路</h3><p>上图中的内圈部分主要说明的是<strong>习惯回路</strong>：</p>
-<ul>
-<li><code>看到一个「暗示」</code>：这个「暗示」是任何让你产生某种行为的东西，比如：看到篮球，想到的是去打篮球；看到游戏机，想到的是打游戏；看见烟盒或打火机，想到的是吸烟等。</li>
-<li><code>采取「惯常行为」</code>：承接上一步的「暗示」而产生的习惯性行为。</li>
-<li><code>得到渴望的「奖励」</code>：这一串行为最终会得到什么。比如：喝酒，享受的是那种暂时放下一切的状态；打游戏，得到的是赢得比赛、得到别人膜拜的快感等。当然对于同一样东西，每个人真正的渴求不尽相同，这里只是举例。</li>
-</ul>
-<h3 id="关于习惯改变"><a href="#关于习惯改变" class="headerlink" title="关于习惯改变"></a>关于习惯改变</h3><p>上图中的外圈部分主要说明的是<strong>如何改变习惯</strong>：</p>
-<blockquote>
-<p>留住旧习惯回路中的「暗示」，提供旧习惯回路中的「奖励」，但要插入一个新的惯常行为。</p>
-</blockquote>
-<p>这是书中阐述的一个改变习惯的黄金法则，如果暗示和奖赏不变，几乎所有习惯都是可以改变的。</p>
-<p>推荐步骤：</p>
-<ul>
-<li>1、<code>找出目前的「惯常行为」</code>，也就是你想改变的习惯；</li>
-<li>2、<code>尝试使用不同的「奖励」</code>，以找到真正想要得到的东西；</li>
-<li>3、<code>找出触发习惯的「暗示」</code>，弄清楚是什么触发了这个习惯；</li>
-<li>4、<code>制定计划</code>，采用不同的、更有益的习惯，以得到同样的「奖励」或更好的「奖励」。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-        <tag>读书</tag>
       </tags>
   </entry>
   <entry>
@@ -6539,42 +6560,6 @@
       <tags>
         <tag>Redis</tag>
         <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaScript 中 undefined 与 null 的用法区别</title>
-    <url>/post/2719612904.html</url>
-    <content><![CDATA[<p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
-<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
-<p>二者的主要用法区别如下：</p>
-<ul>
-<li><code>undefined</code><ul>
-<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
-<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
-<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
-<li>函数没有返回值时，默认返回 <code>undefined</code></li>
-</ul>
-</li>
-<li><code>null</code><ul>
-<li>作为函数的参数，表示该函数的参数不是对象。</li>
-<li>作为对象原型链的终点。</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
-<ol>
-<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
-<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
-</ol>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
-        <tag>数据类型</tag>
       </tags>
   </entry>
   <entry>
