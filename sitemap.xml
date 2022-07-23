@@ -830,6 +830,20 @@
   </url>
   
   <url>
+    <loc>https://sqiang.net/tags/Redis/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sqiang.net/tags/LNMP/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
@@ -852,20 +866,6 @@
   
   <url>
     <loc>https://sqiang.net/tags/PHP/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Redis/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -935,14 +935,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/PHP-CLI/</loc>
+    <loc>https://sqiang.net/tags/ThinkPHP/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/ThinkPHP/</loc>
+    <loc>https://sqiang.net/tags/PHP-CLI/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1124,14 +1124,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/XDebug/</loc>
+    <loc>https://sqiang.net/tags/EditorConfig/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/EditorConfig/</loc>
+    <loc>https://sqiang.net/tags/XDebug/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

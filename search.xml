@@ -804,6 +804,47 @@
       </tags>
   </entry>
   <entry>
+    <title>在 CentOS7 下安装、配置 Redis 服务</title>
+    <url>/post/2447614005.html</url>
+    <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
+<p>下载：<a href="https://redis.io/download">https://redis.io/download</a></p>
+<span id="more"></span>
+
+<h3 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-下载源码包"><a href="#2-下载源码包" class="headerlink" title="2. 下载源码包"></a>2. 下载源码包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 推荐在这个目录存放各个软件的源码</span></span><br><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本</span></span><br><span class="line">➜  wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载最新稳定版</span></span><br><span class="line">➜  wget http://download.redis.io/redis-stable.tar.gz</span><br><span class="line"><span class="comment"># 查看源码具体版本</span></span><br><span class="line">➜  cat redis-stable/src/version.h</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-编译安装"><a href="#3-编译安装" class="headerlink" title="3. 编译安装"></a>3. 编译安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  tar zxvf redis-5.0.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> redis-5.0.5</span><br><span class="line">➜  make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到指定目录下</span></span><br><span class="line">➜  make PREFIX=/usr/<span class="built_in">local</span>/redis-5.0.5 install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝默认配置文件到指定目录</span></span><br><span class="line">➜  mkdir /usr/<span class="built_in">local</span>/redis-5.0.5/etc</span><br><span class="line">➜  cp redis.conf /usr/<span class="built_in">local</span>/redis-5.0.5/etc/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建程序软链接，以便后期版本升级</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">ln -s redis-5.0.5 redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量，以便在全局使用 Redis 相关命令</span></span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PATH:/usr/local/redis/bin&quot;&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">➜  redis-cli -v</span><br><span class="line">redis-cli 5.0.5</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-修改默认配置文件"><a href="#4-修改默认配置文件" class="headerlink" title="4. 修改默认配置文件"></a>4. 修改默认配置文件</h3><p>这里只是一些推荐的常用基本配置，详细的参见配置文件中对各个配置项的说明，或者参照这里 <a href="https://www.runoob.com/redis/redis-conf.html">https://www.runoob.com/redis/redis-conf.html</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为方便管理多个 Redis 服务，以版本号作为配置文件的名称后缀</span></span><br><span class="line">➜  mv redis.conf redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始编辑配置文件</span></span><br><span class="line">➜  vi redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 以下是常用配置项</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启守护进程（后台）方式运行</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进程文件</span></span><br><span class="line">pidfile /var/redis/run/redis_6379.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只允许指定主机连接，默认不限制</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端闲置多长时间（单位：s）关闭连接</span></span><br><span class="line"><span class="comment"># 默认 0 ，无限制</span></span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地持久化数据文件名</span></span><br><span class="line">dbfilename dump_6379.rdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">dir /var/redis/db/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志级别</span></span><br><span class="line"><span class="comment"># - debug 适用于开发、测试，打印的信息较多</span></span><br><span class="line"><span class="comment"># - verbose 比 debug 简洁一些</span></span><br><span class="line"><span class="comment"># - notice 默认，普通的 verbose，用于生产环境</span></span><br><span class="line"><span class="comment"># - warning 警告和一些比较严重的信息</span></span><br><span class="line">loglevel notice</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件</span></span><br><span class="line"><span class="comment"># 默认为空字符串，表示标准输出（stdout）</span></span><br><span class="line"><span class="comment"># 如果以守护进程运行，并且此处采用标准输出，则日志发送给 /dev/null</span></span><br><span class="line">logfile /var/redis/<span class="built_in">log</span>/redis_6379.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接密码</span></span><br><span class="line"><span class="comment"># 为保证服务安全，建议开启并设置一个复杂的密码</span></span><br><span class="line">requirepass pwd2019</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 保存上面修改好的配置文件</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置中不存在的目录</span></span><br><span class="line">➜  mkdir -p /var/redis/&#123;run,<span class="built_in">log</span>,db&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><p>基本启动方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以默认配置启动</span></span><br><span class="line">➜  redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定配置文件</span></span><br><span class="line">➜  redis-server /usr/<span class="built_in">local</span>/redis/etc/redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更多使用参数</span></span><br><span class="line">➜  redis-server -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br></pre></td></tr></table></figure>
+
+<p>使用脚本启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/redis-5.0.5/utils/</span><br><span class="line">➜  cp redis_init_script /etc/init.d/</span><br><span class="line">➜  <span class="built_in">cd</span> /etc/init.d/</span><br><span class="line">➜  mv redis_init_script redis_6379</span><br><span class="line">➜  vim redis_6379</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:     redis_6379</span></span><br><span class="line"><span class="comment"># Default-Start:        2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:         0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description:    Redis data structure server</span></span><br><span class="line"><span class="comment"># Description:          Redis data structure server. See https://redis.io</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据实际安装情况修改这里的路径、端口、连接密码</span></span><br><span class="line"></span><br><span class="line">REDISPORT=6379</span><br><span class="line">REDISPWD=pwd2019</span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-server</span><br><span class="line">CLIEXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid</span><br><span class="line">CONF=<span class="string">&quot;/usr/local/redis/etc/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.conf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> exists, process is already running or crashed&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Starting Redis server...&quot;</span></span><br><span class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> does not exist, process is not running&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stopping ...&quot;</span></span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="variable">$REDISPWD</span> ]; <span class="keyword">then</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="variable">$REDISPWD</span> shutdown</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> shutdown</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">while</span> [ -x /proc/<span class="variable">$&#123;PID&#125;</span> ]</span><br><span class="line">                <span class="keyword">do</span></span><br><span class="line">                    <span class="built_in">echo</span> <span class="string">&quot;Waiting for Redis to shutdown ...&quot;</span></span><br><span class="line">                    sleep 1</span><br><span class="line">                <span class="keyword">done</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Redis stopped&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Please use start or stop as first argument&quot;</span></span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+<p>使用脚本启动服务测试</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ./redis_6379 start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否启动成功</span></span><br><span class="line">➜  ps -ef | grep redis</span><br><span class="line">root     19262     1  0 01:42 ?        00:00:00 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line">root     19267 19129  0 01:43 pts/0    00:00:00 grep --color=auto redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">➜  ./redis_6379 stop</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-加入开机自启动"><a href="#6-加入开机自启动" class="headerlink" title="6. 加入开机自启动"></a>6. 加入开机自启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 root 用户操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到自启动列表</span></span><br><span class="line"><span class="comment"># 这里的 redis_6379 与 /etc/init.d/redis_6379 文件名保持一致</span></span><br><span class="line">➜  chkconfig --add redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 2 3 4 5 级别设置为自启动</span></span><br><span class="line">➜  chkconfig --level 2345 redis_6379 on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否设置成功</span></span><br><span class="line">➜  chkconfig --list | grep redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启检查自启动是否生效</span></span><br><span class="line">➜  reboot</span><br></pre></td></tr></table></figure>
+
+<p>在 CentOS7+ 建议使用 <code>systemctl</code> 命令对 Redis 服务进行统一管理，如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">➜  systemctl status redis_6379</span><br><span class="line">● redis_6379.service - LSB: Redis data structure server</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/redis_6379; bad; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2019-11-11 02:21:03 UTC; 3s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 1042 ExecStop=/etc/rc.d/init.d/redis_6379 stop (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 1056 ExecStart=/etc/rc.d/init.d/redis_6379 start (code=exited, status=0/SUCCESS)</span><br><span class="line">   CGroup: /system.slice/redis_6379.service</span><br><span class="line">           └─1058 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line"></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Starting LSB: Redis data structure server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: Starting Redis server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># oO0OoO0OoO0Oo Re...0Oo</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Redis version=5....ted</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Configuration loaded</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Started LSB: Redis data structure server.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">➜  systemctl start redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务</span></span><br><span class="line">➜  systemctl stop redis_6379</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Redis</tag>
+        <tag>缓存</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于 CentOS6.x 源码编译安装 LNMP 环境</title>
     <url>/post/3800214565.html</url>
     <content><![CDATA[<blockquote>
@@ -941,47 +982,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 CentOS7 下安装、配置 Redis 服务</title>
-    <url>/post/2447614005.html</url>
-    <content><![CDATA[<p>官网：<a href="https://redis.io/">https://redis.io</a></p>
-<p>下载：<a href="https://redis.io/download">https://redis.io/download</a></p>
-<span id="more"></span>
-
-<h3 id="1-安装依赖"><a href="#1-安装依赖" class="headerlink" title="1. 安装依赖"></a>1. 安装依赖</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y gcc gcc-c++ kernel-devel</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-下载源码包"><a href="#2-下载源码包" class="headerlink" title="2. 下载源码包"></a>2. 下载源码包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 推荐在这个目录存放各个软件的源码</span></span><br><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载指定版本</span></span><br><span class="line">➜  wget http://download.redis.io/releases/redis-5.0.5.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载最新稳定版</span></span><br><span class="line">➜  wget http://download.redis.io/redis-stable.tar.gz</span><br><span class="line"><span class="comment"># 查看源码具体版本</span></span><br><span class="line">➜  cat redis-stable/src/version.h</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-编译安装"><a href="#3-编译安装" class="headerlink" title="3. 编译安装"></a>3. 编译安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  tar zxvf redis-5.0.5.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> redis-5.0.5</span><br><span class="line">➜  make</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到指定目录下</span></span><br><span class="line">➜  make PREFIX=/usr/<span class="built_in">local</span>/redis-5.0.5 install</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拷贝默认配置文件到指定目录</span></span><br><span class="line">➜  mkdir /usr/<span class="built_in">local</span>/redis-5.0.5/etc</span><br><span class="line">➜  cp redis.conf /usr/<span class="built_in">local</span>/redis-5.0.5/etc/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建程序软链接，以便后期版本升级</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/</span><br><span class="line">ln -s redis-5.0.5 redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量，以便在全局使用 Redis 相关命令</span></span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&#x27;export PATH=&quot;$PATH:/usr/local/redis/bin&quot;&#x27;</span> &gt;&gt; /etc/profile</span><br><span class="line">➜  <span class="built_in">source</span> /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">➜  redis-cli -v</span><br><span class="line">redis-cli 5.0.5</span><br></pre></td></tr></table></figure>
-
-<h3 id="4-修改默认配置文件"><a href="#4-修改默认配置文件" class="headerlink" title="4. 修改默认配置文件"></a>4. 修改默认配置文件</h3><p>这里只是一些推荐的常用基本配置，详细的参见配置文件中对各个配置项的说明，或者参照这里 <a href="https://www.runoob.com/redis/redis-conf.html">https://www.runoob.com/redis/redis-conf.html</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis/etc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为方便管理多个 Redis 服务，以版本号作为配置文件的名称后缀</span></span><br><span class="line">➜  mv redis.conf redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始编辑配置文件</span></span><br><span class="line">➜  vi redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 以下是常用配置项</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启守护进程（后台）方式运行</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进程文件</span></span><br><span class="line">pidfile /var/redis/run/redis_6379.pid</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只允许指定主机连接，默认不限制</span></span><br><span class="line"><span class="built_in">bind</span> 127.0.0.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端闲置多长时间（单位：s）关闭连接</span></span><br><span class="line"><span class="comment"># 默认 0 ，无限制</span></span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地持久化数据文件名</span></span><br><span class="line">dbfilename dump_6379.rdb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置工作目录</span></span><br><span class="line">dir /var/redis/db/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志级别</span></span><br><span class="line"><span class="comment"># - debug 适用于开发、测试，打印的信息较多</span></span><br><span class="line"><span class="comment"># - verbose 比 debug 简洁一些</span></span><br><span class="line"><span class="comment"># - notice 默认，普通的 verbose，用于生产环境</span></span><br><span class="line"><span class="comment"># - warning 警告和一些比较严重的信息</span></span><br><span class="line">loglevel notice</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志文件</span></span><br><span class="line"><span class="comment"># 默认为空字符串，表示标准输出（stdout）</span></span><br><span class="line"><span class="comment"># 如果以守护进程运行，并且此处采用标准输出，则日志发送给 /dev/null</span></span><br><span class="line">logfile /var/redis/<span class="built_in">log</span>/redis_6379.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接密码</span></span><br><span class="line"><span class="comment"># 为保证服务安全，建议开启并设置一个复杂的密码</span></span><br><span class="line">requirepass pwd2019</span><br><span class="line"></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"><span class="comment"># 保存上面修改好的配置文件</span></span><br><span class="line"><span class="comment"># --------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建配置中不存在的目录</span></span><br><span class="line">➜  mkdir -p /var/redis/&#123;run,<span class="built_in">log</span>,db&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-启动服务"><a href="#5-启动服务" class="headerlink" title="5. 启动服务"></a>5. 启动服务</h3><p>基本启动方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 以默认配置启动</span></span><br><span class="line">➜  redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定配置文件</span></span><br><span class="line">➜  redis-server /usr/<span class="built_in">local</span>/redis/etc/redis_6379.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看更多使用参数</span></span><br><span class="line">➜  redis-server -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br></pre></td></tr></table></figure>
-
-<p>使用脚本启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/src/redis-5.0.5/utils/</span><br><span class="line">➜  cp redis_init_script /etc/init.d/</span><br><span class="line">➜  <span class="built_in">cd</span> /etc/init.d/</span><br><span class="line">➜  mv redis_init_script redis_6379</span><br><span class="line">➜  vim redis_6379</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Simple Redis init.d script conceived to work on Linux systems</span></span><br><span class="line"><span class="comment"># as it does use of the /proc filesystem.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">### BEGIN INIT INFO</span></span><br><span class="line"><span class="comment"># Provides:     redis_6379</span></span><br><span class="line"><span class="comment"># Default-Start:        2 3 4 5</span></span><br><span class="line"><span class="comment"># Default-Stop:         0 1 6</span></span><br><span class="line"><span class="comment"># Short-Description:    Redis data structure server</span></span><br><span class="line"><span class="comment"># Description:          Redis data structure server. See https://redis.io</span></span><br><span class="line"><span class="comment">### END INIT INFO</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据实际安装情况修改这里的路径、端口、连接密码</span></span><br><span class="line"></span><br><span class="line">REDISPORT=6379</span><br><span class="line">REDISPWD=pwd2019</span><br><span class="line">EXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-server</span><br><span class="line">CLIEXEC=/usr/<span class="built_in">local</span>/redis/bin/redis-cli</span><br><span class="line"></span><br><span class="line">PIDFILE=/var/run/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.pid</span><br><span class="line">CONF=<span class="string">&quot;/usr/local/redis/etc/redis_<span class="variable">$&#123;REDISPORT&#125;</span>.conf&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        <span class="keyword">if</span> [ -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> exists, process is already running or crashed&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Starting Redis server...&quot;</span></span><br><span class="line">                <span class="variable">$EXEC</span> <span class="variable">$CONF</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        <span class="keyword">if</span> [ ! -f <span class="variable">$PIDFILE</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PIDFILE</span> does not exist, process is not running&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">                PID=$(cat <span class="variable">$PIDFILE</span>)</span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Stopping ...&quot;</span></span><br><span class="line">                <span class="keyword">if</span> [ -n <span class="variable">$REDISPWD</span> ]; <span class="keyword">then</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> -a <span class="variable">$REDISPWD</span> shutdown</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                        <span class="variable">$CLIEXEC</span> -p <span class="variable">$REDISPORT</span> shutdown</span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">                <span class="keyword">while</span> [ -x /proc/<span class="variable">$&#123;PID&#125;</span> ]</span><br><span class="line">                <span class="keyword">do</span></span><br><span class="line">                    <span class="built_in">echo</span> <span class="string">&quot;Waiting for Redis to shutdown ...&quot;</span></span><br><span class="line">                    sleep 1</span><br><span class="line">                <span class="keyword">done</span></span><br><span class="line">                <span class="built_in">echo</span> <span class="string">&quot;Redis stopped&quot;</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;Please use start or stop as first argument&quot;</span></span><br><span class="line">        ;;</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-
-<p>使用脚本启动服务测试</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ./redis_6379 start</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否启动成功</span></span><br><span class="line">➜  ps -ef | grep redis</span><br><span class="line">root     19262     1  0 01:42 ?        00:00:00 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line">root     19267 19129  0 01:43 pts/0    00:00:00 grep --color=auto redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 客户端连接测试</span></span><br><span class="line">➜  redis-cli</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(error) NOAUTH Authentication required.</span><br><span class="line">127.0.0.1:6379&gt; auth pwd2019</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exit</span></span><br><span class="line">➜</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">➜  ./redis_6379 stop</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-加入开机自启动"><a href="#6-加入开机自启动" class="headerlink" title="6. 加入开机自启动"></a>6. 加入开机自启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用 root 用户操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加到自启动列表</span></span><br><span class="line"><span class="comment"># 这里的 redis_6379 与 /etc/init.d/redis_6379 文件名保持一致</span></span><br><span class="line">➜  chkconfig --add redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将 2 3 4 5 级别设置为自启动</span></span><br><span class="line">➜  chkconfig --level 2345 redis_6379 on</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查是否设置成功</span></span><br><span class="line">➜  chkconfig --list | grep redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启检查自启动是否生效</span></span><br><span class="line">➜  reboot</span><br></pre></td></tr></table></figure>
-
-<p>在 CentOS7+ 建议使用 <code>systemctl</code> 命令对 Redis 服务进行统一管理，如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">➜  systemctl status redis_6379</span><br><span class="line">● redis_6379.service - LSB: Redis data structure server</span><br><span class="line">   Loaded: loaded (/etc/rc.d/init.d/redis_6379; bad; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2019-11-11 02:21:03 UTC; 3s ago</span><br><span class="line">     Docs: man:systemd-sysv-generator(8)</span><br><span class="line">  Process: 1042 ExecStop=/etc/rc.d/init.d/redis_6379 stop (code=exited, status=0/SUCCESS)</span><br><span class="line">  Process: 1056 ExecStart=/etc/rc.d/init.d/redis_6379 start (code=exited, status=0/SUCCESS)</span><br><span class="line">   CGroup: /system.slice/redis_6379.service</span><br><span class="line">           └─1058 /usr/<span class="built_in">local</span>/redis/bin/redis-server 127.0.0.1:6379</span><br><span class="line"></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Starting LSB: Redis data structure server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: Starting Redis server...</span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># oO0OoO0OoO0Oo Re...0Oo</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Redis version=5....ted</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost redis_6379[1056]: 1057:C 11 Nov 2019 02:21:03.594 <span class="comment"># Configuration loaded</span></span><br><span class="line">Nov 11 02:21:03 cnetos7-localhost systemd[1]: Started LSB: Redis data structure server.</span><br><span class="line">Hint: Some lines were ellipsized, use -l to show <span class="keyword">in</span> full.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">➜  systemctl start redis_6379</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭服务</span></span><br><span class="line">➜  systemctl stop redis_6379</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Redis</tag>
-        <tag>缓存</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>如何设置 oh-my-zsh 主题 agnoster</title>
     <url>/post/218213306.html</url>
     <content><![CDATA[<h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><center>
@@ -1115,6 +1115,42 @@
       </tags>
   </entry>
   <entry>
+    <title>ThinkPHP 框架执行流程浅析</title>
+    <url>/post/2410148889.html</url>
+    <content><![CDATA[<blockquote>
+<p>版本：v5.1.x LTS</p>
+<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
+</blockquote>
+<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
+<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
+<p>其中入口文件位置：<strong>public/index.php</strong></p>
+<span id="more"></span>
+
+<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
+<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
+<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
+<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
+<blockquote>
+<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
+</blockquote>
+<blockquote>
+<p>详见如下三个函数的文档：</p>
+<ul>
+<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
+<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>ThinkPHP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>PHP 之命令行模式</title>
     <url>/post/954645501.html</url>
     <content><![CDATA[<h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
@@ -1151,42 +1187,6 @@
       <tags>
         <tag>PHP</tag>
         <tag>PHP-CLI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ThinkPHP 框架执行流程浅析</title>
-    <url>/post/2410148889.html</url>
-    <content><![CDATA[<blockquote>
-<p>版本：v5.1.x LTS</p>
-<p>v6.0 稳定版已经发布，详见官网：<a href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
-</blockquote>
-<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
-<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
-<p>其中入口文件位置：<strong>public/index.php</strong></p>
-<span id="more"></span>
-
-<h3 id="1-加载-base-php"><a href="#1-加载-base-php" class="headerlink" title="1. 加载 base.php"></a>1. 加载 base.php</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B1.png" alt="ThinkPHP5.1+框架执行流程1" title="ThinkPHP5.1+框架执行流程1"></p>
-<h3 id="2-执行-App-的-run-方法"><a href="#2-执行-App-的-run-方法" class="headerlink" title="2. 执行 App 的 run() 方法"></a>2. 执行 App 的 run() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B2.png" alt="ThinkPHP5.1+框架执行流程2" title="ThinkPHP5.1+框架执行流程2"></p>
-<h3 id="3-执行-Response-的-send-方法"><a href="#3-执行-Response-的-send-方法" class="headerlink" title="3. 执行 Response 的 send() 方法"></a>3. 执行 Response 的 send() 方法</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B3.png" alt="ThinkPHP5.1+框架执行流程3" title="ThinkPHP5.1+框架执行流程3"></p>
-<h3 id="4-调用-Error-类"><a href="#4-调用-Error-类" class="headerlink" title="4. 调用 Error 类"></a>4. 调用 Error 类</h3><p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B4.png" alt="ThinkPHP5.1+框架执行流程4" title="ThinkPHP5.1+框架执行流程4"></p>
-<blockquote>
-<p>说明：在加载 base.php 时，通过 <code>Error::register()</code> 注册了异常处理，所以在应用执行最后会调用 Error 类中相应的处理方法。</p>
-</blockquote>
-<blockquote>
-<p>详见如下三个函数的文档：</p>
-<ul>
-<li><a href="https://www.php.net/manual/zh/function.set-error-handler.php" title="set_error_handler()">set_error_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.set-exception-handler.php" title="set_exception_handler()">set_exception_handler()</a></li>
-<li><a href="https://www.php.net/manual/zh/function.register-shutdown-function.php" title="register_shutdown_function()">register_shutdown_function()</a></li>
-</ul>
-</blockquote>
-]]></content>
-      <categories>
-        <category>PHP</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
-        <tag>ThinkPHP</tag>
       </tags>
   </entry>
   <entry>
@@ -1346,6 +1346,37 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo添加自定义404页面</title>
+    <url>/post/2039108116.html</url>
+    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
+<span id="more"></span>
+
+<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
+</blockquote>
+<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
+<li>Github Pages 不需要特殊处理</li>
+</ul>
+<ul>
+<li><p>Nginx</p>
+  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
+      <categories>
+        <category>其它</category>
+      </categories>
+      <tags>
+        <tag>其它</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo最佳实践推荐</title>
     <url>/post/1938539149.html</url>
     <content><![CDATA[<blockquote>
@@ -1392,37 +1423,6 @@
         <tag>其它</tag>
         <tag>Hexo</tag>
         <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo添加自定义404页面</title>
-    <url>/post/2039108116.html</url>
-    <content><![CDATA[<h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
-<span id="more"></span>
-
-<figure class="highlight md"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">permalink: /404</span><br><span class="line">date: 2020-10-16 15:19:35</span><br><span class="line">comments: false</span><br><span class="line"><span class="section">layout: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=utf-8;&quot;</span>/&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;all&quot;</span> /&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;robots&quot;</span> <span class="attr">content</span>=<span class="string">&quot;index,follow&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;https://blog.sqiang.net&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;返回博客首页&quot;</span>&gt;</span></span><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>提示</strong>：这里是直接使用的<a href="https://www.qq.com/404/">腾讯公益404页面</a>，你也可以添加任意文字或 HTML 代码，只要保证头部 <code>---</code> 中间的设置与本文一致即可。</p>
-</blockquote>
-<h5 id="3-部署"><a href="#3-部署" class="headerlink" title="3. 部署"></a>3. 部署</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-修改服务器设置"><a href="#4-修改服务器设置" class="headerlink" title="4. 修改服务器设置"></a>4. 修改服务器设置</h5><ul>
-<li>Github Pages 不需要特殊处理</li>
-</ul>
-<ul>
-<li><p>Nginx</p>
-  <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改或添加以下 404 页面配置</span></span><br><span class="line"><span class="attribute">error_page</span>   <span class="number">404</span>   /<span class="number">404</span>.html;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="5-ok"><a href="#5-ok" class="headerlink" title="5. ok"></a>5. ok</h5>]]></content>
-      <categories>
-        <category>其它</category>
-      </categories>
-      <tags>
-        <tag>其它</tag>
-        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2678,54 +2678,6 @@
       </tags>
   </entry>
   <entry>
-    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
-    <url>/post/223922994.html</url>
-    <content><![CDATA[<blockquote>
-<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
-</blockquote>
-<span id="more"></span>
-
-<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
-<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
-<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
-<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
-<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
-
-<p>注意：</p>
-<ul>
-<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
-</li>
-<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
-<blockquote>
-<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
-</blockquote>
-<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
-<ul>
-<li>方式一：给宿主机设置一个固定 IP；</li>
-<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
-<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
-</ul>
-</li>
-</ul>
-<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
-<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>PHPStorm</tag>
-        <tag>XDebug</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>借助 EditorConfig 统一编码风格</title>
     <url>/post/1679410750.html</url>
     <content><![CDATA[<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p><code>EditorConfig</code> 是一个插件，通过配置文件的形式（<code>.editorconfig</code>），有助于对同一项目的多个开发人员维护一致的编码样式，包括缩进、换行符、文件编码等。</p>
@@ -2789,6 +2741,54 @@
       <tags>
         <tag>开发工具</tag>
         <tag>EditorConfig</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在 PHPStorm 中配置基于 Docker 的 xdebug</title>
+    <url>/post/223922994.html</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍在 PHPStorm 中如何配置 xdebug 进行断点调试，PHP 服务运行在 Docker 容器中。 此外，关于 vscode 的配置方式详见：<a href="https://blog.sqiang.net/post/567149842.html">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-Docker-设置"><a href="#1-Docker-设置" class="headerlink" title="1. Docker 设置"></a>1. Docker 设置</h3><h4 id="1-1-在镜像中安装-xdebug"><a href="#1-1-在镜像中安装-xdebug" class="headerlink" title="1.1. 在镜像中安装 xdebug"></a>1.1. 在镜像中安装 xdebug</h4><p>Dockerfile 文件中 xdebug 的安装方式如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 【xdebug】</span></span><br><span class="line">&amp;&amp; mkdir -p /tmp/xdebug \</span><br><span class="line">&amp;&amp; tar -xf /tmp/xdebug.tar.gz -C /tmp/xdebug --strip-components=<span class="number">1</span> \</span><br><span class="line">&amp;&amp; docker-php-ext-configure /tmp/xdebug --enable-xdebug \</span><br><span class="line">&amp;&amp; docker-php-ext-install /tmp/xdebug \</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里主要使用 <code>docker-php-ext-configure</code> 和 <code>docker-php-ext-install</code> 来安装和启用 PHP 扩展，详见：<a href="https://blog.sqiang.net/post/90967283.html">Docker 中的 PHP 如何安装扩展</a></p>
+<p>为了提高构建速度，这里用的是下载好的 xdebug 安装包，你也可以使用如下命令 <code>wget -c https://github.com/xdebug/xdebug/archive/2.7.2.tar.gz</code> 下载。</p>
+<h4 id="1-2-配置-xdebug"><a href="#1-2-配置-xdebug" class="headerlink" title="1.2. 配置 xdebug"></a>1.2. 配置 xdebug</h4><p>在 <code>php.ini</code> 中加入以下配置</p>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[XDebug]</span></span><br><span class="line"><span class="comment">;zend_extension = xdebug.so</span></span><br><span class="line"><span class="attr">xdebug.remote_enable</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_handler</span> = dbgp</span><br><span class="line"><span class="attr">xdebug.remote_port</span> = <span class="number">9001</span></span><br><span class="line"><span class="attr">xdebug.remote_autostart</span> = <span class="number">1</span></span><br><span class="line"><span class="attr">xdebug.remote_connect_back</span> = <span class="number">0</span></span><br><span class="line"><span class="attr">xdebug.idekey</span> = docker</span><br><span class="line"><span class="attr">xdebug.remote_host</span> = <span class="number">10.254</span>.<span class="number">254.254</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><p><code>xdebug.remote_port</code> 指定的端口号需要从从容器中暴露出去；</p>
+</li>
+<li><p><code>xdebug.remote_host</code> 用来配置宿主机的 IP 地址</p>
+<blockquote>
+<p>👍 最新：在 Docker v18.03+ 可以直接设置为 <strong>host.docker.internal</strong>，以自动解析宿主机的 IP。</p>
+</blockquote>
+<p>因为从 Docker 容器中无法通过 <code>localhost</code> 或 <code>127.0.0.1</code> 访问宿主机，所有有以下三种解决办法：</p>
+<ul>
+<li>方式一：给宿主机设置一个固定 IP；</li>
+<li>方式二：每次启动服务前，检查宿主机的 IP 是否发生变化，并修改 <code>php.ini</code> 文件中 xdebug 设置，使其与宿主机保持一致。</li>
+<li>方式三：将地址设置为 <code>10.254.254.254</code>，并在宿主机执行命令 <code>ifconfig lo0 alias 10.254.254.254</code> 添加一个回环 IP（<em>注意，这里的修改在宿主机系统重启后会失效</em>）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-PHPStorm-设置"><a href="#2-PHPStorm-设置" class="headerlink" title="2. PHPStorm 设置"></a>2. PHPStorm 设置</h3><p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug1.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug2.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug3.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug4.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+<h3 id="3-测试"><a href="#3-测试" class="headerlink" title="3. 测试"></a>3. 测试</h3><p>刷新项目，看到如下截图则配置成功。</p>
+<p><img data-src="https://static.sqiang.net/image/post/phpstorm_xdebug5.png?imageView2/0/interlace/1/q/75%7Cimageslim"></p>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>PHPStorm</tag>
+        <tag>XDebug</tag>
       </tags>
   </entry>
   <entry>
@@ -3614,7 +3614,7 @@
 <li><a href="https://docs.docker.com/engine/install/debian/">Debian</a></li>
 <li><a href="https://docs.docker.com/engine/install/centos/">CentOS</a></li>
 </ul>
-<h3 id="2-基础入门篇"><a href="#2-基础入门篇" class="headerlink" title="2. 基础入门篇"></a>2. 基础入门篇</h3><h4 id="2-1-镜像"><a href="#2-1-镜像" class="headerlink" title="2.1. 镜像"></a>2.1. 镜像</h4><h5 id="2-1-2-介绍"><a href="#2-1-2-介绍" class="headerlink" title="2.1.2. 介绍"></a>2.1.2. 介绍</h5><p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。<strong>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</strong></p>
+<h3 id="2-基础入门篇"><a href="#2-基础入门篇" class="headerlink" title="2. 基础入门篇"></a>2. 基础入门篇</h3><h4 id="2-1-镜像"><a href="#2-1-镜像" class="headerlink" title="2.1. 镜像"></a>2.1. 镜像</h4><h5 id="2-1-1-介绍"><a href="#2-1-1-介绍" class="headerlink" title="2.1.1. 介绍"></a>2.1.1. 介绍</h5><p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。<strong>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</strong></p>
 <p>Docker 镜像是怎么实现增量的修改和维护的？ 每个镜像都由很多层次构成，Docker 使用 <a href="https://en.wikipedia.org/wiki/Union_mount">Union FS</a> 将这些不同的层结合到一个镜像中去。</p>
 <p>通常 Union FS 有两个用途：</p>
 <ul>
@@ -3631,15 +3631,13 @@
 </ul>
 <h5 id="2-1-3-常用操作命令"><a href="#2-1-3-常用操作命令" class="headerlink" title="2.1.3. 常用操作命令"></a>2.1.3. 常用操作命令</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 搜索镜像</span></span><br><span class="line">$ docker search ubuntu:16.04</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取镜像</span></span><br><span class="line">$ docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出镜像（只会显示顶层镜像）</span></span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除镜像（需要先删除依赖该镜像的容器）</span></span><br><span class="line">$ docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有虚悬镜像</span></span><br><span class="line">$ docker rmi $(docker images -q -f dangling=<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有仓库名包含 redis 的镜像</span></span><br><span class="line">$ docker rmi $(docker images -q redis)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改镜像标签</span></span><br><span class="line">$ sudo docker tag &lt;镜像ID&gt; &lt;标签名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出镜像存储文件</span></span><br><span class="line">$ docker save -o 导出镜像名.tar.gz &lt;镜像ID 或 镜像名:tag&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入镜像存储文件（包含镜像以及相关元数据信息，比如标签等）</span></span><br><span class="line">$ docker load &lt; 导出镜像名.tar.gz</span><br><span class="line">或</span><br><span class="line">$ docker load --input 导出镜像名.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-容器"><a href="#2-2-容器" class="headerlink" title="2.2. 容器"></a>2.2. 容器</h4><h5 id="2-2-1-介绍"><a href="#2-2-1-介绍" class="headerlink" title="2.2.1. 介绍"></a>2.2.1. 介绍</h5><ul>
-<li>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。</li>
+<h4 id="2-2-容器"><a href="#2-2-容器" class="headerlink" title="2.2. 容器"></a>2.2. 容器</h4><h5 id="2-2-1-介绍"><a href="#2-2-1-介绍" class="headerlink" title="2.2.1. 介绍"></a>2.2.1. 介绍</h5><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。</p>
+<ul>
 <li>容器可以被创建、启动、停止、删除、暂停等。</li>
 <li>容器的实质是<strong>进程</strong>，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此<em>容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间</em>。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</li>
+<li>按照 Docker 最佳实践的要求，<strong>容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化</strong>。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</li>
 </ul>
-<blockquote>
-<p>按照 Docker 最佳实践的要求，<strong>容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化</strong>。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</p>
-</blockquote>
-<h5 id="2-1-3-常用操作命令-1"><a href="#2-1-3-常用操作命令-1" class="headerlink" title="2.1.3. 常用操作命令"></a>2.1.3. 常用操作命令</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输出一个“hello world”后终止容器</span></span><br><span class="line">$ docker run ubuntu:16.04 /bin/<span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个 bash 终端，允许用户进行交互</span></span><br><span class="line">$ docker run -it ubuntu:16.04 /bin/bash</span><br><span class="line">root@0eb917598209:/<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行，主要使用 -d 参数</span></span><br><span class="line">$ docker run -d ubuntu:16.04 /bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">$ docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化输出：容器ID ｜ 容器名称 ｜ 容器端口映射 ｜ 容器状态</span></span><br><span class="line"><span class="comment"># 更多格式参考官方文档：https://docs.docker.com/engine/reference/commandline/ps/#formatting</span></span><br><span class="line">$ docker ps -a --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;\t&#123;&#123;.Status&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line"><span class="comment"># 方法一：attach 此方法会受命令阻塞影响，并且 exit 退出后将同时关闭容器</span></span><br><span class="line">$ docker attach &lt;容器id&gt;</span><br><span class="line"><span class="comment"># 方法二：exec（推荐）</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it <span class="variable">$CONTAINER_ID</span> /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭容器</span></span><br><span class="line">$ docker stop <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已关闭的容器</span></span><br><span class="line">$ docker start <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的输出信息（-f 选项用于持续获取）</span></span><br><span class="line">$ docker logs <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看容器的最新100条日志</span></span><br><span class="line">$ docker logs -f --tail=100 <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空对应容器的日志文件</span></span><br><span class="line">$ docker ps -a | grep <span class="variable">$CONTAINER_NAME</span></span><br><span class="line">$ find /var/lib/docker/containers/ -name *-json.log | grep 959a80270bbc</span><br><span class="line">$ cat /dev/null &gt; /absolute/path/to/959a80270bbc.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的相关信息</span></span><br><span class="line">$ docker inspect <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">$ docker rm <span class="variable">$CONTAINER_ID</span>-1 <span class="variable">$CONTAINER_ID</span>-2 <span class="variable">$CONTAINER_ID</span>-3 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有未运行的容器</span></span><br><span class="line">$ docker rm $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出容器快照（将丢弃历史记录和元数据信息）</span></span><br><span class="line">$ docker <span class="built_in">export</span> &lt;容器ID&gt; &gt; &lt;导出文件名&gt;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从容器快照导入镜像</span></span><br><span class="line">$ cat &lt;导出文件名&gt;.tar | docker import - &lt;导入之后的镜像名:标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机与容器之间相互拷贝文件</span></span><br><span class="line">$ docker cp [OPTIONS] <span class="variable">$CONTAINER_ID</span>:容器中的文件路径 本地目标路径</span><br><span class="line">$ docker cp [OPTIONS] 本地文件路径 <span class="variable">$CONTAINER_ID</span>:容器中的目标路径</span><br></pre></td></tr></table></figure>
+<h5 id="2-2-2-常用操作命令"><a href="#2-2-2-常用操作命令" class="headerlink" title="2.2.2. 常用操作命令"></a>2.2.2. 常用操作命令</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输出一个“hello world”后终止容器</span></span><br><span class="line">$ docker run ubuntu:16.04 /bin/<span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个 bash 终端，允许用户进行交互</span></span><br><span class="line">$ docker run -it ubuntu:16.04 /bin/bash</span><br><span class="line">root@0eb917598209:/<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行，主要使用 -d 参数</span></span><br><span class="line">$ docker run -d ubuntu:16.04 /bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">$ docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化输出：容器ID ｜ 容器名称 ｜ 容器端口映射 ｜ 容器状态</span></span><br><span class="line"><span class="comment"># 更多格式参考官方文档：https://docs.docker.com/engine/reference/commandline/ps/#formatting</span></span><br><span class="line">$ docker ps -a --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;\t&#123;&#123;.Status&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line"><span class="comment"># 方法一：attach 此方法会受命令阻塞影响，并且 exit 退出后将同时关闭容器</span></span><br><span class="line">$ docker attach &lt;容器id&gt;</span><br><span class="line"><span class="comment"># 方法二：exec（推荐）</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it <span class="variable">$CONTAINER_ID</span> /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭容器</span></span><br><span class="line">$ docker stop <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已关闭的容器</span></span><br><span class="line">$ docker start <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的输出信息（-f 选项用于持续获取）</span></span><br><span class="line">$ docker logs <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看容器的最新100条日志</span></span><br><span class="line">$ docker logs -f --tail=100 <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空对应容器的日志文件</span></span><br><span class="line">$ docker ps -a | grep <span class="variable">$CONTAINER_NAME</span></span><br><span class="line">$ find /var/lib/docker/containers/ -name *-json.log | grep 959a80270bbc</span><br><span class="line">$ cat /dev/null &gt; /absolute/path/to/959a80270bbc.log</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的相关信息</span></span><br><span class="line">$ docker inspect <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">$ docker rm <span class="variable">$CONTAINER_ID</span>-1 <span class="variable">$CONTAINER_ID</span>-2 <span class="variable">$CONTAINER_ID</span>-3 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有未运行的容器</span></span><br><span class="line">$ docker rm $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出容器快照（将丢弃历史记录和元数据信息）</span></span><br><span class="line">$ docker <span class="built_in">export</span> &lt;容器ID&gt; &gt; &lt;导出文件名&gt;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从容器快照导入镜像</span></span><br><span class="line">$ cat &lt;导出文件名&gt;.tar | docker import - &lt;导入之后的镜像名:标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机与容器之间相互拷贝文件</span></span><br><span class="line">$ docker cp [OPTIONS] <span class="variable">$CONTAINER_ID</span>:容器中的文件路径 本地目标路径</span><br><span class="line">$ docker cp [OPTIONS] 本地文件路径 <span class="variable">$CONTAINER_ID</span>:容器中的目标路径</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-3-Docker-常用命令图解"><a href="#2-3-Docker-常用命令图解" class="headerlink" title="2.3. Docker 常用命令图解"></a>2.3. Docker 常用命令图解</h4><p><img data-src="https://static.sqiang.net/image/post/docker_commands.png"></p>
 ]]></content>
@@ -4984,59 +4982,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在 CentOS 6.x/7.x 上安装 Git 及最新版</title>
-    <url>/post/2026663390.html</url>
-    <content><![CDATA[<blockquote>
-<p>Git 是一个分布式版本控制软件，最初由<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>创作，于 2005 年以 GPL 发布。最初目的是为更好地管理 Linux 内核开发而设计。</p>
-</blockquote>
-<p>更多介绍，详见：</p>
-<ul>
-<li>官网：<a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></li>
-<li>wiki：<a href="https://zh.wikipedia.org/wiki/Git">https://zh.wikipedia.org/wiki/Git</a></li>
-</ul>
-<span id="more"></span>
-
-<h3 id="方式一、yum安装"><a href="#方式一、yum安装" class="headerlink" title="方式一、yum安装"></a>方式一、yum安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum info git</span><br><span class="line">Failed to <span class="built_in">set</span> locale, defaulting to C</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">Available Packages</span><br><span class="line">Name        : git</span><br><span class="line">Arch        : x86_64</span><br><span class="line">Version     : 1.8.3.1 &lt;--- 说明：当前系统是 CentOS7.x，在 6.x 上是 1.7.1</span><br><span class="line">Release     : 12.el7_4</span><br><span class="line">Size        : 4.4 M</span><br><span class="line">Repo        : updates/7/x86_64</span><br><span class="line">Summary     : Fast Version Control System</span><br><span class="line">URL         : http://git-scm.com/</span><br><span class="line">License     : GPLv2</span><br><span class="line">Description : Git is a fast, scalable, distributed revision control system with an</span><br><span class="line">            : unusually rich <span class="built_in">command</span> <span class="built_in">set</span> that provides both high-level operations</span><br><span class="line">            : and full access to internals.</span><br><span class="line">            :</span><br><span class="line">            : The git rpm installs the core tools with minimal dependencies.  To</span><br><span class="line">            : install all git packages, including tools <span class="keyword">for</span> integrating with other</span><br><span class="line">            : SCMs, install the git-all meta-package.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了安装较新版本，需要手动添加一个仓库源</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始安装</span></span><br><span class="line">➜  yum install -y git</span><br></pre></td></tr></table></figure>
-
-<h3 id="方式二、源码包安装"><a href="#方式二、源码包安装" class="headerlink" title="方式二、源码包安装"></a>方式二、源码包安装</h3><blockquote>
-<p>提示：请使用 root 用户操作</p>
-</blockquote>
-<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-卸载旧的git版本（如果之前有安装rpm包）"><a href="#2-2-卸载旧的git版本（如果之前有安装rpm包）" class="headerlink" title="2.2. 卸载旧的git版本（如果之前有安装rpm包）"></a>2.2. 卸载旧的git版本（如果之前有安装rpm包）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-下载-amp-解压"><a href="#2-3-下载-amp-解压" class="headerlink" title="2.3. 下载&amp;解压"></a>2.3. 下载&amp;解压</h4><p>源码文件（当前最新版本 **v2.29.2 ** @ <strong>2020年12月14日</strong>）</p>
-<ul>
-<li>地址1：<a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></li>
-<li>地址2：<a href="https://github.com/git/git/releases">https://github.com/git/git/releases</a></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> ~</span><br><span class="line">➜  wget -c https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.gz</span><br><span class="line">➜  tar -zxvf git-2.29.2.tar.gz</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-检查git版本"><a href="#2-5-检查git版本" class="headerlink" title="2.5. 检查git版本"></a>2.5. 检查git版本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git --version</span><br><span class="line">git version 2.5.0</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>⚠️ <strong>注意</strong>：如果安装完查看版本不是我们安装的最新版，请重新执行下面的操作</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br><span class="line">➜  git --versione</span><br></pre></td></tr></table></figure>
-
-<p>参考：</p>
-<ul>
-<li><a href="https://github.com/git/git/blob/master/INSTALL">https://github.com/git/git/blob/master/INSTALL</a></li>
-<li><a href="http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x">http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发工具</category>
-      </categories>
-      <tags>
-        <tag>开发工具</tag>
-        <tag>版本管理</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Git 常用命令速查</title>
     <url>/post/966087952.html</url>
     <content><![CDATA[<h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-查看"><a href="#1-1-查看" class="headerlink" title="1.1. 查看"></a>1.1. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list <span class="comment"># 所有设置</span></span><br><span class="line">$ git config --list --global <span class="comment"># 全局设置</span></span><br><span class="line">$ git config --list --<span class="built_in">local</span> <span class="comment"># 当前仓库设置</span></span><br></pre></td></tr></table></figure>
@@ -5080,6 +5025,59 @@
 <li><a href="https://git-scm.com/book/zh/v2">Git - Book</a></li>
 <li><a href="https://backlog.com/git-tutorial/cn/">猴子都能懂的GIT入门</a></li>
 <li><a href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>开发工具</category>
+      </categories>
+      <tags>
+        <tag>开发工具</tag>
+        <tag>版本管理</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在 CentOS 6.x/7.x 上安装 Git 及最新版</title>
+    <url>/post/2026663390.html</url>
+    <content><![CDATA[<blockquote>
+<p>Git 是一个分布式版本控制软件，最初由<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9">林纳斯·托瓦兹</a>创作，于 2005 年以 GPL 发布。最初目的是为更好地管理 Linux 内核开发而设计。</p>
+</blockquote>
+<p>更多介绍，详见：</p>
+<ul>
+<li>官网：<a href="https://git-scm.com/book/zh/v2">https://git-scm.com/book/zh/v2</a></li>
+<li>wiki：<a href="https://zh.wikipedia.org/wiki/Git">https://zh.wikipedia.org/wiki/Git</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="方式一、yum安装"><a href="#方式一、yum安装" class="headerlink" title="方式一、yum安装"></a>方式一、yum安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum info git</span><br><span class="line">Failed to <span class="built_in">set</span> locale, defaulting to C</span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line">Available Packages</span><br><span class="line">Name        : git</span><br><span class="line">Arch        : x86_64</span><br><span class="line">Version     : 1.8.3.1 &lt;--- 说明：当前系统是 CentOS7.x，在 6.x 上是 1.7.1</span><br><span class="line">Release     : 12.el7_4</span><br><span class="line">Size        : 4.4 M</span><br><span class="line">Repo        : updates/7/x86_64</span><br><span class="line">Summary     : Fast Version Control System</span><br><span class="line">URL         : http://git-scm.com/</span><br><span class="line">License     : GPLv2</span><br><span class="line">Description : Git is a fast, scalable, distributed revision control system with an</span><br><span class="line">            : unusually rich <span class="built_in">command</span> <span class="built_in">set</span> that provides both high-level operations</span><br><span class="line">            : and full access to internals.</span><br><span class="line">            :</span><br><span class="line">            : The git rpm installs the core tools with minimal dependencies.  To</span><br><span class="line">            : install all git packages, including tools <span class="keyword">for</span> integrating with other</span><br><span class="line">            : SCMs, install the git-all meta-package.</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为了安装较新版本，需要手动添加一个仓库源</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/6/git/x86_64/wandisco-git-release-6-1.noarch.rpm</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">➜  yum install -y http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开始安装</span></span><br><span class="line">➜  yum install -y git</span><br></pre></td></tr></table></figure>
+
+<h3 id="方式二、源码包安装"><a href="#方式二、源码包安装" class="headerlink" title="方式二、源码包安装"></a>方式二、源码包安装</h3><blockquote>
+<p>提示：请使用 root 用户操作</p>
+</blockquote>
+<h4 id="2-1-安装依赖包"><a href="#2-1-安装依赖包" class="headerlink" title="2.1. 安装依赖包"></a>2.1. 安装依赖包</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum install -y curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-卸载旧的git版本（如果之前有安装rpm包）"><a href="#2-2-卸载旧的git版本（如果之前有安装rpm包）" class="headerlink" title="2.2. 卸载旧的git版本（如果之前有安装rpm包）"></a>2.2. 卸载旧的git版本（如果之前有安装rpm包）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-下载-amp-解压"><a href="#2-3-下载-amp-解压" class="headerlink" title="2.3. 下载&amp;解压"></a>2.3. 下载&amp;解压</h4><p>源码文件（当前最新版本 **v2.29.2 ** @ <strong>2020年12月14日</strong>）</p>
+<ul>
+<li>地址1：<a href="https://www.kernel.org/pub/software/scm/git/">https://www.kernel.org/pub/software/scm/git/</a></li>
+<li>地址2：<a href="https://github.com/git/git/releases">https://github.com/git/git/releases</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> ~</span><br><span class="line">➜  wget -c https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.gz</span><br><span class="line">➜  tar -zxvf git-2.29.2.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-检查git版本"><a href="#2-5-检查git版本" class="headerlink" title="2.5. 检查git版本"></a>2.5. 检查git版本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git --version</span><br><span class="line">git version 2.5.0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ <strong>注意</strong>：如果安装完查看版本不是我们安装的最新版，请重新执行下面的操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  yum remove -y git</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br><span class="line">➜  git --versione</span><br></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ul>
+<li><a href="https://github.com/git/git/blob/master/INSTALL">https://github.com/git/git/blob/master/INSTALL</a></li>
+<li><a href="http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x">http://stackoverflow.com/questions/21820715/how-to-install-latest-version-of-git-on-centos-6-x-7-x</a></li>
 </ul>
 ]]></content>
       <categories>
