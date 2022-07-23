@@ -753,14 +753,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/macOS/</loc>
+    <loc>https://sqiang.net/tags/jre/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/jre/</loc>
+    <loc>https://sqiang.net/tags/macOS/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -830,20 +830,6 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/Redis/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/LNMP/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
@@ -866,6 +852,20 @@
   
   <url>
     <loc>https://sqiang.net/tags/PHP/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Redis/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1054,20 +1054,6 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/%E8%BF%88%E5%85%8B%E5%B0%94%C2%B7%E4%B9%94%E4%B8%B9/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BE%8E%E5%89%A7/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
@@ -1138,14 +1124,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/EditorConfig/</loc>
+    <loc>https://sqiang.net/tags/XDebug/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/XDebug/</loc>
+    <loc>https://sqiang.net/tags/EditorConfig/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1174,6 +1160,20 @@
   
   <url>
     <loc>https://sqiang.net/tags/brew/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E8%BF%88%E5%85%8B%E5%B0%94%C2%B7%E4%B9%94%E4%B8%B9/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BE%8E%E5%89%A7/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1397,6 +1397,34 @@
   </url>
   
   <url>
+    <loc>https://sqiang.net/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Git/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/svn/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Subversion/</loc>
+    <lastmod>2022-07-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://sqiang.net/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
@@ -1426,34 +1454,6 @@
   
   <url>
     <loc>https://sqiang.net/tags/SQL/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Git/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/svn/</loc>
-    <lastmod>2022-07-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/Subversion/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1525,14 +1525,14 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/</loc>
+    <loc>https://sqiang.net/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sqiang.net/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://sqiang.net/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/</loc>
     <lastmod>2022-07-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
