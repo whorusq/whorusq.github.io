@@ -830,20 +830,6 @@
   </url>
   
   <url>
-    <loc>https://sqiang.net/tags/Redis/</loc>
-    <lastmod>2022-07-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
-    <lastmod>2022-07-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://sqiang.net/tags/LNMP/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>daily</changefreq>
@@ -866,6 +852,20 @@
   
   <url>
     <loc>https://sqiang.net/tags/PHP/</loc>
+    <lastmod>2022-07-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/Redis/</loc>
+    <lastmod>2022-07-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sqiang.net/tags/%E7%BC%93%E5%AD%98/</loc>
     <lastmod>2022-07-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
