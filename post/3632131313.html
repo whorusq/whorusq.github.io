@@ -260,13 +260,16 @@
 <h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>从仓库下载最新程序包 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/ja-netfilter/ja-netfilter/releases">https://gitee.com/ja-netfilter/ja-netfilter/releases</a></p>
 <h3 id="2-解压后开始配置"><a href="#2-解压后开始配置" class="headerlink" title="2. 解压后开始配置"></a>2. 解压后开始配置</h3><h4 id="2-1-配置-xx-vmoptions"><a href="#2-1-配置-xx-vmoptions" class="headerlink" title="2.1. 配置 xx.vmoptions"></a>2.1. 配置 xx.vmoptions</h4><p>以下两种方式可选：</p>
 <ul>
-<li>方式一：手动定位到对应软件的 <code>xx.vmoptions</code> 文件，添加下面这一行 <code>-javaagent:/absolute/path/to/ja-netfilter.jar</code>；</li>
+<li>方式一：手动定位到对应软件的 <code>xx.vmoptions</code> 文件，添加下面这一行 <code>-javaagent:/absolute/path/to/ja-netfilter/ja-netfilter.jar</code>；</li>
 <li>方式二：执行命令 <code>java -jar /path/to/ja-netfilter.jar</code> 进行注入；</li>
 </ul>
-<p>如果你使用最新的 Java 17，还需要添加以下两行：</p>
+<p>较新版本的 IDE ，还需要添加以下两行：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED</span><br><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-2-修改-config-目录中对应的配置文件"><a href="#2-2-修改-config-目录中对应的配置文件" class="headerlink" title="2.2. 修改 config 目录中对应的配置文件"></a>2.2. 修改 config 目录中对应的配置文件</h4><p>这里以 jb 软件为例，主要修改如下：</p>
+<h4 id="2-2-修改-config-目录中对应的配置文件"><a href="#2-2-修改-config-目录中对应的配置文件" class="headerlink" title="2.2. 修改 config 目录中对应的配置文件"></a>2.2. 修改 config 目录中对应的配置文件</h4><blockquote>
+<p>上面下载的最新压缩包中已经包含了，此步骤可以跳过。</p>
+</blockquote>
+<p>这里以 jb 软件为例，主要修改如下：</p>
 <p><strong>dns.conf</strong></p>
 <figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[DNS]</span></span><br><span class="line">EQUAL,jetbrains.com</span><br><span class="line">EQUAL,brucege.com</span><br><span class="line">EQUAL,plugin.obroom.com</span><br></pre></td></tr></table></figure>
 
