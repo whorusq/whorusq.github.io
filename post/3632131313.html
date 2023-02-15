@@ -32,7 +32,7 @@
 <meta property="og:description" content="正如标题，这是一个NB闪闪的开源库，名字为 ja-netfilter，关于这个开源库的详细说明，参见这里 zhile.io 本文以 IDEA 为例，说一下这个工具怎么用：  适用版本：jb 2021.3.x +这之前的版本，还可以继续使用 IDE Eval Reset 插件。  1. 下载从仓库下载最新程序包 https:&#x2F;&#x2F;gitee.com&#x2F;ja-netfilter&#x2F;ja-netfilter&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-22T02:35:40.000Z">
-<meta property="article:modified_time" content="2022-07-23T11:45:40.000Z">
+<meta property="article:modified_time" content="2023-02-14T11:45:40.000Z">
 <meta property="article:author" content="whoru.S.Q">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="开发工具">
@@ -230,7 +230,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2022-07-23 晚上 19:45:40" itemprop="dateModified" datetime="2022-07-23T19:45:40+08:00">2022-07-23 晚上</time>
+      <time title="修改时间：2023-02-14 晚上 19:45:40" itemprop="dateModified" datetime="2023-02-14T19:45:40+08:00">2023-02-14 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
 <li>方式一：手动定位到对应软件的 <code>xx.vmoptions</code> 文件，添加下面这一行 <code>-javaagent:/absolute/path/to/ja-netfilter/ja-netfilter.jar</code>；</li>
 <li>方式二：执行命令 <code>java -jar /path/to/ja-netfilter.jar</code> 进行注入；</li>
 </ul>
-<p>较新版本的 IDE ，还需要添加以下两行：</p>
+<p>较新版本的 IDE (内置jdk17+)，还需要添加以下两行：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED</span><br><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-2-修改-config-目录中对应的配置文件"><a href="#2-2-修改-config-目录中对应的配置文件" class="headerlink" title="2.2. 修改 config 目录中对应的配置文件"></a>2.2. 修改 config 目录中对应的配置文件</h4><blockquote>
