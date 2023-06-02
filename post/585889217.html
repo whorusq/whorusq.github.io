@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":null,"show_result":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="由于前一段时间公司项目需求，参与了把 MySQL 数据库迁移到 PostgreSQL 数据库的工作，本文主要记录常用语法的转换规则，待补充完善。   数据库版本：  MySQL 8.0.x PostgreSQL 15.0.x   基本规则引号、反引号在 PostgreSQL 中，单引号 AS &#39;col1&#39; 和反引号 &#96;&#96; 都不支持，要么去掉，要么用双引号代替。 在 Java 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 转 PostgreSQL 笔记">
+<meta property="og:url" content="https://sqiang.net/post/585889217.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="由于前一段时间公司项目需求，参与了把 MySQL 数据库迁移到 PostgreSQL 数据库的工作，本文主要记录常用语法的转换规则，待补充完善。   数据库版本：  MySQL 8.0.x PostgreSQL 15.0.x   基本规则引号、反引号在 PostgreSQL 中，单引号 AS &#39;col1&#39; 和反引号 &#96;&#96; 都不支持，要么去掉，要么用双引号代替。 在 Java 的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-02T05:19:12.000Z">
+<meta property="article:modified_time" content="2023-06-02T05:19:12.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="数据库">
+<meta property="article:tag" content="PostgreSQL">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/585889217.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/585889217.html","path":"post/585889217.html","title":"MySQL 转 PostgreSQL 笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MySQL 转 PostgreSQL 笔记 | whoru</title>
+  
+
+
+
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">108</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">98</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="nav-text">基本规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E5%8F%B7%E3%80%81%E5%8F%8D%E5%BC%95%E5%8F%B7"><span class="nav-text">引号、反引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WHERE-%E4%B8%AD%E5%AD%97%E6%AE%B5%E5%80%BC%E7%9A%84%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%8E%E5%AE%9E%E9%99%85%E6%95%B0%E6%8D%AE%E4%B8%8D%E4%B8%80%E8%87%B4"><span class="nav-text">WHERE 中字段值的大小写与实际数据不一致</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WHERE-%E5%90%8E%E9%9D%A2%E7%94%A8"><span class="nav-text">WHERE 后面用 ||</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E9%94%99%E8%AF%AF"><span class="nav-text">类型错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NULL-%E5%80%BC%E7%9A%84%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F%E8%A7%84%E5%88%99"><span class="nav-text">NULL 值的默认排序规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%8E%92%E5%BA%8F%E8%A1%8C%E4%B8%BA%E5%B7%AE%E5%BC%82"><span class="nav-text">默认排序行为差异</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FOR-UPDATE-%E4%B8%8D%E8%83%BD%E8%B7%9F%E7%9D%80-GROUP-BY-%E4%B8%80%E8%B5%B7%E4%BD%BF%E7%94%A8"><span class="nav-text">FOR UPDATE 不能跟着 GROUP BY 一起使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E4%B8%8D%E8%83%BD%E5%B5%8C%E5%A5%97"><span class="nav-text">聚合函数不能嵌套</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E6%9E%84%E9%80%A0%E7%9A%84%E5%AD%97%E6%AE%B5%EF%BC%8C%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B7%9F%E5%9C%A8-HAVING-%E5%90%8E%E9%9D%A2"><span class="nav-text">聚合函数构造的字段，不能直接跟在 HAVING 后面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GROUP-BY-%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="nav-text">GROUP BY 区分大小写</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0%E6%9B%BF%E6%8D%A2"><span class="nav-text">常用函数替换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#like-%E2%80%93-gt-ilike"><span class="nav-text">like –&gt; ilike</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#group-concat-%E2%80%93-gt-string-agg"><span class="nav-text">group_concat –&gt; string_agg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ifnull-%E2%80%93-gt-coalesce"><span class="nav-text">ifnull –&gt; coalesce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#date-format-%E2%80%93-gt-to-char"><span class="nav-text">date_format –&gt; to_char</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#date-add"><span class="nav-text">date_add</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#last-day-%E2%80%93-gt-date-trunc"><span class="nav-text">last_day –&gt; date_trunc</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#date-iff"><span class="nav-text">date_iff</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#if-%E2%80%93-gt-case-when"><span class="nav-text">if –&gt; case when</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-extract-%E2%80%93-gt-json-extract-path-text"><span class="nav-text">json_extract –&gt; json_extract_path_text</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find-in-set-%E2%80%93-gt-any"><span class="nav-text">find_in_set –&gt; any</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E7%89%87%E6%AE%B5"><span class="nav-text">其它常用代码片段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REPLACE-INTO-%E8%BD%AC%E6%88%90-INSERT-INTO-%E2%80%A6-ON-CONFLICT-%E2%80%A6-DO-UPDATE"><span class="nav-text">REPLACE INTO 转成 INSERT INTO … ON CONFLICT … DO UPDATE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INSERT-IGNORE-INTO-%E8%BD%AC%E6%88%90-ON-CONFLICT-DO-NOTHING"><span class="nav-text">INSERT IGNORE INTO 转成 ON CONFLICT DO NOTHING</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%99%E8%A1%A8%E6%B7%BB%E5%8A%A0%E6%96%B0%E5%AD%97%E6%AE%B5"><span class="nav-text">给表添加新字段</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/585889217.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MySQL 转 PostgreSQL 笔记 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL 转 PostgreSQL 笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2023-06-02 下午 13:19:12" itemprop="dateCreated datePublished" datetime="2023-06-02T13:19:12+08:00">2023-06-02 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>由于前一段时间公司项目需求，参与了把 MySQL 数据库迁移到 PostgreSQL 数据库的工作，本文主要记录常用语法的转换规则，待补充完善。</p>
+</blockquote>
+<blockquote>
+<p>数据库版本：</p>
+<ul>
+<li>MySQL 8.0.x</li>
+<li>PostgreSQL 15.0.x</li>
+</ul>
+</blockquote>
+<h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><h4 id="引号、反引号"><a href="#引号、反引号" class="headerlink" title="引号、反引号"></a>引号、反引号</h4><p>在 PostgreSQL 中，单引号 <code>AS &#39;col1&#39;</code> 和反引号 `` 都不支持，要么去掉，要么用双引号代替。</p>
+<p>在 Java 的 MyBitis xml 文件中，如果返回结果是 Map 结构，并且返回字段用 AS 转为驼峰，则必须用双引号包起来，否则返回后会转换为小写，如</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getWaitAuditPurchaseReturn&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;java.util.Map&quot;</span>&gt;</span></span><br><span class="line">  select</span><br><span class="line">    coalesce(count(1),0) as &quot;waitAuditNum&quot;,</span><br><span class="line">    min(prepared_bill_time) as &quot;preparedBillMintime&quot;</span><br><span class="line">  	...</span><br></pre></td></tr></table></figure>
+
+<h4 id="WHERE-中字段值的大小写与实际数据不一致"><a href="#WHERE-中字段值的大小写与实际数据不一致" class="headerlink" title="WHERE 中字段值的大小写与实际数据不一致"></a>WHERE 中字段值的大小写与实际数据不一致</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 这样在 MySQL 可以正常查询出来结果，但是在 PostgreSQL 中查询不到</span></span><br><span class="line"><span class="comment">-- 表中存的实践数据是大写的 MATERIAL_USE_TYPE</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> system_user_privilege <span class="keyword">where</span> tableAlias.privilege_type <span class="operator">=</span> <span class="string">&#x27;material_use_type&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 可以用 UPPER 或 LOWER 函数处理一下</span></span><br><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> system_user_privilege <span class="keyword">where</span> tableAlias.privilege_type <span class="operator">=</span> <span class="built_in">UPPER</span>(<span class="string">&#x27;material_use_type&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h4 id="WHERE-后面用"><a href="#WHERE-后面用" class="headerlink" title="WHERE 后面用 ||"></a>WHERE 后面用 ||</h4><p>如果有，替换成 <code>OR</code> ，否则对应的过滤条件不生效。</p>
+<p>因为在 PG 中 <code>||</code> 通常只用于字符串连接。同时它也可以连接数组、行、列等，其行为将取决于这些数据类型的定义和 PostgreSQL 中的类型转换规则。</p>
+<h4 id="类型错误"><a href="#类型错误" class="headerlink" title="类型错误"></a>类型错误</h4><p>PostgreSQL 是强类型的，不同类型的字段进行比较时需要显示的转换成同一类型，否则会报错；而 MySQL 中会自动进行转换。</p>
+<p>转换时候可以使用 <code>cast()</code> 函数或 <code>::</code> 符号。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">AND</span> (<span class="type">DATE</span>(NOW()) <span class="operator">-</span> <span class="type">DATE</span>(wb.start_time)) <span class="operator">&gt;</span> ss.value</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 上面的写法，pg 报错：nested exception is org.postgresql.sdsdf.il.PSQLException: ERROR: operator does not exist: integer &gt; text</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">AND</span> (<span class="type">DATE</span>(NOW()) <span class="operator">-</span> <span class="type">DATE</span>(wb.start_time)) <span class="operator">&gt;</span> ss.value::<span class="type">integer</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="NULL-值的默认排序规则"><a href="#NULL-值的默认排序规则" class="headerlink" title="NULL 值的默认排序规则"></a>NULL 值的默认排序规则</h4><p>在 PostgreSQL 中，NULL 值的排序规则与 MySQL 不一致，需要手动指定，才能与原 MySQL 排序规则一致</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 降序 NULL 值放最后显示</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> material_code <span class="keyword">DESC</span> NULLS <span class="keyword">LAST</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 升序 NULL 值放最前面显示</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> material_code <span class="keyword">ASC</span> NULLS <span class="keyword">FIRST</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="默认排序行为差异"><a href="#默认排序行为差异" class="headerlink" title="默认排序行为差异"></a>默认排序行为差异</h4><p>下面这段 SQL</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> sys_dict_data <span class="keyword">ORDER</span> <span class="keyword">BY</span> dict_sort <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure>
+
+<p>查询到的结果中 <code>dict_sort</code> 都是 0，这种情况的查询结果 MySQL 和 PostgreSQL 的默认处理方式会存在差异：</p>
+<ul>
+<li>MySQL会再按照表中的主键 id 进行排序；</li>
+<li>PostgreSQL 则会根据记录在表中的物理存储顺序排序；</li>
+</ul>
+<p>这种差异会导致两边排序不一致，在 PostgreSQL 中需要明确指定再按 id 排序，以保证与 MySQL 的默认行为一致。</p>
+<h4 id="FOR-UPDATE-不能跟着-GROUP-BY-一起使用"><a href="#FOR-UPDATE-不能跟着-GROUP-BY-一起使用" class="headerlink" title="FOR UPDATE 不能跟着 GROUP BY 一起使用"></a>FOR UPDATE 不能跟着 GROUP BY 一起使用</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 下面这样写会报错：Cause: org.postgresql.util.PSQLException: ERROR: FOR UPDATE is not allowed with GROUP BY clause</span></span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	tableAlias.id <span class="keyword">IN</span> ( <span class="string">&#x27;&#x27;</span> )</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> tableAlias.id</span><br><span class="line"><span class="keyword">FOR</span> UPDATE</span><br></pre></td></tr></table></figure>
+
+<p>需要改成</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 再包一层，外层加 FOR UPDATE</span></span><br><span class="line"><span class="keyword">SELECT</span> t.<span class="operator">*</span> <span class="keyword">FROM</span> (</span><br><span class="line">	<span class="comment">-- .....</span></span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span> tableAlias.id</span><br><span class="line">) t</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	t.id <span class="keyword">IN</span> ( <span class="string">&#x27;&#x27;</span> )</span><br><span class="line"><span class="keyword">FOR</span> UPDATE</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="聚合函数不能嵌套"><a href="#聚合函数不能嵌套" class="headerlink" title="聚合函数不能嵌套"></a>聚合函数不能嵌套</h4><figure class="highlight postgresql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- wa.warehouse_area_type 不在后面的 GROUP BY 里，所以需要加聚合函数</span></span><br><span class="line"><span class="comment">-- 下面这样写，会报错：### Cause: org.postgresql.util.PSQLException: ERROR: aggregate function calls cannot be nested</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="comment">-- .....</span></span><br><span class="line">	SUM(<span class="keyword">CASE</span> <span class="keyword">WHEN</span> MIN(wa.warehouse_area_type) = <span class="string">&#x27;STORE_AREA&#x27;</span> <span class="keyword">THEN</span> COALESCE(wsb.frozen_stock_num, <span class="number">0</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">AS</span> occupyNum</span><br><span class="line">	<span class="comment">-- .....</span></span><br></pre></td></tr></table></figure>
+
+<p>需要改成</p>
+<figure class="highlight postgresql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 使用子查询，外层 sum ，内层使用 case...when 计算明细</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="comment">-- .....</span></span><br><span class="line">  SUM(occupyNum) <span class="keyword">AS</span> occupyNum,</span><br><span class="line">  <span class="comment">-- .....</span></span><br><span class="line"><span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">    <span class="comment">-- .....</span></span><br><span class="line">    (<span class="keyword">CASE</span> <span class="keyword">WHEN</span> wa.warehouse_area_type = <span class="string">&#x27;STORE_AREA&#x27;</span> <span class="keyword">THEN</span> COALESCE(wsb.frozen_stock_num,<span class="number">0</span>) <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span>) <span class="keyword">AS</span> occupyNum</span><br><span class="line">    <span class="comment">-- .....</span></span><br><span class="line">  <span class="keyword">FROM</span> warehouse_stock_batch wsb</span><br><span class="line">) t</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="comment">-- .....</span></span><br></pre></td></tr></table></figure>
+
+
+<h4 id="聚合函数构造的字段，不能直接跟在-HAVING-后面"><a href="#聚合函数构造的字段，不能直接跟在-HAVING-后面" class="headerlink" title="聚合函数构造的字段，不能直接跟在 HAVING 后面"></a>聚合函数构造的字段，不能直接跟在 HAVING 后面</h4><figure class="highlight postgresql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 下面这样写会报错：column &quot;custommd5&quot; does not exist LINE 56:  having customMd5 in (&#x27;&#x27;)</span></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  <span class="comment">-- .....</span></span><br><span class="line">  <span class="comment">-- customMd5 是由聚合函数 CONCAT_WS() 构造出来的</span></span><br><span class="line">  MD5(CONCAT_WS(<span class="string">&#x27;_&#x27;</span>, xx, xx, xx,xx)) <span class="keyword">AS</span> customMd5</span><br><span class="line"><span class="keyword">FROM</span> warehouse_stock_batch wsb</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  <span class="comment">-- .....</span></span><br><span class="line"><span class="keyword">HAVING</span></span><br><span class="line">  customMd5 <span class="keyword">IN</span> (<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>需要像下面这样再包一层，或者把聚合的字段在 having 中再写一遍，这种适合聚合的内容不多的场景。</p>
+<figure class="highlight postgresql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> t.* <span class="keyword">FROM</span> (</span><br><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">  	<span class="comment">-- .....</span></span><br><span class="line">  	md5(concat_ws(<span class="string">&#x27;_&#x27;</span>, xx, xx, xx,xx)) <span class="keyword">as</span> customMd5</span><br><span class="line">  	<span class="comment">-- .....</span></span><br><span class="line">  <span class="keyword">FROM</span> warehouse_stock_batch wsb</span><br><span class="line">  <span class="keyword">GROUP</span> <span class="keyword">BY</span></span><br><span class="line">  	<span class="comment">-- .....</span></span><br><span class="line">) t</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">  t.customMd5 <span class="keyword">IN</span> (<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="GROUP-BY-区分大小写"><a href="#GROUP-BY-区分大小写" class="headerlink" title="GROUP BY 区分大小写"></a>GROUP BY 区分大小写</h4><p>MySQL 中 GROUP BY 的字段默认不区分大小写，PG 中严格区分，会造成数据行数不一致。</p>
+<h3 id="常用函数替换"><a href="#常用函数替换" class="headerlink" title="常用函数替换"></a>常用函数替换</h3><h4 id="like-–-gt-ilike"><a href="#like-–-gt-ilike" class="headerlink" title="like –&gt; ilike"></a>like –&gt; ilike</h4><p>PostgreSQL 中 like 默认区分大小，直接改成 ilike 以与 MySQL 保持一致。经测试，二者性能差异不大。</p>
+<h4 id="group-concat-–-gt-string-agg"><a href="#group-concat-–-gt-string-agg" class="headerlink" title="group_concat –&gt; string_agg"></a>group_concat –&gt; string_agg</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line">GROUP_CONCAT(<span class="keyword">DISTINCT</span> c.hospital_area_id SEPARATOR <span class="string">&#x27;,&#x27;</span>) <span class="keyword">AS</span> hospital_area_id</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line">STRING_AGG(<span class="keyword">DISTINCT</span> c.hospital_area_id, <span class="string">&#x27;,&#x27;</span>) <span class="keyword">AS</span> hospital_area_id</span><br></pre></td></tr></table></figure>
+
+<h4 id="ifnull-–-gt-coalesce"><a href="#ifnull-–-gt-coalesce" class="headerlink" title="ifnull –&gt; coalesce"></a>ifnull –&gt; coalesce</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line">IFNULL(sn.price, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="built_in">COALESCE</span>(sn.price, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="date-format-–-gt-to-char"><a href="#date-format-–-gt-to-char" class="headerlink" title="date_format –&gt; to_char"></a>date_format –&gt; to_char</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">SELECT</span> DATE_FORMAT(NOW(), <span class="string">&#x27;%Y-%m-%d %H:%i:%s&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> TO_CHAR(NOW(), <span class="string">&#x27;YYYY-MM-DD HH24:MI:SS&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="date-add"><a href="#date-add" class="headerlink" title="date_add"></a>date_add</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL 返回 2023-03-03</span></span><br><span class="line"><span class="keyword">SELECT</span> DATE_ADD(CURDATE(), <span class="type">INTERVAL</span> <span class="number">1</span> <span class="keyword">DAY</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> TO_CHAR(<span class="built_in">CURRENT_DATE</span>::<span class="type">TIMESTAMP</span> <span class="operator">+</span> <span class="string">&#x27;1 day&#x27;</span>, <span class="string">&#x27;YYYY-MM-DD&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="last-day-–-gt-date-trunc"><a href="#last-day-–-gt-date-trunc" class="headerlink" title="last_day –&gt; date_trunc"></a>last_day –&gt; date_trunc</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL 中获取某个时间所在月的最后一天，返回 2023年03月31日</span></span><br><span class="line"><span class="keyword">select</span> DATE_FORMAT(LAST_DAY(<span class="string">&#x27;2023-03-02&#x27;</span>), <span class="string">&#x27;%Y年%m月%d日&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> TO_CHAR(DATE_TRUNC(<span class="string">&#x27;month&#x27;</span>, <span class="string">&#x27;2023-03-02&#x27;</span>::<span class="type">TIMESTAMP</span>) <span class="operator">+</span> <span class="type">interval</span> <span class="string">&#x27;1 month - 1 day&#x27;</span>, <span class="string">&#x27;YYYY年MM月DD日&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="date-iff"><a href="#date-iff" class="headerlink" title="date_iff"></a>date_iff</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL 返回相差的天数</span></span><br><span class="line"><span class="keyword">SELECT</span> DATEDIFF(<span class="string">&#x27;2023-03-31 23:59:59&#x27;</span>, NOW())</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="type">DATE</span>(<span class="string">&#x27;2023-03-31 23:59:59&#x27;</span>) <span class="operator">-</span> <span class="type">DATE</span>(NOW())</span><br></pre></td></tr></table></figure>
+
+<h4 id="if-–-gt-case-when"><a href="#if-–-gt-case-when" class="headerlink" title="if –&gt; case when"></a>if –&gt; case when</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="built_in">SUM</span>( IF(in_out_flag <span class="operator">=</span> <span class="string">&#x27;OUT&#x27;</span>, material_amount, <span class="number">0</span>) ) <span class="keyword">AS</span> out_house_amount</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="built_in">SUM</span>( <span class="keyword">CASE</span> <span class="keyword">WHEN</span> in_out_flag <span class="operator">=</span> <span class="string">&#x27;OUT&#x27;</span> <span class="keyword">THEN</span> material_amount <span class="keyword">ELSE</span> <span class="number">0</span> <span class="keyword">END</span> ) <span class="keyword">AS</span> out_house_amount</span><br></pre></td></tr></table></figure>
+
+<h4 id="json-extract-–-gt-json-extract-path-text"><a href="#json-extract-–-gt-json-extract-path-text" class="headerlink" title="json_extract –&gt; json_extract_path_text"></a>json_extract –&gt; json_extract_path_text</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">SELECT</span> JSON_EXTRACT(`json_col1`, <span class="string">&#x27;$[*].financeKind&#x27;</span>) <span class="keyword">AS</span> v</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> json_extract_path_text(json_array_elements(json_col1::JSON), <span class="string">&#x27;financeKind&#x27;</span>) <span class="keyword">AS</span> v</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="find-in-set-–-gt-any"><a href="#find-in-set-–-gt-any" class="headerlink" title="find_in_set –&gt; any"></a>find_in_set –&gt; any</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> material_kind mk</span><br><span class="line"><span class="keyword">WHERE</span> find_in_set(mk.id, <span class="string">&#x27;id1,id2,id3,id4,id5&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span> <span class="keyword">FROM</span> material_kind mk</span><br><span class="line"><span class="keyword">WHERE</span> mk.id <span class="operator">=</span> <span class="keyword">any</span>(string_to_array(<span class="string">&#x27;id1,id2,id3,id4,id5&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="其它常用代码片段"><a href="#其它常用代码片段" class="headerlink" title="其它常用代码片段"></a>其它常用代码片段</h3><h4 id="REPLACE-INTO-转成-INSERT-INTO-…-ON-CONFLICT-…-DO-UPDATE"><a href="#REPLACE-INTO-转成-INSERT-INTO-…-ON-CONFLICT-…-DO-UPDATE" class="headerlink" title="REPLACE INTO 转成 INSERT INTO … ON CONFLICT … DO UPDATE"></a>REPLACE INTO 转成 INSERT INTO … ON CONFLICT … DO UPDATE</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line">REPLACE <span class="keyword">INTO</span> `version_info` (`id`, `version_no`, `platform`, `update_by`, `update_date`, `update_desc`)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;v1.17.4.2&#x27;</span>, <span class="string">&#x27;SPD&#x27;</span>, <span class="string">&#x27;16094bcb5000004&#x27;</span>, now(), <span class="string">&#x27;生产&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> version_info (id, version_no, platform, update_by, update_date, update_desc)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="string">&#x27;v1.17.4.2&#x27;</span>, <span class="string">&#x27;SPD&#x27;</span>, <span class="string">&#x27;16094bcb5000004&#x27;</span>, NOW(), <span class="string">&#x27;生产&#x27;</span>)</span><br><span class="line"><span class="keyword">ON</span> CONFLICT (id)</span><br><span class="line">DO UPDATE <span class="keyword">SET</span> version_no <span class="operator">=</span> <span class="string">&#x27;v1.17.4.2&#x27;</span>, platform <span class="operator">=</span> <span class="string">&#x27;SPD&#x27;</span>, update_by <span class="operator">=</span> <span class="string">&#x27;16094bcb5000004&#x27;</span>, update_date <span class="operator">=</span> NOW(), update_desc <span class="operator">=</span> <span class="string">&#x27;生产&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="INSERT-IGNORE-INTO-转成-ON-CONFLICT-DO-NOTHING"><a href="#INSERT-IGNORE-INTO-转成-ON-CONFLICT-DO-NOTHING" class="headerlink" title="INSERT IGNORE INTO 转成 ON CONFLICT DO NOTHING"></a>INSERT IGNORE INTO 转成 ON CONFLICT DO NOTHING</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">INSERT</span> IGNORE <span class="keyword">INTO</span> `cloud_sys_role_menu` (`role_id`, `menu_id`) <span class="keyword">VALUES</span> (<span class="string">&#x27;100&#x27;</span>, <span class="string">&#x27;2xt807qn3g1lymlrx&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> cloud_sys_role_menu (role_id, menu_id) <span class="keyword">VALUES</span> (<span class="string">&#x27;100&#x27;</span>, <span class="string">&#x27;2xt807qn3g1lymlrx&#x27;</span>) <span class="keyword">ON</span> CONFLICT DO NOTHING;</span><br></pre></td></tr></table></figure>
+
+<h4 id="给表添加新字段"><a href="#给表添加新字段" class="headerlink" title="给表添加新字段"></a>给表添加新字段</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- MySQL</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> `department_limit_audit_his`</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> `department_practical_amount` <span class="type">decimal</span>(<span class="number">19</span>, <span class="number">6</span>) <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;科室实际收货量&#x27;</span> AFTER `limit_value`;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- PostgreSQL</span></span><br><span class="line"><span class="comment">-- 1. 添加字段，多个用逗号间隔，如：ADD COLUMN col1, ADD COLUMN col2, ...;</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> department_limit_audit_his</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">COLUMN</span> department_practical_amount <span class="type">NUMERIC</span>(<span class="number">19</span>, <span class="number">6</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>;</span><br><span class="line"><span class="comment">-- AFTER limit_value;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 2. 给字段添加注释</span></span><br><span class="line">COMMENT <span class="keyword">ON</span> <span class="keyword">COLUMN</span> material_charge.medical_advice_stage <span class="keyword">IS</span> <span class="string">&#x27;科室实际收货量&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 3. 调整位置</span></span><br><span class="line"><span class="comment">-- 暂时没发现好的实现方式</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/585889217.html" title="MySQL 转 PostgreSQL 笔记">https://sqiang.net/post/585889217.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/PostgreSQL/" rel="tag"># PostgreSQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3632131313.html" rel="prev" title="一个NB闪闪的开源库ja-netfilter">
+                  <i class="fa fa-chevron-left"></i> 一个NB闪闪的开源库ja-netfilter
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4d83e774b3a89c62374f4767ab8283fa"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
