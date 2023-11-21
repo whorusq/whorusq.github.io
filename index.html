@@ -355,29 +355,18 @@
           <blockquote>
 <p>JD-GUI 有点老了，已经很久没更新，推荐另一款：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/skylot/jadx">https://github.com/skylot/jadx</a></p>
 </blockquote>
+<hr>
 <p>JD-GUI 是一款大家耳熟能详的 Java 反编译工具，可以方便的将编译好的 <code>.class</code> 文件反编译为 <code>.java</code> 源码文件，用于开发调试、源码学习等。</p>
 <p>官网地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://java-decompiler.github.io/">http://java-decompiler.github.io</a></p>
 <p>Git 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui">https://github.com/java-decompiler/jd-gui</a></p>
-<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><blockquote>
-<p>当前最新版本：v1.6.6 @ Dec 25, 2019</p>
-</blockquote>
-<ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.jar</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6-min.jar</a></li>
-<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.rpm</a></li>
-<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.deb</a></li>
-<li>MacOS <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-osx-1.6.6.tar</a></li>
-<li>Windows <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-windows-1.6.6.zip</a></li>
-</ul>
-<h3 id="解决在-macOS-下闪退问题"><a href="#解决在-macOS-下闪退问题" class="headerlink" title="解决在 macOS 下闪退问题"></a>解决在 macOS 下闪退问题</h3><p>需要注意的是，<strong>运行 JD-GUI 所需 Java 版本最高为 JDK 10.0.2（可在官网文档查看）</strong>，否则会出现闪退、无法使用等问题，所以需要修改设置进行指定，下面以 macOS 为例进行说明。</p>
-<p>首先，使用如下命令，查看 jdk 的安装路径：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为我只安装了 Java1.8 和 Java11 两个版本，所以这里需要找 1.8 的路径</span></span><br><span class="line">➜ /usr/libexec/java_home -v 1.8</span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-
-<p>其次，使用文本编辑器打开文件 <code>/Applications/JD-GUI.app/Contents/MacOS/universalJavaApplicationStub.sh</code>，修改如下部分：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># first check system variable &quot;$JAVA_HOME&quot;</span></span><br><span class="line"><span class="comment"># 这里的配置默认找的是系统环境变量中配置的 jdk 版本</span></span><br><span class="line"><span class="comment"># 而我配置的是 Java11，所以直接运行的时候出现闪退而无法使用</span></span><br><span class="line"><span class="comment"># 这里需要直接写死 1.8 的路径</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$JAVA_HOME</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">	JAVACMD=<span class="string">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/bin/java&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>保存后，重新打开 JD-GUI.app 即可。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/2524245389.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
