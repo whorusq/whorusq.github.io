@@ -294,6 +294,115 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2524245389.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2524245389.html" class="post-title-link" itemprop="url">在mac上使用Java反编译工具JD-GUI</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2021-08-13 下午 13:39:41" itemprop="dateCreated datePublished" datetime="2021-08-13T13:39:41+08:00">2021-08-13 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2023-08-13 晚上 19:39:41" itemprop="dateModified" datetime="2023-08-13T19:39:41+08:00">2023-08-13 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>JD-GUI 有点老了，已经很久没更新，推荐另一款：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/skylot/jadx">https://github.com/skylot/jadx</a></p>
+</blockquote>
+<p>JD-GUI 是一款大家耳熟能详的 Java 反编译工具，可以方便的将编译好的 <code>.class</code> 文件反编译为 <code>.java</code> 源码文件，用于开发调试、源码学习等。</p>
+<p>官网地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://java-decompiler.github.io/">http://java-decompiler.github.io</a></p>
+<p>Git 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui">https://github.com/java-decompiler/jd-gui</a></p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><blockquote>
+<p>当前最新版本：v1.6.6 @ Dec 25, 2019</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.jar</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6-min.jar</a></li>
+<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.rpm</a></li>
+<li>Linux <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-1.6.6.deb</a></li>
+<li>MacOS <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-osx-1.6.6.tar</a></li>
+<li>Windows <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/java-decompiler/jd-gui/releases">jd-gui-windows-1.6.6.zip</a></li>
+</ul>
+<h3 id="解决在-macOS-下闪退问题"><a href="#解决在-macOS-下闪退问题" class="headerlink" title="解决在 macOS 下闪退问题"></a>解决在 macOS 下闪退问题</h3><p>需要注意的是，<strong>运行 JD-GUI 所需 Java 版本最高为 JDK 10.0.2（可在官网文档查看）</strong>，否则会出现闪退、无法使用等问题，所以需要修改设置进行指定，下面以 macOS 为例进行说明。</p>
+<p>首先，使用如下命令，查看 jdk 的安装路径：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 因为我只安装了 Java1.8 和 Java11 两个版本，所以这里需要找 1.8 的路径</span></span><br><span class="line">➜ /usr/libexec/java_home -v 1.8</span><br><span class="line">/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<p>其次，使用文本编辑器打开文件 <code>/Applications/JD-GUI.app/Contents/MacOS/universalJavaApplicationStub.sh</code>，修改如下部分：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># first check system variable &quot;$JAVA_HOME&quot;</span></span><br><span class="line"><span class="comment"># 这里的配置默认找的是系统环境变量中配置的 jdk 版本</span></span><br><span class="line"><span class="comment"># 而我配置的是 Java11，所以直接运行的时候出现闪退而无法使用</span></span><br><span class="line"><span class="comment"># 这里需要直接写死 1.8 的路径</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$JAVA_HOME</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">	JAVACMD=<span class="string">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_231.jdk/Contents/Home/bin/java&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>保存后，重新打开 JD-GUI.app 即可。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/585889217.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -570,100 +679,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/2495096853.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/966087952.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/966087952.html" class="post-title-link" itemprop="url">Git 常用命令速查</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-12-28 晚上 21:00:17" itemprop="dateCreated datePublished" datetime="2020-12-28T21:00:17+08:00">2020-12-28 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2022-03-18 上午 10:10:14" itemprop="dateModified" datetime="2022-03-18T10:10:14+08:00">2022-03-18 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-查看"><a href="#1-1-查看" class="headerlink" title="1.1. 查看"></a>1.1. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list <span class="comment"># 所有设置</span></span><br><span class="line">$ git config --list --global <span class="comment"># 全局设置</span></span><br><span class="line">$ git config --list --<span class="built_in">local</span> <span class="comment"># 当前仓库设置</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-最小设置"><a href="#1-2-最小设置" class="headerlink" title="1.2. 最小设置"></a>1.2. 最小设置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不进行此设置时，只能执行 git add 操作</span></span><br><span class="line"><span class="comment"># 一般与待 push 的远程仓库保持一致</span></span><br><span class="line"><span class="comment"># 针对 --local 的设置，优先级高于 --global s</span></span><br><span class="line">$ git config --global user.name <span class="string">&quot;xxx&quot;</span> <span class="comment"># 用户名</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;xxx@email.com&quot;</span> <span class="comment"># 用户绑定的邮箱</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/966087952.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
