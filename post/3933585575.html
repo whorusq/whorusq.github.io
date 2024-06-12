@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://static.sqiang.net/image/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":null,"show_result":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SDKMAN!（Software Development Kit Manager）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。同时也可以用于管理开发工具如 Maven、Gradle 和 Scala，以及在多个版本之间轻松切换。 安装curl -s &quot;https:&#x2F;&#x2F;get">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用SDKMAN安装和管理多个版本的jdk">
+<meta property="og:url" content="https://sqiang.net/post/3933585575.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="SDKMAN!（Software Development Kit Manager）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。同时也可以用于管理开发工具如 Maven、Gradle 和 Scala，以及在多个版本之间轻松切换。 安装curl -s &quot;https:&#x2F;&#x2F;get">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sdkman.io/assets//img/sdk-man-small-pattern.svg">
+<meta property="article:published_time" content="2024-06-11T11:20:28.000Z">
+<meta property="article:modified_time" content="2024-06-11T11:20:28.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="SDKMAN">
+<meta property="article:tag" content="JDK">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sdkman.io/assets//img/sdk-man-small-pattern.svg">
+
+
+<link rel="canonical" href="https://sqiang.net/post/3933585575.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/3933585575.html","path":"post/3933585575.html","title":"使用SDKMAN安装和管理多个版本的jdk"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>使用SDKMAN安装和管理多个版本的jdk | whoru</title>
+  
+
+
+
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">116</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%9C%AC%E6%9C%BA%E5%BD%93%E5%89%8D%E5%8F%AF%E7%94%A8%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-text">查看本机当前可用的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%A1%E7%90%86-SDK"><span class="nav-text">管理 SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="nav-text">设置代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7"><span class="nav-text">升级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-text">卸载</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3933585575.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用SDKMAN安装和管理多个版本的jdk | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用SDKMAN安装和管理多个版本的jdk
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2024-06-11 晚上 19:20:28" itemprop="dateCreated datePublished" datetime="2024-06-11T19:20:28+08:00">2024-06-11 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <img data-src="https://sdkman.io/assets//img/sdk-man-small-pattern.svg"  width="300" height="200">
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/">SDKMAN!</a>（<em>Software Development Kit Manager</em>）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。同时也可以用于管理开发工具如 Maven、Gradle 和 Scala，以及在多个版本之间轻松切换。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span><br><span class="line"><span class="built_in">source</span> <span class="string">&quot;<span class="variable">$HOME</span>/.sdkman/bin/sdkman-init.sh&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本机当前可用的版本"><a href="#查看本机当前可用的版本" class="headerlink" title="查看本机当前可用的版本"></a>查看本机当前可用的版本</h3><p>执行命令 <code>sdk list java</code> 可以查询适用于当前系统的发行版，以及已安装和当前在用的版本。</p>
+<p>各发行版举例说明：</p>
+<table>
+<thead>
+<tr>
+<th>供应商和发行版</th>
+<th>后缀</th>
+<th>例子</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AdoptOpenJDK/Adoptium (Temurin)</td>
+<td>tem</td>
+<td>11.0.23-tem</td>
+<td>Adoptium 是由 AdoptOpenJDK 项目演变而来，由 Eclipse 基金会管理。</td>
+</tr>
+<tr>
+<td>Amazon Corretto</td>
+<td>amzn</td>
+<td>11.0.23-amzn</td>
+<td>Amazon 提供的 OpenJDK 版本，经过增强和支持的长期支持版本。</td>
+</tr>
+<tr>
+<td>GraalVM CE (Community Edition)</td>
+<td>graalce</td>
+<td>11.0.23-graalce</td>
+<td>Oracle 提供的支持多语言的 JDK，包括 Java、JavaScript 等。</td>
+</tr>
+<tr>
+<td>Gluon</td>
+<td>gln</td>
+<td>11.0.23-gln</td>
+<td>专注于 JavaFX 的发行版。</td>
+</tr>
+<tr>
+<td>Liberica JDK</td>
+<td>librca</td>
+<td>11.0.23-librca</td>
+<td>BellSoft 提供的 OpenJDK 发行版，包含完整的 Java SE 平台实现。</td>
+</tr>
+<tr>
+<td>Microsoft Build of OpenJDK</td>
+<td>ms</td>
+<td>11.0.23-ms</td>
+<td>Microsoft 提供的 OpenJDK 版本。</td>
+</tr>
+<tr>
+<td>Oracle JDK</td>
+<td>oracle</td>
+<td>11.0.23-oracle</td>
+<td>Oracle 提供的官方 JDK 版本。</td>
+</tr>
+<tr>
+<td>SAP Machine</td>
+<td>sapmchn</td>
+<td>11.0.23-sapmchn</td>
+<td>SAP 提供的 OpenJDK 版本。</td>
+</tr>
+<tr>
+<td>Semeru (IBM)</td>
+<td>sem</td>
+<td>11.0.23-sem</td>
+<td>IBM 提供的 OpenJDK 发行版。</td>
+</tr>
+<tr>
+<td>Tencent Kona JDK</td>
+<td>kona</td>
+<td>11.0.23-kona</td>
+<td>腾讯提供的 OpenJDK 版本。</td>
+</tr>
+<tr>
+<td>Zulu by Azul Systems</td>
+<td>zulu</td>
+<td>11.0.23-zulu</td>
+<td>Azul 提供的 OpenJDK 版本，支持多种平台和配置。</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<p>如果执行命令时出现下面的错误：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">==== INTERNET NOT REACHABLE! ===================================================</span><br><span class="line"></span><br><span class="line"> Some functionality is disabled or only partially available.</span><br><span class="line"> If this persists, please <span class="built_in">enable</span> the offline mode:</span><br><span class="line"></span><br><span class="line">   $ sdk offline</span><br></pre></td></tr></table></figure>
+
+<p>可以尝试按照下面的步骤解决</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 清除缓存</span></span><br><span class="line">sdk flush archives</span><br><span class="line">sdk flush candidates</span><br><span class="line"><span class="comment"># 或按顺序执行</span></span><br><span class="line">sdk offline <span class="built_in">enable</span></span><br><span class="line">sdk list java</span><br><span class="line">sdk offline <span class="built_in">disable</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 再次尝试</span></span><br><span class="line">sdk list java</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="管理-SDK"><a href="#管理-SDK" class="headerlink" title="管理 SDK"></a>管理 SDK</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 在上一步，确定需要安装的 SDK 版本 tag 标识，比如安装 11.0.23-zulu</span></span><br><span class="line">sdk install java 11.0.23-zulu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加以下环境变量到 .bashrc 或 .zshrc</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="string">&quot;<span class="variable">$HOME</span>/.sdkman/candidates/java/current&quot;</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使生效</span></span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证</span></span><br><span class="line">java -version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换其它版本</span></span><br><span class="line">sdk use java 17.0.11-amzn</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更改默认版本，对应 .sdkman/candidates/java/current</span></span><br><span class="line">sdk default java 17.0.11-amzn</span><br><span class="line">sdk current java</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载之前安装的 SDK</span></span><br><span class="line">sdk uninstall java java 17.0.11-amzn</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><p>编辑 <code>~/.sdkman/etc/config</code> 文件加入以下内容后，执行 <code>source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</code> 使其生效。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Proxy configuration</span></span><br><span class="line">sdkman_http_proxy=127.0.0.1</span><br><span class="line">sdkman_http_proxy_port=7890</span><br><span class="line"><span class="comment"># sdkman_http_proxy_user=your_username</span></span><br><span class="line"><span class="comment"># sdkman_http_proxy_pass=your_password</span></span><br><span class="line">sdkman_https_proxy=127.0.0.1</span><br><span class="line">sdkman_https_proxy_port=7890</span><br><span class="line"><span class="comment"># sdkman_https_proxy_user=your_username</span></span><br><span class="line"><span class="comment"># sdkman_https_proxy_pass=your_password</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sdk update</span><br></pre></td></tr></table></figure>
+
+<h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 删除 SDKMAN 安装目录</span></span><br><span class="line">rm -rf ~/.sdkman</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 修改 .bashrc 或 .zshrc等，删除 SDKMAN 相关配置</span></span><br><span class="line">vim ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>----- 本文结束 </span>
+      <i class="fab fa-leanpub"></i>
+      <span> 感谢阅读 -----</span>
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/3933585575.html" title="使用SDKMAN安装和管理多个版本的jdk">https://sqiang.net/post/3933585575.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/SDKMAN/" rel="tag"># SDKMAN</a>
+              <a href="/tags/JDK/" rel="tag"># JDK</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2435833505.html" rel="prev" title="基于NodeJS生成PDF文件">
+                  <i class="fa fa-chevron-left"></i> 基于NodeJS生成PDF文件
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+</div>
+
+    </div>
+  </footer>
+
+  
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4569aa30e00168361b1185a9145f12e8"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
