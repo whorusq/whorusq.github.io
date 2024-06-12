@@ -241,6 +241,9 @@
           <img data-src="https://sdkman.io/assets//img/sdk-man-small-pattern.svg"  width="300" height="200">
 
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/">SDKMAN!</a>（<em>Software Development Kit Manager</em>）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。同时也可以用于管理开发工具如 Maven、Gradle 和 Scala，以及在多个版本之间轻松切换。</p>
+<blockquote>
+<p>注：Windows 系统需要借助 WSL 或 Git Bash ，详见：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/install">https://sdkman.io/install</a></p>
+</blockquote>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span><br><span class="line"><span class="built_in">source</span> <span class="string">&quot;<span class="variable">$HOME</span>/.sdkman/bin/sdkman-init.sh&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="查看本机当前可用的版本"><a href="#查看本机当前可用的版本" class="headerlink" title="查看本机当前可用的版本"></a>查看本机当前可用的版本</h3><p>执行命令 <code>sdk list java</code> 可以查询适用于当前系统的发行版，以及已安装和当前在用的版本。</p>
