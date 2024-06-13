@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -270,7 +270,7 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> ~</span><br><span class="line">➜  wget -c https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.gz</span><br><span class="line">➜  tar -zxvf git-2.29.2.tar.gz</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
+<h4 id="2-4-编译安装"><a href="#2-4-编译安装" class="headerlink" title="2.4. 编译安装"></a>2.4. 编译安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">cd</span> git-2.29.2</span><br><span class="line">➜  ./configure --prefix=/usr/local/git</span><br><span class="line">➜  make &amp;&amp; make install</span><br><span class="line">➜  <span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/git/bin&quot;</span> &gt;&gt; /etc/bashrc</span><br><span class="line">➜  <span class="built_in">source</span> /etc/bashrc</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-5-检查git版本"><a href="#2-5-检查git版本" class="headerlink" title="2.5. 检查git版本"></a>2.5. 检查git版本</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git --version</span><br><span class="line">git version 2.5.0</span><br></pre></td></tr></table></figure>
 

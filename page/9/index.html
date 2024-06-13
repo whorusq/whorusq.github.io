@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2259619543.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2719612904.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2259619543.html" class="post-title-link" itemprop="url">如何做好一场技术演讲</a>
+          <a href="/post/2719612904.html" class="post-title-link" itemprop="url">JavaScript 中 undefined 与 null 的用法区别</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,7 +216,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-06-24 早上 08:12:45" itemprop="dateCreated datePublished" datetime="2020-06-24T08:12:45+08:00">2020-06-24 早上</time>
+      <time title="创建时间：2020-04-22 下午 15:29:38" itemprop="dateCreated datePublished" datetime="2020-04-22T15:29:38+08:00">2020-04-22 下午</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,7 +224,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
         </span>
     </span>
 
@@ -238,150 +238,118 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文整理自：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://time.geekbang.org/column/61">极客时间微课《如何做好一场技术演讲》</a></p>
-</blockquote>
-<h3 id="1-精心准备"><a href="#1-精心准备" class="headerlink" title="1. 精心准备"></a>1. 精心准备</h3><h4 id="1-1-明确演讲主题"><a href="#1-1-明确演讲主题" class="headerlink" title="1.1. 明确演讲主题"></a>1.1. 明确演讲主题</h4><p>如同架构设计一样，了解需求永远是第一位的，任何脱离需求的架构设计都是耍流氓。</p>
-<p>想要开始演讲，首先需要了解听众的诉求，确认下面这些问题：</p>
+          <p>大多数计算机语言，有且仅有一个表示“无”的值，比如：C 语言的 NULL，Java 语言的 null，Python 语言的 None，Ruby 语言的 nil。</p>
+<p>但是在 JavaScript 中却同时存在 <code>undefined</code> 和 <code>null</code>，这主要是由于历史原因，感兴趣的可以查一下。</p>
+<p>二者的主要用法区别如下：</p>
 <ul>
-<li>听众组成？</li>
-<li>对要演讲主题的了解程度？</li>
-<li>听众想听什么？</li>
-<li>演讲能给听众带来什么价值？</li>
-<li>……</li>
-</ul>
-<h4 id="1-2-确定演讲主线"><a href="#1-2-确定演讲主线" class="headerlink" title="1.2. 确定演讲主线"></a>1.2. 确定演讲主线</h4><ol>
-<li><strong>Who</strong> 自我介绍，让听众了解自己，建立连接；</li>
-<li><strong>What&amp;When</strong> 今天要分享的主题，通过简短介绍吸引听众的注意力、好奇心；</li>
-<li><strong>Why</strong> 为什么要做这个架构改造、技术升级，整个项目的背景是什么样的，结合对听众的了解，做特定的介绍；</li>
-<li><strong>How</strong> 深入浅出 3～4 个最核心的内容点，当然为了全面性，你可以都罗列出来，但介绍的重点建议控制在 3～4 项；</li>
-<li><strong>Future</strong> 让大家了解你未来的计划，你对技术趋势的看法等；</li>
-<li><strong>Recap</strong> 对今天的主题再做一个回顾，让听众加深对核心内容记忆。</li>
-</ol>
-<h4 id="1-3-关于-PPT"><a href="#1-3-关于-PPT" class="headerlink" title="1.3. 关于 PPT"></a>1.3. 关于 PPT</h4><ul>
-<li>做一个<strong>演讲型</strong>（注重体验和创意）的幻灯片，风格保持“简洁、干净、一致、跳脱”。</li>
-<li>字体和风格的选择要保持一致性，最好不要用三个以上的颜色。</li>
-<li>合理的排版；</li>
-<li>合理而有意义的动效（一定不要太多）；</li>
-<li>页数尽量控制在 15～20 页，可根据实际情况再追加，但一定不要太多；<ul>
-<li>Who 1 页</li>
-<li>What&amp;When 1～2 页</li>
-<li>Why 1 页</li>
-<li>How 展开 3～4 点，每点 2～3 页</li>
-<li>Future 1 页</li>
-<li>Recap 1 页</li>
+<li><code>undefined</code><ul>
+<li>变量被声明了，但没有赋值时，就等于 <code>undefined</code></li>
+<li>调用函数时，应该提供的参数没有提供，该参数等于 <code>undefined</code></li>
+<li>对象没有赋值的属性，该属性的值为 <code>undefined</code></li>
+<li>函数没有返回值时，默认返回 <code>undefined</code></li>
 </ul>
 </li>
-<li>减少大篇幅文字，用最<strong>简洁的文字</strong>+<strong>图表</strong>（<em>一图胜千言</em>）来表示；</li>
-<li>以 keyword 为指引，适当的临场发挥，<strong>切勿照本宣科</strong>。</li>
+<li><code>null</code><ul>
+<li>作为函数的参数，表示该函数的参数不是对象。</li>
+<li>作为对象原型链的终点。</li>
 </ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2259619543.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/895189460.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/895189460.html" class="post-title-link" itemprop="url">一堂技术管理课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-06-24 早上 08:04:26" itemprop="dateCreated datePublished" datetime="2020-06-24T08:04:26+08:00">2020-06-24 早上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文整理自： 极客时间专栏<a target="_blank" rel="noopener external nofollow noreferrer" href="https://oscimg.oschina.net/oscnet/ae44a6b6fee0388014c6335dc070317e18e.jpg" title="《朱赟（yūn）的技术管理课》">《朱赟（yūn）的技术管理课》</a> （微信扫码进入课程）</p>
-</blockquote>
-<h3 id="从给答案到做引导"><a href="#从给答案到做引导" class="headerlink" title="从给答案到做引导"></a>从给答案到做引导</h3><p>每次别人向你请教问题，你都有现成的答案或快速找到答案，就会渐渐导致两个问题：</p>
+</li>
+</ul>
+<blockquote>
+<p>⚠️ 注意：在 JavaScript 中 <code>undefined</code> 是一个全局变量，而不是关键字！</p>
 <ol>
-<li>向你问问题和各种琐事的人越来越多；</li>
-<li>因为你给的是答案，下次如果有类似的问题，别人还会来找你。</li>
+<li>为了避免无意中被篡改，建议使用 <code>void 0</code> 来获取 <code>undefined</code> 值。</li>
+<li>在比较时，建议使用 <code>if (typeof var1 === &#39;undefined&#39;) &#123;&#125;</code>。</li>
 </ol>
-<p>那么如何改变呢？ <strong>授人以鱼，不如授人以渔</strong>。</p>
-<ul>
-<li><p>首先，需要明确什么时候适合直接给答案，什么时候适合给线索，让对方自己找答案。</p>
-<p>  可根据问题类型（简单、复杂、常见、不常见等），提问人所处阶段（新人、略有经验、熟手）来决定。</p>
-</li>
-<li><p>其次，如何引导？</p>
-<p>  可以根据对方的问题，提出一些相关的问题，通过问题去引导对方进行深入思考。</p>
-</li>
-<li><p>最后，引导的好处。</p>
-<p>  如果是通过别人的引导，自己摸索出来的，那么他解决类似问题的能力后续就会提升。同时，也会调动他工作的积极性，让其产生一种自己解决来问题的成就感。</p>
-</li>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3425556216.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/3425556216.html" class="post-title-link" itemprop="url">基于 Docker 的 Redis 服务</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-04-10 下午 16:06:58" itemprop="dateCreated datePublished" datetime="2020-04-10T16:06:58+08:00">2020-04-10 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>本文主要介绍基于 Docker 的 Redis 服务基本使用，涉及服务创建、客户端连接测试等。</p>
+</blockquote>
+<h3 id="1-相关资源"><a href="#1-相关资源" class="headerlink" title="1. 相关资源"></a>1. 相关资源</h3><ul>
+<li>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://redis.io/">https://redis.io</a></li>
+<li>镜像地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://store.docker.com/images/redis">https://store.docker.com/images/redis</a></li>
+<li>Redis 发布地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/antirez/redis">https://github.com/antirez/redis</a></li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/895189460.html#more" rel="contents">
+              <a class="btn" href="/post/3425556216.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -412,7 +380,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1046389609.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1938539149.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -430,7 +398,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1046389609.html" class="post-title-link" itemprop="url">PM2 入门指南</a>
+          <a href="/post/1938539149.html" class="post-title-link" itemprop="url">Hexo最佳实践推荐</a>
         </h2>
 
         <div class="post-meta-container">
@@ -441,7 +409,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-06-19 晚上 21:11:19" itemprop="dateCreated datePublished" datetime="2020-06-19T21:11:19+08:00">2020-06-19 晚上</time>
+      <time title="创建时间：2020-03-14 晚上 21:02:06" itemprop="dateCreated datePublished" datetime="2020-03-14T21:02:06+08:00">2020-03-14 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -449,7 +417,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
         </span>
     </span>
 
@@ -463,28 +431,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 = Process Manager 2</p>
-<blockquote>
-<p>ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS</p>
+          <blockquote>
+<p>该实践其实是一个目录操作规范，以易于使用为最终目的，将需要个性化和经常会变动的目录或文件独立出来，借助简单的 Shell 脚本进行 Hexo 的初始化及 NexT 主题的升级。</p>
+<p>说明：来源于个人使用过程中的总结，可能并不适合所有人，仅供参考。</p>
 </blockquote>
-<blockquote>
-<p>PM2 is a daemon process manager that will help you manage and keep your application online 24/7</p>
-</blockquote>
-<p>上面是官网给出的 title，简单来说：<strong>它是在后台运行的 <code>Node.js</code> 进程管理器，提供一套针对生产环境运行时的工具集，可以保障你的程序 7 * 24 小时在线。</strong></p>
-<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/">https://pm2.keymetrics.io</a></p>
-<p>文档：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/docs/usage/quick-start">https://pm2.keymetrics.io/docs/usage/quick-start</a></p>
-<p>总结其主要特性如下：</p>
-<ul>
-<li>日志管理：应用程序日志保存在服务器的硬盘中 <code>~/.pm2/logs/</code></li>
-<li>负载均衡：使用 <code>Node cluster</code> 集群模块，可以通过创建共享同一服务器端口的多个子进程来扩展您的应用程序。这样做还允许您以零秒停机时间重新启动应用程序，实现热重载。</li>
-<li>终端监控：可以在终端中监控您的应用程序运行状况，包括CPU使用率，使用的内存，请求/分钟等。</li>
-<li>自动停止不稳定的进程（避免无限循环）</li>
-<li>支持静态服务器功能</li>
-<li>提供 <code>HTTP API</code></li>
-</ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/1046389609.html#more" rel="contents">
+              <a class="btn" href="/post/1938539149.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -515,7 +468,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2119054721.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3905919184.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -533,7 +486,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2119054721.html" class="post-title-link" itemprop="url">Redis 的基本特性和 5 个常用数据结构</a>
+          <a href="/post/3905919184.html" class="post-title-link" itemprop="url">Linux 下 MySQL 自动备份脚本</a>
         </h2>
 
         <div class="post-meta-container">
@@ -544,7 +497,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-06-08 晚上 19:27:17" itemprop="dateCreated datePublished" datetime="2020-06-08T19:27:17+08:00">2020-06-08 晚上</time>
+      <time title="创建时间：2020-03-09 晚上 21:20:41" itemprop="dateCreated datePublished" datetime="2020-03-09T21:20:41+08:00">2020-03-09 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,7 +505,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -566,41 +519,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
-<li><p>速度快</p>
-<ul>
-<li>基于 C 语言开发，源码短小精悍</li>
-<li>数据存在内存中</li>
-<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
-</ul>
-</li>
-<li><p>支持数据持久化，异步保存到磁盘</p>
-</li>
-<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
-</li>
-<li><p>多语言客户端</p>
-</li>
-<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
-</li>
-<li><p>简单</p>
-<ul>
-<li>核心代码量小</li>
-<li>不依赖外部库</li>
-<li>单线程模型</li>
-</ul>
-</li>
-<li><p>支持主从复制</p>
-</li>
-<li><p>原生高可用和分布式解决方案</p>
-<ul>
-<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
-<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
-</ul>
-</li>
-</ul>
+          <blockquote>
+<p>基于 mysqldump 命令创建的脚本，支持自动备份1个或多个数据库到指定目录，如果需要备份到本地，请参考：<a href="/post/3997579074.html">使用 Shell 备份远程服务器上的 MySQL 数据库到本机</a></p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/2119054721.html#more" rel="contents">
+              <a class="btn" href="/post/3905919184.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -631,7 +555,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3076911137.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3997579074.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -649,7 +573,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3076911137.html" class="post-title-link" itemprop="url">dayjs时间处理库</a>
+          <a href="/post/3997579074.html" class="post-title-link" itemprop="url">使用 Shell 备份远程服务器上的 MySQL 数据库到本机</a>
         </h2>
 
         <div class="post-meta-container">
@@ -660,7 +584,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-06-03 上午 09:17:50" itemprop="dateCreated datePublished" datetime="2020-06-03T09:17:50+08:00">2020-06-03 上午</time>
+      <time title="创建时间：2020-03-09 晚上 21:04:54" itemprop="dateCreated datePublished" datetime="2020-03-09T21:04:54+08:00">2020-03-09 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -668,7 +592,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -682,24 +606,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
+          <blockquote>
+<p>操作流程：</p>
+<ol>
+<li>先登录服务器，备份数据库；</li>
+<li>将备份文件拉取到本机。</li>
+</ol>
 </blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
+<p>主要涉及知识点：<code>expect</code>、<code>mysqldump</code>、<code>scp</code></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/3076911137.html#more" rel="contents">
+              <a class="btn" href="/post/3997579074.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

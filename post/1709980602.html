@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -250,13 +250,13 @@
 </blockquote>
 <h4 id="1-1-多库模式"><a href="#1-1-多库模式" class="headerlink" title="1.1. 多库模式"></a>1.1. 多库模式</h4><ol>
 <li><p>创建</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /home/repos</span><br><span class="line">➜  svnadmin create /home/repos/resume</span><br><span class="line">➜  svnadmin create /home/repos/blog</span><br><span class="line">➜  <span class="built_in">cd</span> /home/repos</span><br><span class="line">➜  tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- blog</span><br><span class="line">|   |-- README.txt</span><br><span class="line">|   |-- conf</span><br><span class="line">|   |-- db</span><br><span class="line">|   |-- format</span><br><span class="line">|   |-- hooks</span><br><span class="line">|   `-- locks</span><br><span class="line">`-- resume</span><br><span class="line">    |-- README.txt</span><br><span class="line">    |-- conf</span><br><span class="line">    |-- db</span><br><span class="line">    |-- format</span><br><span class="line">    |-- hooks</span><br><span class="line">    `-- locks</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">mkdir</span> -p /home/repos</span><br><span class="line">➜  svnadmin create /home/repos/resume</span><br><span class="line">➜  svnadmin create /home/repos/blog</span><br><span class="line">➜  <span class="built_in">cd</span> /home/repos</span><br><span class="line">➜  tree -L 2</span><br><span class="line">.</span><br><span class="line">|-- blog</span><br><span class="line">|   |-- README.txt</span><br><span class="line">|   |-- conf</span><br><span class="line">|   |-- db</span><br><span class="line">|   |-- format</span><br><span class="line">|   |-- hooks</span><br><span class="line">|   `-- locks</span><br><span class="line">`-- resume</span><br><span class="line">    |-- README.txt</span><br><span class="line">    |-- conf</span><br><span class="line">    |-- db</span><br><span class="line">    |-- format</span><br><span class="line">    |-- hooks</span><br><span class="line">    `-- locks</span><br></pre></td></tr></table></figure></li>
 </ol>
 <span id="more"></span>
 
 <ol start="2">
 <li><p>公用一份 authz 和 passwd 文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mv blog/conf/authz ./</span><br><span class="line">➜  mv blog/conf/passwd ./</span><br><span class="line">➜  rm -rf resume/conf/authz resume/conf/passwd</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">mv</span> blog/conf/authz ./</span><br><span class="line">➜  <span class="built_in">mv</span> blog/conf/passwd ./</span><br><span class="line">➜  <span class="built_in">rm</span> -rf resume/conf/authz resume/conf/passwd</span><br></pre></td></tr></table></figure></li>
 <li><p>分别设置每个库的 <strong>svnserve.conf</strong> 文件</p>
 <p> 以 blog 为例 <code>vim /home/repos/blog/conf/svnserve.conf</code></p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 匿名用户只读(read或none)</span></span><br><span class="line">anon-access = none</span><br><span class="line"></span><br><span class="line"><span class="comment"># 认证用户可写</span></span><br><span class="line">auth-access = write</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 passwd 文件的位置</span></span><br><span class="line">password-db = ../../passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 公用 authz 文件的位置</span></span><br><span class="line">authz-db = ../../authz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 仓库的文件名(具体在客户端更新下载的时候能看到仓库名字)</span></span><br><span class="line">realm = blog</span><br></pre></td></tr></table></figure></li>
@@ -274,7 +274,7 @@
 <p>单库方式比较简单，只针对于单一项目的开发管理，并且在单库方式下一台服务器只能创建一个样本库，限制较大！</p>
 </blockquote>
 <p>创建一个新的单库 cms</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir -p /home/repos2</span><br><span class="line">➜ svnadmin create /home/repos2/cms</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">mkdir</span> -p /home/repos2</span><br><span class="line">➜ svnadmin create /home/repos2/cms</span><br></pre></td></tr></table></figure>
 
 <p>单库模式下，配置文件在 <code>/home/repos2/cms/conf</code> 下，其中 svnserv.conf 和 passwd 的配置方式与多库相似，authz 的配置有较大区别，如下：</p>
 <p><code>vim /home/repos2/cms/conf/authz</code></p>
@@ -309,7 +309,7 @@
 <p>步骤：</p>
 <ol>
 <li><p>创建目录布局临时文件</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir -p /tmp/repos_layout/&#123;trunk,branches,tags&#125;</span><br><span class="line">➜  tree /tmp/repos_layout/</span><br><span class="line">/tmp/repos_layout/</span><br><span class="line">|-- branches</span><br><span class="line">|-- tags</span><br><span class="line">`-- trunk</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">mkdir</span> -p /tmp/repos_layout/&#123;trunk,branches,tags&#125;</span><br><span class="line">➜  tree /tmp/repos_layout/</span><br><span class="line">/tmp/repos_layout/</span><br><span class="line">|-- branches</span><br><span class="line">|-- tags</span><br><span class="line">`-- trunk</span><br></pre></td></tr></table></figure></li>
 <li><p>导入到版本库中</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/repos_layout svn://192.168.0.1/resume -m <span class="string">&#x27;init&#x27;</span></span><br><span class="line">Adding         /tmp/repos_layout/branches</span><br><span class="line">Adding         /tmp/repos_layout/tags</span><br><span class="line">Adding         /tmp/repos_layout/trunk</span><br><span class="line">Committing transaction...</span><br><span class="line">Committed revision 1.</span><br></pre></td></tr></table></figure>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -187,6 +187,278 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2256713588.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2256713588.html" class="post-title-link" itemprop="url">配置 Nginx 输入用户名和密码才能访问</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2021-02-25 下午 14:39:38" itemprop="dateCreated datePublished" datetime="2021-02-25T14:39:38+08:00">2021-02-25 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>场景：一个外网访问地址，不希望对全部人可见，希望只有正确输入用户名、密码的人才能访问时，可以通过修改 Nginx 配置实现。</p>
+</blockquote>
+<h3 id="1-检查-htpasswd-是否可用"><a href="#1-检查-htpasswd-是否可用" class="headerlink" title="1. 检查 htpasswd 是否可用"></a>1. 检查 htpasswd 是否可用</h3><p>我们会用到一个工具 <code>htpasswd</code>，主要用于对访问密码加密（<strong>注：千万不要直接存明文密码！！！</strong>），可使用以下命令检查是否已经安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sq@host01:~$ <span class="built_in">which</span> htpasswd</span><br><span class="line">/usr/bin/htpasswd</span><br></pre></td></tr></table></figure>
+
+<p>如果没有这个工具，需要先安装：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu</span></span><br><span class="line">$ sudo apt-get install -y apache2-utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS</span></span><br><span class="line">$ yum -y install httpd-tools</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/2256713588.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/966087952.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/966087952.html" class="post-title-link" itemprop="url">Git 常用命令速查</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-12-28 晚上 21:00:17" itemprop="dateCreated datePublished" datetime="2020-12-28T21:00:17+08:00">2020-12-28 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2022-03-18 上午 10:10:14" itemprop="dateModified" datetime="2022-03-18T10:10:14+08:00">2022-03-18 上午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-查看"><a href="#1-1-查看" class="headerlink" title="1.1. 查看"></a>1.1. 查看</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --list <span class="comment"># 所有设置</span></span><br><span class="line">$ git config --list --global <span class="comment"># 全局设置</span></span><br><span class="line">$ git config --list --<span class="built_in">local</span> <span class="comment"># 当前仓库设置</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-最小设置"><a href="#1-2-最小设置" class="headerlink" title="1.2. 最小设置"></a>1.2. 最小设置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 不进行此设置时，只能执行 git add 操作</span></span><br><span class="line"><span class="comment"># 一般与待 push 的远程仓库保持一致</span></span><br><span class="line"><span class="comment"># 针对 --local 的设置，优先级高于 --global s</span></span><br><span class="line">$ git config --global user.name <span class="string">&quot;xxx&quot;</span> <span class="comment"># 用户名</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;xxx@email.com&quot;</span> <span class="comment"># 用户绑定的邮箱</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/966087952.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1732007690.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1732007690.html" class="post-title-link" itemprop="url">弹窗提示「Windows要求已数字签名的驱动程序」怎么办</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-12-10 晚上 22:12:38" itemprop="dateCreated datePublished" datetime="2020-12-10T22:12:38+08:00">2020-12-10 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">系统和软件</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近买了个雷蛇的鼠标，<code>Windows 7</code> 系统下通过雷云安装驱动的时候，弹窗提示「<strong>Windows要求已数字签名的驱动程序</strong>」，错误窗口详细信息的大意是一个驱动文件无法通过系统的数字签名，无法安装，导致设备可能无法正常使用。</p>
+<p>这其实是系统的一个安全警告，可通过以下命令关闭系统的数字签名认证：</p>
+<figure class="highlight dos"><table><tr><td class="code"><pre><span class="line">bcdedit.exe -<span class="built_in">set</span> loadoptions DDISABLE_INTEGRITY_CHECKS</span><br></pre></td></tr></table></figure>
+
+<p>重启系统，然后重新安装出错的程序就可以了。</p>
+<p><strong>注意</strong>：如果还是不行的话，则安装以下官方补丁程序：</p>
+<p>Windows 7 32bit：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46078">https://www.microsoft.com/zh-CN/download/details.aspx?id=46078</a></p>
+<p>Windows 7 64bit：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.microsoft.com/zh-CN/download/details.aspx?id=46148">https://www.microsoft.com/zh-CN/download/details.aspx?id=46148
+</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1904459089.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -295,204 +567,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2109815221.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2109815221.html" class="post-title-link" itemprop="url">JetBrains系软件设置和使用技巧笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2021-11-16 下午 14:05:34" itemprop="dateCreated datePublished" datetime="2021-11-16T14:05:34+08:00">2021-11-16 下午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文适用于 JetBrains 系软件，包含通用及单个软件的设置、使用技巧等，主要是在工作使用过程中遇到的问题及解决方式笔记。</p>
-</blockquote>
-<h3 id="1-设置"><a href="#1-设置" class="headerlink" title="1. 设置"></a>1. 设置</h3><h4 id="1-1-通用设置"><a href="#1-1-通用设置" class="headerlink" title="1.1. 通用设置"></a>1.1. 通用设置</h4><h5 id="关闭自动保存"><a href="#关闭自动保存" class="headerlink" title="关闭自动保存"></a>关闭自动保存</h5><p>菜单：<code>Appearance &amp; Behavior &gt; System Settings &gt; Synchronization</code></p>
-<p>取消勾选：</p>
-<ul>
-<li><input disabled="" type="checkbox"> <code>Synchronize files on frame or editor tab activation</code></li>
-<li><input disabled="" type="checkbox"> <code>Save files on frame deactiation</code></li>
-<li><input disabled="" type="checkbox"> <code>Use &quot;safe write&quot;(save changes to a temporary file first)</code></li>
-</ul>
-<h5 id="打开修改文件未保存标识"><a href="#打开修改文件未保存标识" class="headerlink" title="打开修改文件未保存标识"></a>打开修改文件未保存标识</h5><p>菜单：<code>Editor &gt; General &gt; Editor Tabs &gt; Appearance</code></p>
-<p>勾选：</p>
-<ul>
-<li><input checked="" disabled="" type="checkbox"> <code>Mark modified (*)</code></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2109815221.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2159656190.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2159656190.html" class="post-title-link" itemprop="url">Chrome 浏览器最新稳定版完整离线安装包下载</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-13 上午 10:20:27" itemprop="dateCreated datePublished" datetime="2020-02-13T10:20:27+08:00">2020-02-13 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2021-11-08 下午 15:37:59" itemprop="dateModified" datetime="2021-11-08T15:37:59+08:00">2021-11-08 下午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">系统和软件</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>当前最新稳定版本：<strong>Version 95.0.4638.69 (Official Build)</strong></p>
-</blockquote>
-<h3 id="谷歌官网直接下载地址"><a href="#谷歌官网直接下载地址" class="headerlink" title="谷歌官网直接下载地址"></a>谷歌官网直接下载地址</h3><p><strong>注意</strong>：需要科学上网！无法科学上网的，请使用后面的网盘备份地址。</p>
-<ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dstable-arch_x86-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup.exe">Windows 32位</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dl.google.com/tag/s/appguid%3D%7B8A69D345-D564-463C-AFF1-A69D9E530F96%7D%26iid%3D%7BBABABE6F-A3B2-8FF1-24AD-5C9064C7E130%7D%26lang%3Dzh-CN%26browser%3D4%26usagestats%3D0%26appname%3DGoogle%2520Chrome%26needsadmin%3Dprefers%26ap%3Dx64-stable-statsdef_1%26installdataindex%3Dempty/chrome/install/ChromeStandaloneSetup64.exe">Windows 64位</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb">Linux （.deb）</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm">Linux （.rpm）</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg">macOS（.dmg）</a></li>
-</ul>
-<h3 id="备份下载地址"><a href="#备份下载地址" class="headerlink" title="备份下载地址"></a>备份下载地址</h3><ul>
-<li>百度网盘（含最新及部分历史版本）：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg">https://pan.baidu.com/s/195fycw8BEK4B1xhi4ig1Sg</a> 密码: <code>oig4</code></li>
-<li>阿里云盘（只有最新版）：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.aliyundrive.com/s/tQDPe57hBPx">https://www.aliyundrive.com/s/tQDPe57hBPx</a></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3045142832.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -558,108 +632,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/3045142832.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1936578867.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1936578867.html" class="post-title-link" itemprop="url">JetBrains全系列软件激活教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-24 上午 09:36:12" itemprop="dateCreated datePublished" datetime="2020-02-24T09:36:12+08:00">2020-02-24 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2021-10-04 上午 09:36:12" itemprop="dateModified" datetime="2021-10-04T09:36:12+08:00">2021-10-04 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>声明：本文来源网络，主要参考 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhile.io/2018/08/25/jetbrains-license-server-crack.html">zhile.io</a>，只做个人学习研究之用，不得用于商业用途！</p>
-<ul>
-<li><p>若资金允许，请<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jetbrains.com/idea/buy/">点击链接</a>购买正版。</p>
-</li>
-<li><p>学生凭学生证可<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sales.jetbrains.com/hc/zh-cn/articles/207154369-%E5%AD%A6%E7%94%9F%E6%8E%88%E6%9D%83%E7%94%B3%E8%AF%B7%E6%96%B9%E5%BC%8F">免费申请</a>正版授权。</p>
-</li>
-<li><p>创业公司可<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jetbrains.com/shop/eform/startup">5折购买</a>正版授权。</p>
-</li>
-</ul>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/1936578867.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

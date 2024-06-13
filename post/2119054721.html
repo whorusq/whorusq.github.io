@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -347,7 +347,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 获取指定索引范围的所有项（包含 stop 的项）</span></span><br><span class="line">&gt; lrange key start stop</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询一个 key 下的所有项</span></span><br><span class="line">&gt; lrange key 0 -1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取指定下标的项</span></span><br><span class="line">&gt; lindex key index</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取列表长度</span></span><br><span class="line">&gt; llen key</span><br></pre></td></tr></table></figure>
 
 <p>其它</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] timeout</span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] timeout</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止</span></span><br><span class="line"><span class="comment"># timeout 单位：秒</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># lpop 的阻塞版本</span></span><br><span class="line">&gt; blpop key [key ...] <span class="built_in">timeout</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># rpop 的阻塞版本</span></span><br><span class="line">&gt; brpop key [key ...] <span class="built_in">timeout</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="2-4-set-集合"><a href="#2-4-set-集合" class="headerlink" title="2.4. set 集合"></a>2.4. set 集合</h4><h5 id="2-4-1-特点"><a href="#2-4-1-特点" class="headerlink" title="2.4.1. 特点"></a>2.4.1. 特点</h5><ul>
 <li>无序</li>

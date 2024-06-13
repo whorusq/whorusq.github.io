@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -291,7 +291,7 @@
 <li><p>安装 expect 的依赖 tcl</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget https://sourceforge.net/projects/tcl/files/Tcl/8.4.19/tcl8.4.19-src.tar.gz</span><br><span class="line">➜  tar zxvf tcl8.4.19-src.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> tcl8.4.19/unix &amp;&amp; ./configure</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br></pre></td></tr></table></figure></li>
 <li><p>安装 expect</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget http://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz</span><br><span class="line">➜  tar zxvf expect5.45.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> expect5.45</span><br><span class="line">➜  ./configure --with-tcl=/usr/<span class="built_in">local</span>/lib --with-tclinclude=../tcl8.4.19/generic</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br><span class="line">➜  ln -s /usr/<span class="built_in">local</span>/bin/expect /usr/bin/expect</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  wget http://sourceforge.net/projects/expect/files/Expect/5.45/expect5.45.tar.gz</span><br><span class="line">➜  tar zxvf expect5.45.tar.gz</span><br><span class="line">➜  <span class="built_in">cd</span> expect5.45</span><br><span class="line">➜  ./configure --with-tcl=/usr/local/lib --with-tclinclude=../tcl8.4.19/generic</span><br><span class="line">➜  make</span><br><span class="line">➜  make install</span><br><span class="line">➜  <span class="built_in">ln</span> -s /usr/local/bin/expect /usr/bin/expect</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h4 id="5-2-特殊字符转义"><a href="#5-2-特殊字符转义" class="headerlink" title="5.2. 特殊字符转义"></a>5.2. 特殊字符转义</h4><p>如果密码中有特殊字符，需要做转义处理，否则使用 expect 的 send 语法是无法发送成功的，具体需要转义的字符如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\ ===&gt; \\\</span><br><span class="line">&#125; ===&gt; \&#125;</span><br><span class="line">[ ===&gt; \[</span><br><span class="line">$ ===&gt; \\\$</span><br><span class="line">` ===&gt; \`</span><br><span class="line">&quot; ===&gt; \\\&quot;</span><br><span class="line">~ ===&gt; \\~</span><br></pre></td></tr></table></figure>

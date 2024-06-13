@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -273,17 +273,17 @@
 </ul>
 <h4 id="1-2-分支和标签"><a href="#1-2-分支和标签" class="headerlink" title="1.2. 分支和标签"></a>1.2. 分支和标签</h4><ul>
 <li><p>创建 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cp svn://trunk_url svn://branch_url -m <span class="string">&#x27;创建分支&#x27;</span></span><br><span class="line">➜  svn mkdir svn://branch_url -m <span class="string">&#x27;创建空分支&#x27;</span></span><br><span class="line">➜  svn cp svn://trunk_url tag_url -m <span class="string">&#x27;创建标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn <span class="built_in">cp</span> svn://trunk_url svn://branch_url -m <span class="string">&#x27;创建分支&#x27;</span></span><br><span class="line">➜  svn <span class="built_in">mkdir</span> svn://branch_url -m <span class="string">&#x27;创建空分支&#x27;</span></span><br><span class="line">➜  svn <span class="built_in">cp</span> svn://trunk_url tag_url -m <span class="string">&#x27;创建标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>删除 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除分支&#x27;</span></span><br><span class="line">➜  svn rm svn://branch_url -m <span class="string">&#x27;删除标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn <span class="built_in">rm</span> svn://branch_url -m <span class="string">&#x27;删除分支&#x27;</span></span><br><span class="line">➜  svn <span class="built_in">rm</span> svn://branch_url -m <span class="string">&#x27;删除标签&#x27;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>查看 branch、tag</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn ls ^/branches --verbose</span><br><span class="line">➜  svn ls ^/tags --verbose</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn <span class="built_in">ls</span> ^/branches --verbose</span><br><span class="line">➜  svn <span class="built_in">ls</span> ^/tags --verbose</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h4 id="1-3-历史记录"><a href="#1-3-历史记录" class="headerlink" title="1.3. 历史记录"></a>1.3. 历史记录</h4><ul>
 <li><p>查看提交记录</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看整个项目或指定文件目录的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个指定版本之间的提交记录</span></span><br><span class="line">➜   svn <span class="built_in">log</span> -r 11:5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最新的 5 条提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看带目录信息的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 -v [file|dir]</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看整个项目或指定文件目录的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> [file|<span class="built_in">dir</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看两个指定版本之间的提交记录</span></span><br><span class="line">➜   svn <span class="built_in">log</span> -r 11:5 [file|<span class="built_in">dir</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看最新的 5 条提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 [file|<span class="built_in">dir</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看带目录信息的提交记录</span></span><br><span class="line">➜  svn <span class="built_in">log</span> -l 5 -v [file|<span class="built_in">dir</span>]</span><br></pre></td></tr></table></figure></li>
 <li><p>查看指定版本号的文件内容</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn cat file -r 版本号</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn <span class="built_in">cat</span> file -r 版本号</span><br></pre></td></tr></table></figure></li>
 <li><p>查看文件的修改详情（行级）</p>
   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 比较工作副本下的文件与缓存在 .svn 的“原始”拷贝</span></span><br><span class="line">➜  svn diff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较工作副本下的文件与指定版本号 5 下的文件</span></span><br><span class="line">➜  svn diff -r 5 file</span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较两个版本库下的文件</span></span><br><span class="line">➜  svn diff -r 11:2 file</span><br></pre></td></tr></table></figure></li>
 <li><p>查看文件每一行的最后修改人</p>
@@ -291,23 +291,23 @@
 </ul>
 <h4 id="1-4-忽略文件"><a href="#1-4-忽略文件" class="headerlink" title="1.4. 忽略文件"></a>1.4. 忽略文件</h4><ul>
 <li><p>基本使用</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 忽略指定文件或目录</span></span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;file|dir&#x27;</span> dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略当前目录中所有以 .log 结尾的文件</span></span><br><span class="line"><span class="comment"># . 表示当前目录，当指定具体目录时，该目录需处于版本控制状态</span></span><br><span class="line">➜  svn propset svn:ignore -R <span class="string">&#x27;*.log&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;ignore *.log file&#x27;</span></span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 忽略指定文件或目录</span></span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;file|dir&#x27;</span> <span class="built_in">dir</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 忽略当前目录中所有以 .log 结尾的文件</span></span><br><span class="line"><span class="comment"># . 表示当前目录，当指定具体目录时，该目录需处于版本控制状态</span></span><br><span class="line">➜  svn propset svn:ignore -R <span class="string">&#x27;*.log&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;ignore *.log file&#x27;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>要忽略的文件已经被 add 过了</p>
 <ul>
 <li>未提交</li>
 </ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R [file|dir]</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn revert -R [file|<span class="built_in">dir</span>]</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>已提交</li>
 </ul>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn del [file|dir]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只从 svn 中忽略，而不删除本地文件</span></span><br><span class="line">➜  svn del --keep-local [file|dir]</span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn del [file|<span class="built_in">dir</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只从 svn 中忽略，而不删除本地文件</span></span><br><span class="line">➜  svn del --keep-local [file|<span class="built_in">dir</span>]</span><br></pre></td></tr></table></figure>
 
 <p>  然后再执行忽略设置并提交。</p>
 </li>
 <li><p>使用配置文件</p>
 <p>  新建 .svnignore 文件，写入类似如下内容：</p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">runtime</span><br><span class="line">*.log</span><br><span class="line">*.apk</span><br><span class="line">*.class</span><br></pre></td></tr></table></figure>
+  <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">runtime</span><br><span class="line">*.log</span><br><span class="line">*.apk</span><br><span class="line">*.class</span><br></pre></td></tr></table></figure>
 
 <p>  然后执行设置</p>
   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn add .svnignore</span><br><span class="line">➜  svn propset svn:ignore -R -F .svnignore .</span><br></pre></td></tr></table></figure>
@@ -317,9 +317,9 @@
 </ul>
 <h4 id="1-5-小技巧"><a href="#1-5-小技巧" class="headerlink" title="1.5. 小技巧"></a>1.5. 小技巧</h4><ul>
 <li><p>创建了一个文件夹，并且把它加入版本控制，但忽略文件夹中的所有内容</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn mkdir dir2</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;*&#x27;</span> dir2</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Adding &quot;dir2&quot; and ignoring its contents.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn <span class="built_in">mkdir</span> dir2</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;*&#x27;</span> dir2</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Adding &quot;dir2&quot; and ignoring its contents.&#x27;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>创建一个不加入版本控制（忽略）的文件夹</p>
-  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  mkdir dir1</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;dir1&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Ignoring a directory called &quot;dir1&quot;.&#x27;</span></span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">mkdir</span> dir1</span><br><span class="line">➜  svn propset svn:ignore <span class="string">&#x27;dir1&#x27;</span> .</span><br><span class="line">➜  svn ci -m <span class="string">&#x27;Ignoring a directory called &quot;dir1&quot;.&#x27;</span></span><br></pre></td></tr></table></figure></li>
 <li><p>导入一个目录 import</p>
   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  svn import /tmp/upload svn://192.168.0.1/repo1 -m <span class="string">&#x27;add module upload&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -338,7 +338,7 @@
 <li><p>先更新到最新代码</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里得到最新版本号 11</span></span><br><span class="line">➜  svn up</span><br><span class="line">Updating <span class="string">&#x27;.&#x27;</span>:</span><br><span class="line">At revision 11.</span><br></pre></td></tr></table></figure></li>
 <li><p>找到要回滚到的版本号</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看最新的 50 次提交记录</span></span><br><span class="line"><span class="comment"># 最后的参数可以指定文件或目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn <span class="built_in">log</span> -l 50 [file|dir]</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看最新的 50 次提交记录</span></span><br><span class="line"><span class="comment"># 最后的参数可以指定文件或目录</span></span><br><span class="line">➜  <span class="built_in">cd</span> trunk</span><br><span class="line">➜  svn <span class="built_in">log</span> -l 50 [file|<span class="built_in">dir</span>]</span><br></pre></td></tr></table></figure>
 
 <p> 假如我们想要回退到的版本是 5，可以执行命令 <code>svn diff -r 11:5 [file|dir]</code> 简单查看两个版本的区别。</p>
 </li>
@@ -409,7 +409,7 @@
 <p><strong>解决</strong>：安装高版本的 svn ，如下</p>
 <ul>
 <li><p>添加软件源 <code>vim /etc/yum.repos.d/wandisco-svn.repo</code></p>
-  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[WandiscoSVN]</span><br><span class="line">name=Wandisco SVN Repo</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/$releasever/svn-1.8/RPMS/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">[WandiscoSVN]</span><br><span class="line">name=Wandisco SVN Repo</span><br><span class="line">baseurl=http://opensource.wandisco.com/centos/$releasever/svn-1.8/RPMS/$basearch/</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure></li>
 <li><p>删除旧版本 <code>yum remove subversion*</code></p>
 </li>
 <li><p>安装新版本</p>

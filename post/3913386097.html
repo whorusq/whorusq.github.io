@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -259,7 +259,7 @@
 <li><code> chmod g+w,o+w test</code> 给文件属主的所属组和其它用户添加（写 <strong>w</strong>）权限</li>
 </ul>
 <h4 id="方式二：通过对应的数字组合（4-读、2-写、1-执行）"><a href="#方式二：通过对应的数字组合（4-读、2-写、1-执行）" class="headerlink" title="方式二：通过对应的数字组合（4 读、2 写、1 执行）"></a>方式二：通过对应的数字组合（<em>4 读</em>、<em>2 写</em>、<em>1 执行</em>）</h4><p>示例：给目录属主添加读写（4+2）权限，所属组和其它用户添加读、执行（4+1）权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ chmod 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> 655 <span class="built_in">test</span></span><br><span class="line">$ ll</span><br><span class="line">总计 4</span><br><span class="line">drw-r-xr-x 2 sq sq 4096 11-12 22:47 <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="权限的意义"><a href="#权限的意义" class="headerlink" title="权限的意义"></a>权限的意义</h3><h4 id="对于目录文件"><a href="#对于目录文件" class="headerlink" title="对于目录文件"></a>对于目录文件</h4><ul>
 <li><p><strong>r：读</strong></p>

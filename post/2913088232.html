@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -376,7 +376,7 @@
 </ul>
 <h4 id="1-4-2-删除记录（删）"><a href="#1-4-2-删除记录（删）" class="headerlink" title="1.4.2. 删除记录（删）"></a>1.4.2. 删除记录（删）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> table_name [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一次删除多张表</span></span><br><span class="line"><span class="keyword">DELETE</span> t1,t2,... <span class="keyword">FROM</span> table1 t1,table2 t2,... [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
 
-<h4 id="1-4-3-更新记录（改）"><a href="#1-4-3-更新记录（改）" class="headerlink" title="1.4.3. 更新记录（改）"></a>1.4.3. 更新记录（改）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">UPDATE table_name <span class="keyword">SET</span> field1<span class="operator">=</span>val1,field2<span class="operator">=</span>val2,...,fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一次更新多个表</span></span><br><span class="line">UPDATE table1 a,table2 b, tablen n <span class="keyword">SET</span> a.field1<span class="operator">=</span>val1,...,n.fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-3-更新记录（改）"><a href="#1-4-3-更新记录（改）" class="headerlink" title="1.4.3. 更新记录（改）"></a>1.4.3. 更新记录（改）</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> field1<span class="operator">=</span>val1,field2<span class="operator">=</span>val2,...,fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 一次更新多个表</span></span><br><span class="line"><span class="keyword">UPDATE</span> table1 a,table2 b, tablen n <span class="keyword">SET</span> a.field1<span class="operator">=</span>val1,...,n.fieldn<span class="operator">=</span>valn [<span class="keyword">WHERE</span> <span class="keyword">condition</span>];</span><br></pre></td></tr></table></figure>
 
 <h4 id="1-4-4-查询记录（查）"><a href="#1-4-4-查询记录（查）" class="headerlink" title="1.4.4. 查询记录（查）"></a>1.4.4. 查询记录（查）</h4><ul>
 <li><p>基本</p>

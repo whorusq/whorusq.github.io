@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -375,7 +375,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 10010 <span class="built_in">test</span>@192.168.1.149</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: attempting to <span class="built_in">log</span> <span class="keyword">in</span> with the new key(s), to filter out any that are already installed</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- <span class="keyword">if</span> you are prompted now it is to install the new keys</span><br><span class="line"><span class="built_in">test</span>@192.168.1.149<span class="string">&#x27;s password:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Number of key(s) added: 1</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Now try logging into the machine, with:   &quot;ssh -p &#x27;</span>10010<span class="string">&#x27; &#x27;</span><span class="built_in">test</span>@192.168.1.149<span class="string">&#x27;&quot;</span></span><br><span class="line"><span class="string">and check to make sure that only the key(s) you wanted were added.</span></span><br></pre></td></tr></table></figure>
 
 <p>检查远程服务器是否添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cat ~/.ssh/authorized_keys</span><br><span class="line">ssh-rsa AAAAB3xxxxxxxxxxxxxxxxx0xuysQjs6bcmGvIsGJZS8J/gouy9AjjfaQqsYLBdHo5bXGTMN3fQ1TntSluB4lfINtzCYf4+VP55WLEzMNTeJnHtVBQen6yNYckcxxxxxxxxxxxxxxxxxG+IAxVS/ugI9kfiOrltxZKn5VUE4hRqwqLIeu9CMhFrPNtTNCLQuqI8FQRz+MixZjFPdsY0OrzxxxxxxxxxxxxxxxxxQeIK/BPOxwolg5xNO29sEw8p5T7al6VxxxxxxxxxxxxxxxxxuLZ8jkv/uMqmyXxxxxxxxxxxxxxxxxxwfMJT4UfdOzr root@localhost.localdomain</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> ~/.ssh/authorized_keys</span><br><span class="line">ssh-rsa AAAAB3xxxxxxxxxxxxxxxxx0xuysQjs6bcmGvIsGJZS8J/gouy9AjjfaQqsYLBdHo5bXGTMN3fQ1TntSluB4lfINtzCYf4+VP55WLEzMNTeJnHtVBQen6yNYckcxxxxxxxxxxxxxxxxxG+IAxVS/ugI9kfiOrltxZKn5VUE4hRqwqLIeu9CMhFrPNtTNCLQuqI8FQRz+MixZjFPdsY0OrzxxxxxxxxxxxxxxxxxQeIK/BPOxwolg5xNO29sEw8p5T7al6VxxxxxxxxxxxxxxxxxuLZ8jkv/uMqmyXxxxxxxxxxxxxxxxxxwfMJT4UfdOzr root@localhost.localdomain</span><br></pre></td></tr></table></figure>
 
 <p>上面的秘钥信息就是我本机对应的公钥，再次执行 rsync 命令就不需要输入登录密码了。</p>
 

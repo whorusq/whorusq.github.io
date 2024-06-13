@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -271,10 +271,10 @@
 <p> 其它命令：</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看私钥列表</span></span><br><span class="line">➜  ssh-add -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空私钥列表</span></span><br><span class="line">➜  ssh-add -D</span><br></pre></td></tr></table></figure></li>
 <li><p>添加对应不同平台的配置</p>
- <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  touch ~/.ssh/config</span><br><span class="line">➜  vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  <span class="built_in">touch</span> ~/.ssh/config</span><br><span class="line">➜  vim ~/.ssh/config</span><br></pre></td></tr></table></figure>
 
 <p> 文件内容如下：</p>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># github</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/github_rsa</span><br><span class="line"></span><br><span class="line"># coding</span><br><span class="line">Host coding.net</span><br><span class="line">HostName coding.net</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/coding_rsa</span><br></pre></td></tr></table></figure></li>
+ <figure class="highlight text"><table><tr><td class="code"><pre><span class="line"># github</span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/github_rsa</span><br><span class="line"></span><br><span class="line"># coding</span><br><span class="line">Host coding.net</span><br><span class="line">HostName coding.net</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/coding_rsa</span><br></pre></td></tr></table></figure></li>
 <li><p>将公钥添加到服务器</p>
 <p> 这里以 Github 为例，首先拷贝对应的公钥。</p>
  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  pbcopy &lt; ~/.ssh/github_rsa.pub</span><br></pre></td></tr></table></figure>
@@ -296,7 +296,7 @@
  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  git clone git@xxx:xxx/demo.git</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="2-提交代码"><a href="#2-提交代码" class="headerlink" title="2. 提交代码"></a>2. 提交代码</h3><p>提交代码时，如果没有设置当前项目对应 Git 的 <code>name</code> 和 <code>email</code>，将提示如下信息：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git commit -m <span class="string">&#x27;added file&#x27;</span></span><br><span class="line"></span><br><span class="line">*** Please tell me who you are.</span><br><span class="line"></span><br><span class="line">Run</span><br><span class="line"></span><br><span class="line">  git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">  git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line"></span><br><span class="line">to <span class="built_in">set</span> your account<span class="string">&#x27;s default identity.</span></span><br><span class="line"><span class="string">Omit --global to set the identity only in this repository.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fatal: empty ident name (for &lt;&gt;) not allowed</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  git commit -m <span class="string">&#x27;added file&#x27;</span></span><br><span class="line"></span><br><span class="line">*** Please tell me <span class="built_in">who</span> you are.</span><br><span class="line"></span><br><span class="line">Run</span><br><span class="line"></span><br><span class="line">  git config --global user.email <span class="string">&quot;you@example.com&quot;</span></span><br><span class="line">  git config --global user.name <span class="string">&quot;Your Name&quot;</span></span><br><span class="line"></span><br><span class="line">to <span class="built_in">set</span> your account<span class="string">&#x27;s default identity.</span></span><br><span class="line"><span class="string">Omit --global to set the identity only in this repository.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">fatal: empty ident name (for &lt;&gt;) not allowed</span></span><br></pre></td></tr></table></figure>
 
 <p>此时，我们需要使用以下命令，对当前项目添加本地设置：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 注意，这里省略了参数 --local ，是针对当前项目的本地设置</span></span><br><span class="line">➜  git config user.name <span class="string">&quot;your git user name&quot;</span></span><br><span class="line">➜  git config user.email <span class="string">&quot;yout git user email&quot;</span></span><br></pre></td></tr></table></figure>

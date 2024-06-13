@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -187,289 +187,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/954645501.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/954645501.html" class="post-title-link" itemprop="url">PHP 之命令行模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-01-18 晚上 21:25:25" itemprop="dateCreated datePublished" datetime="2020-01-18T21:25:25+08:00">2020-01-18 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/954645501.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3519953407.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3519953407.html" class="post-title-link" itemprop="url">Vagrant 入门指引</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-01-17 晚上 22:19:10" itemprop="dateCreated datePublished" datetime="2020-01-17T22:19:10+08:00">2020-01-17 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-Vagrant-介绍"><a href="#1-Vagrant-介绍" class="headerlink" title="1. Vagrant 介绍"></a>1. Vagrant 介绍</h3><p>相关资源</p>
-<ul>
-<li>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.vagrantup.com/" title="Vagrant homepage">https://www.vagrantup.com</a></li>
-<li>文档（英文）：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.vagrantup.com/docs" title="Vagrant docs">https://www.vagrantup.com/docs</a></li>
-<li>文档（中文）：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://tangbaoping.github.io/vagrant_doc_zh/v2">https://tangbaoping.github.io/vagrant_doc_zh/v2</a></li>
-<li>官方 box 仓库：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://app.vagrantup.com/boxes/search" title="Vagrant box">https://app.vagrantup.com/boxes/search</a></li>
-<li>第三方 box 仓库：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.vagrantbox.es/" title="Vagrant box">http://www.vagrantbox.es</a>（还有<a target="_blank" rel="noopener external nofollow noreferrer" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-cloud-images" title="Vagrant box">清华</a>、<a target="_blank" rel="noopener external nofollow noreferrer" href="https://mirrors.ustc.edu.cn/ubuntu-cloud-images/" title="Vagrant box">中科大 👍</a>）</li>
-<li>CentOS 官方 box 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cloud.centos.org/centos/7/vagrant/x86_64/images/">http://cloud.centos.org/centos/7/vagrant/x86_64/images/</a></li>
-<li>Ubuntu 官方 box 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="http://cloud-images.ubuntu.com/">http://cloud-images.ubuntu.com</a></li>
-</ul>
-<p>下面是节选自官方对 Vagrant 的说明：</p>
-<blockquote>
-<p><strong>WHY VAGRANT?</strong></p>
-<p>Vagrant provides easy to configure, reproducible, and portable work environments built on top of industry-standard technology and controlled by a single consistent workflow to help maximize the productivity and flexibility of you and your team.</p>
-<p>To achieve its magic, Vagrant stands on the<br>oulders of giants. Machines are provisioned on top of <strong>VirtualBox</strong>, <strong>VMware</strong>, <strong>AWS</strong>, or any other provider. Then, industry-standard provisioning tools such as shell scripts, Chef, or Puppet, can be used to automatically install and configure software on the machine.</p>
-</blockquote>
-<p>其实，说白了 Vagrant 就是一个普普通通的装了 Linux 的 VirtualBox 虚拟机，配以 Vagrant  团队为之开发的一系列套件，辅助完成诸如安装初始化、文件同步、ssh、部署环境升级、功能插件安装等等一些列问题的开发环境部署套件。</p>
-<p>参见知乎话题：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.zhihu.com/question/32324376" title="Vagrant Docker">Vagrant 和 Docker的使用场景和区别?</a></p>
-<p><strong>解决的痛点</strong>：</p>
-<ul>
-<li>开发环境快速部署</li>
-<li>开发环境更迭</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/3519953407.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2410148889.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2410148889.html" class="post-title-link" itemprop="url">ThinkPHP 框架执行流程浅析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-01-17 晚上 20:56:25" itemprop="dateCreated datePublished" datetime="2020-01-17T20:56:25+08:00">2020-01-17 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>版本：v5.1.x LTS</p>
-<p>v6.0 稳定版已经发布，详见官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.thinkphp.cn/1347379" title="ThinkPHP 6.0">ThinkPHP 6.0</a></p>
-</blockquote>
-<p>这里以单入口为例解析 ThinkPHP 从接收前端请求到返回数据的整个执行流程，分为如下图的几个步骤：</p>
-<p><img data-src="https://static.sqiang.net/image/post/ThinkPHP5.1+%E6%A1%86%E6%9E%B6%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B.png" alt="ThinkPHP 框架执行流程浅析" title="ThinkPHP 框架执行流程浅析"></p>
-<p>其中入口文件位置：<strong>public/index.php</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2410148889.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2447614005.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -619,6 +336,297 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/1961322743.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1948692156.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1948692156.html" class="post-title-link" itemprop="url">Oracle jdk1.8、jdk11、jdk17安装文件下载</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-17 晚上 19:21:37" itemprop="dateCreated datePublished" datetime="2020-01-17T19:21:37+08:00">2020-01-17 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2023-11-01 晚上 20:21:37" itemprop="dateModified" datetime="2023-11-01T20:21:37+08:00">2023-11-01 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>网盘备份的安装文件都是从官网直接下载的，可比对 sha256 进行确认。</p>
+<p>只提供 jdk 的 <strong>LTS</strong> 最新版本，并且对应系统只提供 <strong>Windows</strong>、<strong>macOS</strong>、<strong>Linux</strong>，其它系统或历史版本参照官网下载部分的说明。</p>
+</blockquote>
+<h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><ul>
+<li>最新 LTS 版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/downloads/">https://www.oracle.com/java/technologies/downloads/</a></li>
+<li>jdk17 历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html</a></li>
+<li>jdk11 历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html">https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html</a></li>
+<li>jdk1.8 历史版本(8u211+)：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html">https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html</a></li>
+<li>jdk1.8 历史版本(8u202-)：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html">https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html</a></li>
+<li>其它历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/downloads/archive/">https://www.oracle.com/java/technologies/downloads/archive/</a></li>
+</ul>
+<h4 id="账号分享"><a href="#账号分享" class="headerlink" title="账号分享"></a>账号分享</h4><blockquote>
+<p>2023-11-01 测试可用</p>
+</blockquote>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">账号：2028056560@qq.com</span><br><span class="line">密码：Oracle1234</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/1948692156.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/316987977.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/316987977.html" class="post-title-link" itemprop="url">使用 nrm 管理 npm 源</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-17 下午 17:21:13" itemprop="dateCreated datePublished" datetime="2020-01-17T17:21:13+08:00">2020-01-17 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2024-01-17 下午 17:21:13" itemprop="dateModified" datetime="2024-01-17T17:21:13+08:00">2024-01-17 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  ~ npm i nrm -g</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看 nrm 内置的几个 npm 源</span></span><br><span class="line">➜  ~ nrm <span class="built_in">ls</span></span><br><span class="line">  npm ---------- https://registry.npmjs.org/</span><br><span class="line">  yarn --------- https://registry.yarnpkg.com/</span><br><span class="line">  tencent ------ https://mirrors.cloud.tencent.com/npm/</span><br><span class="line">  cnpm --------- https://r.cnpmjs.org/</span><br><span class="line">* taobao ------- https://registry.npmmirror.com/</span><br><span class="line">  npmMirror ---- https://skimdb.npmjs.com/registry/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换源</span></span><br><span class="line">➜  ~ nrm use cnpm</span><br><span class="line">    Registry has been <span class="built_in">set</span> to: http://r.cnpmjs.org/</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3176262256.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/3176262256.html" class="post-title-link" itemprop="url">借助 nvm 安装、管理多个 NodeJS 版本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-17 下午 17:21:08" itemprop="dateCreated datePublished" datetime="2020-01-17T17:21:08+08:00">2020-01-17 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2024-06-02 下午 17:21:08" itemprop="dateModified" datetime="2024-06-02T17:21:08+08:00">2024-06-02 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>本文主要介绍如何使用 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/creationix/nvm">nvm</a> 对 Node 的版本进行管理，当然你也可以选择另一个工具 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/tj/n">n</a>。</p>
+</blockquote>
+<h3 id="安装或升级（参见这里）"><a href="#安装或升级（参见这里）" class="headerlink" title="安装或升级（参见这里）"></a>安装或升级（<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/nvm-sh/nvm#install--update-script">参见这里</a>）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<p>脚本的作用是将 nvm 仓库源码克隆到 <code>~/.nvm</code> 下面，之后将环境变量添加到配置文件中，如：<code>~/.bash_profile</code>， <code>~/.zshrc</code>，<code>~/.profile</code>，或 <code>~/.bashrc</code>。</p>
+<p>所以会用到 git 命令，如果没有 Git，请先安装。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/3176262256.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

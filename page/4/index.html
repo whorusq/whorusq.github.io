@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1623733608.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/438064550.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1623733608.html" class="post-title-link" itemprop="url">MySQL如何查询最新审核过的一条数据</a>
+          <a href="/post/438064550.html" class="post-title-link" itemprop="url">借助 IPXWrapper 解决基于 IPX 协议的旧游戏局域网联机问题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,7 +216,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2021-07-07 下午 17:23:14" itemprop="dateCreated datePublished" datetime="2021-07-07T17:23:14+08:00">2021-07-07 下午</time>
+      <time title="创建时间：2020-11-06 晚上 23:21:27" itemprop="dateCreated datePublished" datetime="2020-11-06T23:21:27+08:00">2020-11-06 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,7 +224,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+          <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
         </span>
     </span>
 
@@ -239,78 +239,22 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>本文只是项目过程中暂时能想到的一种方法，如果你有其它实现方式，欢迎留言与我交流。</p>
+<p>之前一些热门的老游戏，比如红警、魔兽争霸、星际争霸、暗黑等，都是基于 IPX 协议进行联机的，而在当前使用最多的 Windows7、Windows10 系统中，该协议已经不可用了。如果想要联机，则必须下载对应系统的 IPX 驱动文件进行安装，操作起来还是挺麻烦的。</p>
 </blockquote>
-<p><strong>原始数据</strong></p>
-<table>
-<thead>
-<tr>
-<th>id（主键）</th>
-<th>organization_id</th>
-<th>audit_time（审核时间）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2orejelw5td3bwfkv</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-06-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or7zo75ygc7fi2l7</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-07-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or81tr5evpean60d</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-06-19 11:12:16</td>
-</tr>
-<tr>
-<td>2or81tt1m5rnw1h0o</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-05-19 11:57:00</td>
-</tr>
-<tr>
-<td>2or96z2524ac1zw0v</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-07-09 13:31:00</td>
-</tr>
-</tbody></table>
-<p><strong>目标描述</strong>：针对每个 organization_id， 根据审核时间，获取最新审核的一条数据</p>
-<p><strong>预期结果</strong>：</p>
-<table>
-<thead>
-<tr>
-<th>id（主键）</th>
-<th>organization_id</th>
-<th>audit_time（审核时间）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2or7zo75ygc7fi2l7</td>
-<td>2oo2v3mqwrd832efh</td>
-<td>2021-07-02 15:23:37</td>
-</tr>
-<tr>
-<td>2or96z2524ac1zw0v</td>
-<td>202106171149548es5ntrhd</td>
-<td>2021-07-09 13:31:00</td>
-</tr>
-</tbody></table>
-<p><strong>完整 SQL 如下:</strong></p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	SUBSTRING_INDEX(GROUP_CONCAT(id <span class="keyword">ORDER</span> <span class="keyword">BY</span> audit_time),<span class="string">&#x27;,&#x27;</span>,<span class="number">-1</span>) <span class="keyword">AS</span> id,</span><br><span class="line">	organization_id</span><br><span class="line"><span class="keyword">FROM</span> organization_auth_request</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> organization_id</span><br></pre></td></tr></table></figure>
-
-<p><strong>关键点说明:</strong></p>
+<p>本文介绍一个简单的工具 <strong>IPXWrapper</strong>，它的原理是通过 <strong>UDP</strong> 包来模拟 <strong>IPX</strong>。</p>
+<p>同时这是一个开源项目，相关地址如下：</p>
 <ul>
-<li><code>GROUP_CONCAT(id ORDER BY audit_time)</code> 分组后拼接的时候，可以指定排序字段和排序方式，以确保能够按照指定顺序拼接</li>
-<li><code>SUBSTRING_INDEX(&#39;待截取的字符串&#39;,&#39;,&#39;,-1)</code><ul>
-<li>第一个参数是待截取的字符串；</li>
-<li>第二个参数是截取时以什么字符分组，比如这里是以 <code>,</code> 分组；</li>
-<li>第三个参数是截取方向和个数，<code>-1</code> 表示从末尾截取一组字符（正数从开头开始截取；负数从末尾开始截取）。</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/">官网</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper">源码仓库</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.solemnwarning.net/ipxwrapper/ipxwrapper-0.6.1.zip">下载 ipxwrapper-0.6.1.zip</a> | <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/whorusq/ipxwrapper/archive/ipxwrapper-0.6.1.zip">备用下载链接1</a> ｜ <a target="_blank" rel="noopener external nofollow noreferrer" href="https://bayfiles.com/X8Leq5nbp6/ipxwrapper-0.6.1_zip">备用下载链接2</a></li>
 </ul>
-</li>
-</ul>
-<p>关于这两个函数的更多使用方式，参见官方文档或搜索引擎。</p>
+<p>下载下来后，按以下步骤操作：</p>
+<ol>
+<li>把所有文件解压出来，并拷贝到游戏的根目录下，如果文件已经存在则选择覆盖；</li>
+<li>根据当前系统版本，执行 <code>directplay-win32.reg</code> 或 <code>directplay-win64.reg</code> 文件添加注册表；</li>
+<li>双击运行 <code>ipxconfig.exe</code> 文件配置网卡（一般默认即可）。当存在多张网卡时，在 <code>Network adapters</code> 列表下单击不需要的网卡，然后取消 <code>Enable interface</code> 的勾选，可以避免在游戏的网络设置中出现多个网卡选项。</li>
+</ol>
+<p><strong>友情提示</strong>：对于这些老旧游戏，建议使用兼容模式运行，选择「Windows XP sp3」。</p>
 
       
     </div>
@@ -337,7 +281,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/4078650632.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2411996818.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -355,7 +299,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/4078650632.html" class="post-title-link" itemprop="url">zip分卷压缩命令</a>
+          <a href="/post/2411996818.html" class="post-title-link" itemprop="url">Webpack入门及常用配置速查</a>
         </h2>
 
         <div class="post-meta-container">
@@ -366,92 +310,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2021-07-05 下午 15:09:14" itemprop="dateCreated datePublished" datetime="2021-07-05T15:09:14+08:00">2021-07-05 下午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> -s 切分大小，可选 k、m、g、t</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -x 忽略文件</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -r 递归目录</span></span><br><span class="line">➜  ~ zip -s 100m -x &quot;*.DS_Store&quot; -r split-foo.zip foo/</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 切分已有 zip 文件</span></span><br><span class="line">➜  ~ zip existing.zip --out new.zip -s 50m</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 解压</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> -s 0 合并</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> --out 指定输出文件名</span></span><br><span class="line">➜  ~ zip -s 0 split.zip --out single.zip</span><br><span class="line">unzip single.zip</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2445402303.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2445402303.html" class="post-title-link" itemprop="url">如何使用 vscode 启动、调试 Node.js 项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-09-22 早上 08:48:48" itemprop="dateCreated datePublished" datetime="2020-09-22T08:48:48+08:00">2020-09-22 早上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2021-05-26 下午 17:31:58" itemprop="dateModified" datetime="2021-05-26T17:31:58+08:00">2021-05-26 下午</time>
+      <time title="创建时间：2020-11-02 下午 14:41:53" itemprop="dateCreated datePublished" datetime="2020-11-02T14:41:53+08:00">2020-11-02 下午</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -474,17 +333,17 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p>适用场景：以 <code>npm run xxx</code> 启动项目，并进行本地开发；在需要调试的时候按 <code>F5</code> 或单击 <code>Debug</code> 相应按钮打开调试模式，进行断点调试。</p>
+<p>Webpack 是一个现代 JavaScript 应用程序的静态模块打包工具。主要针对js、css、html、图片、字体文件，进行压缩、优化、合并等操作，以实现前端项目的工程化。</p>
 </blockquote>
-<p>涉及 vscode 配置：</p>
-<ul>
-<li><code>.vscode/tasks.json</code> 启动</li>
-<li><code>.vscode/launch.json</code> 调试</li>
-</ul>
-<p>其实 <code>launch.json</code> 也一样可以启动项目，但是 <code>tasks.json</code> 能实现更多功能，并且将启动、调试分开，会更清晰。</p>
+<h2 id="1-Hello-Webpack"><a href="#1-Hello-Webpack" class="headerlink" title="1. Hello Webpack"></a>1. Hello Webpack</h2><h3 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1. 安装"></a>1.1. 安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 初始化项目</span></span><br><span class="line">➜  npm init -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 安装 webpack</span></span><br><span class="line"><span class="comment"># --save-dev 可以用 -D 代替</span></span><br><span class="line">➜  npm i webpack webpack-cli --save-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 在 package.json 中添加编译命令</span></span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;webpack&quot;</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-添加源码文件"><a href="#1-2-添加源码文件" class="headerlink" title="1.2. 添加源码文件"></a>1.2. 添加源码文件</h3><p>初始状态下（未进行任何配置），webpack 会查找项目到 <code>/src/index.js</code> 文件作为打包入口，并且输出到 <code>/dist</code> 目录下，所以需要先添加源码文件，才能执行打包操作。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// /src/index.js</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`hello webpack`</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-执行打包"><a href="#1-3-执行打包" class="headerlink" title="1.3. 执行打包"></a>1.3. 执行打包</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  npm run build</span><br><span class="line"></span><br><span class="line">&gt; webpack-demo1@1.0.0 build /Users/sunqiang/www/learning/webpack/webpack-demo1</span><br><span class="line">&gt; webpack</span><br><span class="line"></span><br><span class="line">[webpack-cli] Compilation finished</span><br><span class="line">asset main.js 29 bytes [emitted] [minimized] (name: main)</span><br><span class="line">./src/index.js 29 bytes [built] [code generated]</span><br><span class="line">webpack 5.3.2 compiled successfully <span class="keyword">in</span> 315 ms</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/2445402303.html#more" rel="contents">
+              <a class="btn" href="/post/2411996818.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -515,7 +374,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2792803495.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3209780963.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -533,7 +392,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2792803495.html" class="post-title-link" itemprop="url">解决Hexo文章更新时间问题</a>
+          <a href="/post/3209780963.html" class="post-title-link" itemprop="url">《最后的舞动 The Last Dance》</a>
         </h2>
 
         <div class="post-meta-container">
@@ -544,7 +403,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2021-05-09 下午 16:53:55" itemprop="dateCreated datePublished" datetime="2021-05-09T16:53:55+08:00">2021-05-09 下午</time>
+      <time title="创建时间：2020-10-28 晚上 19:09:05" itemprop="dateCreated datePublished" datetime="2020-10-28T19:09:05+08:00">2020-10-28 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -552,7 +411,129 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
+          <a href="/categories/%E5%BD%B1%E8%A7%86%E9%9F%B3%E4%B9%90/" itemprop="url" rel="index"><span itemprop="name">影视音乐</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <table>
+  <thead>
+    <tr>
+      <th colspan="2">
+        片名：最后的舞动 The Last Dance（2020）
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5">
+      <img class="poster" data-src="https://static.sqiang.net/image/post/poster_last_dance.jpg">
+      </td>
+      <td><b>导演</b>：杰森·海希尔</td>
+    </tr>
+    <tr>
+      <td><b>主演</b>：迈克尔·乔丹、斯科蒂·皮蓬、菲尔·杰克逊、史蒂夫·科尔</td>
+    </tr>
+    <tr>
+      <td><b>类型</b>：纪录片</td>
+    </tr>
+    <tr>
+      <td><b>地区</b>：欧美</td>
+    </tr>
+    <tr>
+      <td><b>简介</b>：1997 年秋天，迈克尔·乔丹和芝加哥公牛队开始了他们八年来第六个 NBA 总冠军的追逐。但是，尽管乔丹自 13 年前大放异彩以来取得了非凡成就，但主教练菲尔·杰克逊称之为“最后的舞动”的这次比赛被俱乐部高层中的紧张气氛所笼罩，因为这是最后一次看到有史以来最伟大的球员和他杰出的队友们一起奋力拼搏。</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">
+        下载（磁力链接）：
+        <a href="magnet:?xt=urn:btih:375855b96e874205a3e1aa7fd6e9c89bb4dd42a9&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E01</a>
+        <a href="magnet:?xt=urn:btih:5b5a3bd7e7083658a6d0953a0737a8558721eca1&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E02</a>
+        <a href="magnet:?xt=urn:btih:cb0235cd5b3fc6c4bc3f2b501d70096c7eaec01c&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E03</a>
+        <a href="magnet:?xt=urn:btih:86f945f44e7a9dc1a7a4d4adcfef18cef3085e03&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E04</a>
+        <a href="magnet:?xt=urn:btih:fff7fc9e1056941cd6e9e1053b0ffe638ad3aad2&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E05</a>
+        <a href="magnet:?xt=urn:btih:0ce19de594e3093d4ecf26da87cb71eed9386f18&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E06</a>
+        <a href="magnet:?xt=urn:btih:07fc4fecec9ef89e6cf0e2b7c05430397cc9f847&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E07</a>
+        <a href="magnet:?xt=urn:btih:e9c2f925762a4aa0e8659c2d3b30219f6c6ef2bb&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E08</a>
+        <a href="magnet:?xt=urn:btih:f7bdbef6a8b240d206ac9a0035f1cb8eea1e835f&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E09</a>
+        <a href="magnet:?xt=urn:btih:853d5900caad0fcbc23f6561d9f5beac25e57fe6&tr=http://tr.cili001.com:8070/announce&tr=udp://p4p.arenabg.com:1337&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.demonii.com:1337" rel="external nofollow noreferrer">S01E10</a>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/130164364.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/130164364.html" class="post-title-link" itemprop="url">读《习惯的力量》</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-10-22 上午 09:09:46" itemprop="dateCreated datePublished" datetime="2020-10-22T09:09:46+08:00">2020-10-22 上午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
         </span>
     </span>
 
@@ -567,15 +548,13 @@
     
     <div class="post-body" itemprop="articleBody">
           <blockquote>
-<p><strong>问题描述</strong>：整理文件的时候，误把存放 Hexo 博客的目录删除了，因为是存储在远程 Git 仓库上的，所以又重新拉取了一遍。在创建新文章进行预览的时候，发现更新<em>所有文章的更新日期都变成了今天</em>。</p>
+<p>本书通过大量案例，揭示了我们的习惯是如何形成的，刻画了一张图「习惯回路」，它包含提示、惯常行为、奖励三个主要部分。结合这张图，通过认真分析并找到我们内心深处真正的需求，借助惯常行为的改变，就能达到改变旧习惯的目的。</p>
 </blockquote>
-<blockquote>
-<p><strong>产生原因</strong>：Hexo 默认是以文件的「修改时间」作为文章的更新时间，由于所有博客文章是从 Git 仓库重新拉取回来的，所有文件的创建时间和修改时间都是这个重新拉取的时间，所以文章的更新时间相应的就不对了。</p>
-</blockquote>
-<p>解决步骤如下：</p>
+<p>无意间在网上找到了下面这张图片，它非常好的诠释了本书的主旨：</p>
+<p><img data-src="https://static.sqiang.net/image/post/customay_behavior_1.png?imageView2/2/w/600" alt="《习惯的力量》（图片来源网络）" title="《习惯的力量》（图片来源网络）"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/2792803495.html#more" rel="contents">
+              <a class="btn" href="/post/130164364.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -606,7 +585,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3973669864.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2039108116.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -624,7 +603,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3973669864.html" class="post-title-link" itemprop="url">自建跨域代理解决Gitalk无法登录的问题</a>
+          <a href="/post/2039108116.html" class="post-title-link" itemprop="url">Hexo添加自定义404页面</a>
         </h2>
 
         <div class="post-meta-container">
@@ -635,7 +614,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2021-04-30 下午 17:41:46" itemprop="dateCreated datePublished" datetime="2021-04-30T17:41:46+08:00">2021-04-30 下午</time>
+      <time title="创建时间：2020-10-16 下午 16:20:52" itemprop="dateCreated datePublished" datetime="2020-10-16T16:20:52+08:00">2020-10-16 下午</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -657,16 +636,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><code>Gitalk</code> 一个基于 <code>Github issues</code> 和 <code>Preact</code> 开发的评论插件，在 <code>Hexo NexT</code> 主题中可以很方便的开启，并且简洁、轻量。</p>
-</blockquote>
-<p>刚开始使用的时候挺稳的，但是近期出现登录不上的问题。通过查看浏览器的「网络面板」，发现 <a href="cors-anywhere.herokuapp.com">cors-anywhere.herokuapp.com</a> 这个地址报错 <code>403</code>。这是一个实现跨域请求转发的服务，而 Gitalk 正是依赖它与 Github 进行通信。为什么会 <code>403</code> 呢，最后找到<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Rob--W/cors-anywhere/issues/301">官方说明</a>，大体意思就是：<code>这个地址只是用来演示的，但是发现流量越来越大，所以要进行限流。</code></p>
-<p>解决这个问题最好的办法是：<strong>自建</strong>。</p>
-<p>今天查看 NexT 官网，发现有人已经提供了解决方案<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/next-theme/hexo-theme-next/pull/205">参见这里</a>。</p>
-<p>本文主要就是介绍如何自建这个跨域代理，实测可用的完整过程如下下文：</p>
+          <h5 id="1-创建自定义页面"><a href="#1-创建自定义页面" class="headerlink" title="1. 创建自定义页面"></a>1. 创建自定义页面</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">➜  cd hexo_root_path &amp;&amp; hexo new page 404</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-修改-404-文件"><a href="#2-修改-404-文件" class="headerlink" title="2. 修改 404 文件"></a>2. 修改 404 文件</h5><p>打开 <code>source/404/index.md</code>，添加如下内容：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/3973669864.html#more" rel="contents">
+              <a class="btn" href="/post/2039108116.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

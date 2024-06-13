@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -255,7 +255,7 @@
 <span id="more"></span>
 
 <p>使用流程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ mkdir mynginx</span><br><span class="line">➜ <span class="built_in">cd</span> mynginx</span><br><span class="line">➜ touch Dockerfile</span><br><span class="line">➜ vi Dockerfile</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜ <span class="built_in">mkdir</span> mynginx</span><br><span class="line">➜ <span class="built_in">cd</span> mynginx</span><br><span class="line">➜ <span class="built_in">touch</span> Dockerfile</span><br><span class="line">➜ vi Dockerfile</span><br></pre></td></tr></table></figure>
 
 <p>写入如下内容</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">FROM nginx</span><br><span class="line">RUN echo &#x27;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#x27; &gt; /usr/share/nginx/html/index</span><br><span class="line">.html</span><br></pre></td></tr></table></figure>
@@ -301,7 +301,7 @@
 </ul>
 <p>比如，我们想指定使用其它终端，就可以通过第二种方式实现，例如 <code>RUN [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;echo hello&quot;]</code></p>
 <p><strong>注意</strong>：Dockerfile 中每一个指令都会建立一层， RUN 也不例外。所以在编写 Dockerfile 的过程中，我们应该尽量避免无意义的层次，采取类似如下示例的操作：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 安装基础工具包</span></span><br><span class="line">	&amp;&amp; apt-get install -y software-properties-common vim wget  \</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里追加其它操作：安装软件、配置服务等</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 做一些清理工作</span></span><br><span class="line">	&amp;&amp; apt-get clean \</span><br><span class="line">    &amp;&amp; apt-get autoclean \</span><br><span class="line">    &amp;&amp; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">FROM ubuntu:16.04</span><br><span class="line"></span><br><span class="line">RUN apt-get update \</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 安装基础工具包</span></span><br><span class="line">	&amp;&amp; apt-get install -y software-properties-common vim wget  \</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 这里追加其它操作：安装软件、配置服务等</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># 做一些清理工作</span></span><br><span class="line">	&amp;&amp; apt-get clean \</span><br><span class="line">    &amp;&amp; apt-get autoclean \</span><br><span class="line">    &amp;&amp; <span class="built_in">rm</span> -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*</span><br></pre></td></tr></table></figure>
 
 <p><strong>注意：在编写 Dockerfile 的时候，要经常提醒自己，这并不是在写 Shell 脚本，而是在定义每一层该如何构建。</strong></p>
 <h4 id="2-4-CMD"><a href="#2-4-CMD" class="headerlink" title="2.4. CMD"></a>2.4. CMD</h4><blockquote>
@@ -415,7 +415,7 @@
 
 <p>要临时获取管理员权限可以使用 <strong>gosu</strong>，而不推荐 sudo，可参照：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/tianon/gosu">https://github.com/tianon/gosu</a></p>
 <p>使用示例：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建立 redis 用户，并使用 gosu 换另一个用户执行命令</span></span><br><span class="line">RUN groupadd -r redis &amp;&amp; useradd -r -g redis redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 gosu</span></span><br><span class="line">RUN wget -O /usr/<span class="built_in">local</span>/bin/gosu <span class="string">&quot;https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64&quot;</span> \</span><br><span class="line">&amp;&amp; chmod +x /usr/<span class="built_in">local</span>/bin/gosu \</span><br><span class="line">&amp;&amp; gosu nobody <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 CMD，并以另外的用户执行</span></span><br><span class="line">CMD [ <span class="string">&quot;exec&quot;</span>, <span class="string">&quot;gosu&quot;</span>, <span class="string">&quot;redis&quot;</span>, <span class="string">&quot;redis-server&quot;</span> ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 建立 redis 用户，并使用 gosu 换另一个用户执行命令</span></span><br><span class="line">RUN groupadd -r redis &amp;&amp; useradd -r -g redis redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载 gosu</span></span><br><span class="line">RUN wget -O /usr/local/bin/gosu <span class="string">&quot;https://github.com/tianon/gosu/releases/download/1.7/gosu-amd64&quot;</span> \</span><br><span class="line">&amp;&amp; <span class="built_in">chmod</span> +x /usr/local/bin/gosu \</span><br><span class="line">&amp;&amp; gosu nobody <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 CMD，并以另外的用户执行</span></span><br><span class="line">CMD [ <span class="string">&quot;exec&quot;</span>, <span class="string">&quot;gosu&quot;</span>, <span class="string">&quot;redis&quot;</span>, <span class="string">&quot;redis-server&quot;</span> ]</span><br></pre></td></tr></table></figure>
 
 <h4 id="2-12-WORKDIR"><a href="#2-12-WORKDIR" class="headerlink" title="2.12. WORKDIR"></a>2.12. WORKDIR</h4><blockquote>
 <p>为后续的 RUN、CMD、ENTRYPOINT 指令配置工作目录。</p>

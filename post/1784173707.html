@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -244,7 +244,7 @@
     <div class="post-body" itemprop="articleBody">
         <h4 id="解决方式一：追加容器启动参数"><a href="#解决方式一：追加容器启动参数" class="headerlink" title="解决方式一：追加容器启动参数"></a>解决方式一：追加容器启动参数</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-v /etc/localtime:/etc/localtime:ro</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">-e <span class="string">&quot;TZ=Asia/Shanghai&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="解决方式二：调整-Dockerfile-参数"><a href="#解决方式二：调整-Dockerfile-参数" class="headerlink" title="解决方式二：调整 Dockerfile 参数"></a>解决方式二：调整 Dockerfile 参数</h4><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENV</span> TZ=America/Los_Angeles</span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> ln -snf /usr/share/zoneinfo/<span class="variable">$TZ</span> /etc/localtime &amp;&amp; <span class="built_in">echo</span> <span class="variable">$TZ</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure>
+<h4 id="解决方式二：调整-Dockerfile-参数"><a href="#解决方式二：调整-Dockerfile-参数" class="headerlink" title="解决方式二：调整 Dockerfile 参数"></a>解决方式二：调整 Dockerfile 参数</h4><figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ENV</span> TZ=America/Los_Angeles</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">ln</span> -snf /usr/share/zoneinfo/<span class="variable">$TZ</span> /etc/localtime &amp;&amp; <span class="built_in">echo</span> <span class="variable">$TZ</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure>
 
 <p>参照：</p>
 <ul>

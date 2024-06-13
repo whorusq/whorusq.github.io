@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.0">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="https://static.sqiang.net/image/site/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="https://static.sqiang.net/image/site/favicon-32x32.png">
@@ -261,9 +261,9 @@
 
 <h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a>3. 使用</h3><h4 id="3-1-默认启动"><a href="#3-1-默认启动" class="headerlink" title="3.1. 默认启动"></a>3.1. 默认启动</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  docker run --name myredis -d redis</span><br><span class="line">41f9c2e8fb86c415257c0342eb58435c3a5bbaf10f888a2cb3c7243d08ec796c</span><br></pre></td></tr></table></figure>
 <p>之后就可以通过客户端程序连接 <code>127.0.0.1:6379</code> 来访问了。</p>
-<h4 id="3-2-怎么使用-redis-cli-连接容器？"><a href="#3-2-怎么使用-redis-cli-连接容器？" class="headerlink" title="3.2. 怎么使用 redis-cli 连接容器？"></a>3.2. 怎么使用 redis-cli 连接容器？</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  docker run -it --link myredis --rm redis redis-cli -h myredis -p 6379</span><br><span class="line">myredis:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">myredis:6379&gt; SET name <span class="string">&#x27;xiaoming&#x27;</span></span><br><span class="line">OK</span><br><span class="line">myredis:6379&gt; GET name</span><br><span class="line"><span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">myredis:6379&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-2-怎么使用-redis-cli-连接容器？"><a href="#3-2-怎么使用-redis-cli-连接容器？" class="headerlink" title="3.2. 怎么使用 redis-cli 连接容器？"></a>3.2. 怎么使用 redis-cli 连接容器？</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  docker run -it --<span class="built_in">link</span> myredis --<span class="built_in">rm</span> redis redis-cli -h myredis -p 6379</span><br><span class="line">myredis:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">myredis:6379&gt; SET name <span class="string">&#x27;xiaoming&#x27;</span></span><br><span class="line">OK</span><br><span class="line">myredis:6379&gt; GET name</span><br><span class="line"><span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">myredis:6379&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="3-3-如何将数据持久化存储到宿主机？"><a href="#3-3-如何将数据持久化存储到宿主机？" class="headerlink" title="3.3. 如何将数据持久化存储到宿主机？"></a>3.3. 如何将数据持久化存储到宿主机？</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  docker run --name myredis2 -d -v ~/data/redis:/data redis redis-server --appendonly yes</span><br></pre></td></tr></table></figure>
+<h4 id="3-3-如何将数据持久化存储到宿主机？"><a href="#3-3-如何将数据持久化存储到宿主机？" class="headerlink" title="3.3. 如何将数据持久化存储到宿主机？"></a>3.3. 如何将数据持久化存储到宿主机？</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">➜  docker run --name myredis2 -d -v ~/data/redis:/data redis redis-server --appendonly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
 <p>说明：</p>
 <ul>
 <li><code>--appendonly yes</code> 用于打开 redis 的数据持久化存储</li>
@@ -271,7 +271,7 @@
 </ul>
 <h4 id="3-4-自定义配置文件"><a href="#3-4-自定义配置文件" class="headerlink" title="3.4. 自定义配置文件"></a>3.4. 自定义配置文件</h4><p>建议<a target="_blank" rel="noopener external nofollow noreferrer" href="https://redis.io/">官网</a>下载指定版本的 Redis 源码包，解压后获取默认配置文件 <code>redis.conf</code></p>
 <p>然后在 Redis 容器启动时如下操作：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ~/myredis/conf/redis.conf 对应宿主机配置文件位置</span></span><br><span class="line">➜  docker run -v ~/myredis/conf/redis.conf:/usr/<span class="built_in">local</span>/etc/redis/redis.conf --name myredis3 redis redis-server /usr/<span class="built_in">local</span>/etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ~/myredis/conf/redis.conf 对应宿主机配置文件位置</span></span><br><span class="line">➜  docker run -v ~/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis3 redis redis-server /usr/local/etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
 
 <h3 id="4-使用-docker-compose-编排"><a href="#4-使用-docker-compose-编排" class="headerlink" title="4. 使用 docker compose 编排"></a>4. 使用 docker compose 编排</h3><p>上面是基本使用方式，为便于管理，我们一般使用 <code>docker compose</code> 来统一创建、管理各服务。</p>
 <h4 id="4-1-创建"><a href="#4-1-创建" class="headerlink" title="4.1. 创建"></a>4.1. 创建</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 新建一个目录 redi 存放，结构如下</span></span><br><span class="line">➜  tree -L 2 redis</span><br><span class="line">.</span><br><span class="line">├── conf</span><br><span class="line">│   └── redis.conf &lt;-- 默认配置文件</span><br><span class="line">├── data</span><br><span class="line">│   └── dump.rdb &lt;-- 数据持久化文件</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
