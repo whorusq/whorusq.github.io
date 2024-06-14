@@ -1261,7 +1261,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #fb9f8a;
+    background: #33a8ff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2872,11 +2872,12 @@ a#clustrmaps-widget-v2,
 }
 .post-body blockquote {
   background-color: #f6f6f6;
-  border-left-color: #fc6423;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
   margin-bottom: 5px;
+  border-left-color: #fc6423;
+  border-left-width: 2px;
 }
 .post-body .blockquote-center {
   background-color: #fdfdfd !important;
