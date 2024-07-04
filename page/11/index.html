@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/525717070.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3997579074.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/525717070.html" class="post-title-link" itemprop="url">基于 Hexo 快速构建个人静态博客系统</a>
+          <a href="/post/3997579074.html" class="post-title-link" itemprop="url">使用 Shell 备份远程服务器上的 MySQL 数据库到本机</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,7 +216,99 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-03-01 上午 11:19:18" itemprop="dateCreated datePublished" datetime="2020-03-01T11:19:18+08:00">2020-03-01 上午</time>
+      <time title="创建时间：2020-03-09 晚上 21:04:54" itemprop="dateCreated datePublished" datetime="2020-03-09T21:04:54+08:00">2020-03-09 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>操作流程：</p>
+<ol>
+<li>先登录服务器，备份数据库；</li>
+<li>将备份文件拉取到本机。</li>
+</ol>
+</blockquote>
+<p>主要涉及知识点：<code>expect</code>、<code>mysqldump</code>、<code>scp</code></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/3997579074.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2104705023.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2104705023.html" class="post-title-link" itemprop="url">怎么使用 Excel 实现二级联动的下拉菜单</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-03-03 晚上 21:46:15" itemprop="dateCreated datePublished" datetime="2020-03-03T21:46:15+08:00">2020-03-03 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,13 +330,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Hexo 是一个快速、简洁且高效的博客框架。</p>
-<p>基于 <code>Markdown</code> 解析出文章内容，快速生成静态页面文件。</p>
-<p>本文以当前博客为例，介绍 Hexo 如何快速建立一个静态博客，并部署在 <code>Github Pages</code> 上（如果是部署在 Gitee 或 Coding 上，可自行修改本文中不一样的地方）。</p>
-<p>关于 Hexo 的更多信息，详见官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn</a></p>
+          <blockquote>
+<p>本文以 macOS 下的 Excel  为示例，相当于最新版 Excel，如果有菜单名称和位置不同，请自行转换。</p>
+</blockquote>
+<h4 id="操作步骤："><a href="#操作步骤：" class="headerlink" title="操作步骤："></a>操作步骤：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_cascade_menu.gif" width="95%">
+</center>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/525717070.html#more" rel="contents">
+              <a class="btn" href="/post/2104705023.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -275,7 +369,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3800214565.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/366405450.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -293,7 +387,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3800214565.html" class="post-title-link" itemprop="url">基于 CentOS6.x 源码编译安装 LNMP 环境</a>
+          <a href="/post/366405450.html" class="post-title-link" itemprop="url">如何在 Excel 中实现下拉多选、反选</a>
         </h2>
 
         <div class="post-meta-container">
@@ -304,7 +398,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-29 晚上 19:13:46" itemprop="dateCreated datePublished" datetime="2020-02-29T19:13:46+08:00">2020-02-29 晚上</time>
+      <time title="创建时间：2020-03-03 晚上 21:45:59" itemprop="dateCreated datePublished" datetime="2020-03-03T21:45:59+08:00">2020-03-03 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,7 +406,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
         </span>
     </span>
 
@@ -326,17 +420,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>这是之前在学习、工作过程中整理的笔记，完整的记录了以源码方式编译、配置 LNMP 环境的步骤，虽然也小范围用于生产环境的服务构建，但建议只把它拿来学习用，因为有些细节和优化项并不完善。</p>
-<p>生产环境，强烈建议使用以下两个相对成熟、稳定的脚本工具：</p>
-<ul>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://oneinstack.com/">https://oneinstack.com</a></li>
-<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://lnmp.org/">https://lnmp.org</a></li>
-</ul>
-</blockquote>
+          <h4 id="操作步骤（视频）："><a href="#操作步骤（视频）：" class="headerlink" title="操作步骤（视频）："></a>操作步骤（视频）：</h4><center>
+<img data-src="https://static.sqiang.net/image/post/excel_select_nulti.jpg" width="95%">
+</center>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/3800214565.html#more" rel="contents">
+              <a class="btn" href="/post/366405450.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -367,7 +456,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/600047155.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1784173707.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -385,7 +474,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/600047155.html" class="post-title-link" itemprop="url">Linux系统切换阿里云软件更新源</a>
+          <a href="/post/1784173707.html" class="post-title-link" itemprop="url">解决 Docker 容器与宿主机时间不同步</a>
         </h2>
 
         <div class="post-meta-container">
@@ -396,7 +485,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-28 晚上 22:05:15" itemprop="dateCreated datePublished" datetime="2020-02-28T22:05:15+08:00">2020-02-28 晚上</time>
+      <time title="创建时间：2020-03-03 晚上 20:09:52" itemprop="dateCreated datePublished" datetime="2020-03-03T20:09:52+08:00">2020-03-03 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -404,7 +493,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
         </span>
     </span>
 
@@ -418,24 +507,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
+          <h4 id="解决方式一：追加容器启动参数"><a href="#解决方式一：追加容器启动参数" class="headerlink" title="解决方式一：追加容器启动参数"></a>解决方式一：追加容器启动参数</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-v /etc/localtime:/etc/localtime:ro</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">-e <span class="string">&quot;TZ=Asia/Shanghai&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方式二：调整-Dockerfile-参数"><a href="#解决方式二：调整-Dockerfile-参数" class="headerlink" title="解决方式二：调整 Dockerfile 参数"></a>解决方式二：调整 Dockerfile 参数</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ENV</span> TZ=America/Los_Angeles</span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">ln</span> -snf /usr/share/zoneinfo/<span class="variable">$TZ</span> /etc/localtime &amp;&amp; <span class="built_in">echo</span> <span class="variable">$TZ</span> &gt; /etc/timezone</span></span><br></pre></td></tr></table></figure>
+
+<p>参照：</p>
 <ul>
-<li><p>本文整理自阿里云提供的更新源脚本，请以 root 用户操作。</p>
-</li>
-<li><p>如果使用的是阿里云服务器，将源的域名从 <strong>mirrors.aliyun.com</strong> 改为 <strong>mirrors.aliyuncs.com</strong>，不占用公网流量。</p>
-</li>
-<li><p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://developer.aliyun.com/mirror/?lang=zh-CN">https://developer.aliyun.com/mirror/?lang=zh-CN</a></p>
-</li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes">https://serverfault.com/questions/683605/docker-container-time-timezone-will-not-reflect-changes</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://stackoverflow.com/questions/22800624/will-docker-container-auto-sync-time-with-the-host-machine">http://stackoverflow.com/questions/22800624/will-docker-container-auto-sync-time-with-the-host-machine</a></li>
 </ul>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/600047155.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+
       
     </div>
 
@@ -461,7 +542,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3431125306.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/567149842.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -479,7 +560,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3431125306.html" class="post-title-link" itemprop="url">替换国内镜像源让 Homebrew 起飞</a>
+          <a href="/post/567149842.html" class="post-title-link" itemprop="url">如何使用 vscode 对基于 Docker 的 PHP 进行断点调试</a>
         </h2>
 
         <div class="post-meta-container">
@@ -490,7 +571,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-27 晚上 22:12:57" itemprop="dateCreated datePublished" datetime="2020-02-27T22:12:57+08:00">2020-02-27 晚上</time>
+      <time title="创建时间：2020-03-03 晚上 20:08:27" itemprop="dateCreated datePublished" datetime="2020-03-03T20:08:27+08:00">2020-03-03 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -512,112 +593,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>推荐直接使用一键切换脚本：<a href="/post/1031793596.html">一键切换brew国内镜像源</a></p>
-</blockquote>
-<h3 id="1-基本镜像-formula"><a href="#1-基本镜像-formula" class="headerlink" title="1. 基本镜像 formula"></a>1. 基本镜像 formula</h3><h4 id="1-1-替换"><a href="#1-1-替换" class="headerlink" title="1.1. 替换"></a>1.1. 替换</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirror.tuna.tsinghua.edu.cn/help/homebrew</span></span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-还原"><a href="#1-2-还原" class="headerlink" title="1.2. 还原"></a>1.2. 还原</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/brew.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/core)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-core.git</span><br><span class="line">➜  git -C <span class="string">&quot;<span class="subst">$(brew --repo homebrew/cask)</span>&quot;</span> remote set-url origin https://github.com/Homebrew/homebrew-cask.git</span><br><span class="line"></span><br><span class="line">➜  brew update</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-二进制预编译包-bottles"><a href="#2-二进制预编译包-bottles" class="headerlink" title="2. 二进制预编译包 bottles"></a>2. 二进制预编译包 bottles</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 参见官网：https://mirrors.tuna.tsinghua.edu.cn/help/homebrew-bottles</span></span><br><span class="line"><span class="comment"># 如果你使用的不是 zsh，则替换 .zshrc 为 .bash_profile 或对应的文件</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27;</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1936578867.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1936578867.html" class="post-title-link" itemprop="url">JetBrains全系列软件激活教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-24 上午 09:36:12" itemprop="dateCreated datePublished" datetime="2020-02-24T09:36:12+08:00">2020-02-24 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2021-10-04 上午 09:36:12" itemprop="dateModified" datetime="2021-10-04T09:36:12+08:00">2021-10-04 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>声明：本文来源网络，主要参考 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhile.io/2018/08/25/jetbrains-license-server-crack.html">zhile.io</a>，只做个人学习研究之用，不得用于商业用途！</p>
+          <h3 id="1-Visual-Studio-Code"><a href="#1-Visual-Studio-Code" class="headerlink" title="1. Visual Studio Code"></a>1. Visual Studio Code</h3><h4 id="1-1-安装主程序"><a href="#1-1-安装主程序" class="headerlink" title="1.1. 安装主程序"></a>1.1. 安装主程序</h4><ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://code.visualstudio.com/#alt-downloadshttps://code.visualstudio.com">官方稳定版下载，点击这里</a>，支持以下系统：</p>
 <ul>
-<li><p>若资金允许，请<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jetbrains.com/idea/buy/">点击链接</a>购买正版。</p>
-</li>
-<li><p>学生凭学生证可<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sales.jetbrains.com/hc/zh-cn/articles/207154369-%E5%AD%A6%E7%94%9F%E6%8E%88%E6%9D%83%E7%94%B3%E8%AF%B7%E6%96%B9%E5%BC%8F">免费申请</a>正版授权。</p>
-</li>
-<li><p>创业公司可<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.jetbrains.com/shop/eform/startup">5折购买</a>正版授权。</p>
+<li>macOS</li>
+<li>Linux</li>
+<li>Windows</li>
+</ul>
 </li>
 </ul>
-</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/1936578867.html#more" rel="contents">
+              <a class="btn" href="/post/567149842.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

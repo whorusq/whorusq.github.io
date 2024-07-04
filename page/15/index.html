@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2218952744.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3913386097.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2218952744.html" class="post-title-link" itemprop="url">基于 Docker 的 php-fpm 如何使用 socket 方式进行连接</a>
+          <a href="/post/3913386097.html" class="post-title-link" itemprop="url">Linux 文件权限管理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,7 +216,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-15 晚上 20:41:56" itemprop="dateCreated datePublished" datetime="2020-02-15T20:41:56+08:00">2020-02-15 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 20:33:42" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:42+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -224,7 +224,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -238,284 +238,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>现有两个容器：<code>nginx</code> 和 <code>php-fpm</code>，我们通常的连接方式是采用 tcp 形式，配置 <code>127.0.0.1:9000</code> 将 php 相关请求转发给 php-fpm，而使用 socket 的连接方式，将获得更好的性能。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2218952744.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
+          <h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2161195361.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2161195361.html" class="post-title-link" itemprop="url">基于 Docker 的 PHP 如何连接 MySQL</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-15 晚上 20:41:23" itemprop="dateCreated datePublished" datetime="2020-02-15T20:41:23+08:00">2020-02-15 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>环境</p>
+<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
 <ul>
-<li>基于 docker-compose 管理的 PHP 和 MySQL 服务</li>
-<li>PHP 容器中的程序连接 MySQL 容器中的服务， 采用 PDO 形式</li>
-</ul>
-<p>测试代码片段</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$pdo</span> = <span class="keyword">new</span> <span class="title function_ invoke__">PDO</span>(<span class="string">&#x27;mysql:dbname=test;host=127.0.0.1;charset=utf8mb4;port=3306&#x27;</span>,<span class="string">&#x27;root&#x27;</span>,<span class="string">&#x27;root&#x27;</span>);</span><br><span class="line">&#125;<span class="keyword">catch</span>(PDOException <span class="variable">$pe</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="variable">$pe</span>-&gt;<span class="title function_ invoke__">getMessage</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>报错</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLSTATE[HY000] [2002] Connection refused</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2161195361.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/90967283.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/90967283.html" class="post-title-link" itemprop="url">Docker 中的 PHP 如何安装扩展</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-15 晚上 20:39:27" itemprop="dateCreated datePublished" datetime="2020-02-15T20:39:27+08:00">2020-02-15 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>本文主要介绍在 Docker 中三类扩展的安装方式，包括核心扩展、PECL扩展、其它扩展。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/90967283.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/404938395.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/404938395.html" class="post-title-link" itemprop="url">Docker 之 Dockerfile 介绍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-02-13 晚上 23:13:23" itemprop="dateCreated datePublished" datetime="2020-02-13T23:13:23+08:00">2020-02-13 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-基本结构"><a href="#1-基本结构" class="headerlink" title="1. 基本结构"></a>1. 基本结构</h3><p>Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。</p>
-<p>在文件中，支持以 # 开头的注释行。</p>
-<p>一般，Dockerfile 共包括四部分：</p>
-<ul>
-<li>基础镜像信息</li>
-<li>维护者信息</li>
-<li>镜像操作指令</li>
-<li>容器启动时执行指令</li>
+<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
+<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/404938395.html#more" rel="contents">
+              <a class="btn" href="/post/3913386097.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -546,7 +279,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2495096853.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1562646191.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -564,7 +297,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2495096853.html" class="post-title-link" itemprop="url">Docker 安装及基础入门</a>
+          <a href="/post/1562646191.html" class="post-title-link" itemprop="url">Linux“万能”分区方案</a>
         </h2>
 
         <div class="post-meta-container">
@@ -575,14 +308,206 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-13 晚上 23:09:53" itemprop="dateCreated datePublished" datetime="2020-02-13T23:09:53+08:00">2020-02-13 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 20:33:16" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:16+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
+        <i class="far fa-folder"></i>
       </span>
-      <span class="post-meta-item-text">更新</span>
-      <time title="修改时间：2022-07-23 晚上 20:02:53" itemprop="dateModified" datetime="2022-07-23T20:02:53+08:00">2022-07-23 晚上</time>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong>这里介绍的分区方案只是个通用建议，并不适用于所有情况，需要根据服务器具体配置决定！</strong></p>
+<table>
+<thead>
+<tr>
+<th>挂载点</th>
+<th>大小</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/</td>
+<td>20G</td>
+<td>根分区</td>
+</tr>
+<tr>
+<td>/boot</td>
+<td>100M</td>
+<td>启动分区</td>
+</tr>
+<tr>
+<td>swap</td>
+<td>建议内存的两倍，最多 16G</td>
+<td>内存交换空间</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>20G</td>
+<td>用户目录，存放用户安装的软件等</td>
+</tr>
+<tr>
+<td>/data</td>
+<td>剩下的所有空间</td>
+<td>这里的名称根据需要自定义，主要用于存放各类物理数据。</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1100143026.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1100143026.html" class="post-title-link" itemprop="url">MySQL int(M) 中 M 的作用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-15 晚上 21:17:15" itemprop="dateCreated datePublished" datetime="2020-02-15T21:17:15+08:00">2020-02-15 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在数据库设计时，我们经常会这样设置 <strong>int(M)</strong></p>
+<p>⚠️ <strong>误区</strong>：<em>大部分人把这个 M 当做能够存储多少位的数据，其实不然，这个M表示的是“显示宽度”。</em></p>
+<p><strong>使用场景</strong>：在前端的要显示一个 <code>integer</code> 类型的数据，数据库里设置对应的数据类型 <code>int(4)</code>，但是写入的数据不足 <code>4</code> 位时，那么就会在左侧填充空格（如果开启 <code>zerofill</code>，则填充 <code>0</code>），以保证够 <code>4</code> 位，那么在前端显示的时候就是对应 <code>4</code> 个宽度的要求了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/1100143026.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/43281251.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/43281251.html" class="post-title-link" itemprop="url">Docker 之 Redis 环境</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-15 晚上 21:07:26" itemprop="dateCreated datePublished" datetime="2020-02-15T21:07:26+08:00">2020-02-15 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -604,18 +529,110 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p><strong>Docker</strong> 是一款针对程序开发人员和系统管理员来开发、部署、运行应用的一款虚拟化平台。它可以让你像使用集装箱一样快速的组合成应用，并且可以像运输标准集装箱一样</p>
-<p><strong>Vagrant</strong> 是另一款虚拟化工具，与 Docker 的区别<a href="/post/3519953407.html">参见这里</a>。</p>
-</blockquote>
+          <h3 id="1-相关资源"><a href="#1-相关资源" class="headerlink" title="1. 相关资源"></a>1. 相关资源</h3><ul>
+<li>镜像地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://store.docker.com/images/redis">https://store.docker.com/images/redis</a></li>
+<li>Redis 发布地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/antirez/redis">https://github.com/antirez/redis</a></li>
+</ul>
+<p>拉取镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认拉取最新版本，目前是 4.0.1</span></span><br><span class="line">➜  docker pull redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或指定版本</span></span><br><span class="line">➜  docker pull redis:3</span><br></pre></td></tr></table></figure>
+<p>检查镜像是否拉取成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  redis docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">redis               latest              d4f259423416        5 weeks ago         106MB</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/2495096853.html#more" rel="contents">
+              <a class="btn" href="/post/43281251.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2298000230.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2298000230.html" class="post-title-link" itemprop="url">基于 Docker 的 MySQL 导入导出数据</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-15 晚上 20:58:07" itemprop="dateCreated datePublished" datetime="2020-02-15T20:58:07+08:00">2020-02-15 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ol>
+<li><p>查看容器名称或ID</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  docker ps --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Status&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;&quot;</span></span><br><span class="line">CONTAINER ID        NAMES                STATUS              PORTS</span><br><span class="line">33223943f76a        lnmpa_mysql_1        Up 12 hours         0.0.0.0:3306-&gt;3306/tcp</span><br></pre></td></tr></table></figure></li>
+<li><p>导出</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  docker <span class="built_in">exec</span> -it lnmpa_mysql_1 mysqldump -uroot -p123456 -P 3306 <span class="variable">$DATABASE_NAME</span> &gt; <span class="variable">$DATABASE_NAME_20181108_001</span>.sql</span><br></pre></td></tr></table></figure></li>
+<li><p>导入</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  docker <span class="built_in">exec</span> -i lnmpa_mysql_1 mysql -uroot -p123456 <span class="variable">$DATABASE_NAME</span> &lt; <span class="variable">$DATABASE_NAME_20181108_001</span>.sql</span><br></pre></td></tr></table></figure>
+
+<p> <strong>注意</strong>：这里与导出不同，需要将参数 <code>-it</code> 更换为 <code>-i</code> ，否则会报错：<code>cannot enable tty mode on non tty input</code></p>
+</li>
+</ol>
+
       
     </div>
 

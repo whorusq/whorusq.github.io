@@ -187,7 +187,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3913386097.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3553742260.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -205,7 +205,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3913386097.html" class="post-title-link" itemprop="url">Linux 文件权限管理</a>
+          <a href="/post/3553742260.html" class="post-title-link" itemprop="url">基于 shell 使用 expect 实现 SSH 自动登录远程服务器 </a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,7 +216,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-17 晚上 20:33:42" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:42+08:00">2020-02-17 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 22:59:01" itemprop="dateCreated datePublished" datetime="2020-02-17T22:59:01+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,17 +238,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="权限位说明"><a href="#权限位说明" class="headerlink" title="权限位说明"></a>权限位说明</h3><p>Linux 终端下执行 <code>ls -la</code> 或 <code>ll</code> 命令，得到如下信息：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r-- 1 root root    0 11-12 22:02 t3.php</span><br></pre></td></tr></table></figure>
-
-<p>其中，最开始位置的 <strong>-rw-r–r–</strong> 是标识文件权限的信息，长度总共十位</p>
-<ul>
-<li>第1位：代表<a href="/post/2330113912.html">文件类型</a>（- 普通文件；d 目录文件；l 链接文件）</li>
-<li>后9位：2-4 属主（user）权限 u；5-7属组（group）权限 g；8-10其他用户权限 o（<strong>r = 读 =  4；w = 写 = 2； x = 执行 = 1</strong>）</li>
-</ul>
+          <h3 id="1-效果预览"><a href="#1-效果预览" class="headerlink" title="1. 效果预览"></a>1. 效果预览</h3><center>
+<img data-src="https://static.sqiang.net/image%2Fpost%2Flinux_shell_expect.jpg" width="90%">
+</center>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/3913386097.html#more" rel="contents">
+              <a class="btn" href="/post/3553742260.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -279,7 +274,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1562646191.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1152072481.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -297,7 +292,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1562646191.html" class="post-title-link" itemprop="url">Linux“万能”分区方案</a>
+          <a href="/post/1152072481.html" class="post-title-link" itemprop="url">shell 中如何输出 n 个连续字符</a>
         </h2>
 
         <div class="post-meta-container">
@@ -308,7 +303,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-17 晚上 20:33:16" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:16+08:00">2020-02-17 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 22:58:43" itemprop="dateCreated datePublished" datetime="2020-02-17T22:58:43+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -330,41 +325,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>这里介绍的分区方案只是个通用建议，并不适用于所有情况，需要根据服务器具体配置决定！</strong></p>
-<table>
-<thead>
-<tr>
-<th>挂载点</th>
-<th>大小</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>/</td>
-<td>20G</td>
-<td>根分区</td>
-</tr>
-<tr>
-<td>/boot</td>
-<td>100M</td>
-<td>启动分区</td>
-</tr>
-<tr>
-<td>swap</td>
-<td>建议内存的两倍，最多 16G</td>
-<td>内存交换空间</td>
-</tr>
-<tr>
-<td>/usr</td>
-<td>20G</td>
-<td>用户目录，存放用户安装的软件等</td>
-</tr>
-<tr>
-<td>/data</td>
-<td>剩下的所有空间</td>
-<td>这里的名称根据需要自定义，主要用于存放各类物理数据。</td>
-</tr>
-</tbody></table>
+          <p>本文以输出 n 个空格为例，新建 <code>demo.sh</code> ，代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">IP=<span class="string">&#x27;192.168.1.5&#x27;</span></span><br><span class="line">DESCRIPTION=<span class="string">&#x27;内部服务器5&#x27;</span></span><br><span class="line"><span class="comment"># spacenum=`expr 16 - $&#123;#IP&#125;`</span></span><br><span class="line">spacenum=12</span><br><span class="line"><span class="comment"># seq -s &#x27; &#x27; 5 输出 1 2 3 4 5</span></span><br><span class="line"><span class="comment"># seq -s &#x27;a&#x27; 5 输出 1a2a3a4a5a</span></span><br><span class="line"><span class="comment"># sed &#x27;s/[0-9]//g&#x27; 将 0-9 的数字去掉</span></span><br><span class="line">spaces=$(<span class="built_in">seq</span> -s <span class="string">&#x27; &#x27;</span> <span class="variable">$spacenum</span> | sed <span class="string">&#x27;s/[0-9]//g&#x27;</span>)</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">&quot;$IP<span class="variable">$spaces</span>- <span class="variable">$DESCRIPTION</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ ~ sh demo.sh</span><br><span class="line">192.168.1.5            - 内部服务器5</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -391,7 +356,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1100143026.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3078944762.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -409,7 +374,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/1100143026.html" class="post-title-link" itemprop="url">MySQL int(M) 中 M 的作用</a>
+          <a href="/post/3078944762.html" class="post-title-link" itemprop="url">Shell 脚本入门及语法速查</a>
         </h2>
 
         <div class="post-meta-container">
@@ -420,7 +385,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-15 晚上 21:17:15" itemprop="dateCreated datePublished" datetime="2020-02-15T21:17:15+08:00">2020-02-15 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 22:58:02" itemprop="dateCreated datePublished" datetime="2020-02-17T22:58:02+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -428,7 +393,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -442,12 +407,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在数据库设计时，我们经常会这样设置 <strong>int(M)</strong></p>
-<p>⚠️ <strong>误区</strong>：<em>大部分人把这个 M 当做能够存储多少位的数据，其实不然，这个M表示的是“显示宽度”。</em></p>
-<p><strong>使用场景</strong>：在前端的要显示一个 <code>integer</code> 类型的数据，数据库里设置对应的数据类型 <code>int(4)</code>，但是写入的数据不足 <code>4</code> 位时，那么就会在左侧填充空格（如果开启 <code>zerofill</code>，则填充 <code>0</code>），以保证够 <code>4</code> 位，那么在前端显示的时候就是对应 <code>4</code> 个宽度的要求了。</p>
+          <blockquote>
+<p>本文主要介绍 Linux 下 Shell 的分类及基本语法。</p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/1100143026.html#more" rel="contents">
+              <a class="btn" href="/post/3078944762.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -478,7 +443,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/43281251.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/980934396.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -496,7 +461,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/43281251.html" class="post-title-link" itemprop="url">Docker 之 Redis 环境</a>
+          <a href="/post/980934396.html" class="post-title-link" itemprop="url">Linux 下如何修改 ssh 登录欢迎信息</a>
         </h2>
 
         <div class="post-meta-container">
@@ -507,7 +472,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-15 晚上 21:07:26" itemprop="dateCreated datePublished" datetime="2020-02-15T21:07:26+08:00">2020-02-15 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 20:34:56" itemprop="dateCreated datePublished" datetime="2020-02-17T20:34:56+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -515,7 +480,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -529,17 +494,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="1-相关资源"><a href="#1-相关资源" class="headerlink" title="1. 相关资源"></a>1. 相关资源</h3><ul>
-<li>镜像地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://store.docker.com/images/redis">https://store.docker.com/images/redis</a></li>
-<li>Redis 发布地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/antirez/redis">https://github.com/antirez/redis</a></li>
-</ul>
-<p>拉取镜像</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认拉取最新版本，目前是 4.0.1</span></span><br><span class="line">➜  docker pull redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或指定版本</span></span><br><span class="line">➜  docker pull redis:3</span><br></pre></td></tr></table></figure>
-<p>检查镜像是否拉取成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  redis docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">redis               latest              d4f259423416        5 weeks ago         106MB</span><br></pre></td></tr></table></figure>
+          <h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><center>
+<img data-src="https://static.sqiang.net/image/post/linux_motd.png" width="90%">
+</center>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/post/43281251.html#more" rel="contents">
+              <a class="btn" href="/post/980934396.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -570,7 +530,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2298000230.html">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2330113912.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
@@ -588,7 +548,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2298000230.html" class="post-title-link" itemprop="url">基于 Docker 的 MySQL 导入导出数据</a>
+          <a href="/post/2330113912.html" class="post-title-link" itemprop="url">Linux 下文件类型说明</a>
         </h2>
 
         <div class="post-meta-container">
@@ -599,7 +559,7 @@
       </span>
       <span class="post-meta-item-text">发表</span>
 
-      <time title="创建时间：2020-02-15 晚上 20:58:07" itemprop="dateCreated datePublished" datetime="2020-02-15T20:58:07+08:00">2020-02-15 晚上</time>
+      <time title="创建时间：2020-02-17 晚上 20:33:59" itemprop="dateCreated datePublished" datetime="2020-02-17T20:33:59+08:00">2020-02-17 晚上</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -607,7 +567,7 @@
       </span>
       <span class="post-meta-item-text">分类</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
         </span>
     </span>
 
@@ -621,18 +581,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ol>
-<li><p>查看容器名称或ID</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  docker ps --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Status&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;&quot;</span></span><br><span class="line">CONTAINER ID        NAMES                STATUS              PORTS</span><br><span class="line">33223943f76a        lnmpa_mysql_1        Up 12 hours         0.0.0.0:3306-&gt;3306/tcp</span><br></pre></td></tr></table></figure></li>
-<li><p>导出</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  docker <span class="built_in">exec</span> -it lnmpa_mysql_1 mysqldump -uroot -p123456 -P 3306 <span class="variable">$DATABASE_NAME</span> &gt; <span class="variable">$DATABASE_NAME_20181108_001</span>.sql</span><br></pre></td></tr></table></figure></li>
-<li><p>导入</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  docker <span class="built_in">exec</span> -i lnmpa_mysql_1 mysql -uroot -p123456 <span class="variable">$DATABASE_NAME</span> &lt; <span class="variable">$DATABASE_NAME_20181108_001</span>.sql</span><br></pre></td></tr></table></figure>
-
-<p> <strong>注意</strong>：这里与导出不同，需要将参数 <code>-it</code> 更换为 <code>-i</code> ，否则会报错：<code>cannot enable tty mode on non tty input</code></p>
-</li>
-</ol>
-
+          <blockquote>
+<p>在Linux系统中，文件的后缀名并没有具体意义.但是为了便于区分和管理，推荐给文件加一个后缀名。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/2330113912.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
