@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">117</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">117</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">101</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -178,6 +178,206 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3209749235.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/3209749235.html" class="post-title-link" itemprop="url">MySQL中索引的使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-07-08 早上 08:31:38" itemprop="dateCreated datePublished" datetime="2020-07-08T08:31:38+08:00">2020-07-08 早上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-关于索引"><a href="#1-关于索引" class="headerlink" title="1. 关于索引"></a>1. 关于索引</h3><blockquote>
+<p>在 MySQL 中，索引在存储引擎层实现</p>
+</blockquote>
+<h4 id="1-1-使用索引的好处"><a href="#1-1-使用索引的好处" class="headerlink" title="1.1. 使用索引的好处"></a>1.1. 使用索引的好处</h4><ul>
+<li>大大减少存储引擎需要扫描的数据量</li>
+<li>帮助我们进行排序，以避免使用临时表</li>
+<li>可以把随机 I/O 改为顺序 I/O</li>
+</ul>
+<h4 id="1-2-建立原则"><a href="#1-2-建立原则" class="headerlink" title="1.2. 建立原则"></a>1.2. 建立原则</h4><ul>
+<li><strong>适量，不是越多越好！！！</strong></li>
+<li>过多索引的影响<ul>
+<li>增加写操作的成本</li>
+<li>增加查询优化器的选择时间</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/3209749235.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2048329622.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/2048329622.html" class="post-title-link" itemprop="url">MySQL之数据库结构设计</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-07-06 晚上 18:37:46" itemprop="dateCreated datePublished" datetime="2020-07-06T18:37:46+08:00">2020-07-06 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>本文主要介绍了在数据库结构设计过程中需要考虑的一些问题，来源于以往工作、项目经历以及网络资料等，如果有不准确的地方，欢迎指正交流。</p>
+</blockquote>
+<p>在数据库结构的设计过程中，务必注意以下两点：</p>
+<ul>
+<li>减少数据冗余，节约数据库存储空间；</li>
+<li>尽量避免在数据维护过程中出现更新、插入、删除异常。</li>
+</ul>
+<p>一般我们按照如下步骤开始：</p>
+<ol>
+<li><strong>需求分析</strong>：全面了解产品设计的存储需求，保证数据的安全性和完整性</li>
+<li><strong>逻辑设计</strong>：设计数据的逻辑存储结构，处理数据实体之间的逻辑关系，解决数据冗余和数据维护异常</li>
+<li><strong>物理设计</strong>：根据具体所使用数据库的特点进行表结构设计</li>
+<li><strong>维护优化</strong>：根据实际情况，对索引、存储结构等进行优化</li>
+</ol>
+<p>其中 1、2 是确立大方向；3 是对 1、2 的具体实施（本文会介绍一些注意事项和建议，详见下文）；4 是后期的迭代优化。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/2048329622.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -507,223 +707,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2119054721.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2119054721.html" class="post-title-link" itemprop="url">Redis 的基本特性和 5 个常用数据结构</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-06-08 晚上 19:27:17" itemprop="dateCreated datePublished" datetime="2020-06-08T19:27:17+08:00">2020-06-08 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-基本特性"><a href="#1-基本特性" class="headerlink" title="1. 基本特性"></a>1. 基本特性</h3><ul>
-<li><p>速度快</p>
-<ul>
-<li>基于 C 语言开发，源码短小精悍</li>
-<li>数据存在内存中</li>
-<li>单线程（高性能，<strong>因为 Redis 一次只会运行一条命令，应避免在生产环境使用比较耗时的命令</strong>。）</li>
-</ul>
-</li>
-<li><p>支持数据持久化，异步保存到磁盘</p>
-</li>
-<li><p>丰富的数据结构（key-value）：string、list、hash、set、zset</p>
-</li>
-<li><p>多语言客户端</p>
-</li>
-<li><p>功能丰富：发布订阅；Lua 脚本；等</p>
-</li>
-<li><p>简单</p>
-<ul>
-<li>核心代码量小</li>
-<li>不依赖外部库</li>
-<li>单线程模型</li>
-</ul>
-</li>
-<li><p>支持主从复制</p>
-</li>
-<li><p>原生高可用和分布式解决方案</p>
-<ul>
-<li><code>Redis-Sentinel</code> 高可用 <code>v2.8+</code></li>
-<li><code>Redis-Cluster</code> 分布式 <code>v3.0+</code></li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2119054721.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3076911137.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3076911137.html" class="post-title-link" itemprop="url">dayjs时间处理库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2020-06-03 上午 09:17:50" itemprop="dateCreated datePublished" datetime="2020-06-03T09:17:50+08:00">2020-06-03 上午</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><code>Day.js</code> 是一个轻量的 JavaScript 时间日期处理库，与 <code>Moment.js</code> 的 API 设计保持一致。</p>
-<blockquote>
-<p>本文只介绍了一些常用操作，关于国际化、插件、自定义等高级内容详见官方文档。</p>
-</blockquote>
-<p>其主要特性如下：</p>
-<ul>
-<li>与 <code>Moment.js</code> 相同的 API 和用法</li>
-<li>不可变数据（Immutable）</li>
-<li>支持链式操作（Chainable）</li>
-<li>只有 <strong>2kb</strong> 大小（<em>一些高级用法以扩展的形式存在，可按需加载</em>）</li>
-<li>全浏览器兼容</li>
-<li>强大的国际化支持（I18n）</li>
-</ul>
-<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://day.js.org/en">https://day.js.org/en</a></p>
-<p>Github：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iamkun/dayjs">https://github.com/iamkun/dayjs</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/3076911137.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/10/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
