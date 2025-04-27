@@ -17,5 +17,5 @@ Disallow: /vendors/
 Disallow: /fancybox/
 Disallow: /404.html
 
-Sitemap: https://blog.sqiang.net/sitemap.xml
-Sitemap: https://blog.sqiang.net/baidusitemap.xml
+Sitemap: https://sqiang.net/sitemap.xml
+Sitemap: https://sqiang.net/baidusitemap.xml
