@@ -187,6 +187,191 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3933585575.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/3933585575.html" class="post-title-link" itemprop="url">使用SDKMAN安装和管理多个版本的jdk</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2024-06-11 晚上 19:20:28" itemprop="dateCreated datePublished" datetime="2024-06-11T19:20:28+08:00">2024-06-11 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2025-05-12 晚上 23:23:15" itemprop="dateModified" datetime="2025-05-12T23:23:15+08:00">2025-05-12 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img data-src="https://sdkman.io/assets//img/sdk-man-small-pattern.svg"  width="300" height="200">
+
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/">SDKMAN!</a>（<em>Software Development Kit Manager</em>）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。</p>
+<blockquote>
+<p>注：Windows 系统需要借助 WSL 或 Git Bash ，详见：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/install#windows-installation">https://sdkman.io/install#windows-installation</a></p>
+</blockquote>
+<p>同时 SDKMAN 也可以管理其它开发工具如 Maven、Gradle 和 Scala等，以及在多个版本之间轻松切换。</p>
+<p>本文主要以管理 jdk 为例进行说明。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认安装 ~/.sdkman</span></span><br><span class="line">curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span><br><span class="line"><span class="built_in">source</span> <span class="string">&quot;<span class="variable">$HOME</span>/.sdkman/bin/sdkman-init.sh&quot;</span></span><br><span class="line">sdk version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到指定位置</span></span><br><span class="line"><span class="built_in">export</span> SDKMAN_DIR=<span class="string">&quot;/usr/local/sdkman&quot;</span> &amp;&amp; curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对于在CI（持续集成）环境中安装，若不适合修改shell配置，则在下载安装程序时添加参数rcupdate=false</span></span><br><span class="line"><span class="comment"># 更多介绍，参照：https://sdkman.io/install/#ci-mode</span></span><br><span class="line">curl -s <span class="string">&quot;https://get.sdkman.io?rcupdate=false&quot;</span> | bash</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看本机当前可用的版本"><a href="#查看本机当前可用的版本" class="headerlink" title="查看本机当前可用的版本"></a>查看本机当前可用的版本</h3><p>执行命令 <code>sdk list java</code> 可以查询适用于当前系统的发行版，以及已安装和当前在用的版本。</p>
+<p>各发行版举例说明：</p>
+<table>
+<thead>
+<tr>
+<th>提供商标识</th>
+<th>版本后缀</th>
+<th>完整版本标识</th>
+<th>提供商说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Corretto</td>
+<td>amzn</td>
+<td>17.0.15-amzn</td>
+<td>亚马逊发布的 Corretto OpenJDK 构建版本</td>
+</tr>
+<tr>
+<td>GraalVM CE</td>
+<td>graalce</td>
+<td>17.0.9-graalce</td>
+<td>社区版 GraalVM，支持 AOT 编译和运行时优化</td>
+</tr>
+<tr>
+<td>GraalVM Oracle</td>
+<td>graal</td>
+<td>17.0.12-graal</td>
+<td>Oracle 提供的 GraalVM 版本</td>
+</tr>
+<tr>
+<td>JetBrains</td>
+<td>jbr</td>
+<td>17.0.14-jbr</td>
+<td>JetBrains 提供的定制 JDK，适配 IntelliJ 平台</td>
+</tr>
+<tr>
+<td>Liberica</td>
+<td>librca</td>
+<td>17.0.15-librca</td>
+<td>BellSoft 提供的全平台 JDK 构建</td>
+</tr>
+<tr>
+<td>Microsoft</td>
+<td>ms</td>
+<td>17.0.15-ms</td>
+<td>微软发布的 OpenJDK，兼容 Azure 环境</td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>oracle</td>
+<td>17.0.12-oracle</td>
+<td>Oracle 官方 LTS 支持的 JDK 版本</td>
+</tr>
+<tr>
+<td>SapMachine</td>
+<td>sapmchn</td>
+<td>17.0.15-sapmchn</td>
+<td>SAP 发布的 OpenJDK 构建版本</td>
+</tr>
+<tr>
+<td>Semeru</td>
+<td>sem</td>
+<td>17.0.15-sem</td>
+<td>IBM 提供的基于 OpenJ9 的 JDK 构建</td>
+</tr>
+<tr>
+<td>Temurin</td>
+<td>tem</td>
+<td>17.0.15-tem</td>
+<td>Eclipse Adoptium 项目的主力发行版</td>
+</tr>
+<tr>
+<td>Tencent</td>
+<td>kona</td>
+<td>17.0.15-kona</td>
+<td>腾讯维护的 KonaJDK，优化云和大数据场景</td>
+</tr>
+<tr>
+<td>Zulu</td>
+<td>zulu</td>
+<td>17.0.15-zulu</td>
+<td>Azul Systems 提供的 OpenJDK 构建</td>
+</tr>
+</tbody></table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/3933585575.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1504567614.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -463,176 +648,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/2109815221.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3933585575.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://static.sqiang.net/image/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3933585575.html" class="post-title-link" itemprop="url">使用SDKMAN安装和管理多个版本的jdk</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2024-06-11 晚上 19:20:28" itemprop="dateCreated datePublished" datetime="2024-06-11T19:20:28+08:00">2024-06-11 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <img data-src="https://sdkman.io/assets//img/sdk-man-small-pattern.svg"  width="300" height="200">
-
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/">SDKMAN!</a>（<em>Software Development Kit Manager</em>）是一个用于管理开发工具套件（SDK）的开源工具。它允许开发人员在 Unix 系统（如 macOS 和 Linux）上方便地安装、管理和切换多个 SDK 版本。同时也可以用于管理开发工具如 Maven、Gradle 和 Scala，以及在多个版本之间轻松切换。</p>
-<blockquote>
-<p>注：Windows 系统需要借助 WSL 或 Git Bash ，详见：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://sdkman.io/install">https://sdkman.io/install</a></p>
-</blockquote>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -s <span class="string">&quot;https://get.sdkman.io&quot;</span> | bash</span><br><span class="line"><span class="built_in">source</span> <span class="string">&quot;<span class="variable">$HOME</span>/.sdkman/bin/sdkman-init.sh&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="查看本机当前可用的版本"><a href="#查看本机当前可用的版本" class="headerlink" title="查看本机当前可用的版本"></a>查看本机当前可用的版本</h3><p>执行命令 <code>sdk list java</code> 可以查询适用于当前系统的发行版，以及已安装和当前在用的版本。</p>
-<p>各发行版举例说明：</p>
-<table>
-<thead>
-<tr>
-<th>供应商和发行版</th>
-<th>后缀</th>
-<th>例子</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>AdoptOpenJDK/Adoptium (Temurin)</td>
-<td>tem</td>
-<td>11.0.23-tem</td>
-<td>Adoptium 是由 AdoptOpenJDK 项目演变而来，由 Eclipse 基金会管理。</td>
-</tr>
-<tr>
-<td>Amazon Corretto</td>
-<td>amzn</td>
-<td>11.0.23-amzn</td>
-<td>Amazon 提供的 OpenJDK 版本，经过增强和支持的长期支持版本。</td>
-</tr>
-<tr>
-<td>GraalVM CE (Community Edition)</td>
-<td>graalce</td>
-<td>11.0.23-graalce</td>
-<td>Oracle 提供的支持多语言的 JDK，包括 Java、JavaScript 等。</td>
-</tr>
-<tr>
-<td>Gluon</td>
-<td>gln</td>
-<td>11.0.23-gln</td>
-<td>专注于 JavaFX 的发行版。</td>
-</tr>
-<tr>
-<td>Liberica JDK</td>
-<td>librca</td>
-<td>11.0.23-librca</td>
-<td>BellSoft 提供的 OpenJDK 发行版，包含完整的 Java SE 平台实现。</td>
-</tr>
-<tr>
-<td>Microsoft Build of OpenJDK</td>
-<td>ms</td>
-<td>11.0.23-ms</td>
-<td>Microsoft 提供的 OpenJDK 版本。</td>
-</tr>
-<tr>
-<td>Oracle JDK</td>
-<td>oracle</td>
-<td>11.0.23-oracle</td>
-<td>Oracle 提供的官方 JDK 版本。</td>
-</tr>
-<tr>
-<td>SAP Machine</td>
-<td>sapmchn</td>
-<td>11.0.23-sapmchn</td>
-<td>SAP 提供的 OpenJDK 版本。</td>
-</tr>
-<tr>
-<td>Semeru (IBM)</td>
-<td>sem</td>
-<td>11.0.23-sem</td>
-<td>IBM 提供的 OpenJDK 发行版。</td>
-</tr>
-<tr>
-<td>Tencent Kona JDK</td>
-<td>kona</td>
-<td>11.0.23-kona</td>
-<td>腾讯提供的 OpenJDK 版本。</td>
-</tr>
-<tr>
-<td>Zulu by Azul Systems</td>
-<td>zulu</td>
-<td>11.0.23-zulu</td>
-<td>Azul 提供的 OpenJDK 版本，支持多种平台和配置。</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/3933585575.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
