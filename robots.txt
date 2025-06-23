@@ -1,6 +1,5 @@
 # hexo robots.txt
 User-agent: *
-Allow: /
 Allow: /post/
 Allow: /page/
 Allow: /archives/
