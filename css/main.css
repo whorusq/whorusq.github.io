@@ -1256,7 +1256,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffff90;
+    background: #a6ffff;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2808,7 +2808,7 @@ header.header {
 }
 .site-brand-container {
   height: 9.5em;
-  background: url("https://static.sqiang.net/blog/img/sidebar_top_bg.gif") center center no-repeat;
+  background: url("/images/site/sidebar_top_bg.gif") center center no-repeat;
   background-size: cover;
 }
 a#clustrmaps-widget-v2,
