@@ -210,6 +210,106 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1504567614.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/1504567614.html" class="post-title-link" itemprop="url">Dockerhub 镜像加速器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2024-10-21 下午 17:42:02" itemprop="dateCreated datePublished" datetime="2024-10-21T17:42:02+08:00">2024-10-21 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2024-10-21 晚上 20:42:02" itemprop="dateModified" datetime="2024-10-21T20:42:02+08:00">2024-10-21 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>修改 <code>/etc/docker/daemon.json</code> 文件，添加如下镜像源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;https://docker.m.daocloud.io&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://atomhub.openatom.cn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dockerpull.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.1panel.dev&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.fxxk.dedyn.io&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.xn--6oq72ry9d5zx.cn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.zhai.cm&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://a.ussh.net&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://jf4r7fsl.mirror.aliyuncs.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;http://f1361db2.m.daocloud.io&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://register.liberx.info&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://docker.anyhub.us.kg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dockerhub.jobcher.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dockerhub.icu&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://dockerhub.awsl9527.cn&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或直接使用下面的脚本文件：</p>
+<ol>
+<li>创建文件 <code>replace.sh</code>;</li>
+<li>添加可执行权限 <code>chmod +x replace.sh</code></li>
+<li>执行 <code>sudo sh replace.sh</code></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/1504567614.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3425556216.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -577,98 +677,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/3632131313.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2435833505.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
-      <meta itemprop="name" content="whoru.S.Q">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="whoru">
-      <meta itemprop="description" content="Talk is cheap, just do IT.">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | whoru">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/2435833505.html" class="post-title-link" itemprop="url">基于NodeJS生成PDF文件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表</span>
-
-      <time title="创建时间：2024-04-29 晚上 19:50:32" itemprop="dateCreated datePublished" datetime="2024-04-29T19:50:32+08:00">2024-04-29 晚上</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>环境：NodeJS v8+</p>
-</blockquote>
-<blockquote>
-</blockquote>
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># jspdf 是主依赖，其它两个可根据情况选择；</span></span><br><span class="line"><span class="comment"># jspdf-autotable 用于绘制表格；</span></span><br><span class="line"><span class="comment"># jspdf-autotext 用于添加文本，实现自动换行等；</span></span><br><span class="line">npm i --save jspdf jspdf-autotable jspdf-autotext</span><br></pre></td></tr></table></figure>
-
-<h3 id="引入依赖和初始化"><a href="#引入依赖和初始化" class="headerlink" title="引入依赖和初始化"></a>引入依赖和初始化</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 推荐这种引入方式</span></span><br><span class="line"><span class="keyword">import</span> jsPDF <span class="keyword">from</span> <span class="string">&#x27;jspdf&#x27;</span>;</span><br><span class="line"><span class="comment">// 虽然官方仓库写的是这种，但实际使用过程中却遇到了一些问题，自己可以测试一下</span></span><br><span class="line"><span class="comment">// 比如提示某些方法不存在等</span></span><br><span class="line"><span class="comment">// import &#123; jsPDF &#125; from &quot;jspdf&quot;;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化示例，这里用的是横向A4纸，并且开启压缩</span></span><br><span class="line"><span class="comment">// 构造参数说明如下</span></span><br><span class="line"><span class="comment">// orientation?: &quot;p&quot; | &quot;portrait&quot; | &quot;l&quot; | &quot;landscape&quot;,</span></span><br><span class="line"><span class="comment">// unit?: &quot;pt&quot; | &quot;px&quot; | &quot;in&quot; | &quot;mm&quot; | &quot;cm&quot; | &quot;ex&quot; | &quot;em&quot; | &quot;pc&quot;,</span></span><br><span class="line"><span class="comment">// format?: string | number[],</span></span><br><span class="line"><span class="comment">// compressPdf?: boolean</span></span><br><span class="line"><span class="keyword">const</span> pdfDoc = <span class="keyword">new</span> <span class="title function_">jsPDF</span>(<span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;mm&#x27;</span>, [ <span class="number">210</span>, <span class="number">297</span> ], <span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/2435833505.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
