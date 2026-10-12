@@ -1256,7 +1256,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ffffb4;
+    background: #4f6717;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3012,18 +3012,22 @@ p {
 .footer-inner .busuanzi-count a:hover {
   color: #fc6423;
 }
-.post-body img:not([data-loaded]) {
-  min-height: 120px;
+.post-body img[data-src]:not(.img-loaded) {
+  min-height: 160px;
   background-color: #f2f2f2;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23d8d8d8' stroke-width='4'/%3E%3Cpath d='M16 4a12 12 0 0 1 12 12' fill='none' stroke='%230099CC' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+  background-size: 400% 100%;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 32px 32px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-animation: skeletonSweep 1.4s ease infinite;
+  animation: skeletonSweep 1.4s ease infinite;
 }
-.post-body img[data-loaded] {
+.post-body img[data-src]:not(.img-loaded):not([width]) {
+  width: 100%;
+}
+.post-body img.img-loaded {
   -webkit-animation: postImgFadeIn 0.4s ease-out;
   animation: postImgFadeIn 0.4s ease-out;
 }
@@ -3041,6 +3045,14 @@ p {
 }
 .ads-post-bottom {
   margin-top: 20px;
+}
+@keyframes skeletonSweep {
+  from {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
 }
 @keyframes postImgFadeIn {
   from {
