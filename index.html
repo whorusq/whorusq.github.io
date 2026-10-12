@@ -265,16 +265,14 @@
 <h2 id="1-确认、安装-Command-Line-Tools"><a href="#1-确认、安装-Command-Line-Tools" class="headerlink" title="1. 确认、安装 Command Line Tools"></a>1. 确认、安装 Command Line Tools</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-设置镜像环境变量（当前终端）"><a href="#2-设置镜像环境变量（当前终端）" class="headerlink" title="2. 设置镜像环境变量（当前终端）"></a>2. 设置镜像环境变量（当前终端）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_API_DOMAIN=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-运行安装脚本"><a href="#3-运行安装脚本" class="headerlink" title="3. 运行安装脚本"></a>3. 运行安装脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>中途输入密码、按回车，直到出现 <code>Installation successful!</code></p>
-<h2 id="4-配置-PATH-与镜像（永久生效）"><a href="#4-配置-PATH-与镜像（永久生效）" class="headerlink" title="4. 配置 PATH 与镜像（永久生效）"></a>4. 配置 PATH 与镜像（永久生效）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;eval &quot;$(/opt/homebrew/bin/brew shellenv zsh)&quot;&#x27;</span> &gt;&gt; ~/.zprofile</span><br><span class="line"><span class="comment"># 注意，如果是 Intel 版本 mac，需要调整这里的路径为</span></span><br><span class="line"><span class="comment"># echo &#x27;eval &quot;$(/usr/local/bin/brew shellenv zsh)&quot;&#x27; &gt;&gt; ~/.zprofile</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BREW_GIT_REMOTE=&quot;https://mirrors.ustc.edu.cn/brew.git&quot;&#x27;</span> &gt;&gt; ~/.zprofile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_CORE_GIT_REMOTE=&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;&#x27;</span> &gt;&gt; ~/.zprofile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_BOTTLE_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles&quot;&#x27;</span> &gt;&gt; ~/.zprofile</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export HOMEBREW_API_DOMAIN=&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;&#x27;</span> &gt;&gt; ~/.zprofile</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.zprofile</span><br></pre></td></tr></table></figure>
-
-<h2 id="5-验证"><a href="#5-验证" class="headerlink" title="5. 验证"></a>5. 验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew --version</span><br><span class="line">brew config</span><br></pre></td></tr></table></figure>
-
-<p><code>brew config</code> 中镜像地址显示为 <code>mirrors.ustc.edu.cn</code> 即配置成功。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/3394232859.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

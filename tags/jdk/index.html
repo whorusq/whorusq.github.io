@@ -310,3 +310,21 @@
 
 </body>
 </html>
+   }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

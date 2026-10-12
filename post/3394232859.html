@@ -271,6 +271,8 @@
 
 <h2 id="2-设置镜像环境变量（当前终端）"><a href="#2-设置镜像环境变量（当前终端）" class="headerlink" title="2. 设置镜像环境变量（当前终端）"></a>2. 设置镜像环境变量（当前终端）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> HOMEBREW_BREW_GIT_REMOTE=<span class="string">&quot;https://mirrors.ustc.edu.cn/brew.git&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_CORE_GIT_REMOTE=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-core.git&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles&quot;</span></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_API_DOMAIN=<span class="string">&quot;https://mirrors.ustc.edu.cn/homebrew-bottles/api&quot;</span></span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h2 id="3-运行安装脚本"><a href="#3-运行安装脚本" class="headerlink" title="3. 运行安装脚本"></a>3. 运行安装脚本</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://mirrors.ustc.edu.cn/misc/brew-install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>中途输入密码、按回车，直到出现 <code>Installation successful!</code></p>
