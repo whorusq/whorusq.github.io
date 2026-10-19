@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="网盘备份的安装文件都是从官网直接下载的，可比对 sha256 进行确认。 只提供 jdk 的 LTS 最新版本，并且对应系统只提供 Windows、macOS、Linux，其它系统或历史版本参照官网下载部分的说明。  官网下载地址 最新 LTS 版本：https:&#x2F;&#x2F;www.oracle.com&#x2F;java&#x2F;technologies&#x2F;downloads&#x2F; jdk17 历史版本：https:&#x2F;&#x2F;ww">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle jdk1.8、jdk11、jdk17安装文件下载">
+<meta property="og:url" content="https://sqiang.net/post/1948692156.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="网盘备份的安装文件都是从官网直接下载的，可比对 sha256 进行确认。 只提供 jdk 的 LTS 最新版本，并且对应系统只提供 Windows、macOS、Linux，其它系统或历史版本参照官网下载部分的说明。  官网下载地址 最新 LTS 版本：https:&#x2F;&#x2F;www.oracle.com&#x2F;java&#x2F;technologies&#x2F;downloads&#x2F; jdk17 历史版本：https:&#x2F;&#x2F;ww">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-17T11:21:37.000Z">
+<meta property="article:modified_time" content="2025-11-03T12:21:37.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="jdk">
+<meta property="article:tag" content="jdk1.8">
+<meta property="article:tag" content="jdk11">
+<meta property="article:tag" content="jdk17">
+<meta property="article:tag" content="jre">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1948692156.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/1948692156.html","path":"post/1948692156.html","title":"Oracle jdk1.8、jdk11、jdk17安装文件下载"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Oracle jdk1.8、jdk11、jdk17安装文件下载 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%98%E7%BD%91"><span class="nav-text">官网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="nav-text">下载地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%A6%E5%8F%B7%E5%88%86%E4%BA%AB"><span class="nav-text">账号分享</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%9B%98%E5%A4%87%E4%BB%BD"><span class="nav-text">网盘备份</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jdk-17-0-9"><span class="nav-text">jdk-17.0.9+</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jdk-11-0-21"><span class="nav-text">jdk-11.0.21+</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jdk-8u231"><span class="nav-text">jdk-8u231+</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1948692156.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Oracle jdk1.8、jdk11、jdk17安装文件下载 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Oracle jdk1.8、jdk11、jdk17安装文件下载
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-17 晚上 19:21:37" itemprop="dateCreated datePublished" datetime="2020-01-17T19:21:37+08:00">2020-01-17 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2025-11-03 晚上 20:21:37" itemprop="dateModified" datetime="2025-11-03T20:21:37+08:00">2025-11-03 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>网盘备份的安装文件都是从官网直接下载的，可比对 sha256 进行确认。</p>
+<p>只提供 jdk 的 <strong>LTS</strong> 最新版本，并且对应系统只提供 <strong>Windows</strong>、<strong>macOS</strong>、<strong>Linux</strong>，其它系统或历史版本参照官网下载部分的说明。</p>
+</blockquote>
+<h3 id="官网"><a href="#官网" class="headerlink" title="官网"></a>官网</h3><h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><ul>
+<li>最新 LTS 版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/downloads/">https://www.oracle.com/java/technologies/downloads/</a></li>
+<li>jdk17 历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html</a></li>
+<li>jdk11 历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html">https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html</a></li>
+<li>jdk1.8 历史版本(8u211+)：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html">https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html</a></li>
+<li>jdk1.8 历史版本(8u202-)：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html">https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html</a></li>
+<li>其它历史版本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/java/technologies/downloads/archive/">https://www.oracle.com/java/technologies/downloads/archive/</a></li>
+</ul>
+<h4 id="账号分享"><a href="#账号分享" class="headerlink" title="账号分享"></a>账号分享</h4><blockquote>
+<p><del>2023-11-01 测试可用</del></p>
+</blockquote>
+<blockquote>
+<p>⚠️ 目前账号方式都不可用了，因为登录之后，还需要二次验证邮箱、短信等。建议直接创建一个账号下载，信息可以随意填写，保证邮箱可用（接收验证码、二次验证）即可。</p>
+</blockquote>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">账号：2028056560@qq.com</span><br><span class="line">密码：Oracle1234</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="网盘备份"><a href="#网盘备份" class="headerlink" title="网盘备份"></a>网盘备份</h3><h4 id="jdk-17-0-9"><a href="#jdk-17-0-9" class="headerlink" title="jdk-17.0.9+"></a>jdk-17.0.9+</h4><ul>
+<li>Checksum 地址：未找到</li>
+<li>百度网盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.baidu.com/s/1GhbPgxP63aAOE3YW_g_BKA?pwd=kju8">https://pan.baidu.com/s/1GhbPgxP63aAOE3YW_g_BKA?pwd&#x3D;kju8</a> 提取码: kju8</li>
+<li>阿里云盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.aliyundrive.com/s/xorP8w3tkFN">https://www.aliyundrive.com/s/xorP8w3tkFN</a> 提取码: 98qb</li>
+</ul>
+<h4 id="jdk-11-0-21"><a href="#jdk-11-0-21" class="headerlink" title="jdk-11.0.21+"></a>jdk-11.0.21+</h4><ul>
+<li>Checksum 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/a/tech/docs/11-0-21-checksum.html">https://www.oracle.com/a/tech/docs/11-0-21-checksum.html</a></li>
+<li>百度网盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.baidu.com/s/1_QAtk7W81LLkipaeU5Raxg?pwd=vudg">https://pan.baidu.com/s/1_QAtk7W81LLkipaeU5Raxg?pwd&#x3D;vudg</a> 提取码: vudg</li>
+<li>阿里云盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.aliyundrive.com/s/35gbDRxNTmk">https://www.aliyundrive.com/s/35gbDRxNTmk</a> 提取码: 07vq</li>
+</ul>
+<h4 id="jdk-8u231"><a href="#jdk-8u231" class="headerlink" title="jdk-8u231+"></a>jdk-8u231+</h4><ul>
+<li>Checksum 地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.oracle.com/a/tech/docs/8u391checksum.html">https://www.oracle.com/a/tech/docs/8u391checksum.html</a></li>
+<li>百度网盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pan.baidu.com/s/1Hv82HrqqRDvS9fmUIc6nWQ?pwd=wdbh">https://pan.baidu.com/s/1Hv82HrqqRDvS9fmUIc6nWQ?pwd=wdbh</a> 提取码: wdbh</li>
+<li>阿里云盘下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.aliyundrive.com/s/xBzAu8fxLbp">https://www.aliyundrive.com/s/xBzAu8fxLbp</a> 提取码: a9u9</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1948692156.html" title="Oracle jdk1.8、jdk11、jdk17安装文件下载">https://sqiang.net/post/1948692156.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/jdk/" rel="tag"># jdk</a>
+              <a href="/tags/jre/" rel="tag"># jre</a>
+              <a href="/tags/jdk1-8/" rel="tag"># jdk1.8</a>
+              <a href="/tags/jdk11/" rel="tag"># jdk11</a>
+              <a href="/tags/jdk17/" rel="tag"># jdk17</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/316987977.html" rel="prev" title="使用 nrm 管理 npm 源">
+                  <i class="fa fa-angle-left"></i> 使用 nrm 管理 npm 源
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/1961322743.html" rel="next" title="在 macOS 下怎么样安装、快速切换多个 jdk 版本">
+                  在 macOS 下怎么样安装、快速切换多个 jdk 版本 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"2882dbb6dd9de58936c809dd0773c9ef"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

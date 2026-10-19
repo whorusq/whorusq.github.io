@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1. 所有可用命令12345678910111213141516171819202122232425262728293031323334353637383940414243➜ which php&#x2F;usr&#x2F;bin&#x2F;php➜ php -hUsage: php [options] [-f] &lt;file&gt; [--] [args...]   php [options] -r &lt;code&amp;g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP 之命令行模式">
+<meta property="og:url" content="https://sqiang.net/post/954645501.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="1. 所有可用命令12345678910111213141516171819202122232425262728293031323334353637383940414243➜ which php&#x2F;usr&#x2F;bin&#x2F;php➜ php -hUsage: php [options] [-f] &lt;file&gt; [--] [args...]   php [options] -r &lt;code&amp;g">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-18T13:25:25.000Z">
+<meta property="article:modified_time" content="2020-01-18T13:25:25.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="PHP">
+<meta property="article:tag" content="PHP-CLI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/954645501.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/954645501.html","path":"post/954645501.html","title":"PHP 之命令行模式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PHP 之命令行模式 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%80%E6%9C%89%E5%8F%AF%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">1. 所有可用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C"><span class="nav-text">2. 常用操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E4%BB%A5%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%BC%8F%E8%BF%90%E8%A1%8C-PHP"><span class="nav-text">2.1. 以交互模式运行 PHP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E8%BF%90%E8%A1%8C%E5%86%85%E5%BB%BA%E7%9A%84-Web-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">2.2. 运行内建的 Web 服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9F%A5%E6%89%BE-php-ini-%E6%96%87%E4%BB%B6"><span class="nav-text">2.3. 查找 php.ini 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5"><span class="nav-text">2.4. 语法检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-5-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%84%9A%E6%9C%AC%E5%BC%80%E5%8F%91"><span class="nav-text">2.5. 命令行脚本开发</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/954645501.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PHP 之命令行模式 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PHP 之命令行模式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-01-18 晚上 21:25:25" itemprop="dateCreated datePublished" datetime="2020-01-18T21:25:25+08:00">2020-01-18 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="1-所有可用命令"><a href="#1-所有可用命令" class="headerlink" title="1. 所有可用命令"></a>1. 所有可用命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ php -h</span><br><span class="line">Usage: php [options] [-f] &lt;file&gt; [--] [args...]</span><br><span class="line">   php [options] -r &lt;code&gt; [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -R &lt;code&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] [-B &lt;begin_code&gt;] -F &lt;file&gt; [-E &lt;end_code&gt;] [--] [args...]</span><br><span class="line">   php [options] -S &lt;addr&gt;:&lt;port&gt; [-t docroot]</span><br><span class="line">   php [options] -- [args...]</span><br><span class="line">   php [options] -a</span><br><span class="line"></span><br><span class="line">  -a               以交互式shell模式运行</span><br><span class="line">  -c &lt;path&gt;|&lt;file&gt; 在此目录中查找php.ini文件</span><br><span class="line">  -n               指定不使用php.ini文件</span><br><span class="line">  -d foo[=bar]     定义一个INI实体，key为foo，value为<span class="string">&#x27;bar&#x27;</span></span><br><span class="line">  -e               为调试和分析生成扩展信息</span><br><span class="line">  -f &lt;file&gt;        解释和执行文件</span><br><span class="line">  -h               打印当前帮助信息</span><br><span class="line">  -i               显示PHP的基本信息</span><br><span class="line">  -l               进行语法检查 (lint)</span><br><span class="line">  -m               显示编译到内核的模块</span><br><span class="line">  -r &lt;code&gt;        运行PHP代码，不需要使用标签 &lt;?..?&gt;</span><br><span class="line">  -B &lt;begin_code&gt;  在处理输入之前先执行PHP代码</span><br><span class="line">  -R &lt;code&gt;        对输入的每一行作为PHP代码运行</span><br><span class="line">  -F &lt;file&gt;        解释执行文件 &lt;file&gt; 中的代码</span><br><span class="line">  -E &lt;end_code&gt;    在处理输入之后执行PHP代码</span><br><span class="line">  -H               从外部工具隐藏传递过的参数</span><br><span class="line">  -S &lt;addr&gt;:&lt;port&gt; 运行内建的web服务器</span><br><span class="line">  -t &lt;docroot&gt;     指定用于内建web服务器的文档根目录</span><br><span class="line">  -s               输出HTML语法高亮的源码</span><br><span class="line">  -v               输出PHP的版本号</span><br><span class="line">  -w               输出去掉注释和空格的源码</span><br><span class="line">  -z &lt;file&gt;        载入Zend扩展文件</span><br><span class="line"></span><br><span class="line">  args...          传递给要运行的脚本的参数。当第一个参数以-开始或者是脚本是从标准输入读取的时候，使用--参数</span><br><span class="line"></span><br><span class="line">  --ini            显示PHP的配置文件名</span><br><span class="line"></span><br><span class="line">  --rf &lt;name&gt;      显示关于函数 &lt;name&gt; 的信息</span><br><span class="line">  --rc &lt;name&gt;      显示关于类 &lt;name&gt; 的信息</span><br><span class="line">  --re &lt;name&gt;      显示关于扩展 &lt;name&gt; 的信息</span><br><span class="line">  --rz &lt;name&gt;      显示关于Zend扩展 &lt;name&gt; 的信息</span><br><span class="line">  --ri &lt;name&gt;      显示扩展 &lt;name&gt; 的配置信息</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h3 id="2-常用操作"><a href="#2-常用操作" class="headerlink" title="2. 常用操作"></a>2. 常用操作</h3><h4 id="2-1-以交互模式运行-PHP"><a href="#2-1-以交互模式运行-PHP" class="headerlink" title="2.1. 以交互模式运行 PHP"></a>2.1. 以交互模式运行 PHP</h4><p>类似 Python，进入交互模式后，可用直接执行 PHP 代码，而不需要先创建 .php 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">➜ php -a</span><br><span class="line">Interactive shell</span><br><span class="line"></span><br><span class="line">php &gt; <span class="built_in">echo</span> <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line">hello world</span><br><span class="line">php &gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-运行内建的-Web-服务器"><a href="#2-2-运行内建的-Web-服务器" class="headerlink" title="2.2. 运行内建的 Web 服务器"></a>2.2. 运行内建的 Web 服务器</h4><p>从 <code>PHP 5.4.0</code> 开始，PHP 的命令行模式提供了一个内建的 Web 服务器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜ <span class="built_in">pwd</span></span><br><span class="line">/Users/user1/test</span><br><span class="line">➜ <span class="built_in">touch</span> index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php phpinfo();&quot;</span> &gt; index.php</span><br><span class="line">➜ php -S localhost:8000</span><br><span class="line">PHP 5.6.30 Development Server started at Tue Sep  5 10:53:51 2017</span><br><span class="line">Listening on http://localhost:8000</span><br><span class="line">Document root is /Users/user1/test</span><br><span class="line">Press Ctrl-C to quit.</span><br></pre></td></tr></table></figure>
+
+<p>此时，我们在浏览器中输入地址 <a href="localhost:8000" rel="external nofollow noreferrer">localhost:8000</a> 即可打开 <code>index.php</code> ，并输出 <code>phpinfo()</code> 的内容，请求访问日志如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[Tue Sep  5 10:53:53 2017] PHP Warning:  phpinfo(): It is not safe to rely on the system&#x27;s timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone &#x27;UTC&#x27; for now, but please set date.timezone to select your timezone. in /Users/user1/test/index.php on line 1</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53689 [200]: /</span><br><span class="line">[Tue Sep  5 10:53:53 2017] ::1:53690 [404]: /favicon.ico - No such file or directory</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>ctrl + c</code> 关闭服务</p>
+<h4 id="2-3-查找-php-ini-文件"><a href="#2-3-查找-php-ini-文件" class="headerlink" title="2.3. 查找 php.ini 文件"></a>2.3. 查找 php.ini 文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">➜ php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br><span class="line">➜ <span class="built_in">which</span> php</span><br><span class="line">/usr/bin/php</span><br><span class="line">➜ /usr/bin/php --ini</span><br><span class="line">Configuration File (php.ini) Path: /etc</span><br><span class="line">Loaded Configuration File:         /etc/php.ini</span><br><span class="line">Scan <span class="keyword">for</span> additional .ini files <span class="keyword">in</span>: (none)</span><br><span class="line">Additional .ini files parsed:      (none)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-语法检查"><a href="#2-4-语法检查" class="headerlink" title="2.4. 语法检查"></a>2.4. 语法检查</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">PHP Parse error:  parse error, expecting `<span class="string">&#x27;,&#x27;</span><span class="string">&#x27; or `&#x27;</span>;<span class="string">&#x27;&#x27;</span> <span class="keyword">in</span> index.php on line 2</span><br><span class="line">Errors parsing index.php</span><br><span class="line">➜ <span class="built_in">echo</span> <span class="string">&quot;&lt;?php echo &#x27;hello world&#x27;; &quot;</span> &gt; index.php</span><br><span class="line">➜ php -l index.php</span><br><span class="line">No syntax errors detected <span class="keyword">in</span> index.php</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-命令行脚本开发"><a href="#2-5-命令行脚本开发" class="headerlink" title="2.5. 命令行脚本开发"></a>2.5. 命令行脚本开发</h4><p>在使用 C 语言开发程序时，我们通常会在 main 函数中提供两个可选的参数 <code>int main(int argc, char *argv[])</code>，这两个参数就是从命令行提供的输入参数。</p>
+<p>在PHP中，提供了两个全局变量 <strong>$argc</strong> 和 <strong>$argv</strong> 用于获取命令行输入。</p>
+<ul>
+<li>$argc 包含了 $argv 数组包含元素的数目</li>
+<li>$argv 是一个数组，包含了提供的参数，第一个参数总是脚本文件名称</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">➜ vim console.php</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;命令行参数个数：&#x27;</span> . <span class="variable">$argc</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;命令行参数：\n&quot;</span>;</span><br><span class="line">foreach (<span class="variable">$argv</span> as <span class="variable">$key</span> =&gt; <span class="variable">$arg</span>) &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;\t&quot;</span> . <span class="variable">$key</span> . <span class="string">&#x27; : &#x27;</span> . <span class="variable">$arg</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">➜ php console.php hello world</span><br><span class="line">命令行参数个数：3</span><br><span class="line">命令行参数：</span><br><span class="line">  0 : console.php</span><br><span class="line">  1 : hello</span><br><span class="line">  2 : world</span><br></pre></td></tr></table></figure>
+
+<p>在脚本中，可以通过 <code>php_sapi_name()</code> 函数判断是否是在命令行下运行的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ php -r <span class="string">&#x27;echo php_sapi_name(), PHP_EOL;&#x27;</span></span><br><span class="line">cli</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/954645501.html" title="PHP 之命令行模式">https://sqiang.net/post/954645501.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/PHP/" rel="tag"># PHP</a>
+              <a href="/tags/PHP-CLI/" rel="tag"># PHP-CLI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3519953407.html" rel="prev" title="Vagrant 入门指引">
+                  <i class="fa fa-angle-left"></i> Vagrant 入门指引
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/462910674.html" rel="next" title="在 PHP 中安装、使用 Composer 包管理工具">
+                  在 PHP 中安装、使用 Composer 包管理工具 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d58eb3d9a67ddfed2df93ea88c1ec719"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

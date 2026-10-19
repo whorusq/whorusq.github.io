@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="基于 mysqldump 命令创建的脚本，支持自动备份1个或多个数据库到指定目录，如果需要备份到本地，请参考：使用 Shell 备份远程服务器上的 MySQL 数据库到本机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 下 MySQL 自动备份脚本">
+<meta property="og:url" content="https://sqiang.net/post/3905919184.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="基于 mysqldump 命令创建的脚本，支持自动备份1个或多个数据库到指定目录，如果需要备份到本地，请参考：使用 Shell 备份远程服务器上的 MySQL 数据库到本机">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-09T13:20:41.000Z">
+<meta property="article:modified_time" content="2020-03-09T13:20:41.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Shell">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/3905919184.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/3905919184.html","path":"post/3905919184.html","title":"Linux 下 MySQL 自动备份脚本"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux 下 MySQL 自动备份脚本 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%BA%90%E7%A0%81"><span class="nav-text">1. 源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-text">2. 使用说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B"><span class="nav-text">3. 示例</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3905919184.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux 下 MySQL 自动备份脚本 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux 下 MySQL 自动备份脚本
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-03-09 晚上 21:20:41" itemprop="dateCreated datePublished" datetime="2020-03-09T21:20:41+08:00">2020-03-09 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>基于 mysqldump 命令创建的脚本，支持自动备份1个或多个数据库到指定目录，如果需要备份到本地，请参考：<a href="/post/3997579074.html">使用 Shell 备份远程服务器上的 MySQL 数据库到本机</a></p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-源码"><a href="#1-源码" class="headerlink" title="1. 源码"></a>1. 源码</h3><p>新建 Shell 脚本文件：<code>mysqlDump.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">################################################</span></span><br><span class="line"><span class="comment"># TODO: 备份当前服务器上指定的数据库（多个库，以 , 分隔）</span></span><br><span class="line"><span class="comment"># 示例：</span></span><br><span class="line"><span class="comment">#       ./mysqlDump.sh 备份默认设置的数据库</span></span><br><span class="line"><span class="comment">#       ./mysqlDump.sh db_name1,db_name2,... 备份指定名称的数据库</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># File: https://github.com/whorusq/linux-learning/blob/master/shell/mysqlDump.sh</span></span><br><span class="line"><span class="comment"># Author: whoru.S.Q &lt;whoru@sqiang.net&gt;</span></span><br><span class="line"><span class="comment"># Version: 1.0</span></span><br><span class="line"><span class="comment">################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据库连接参数</span></span><br><span class="line">DB_HOST=<span class="string">&quot;127.0.0.1&quot;</span></span><br><span class="line">DB_USER=<span class="string">&quot;root&quot;</span></span><br><span class="line">DB_PWD=<span class="string">&quot;&quot;</span></span><br><span class="line">DB_PORT=<span class="string">&quot;3306&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 待备份的数据库名称，多个库时以 , 分隔</span></span><br><span class="line">DB_NAME=</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份文件路径</span></span><br><span class="line">DUMP_FILE_PATH=/opt/backup</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> main &#123;</span><br><span class="line">    <span class="comment"># 参数检查</span></span><br><span class="line">    <span class="comment"># 如果当前脚本在执行时传递了参数，则优先级高于当前脚本文件中变量的默认设置</span></span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$1</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        DB_NAME=<span class="variable">$1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">if</span> [ ! <span class="string">&quot;<span class="variable">$DB_NAME</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">read</span> -p <span class="string">&quot;请输入要备份的数据库名称：&quot;</span> dbname</span><br><span class="line">            DB_NAME=<span class="variable">$dbname</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查备份目录是否存在</span></span><br><span class="line">    <span class="keyword">if</span> [ ! -d <span class="string">&quot;<span class="variable">$DUMP_FILE_PATH</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">mkdir</span> -p <span class="variable">$DUMP_FILE_PATH</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;$?&quot;</span> -ne <span class="string">&quot;0&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> -en <span class="string">&quot;无法创建备份文件目录：<span class="variable">$DUMP_FILE_PATH</span>&quot;</span></span><br><span class="line">            <span class="built_in">exit</span> 1</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 操作开始</span></span><br><span class="line">    OLD_IFS=<span class="string">&quot;<span class="variable">$IFS</span>&quot;</span></span><br><span class="line">    IFS=<span class="string">&quot;,&quot;</span></span><br><span class="line">    arr=(<span class="variable">$DB_NAME</span>)</span><br><span class="line">    IFS=<span class="string">&quot;<span class="variable">$OLD_IFS</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> db <span class="keyword">in</span> <span class="variable">$&#123;arr[@]&#125;</span></span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="comment"># echo &quot;$db&quot;</span></span><br><span class="line">        doDump <span class="variable">$db</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> doDump &#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -en <span class="string">&quot;\n\033[32m==&gt;\033[0m 开始备份数据库：<span class="variable">$1</span>\n&quot;</span></span><br><span class="line"></span><br><span class="line">    dump_date=`<span class="built_in">date</span> +%Y%m%d%H%M%S`</span><br><span class="line">    dump_file=<span class="variable">$1</span><span class="string">&quot;_&quot;</span><span class="variable">$dump_date</span><span class="string">&quot;.sql&quot;</span></span><br><span class="line">    final_dump_file=<span class="variable">$dump_file</span><span class="string">&quot;.tar.gz&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 备份</span></span><br><span class="line">    <span class="comment"># 考虑还原数据库时的通用性，备份的同时不执行压缩操作</span></span><br><span class="line">    $(<span class="built_in">which</span> mysqldump) -u<span class="variable">$DB_USER</span> -p<span class="variable">$DB_PWD</span> -P <span class="variable">$DB_PORT</span> <span class="variable">$DB_NAME</span> &gt; <span class="variable">$dump_file</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">&quot;$?&quot;</span> -ne <span class="string">&quot;0&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> -en <span class="string">&quot;操作失败&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 压缩、转移备份的文件</span></span><br><span class="line">    tar -zcvf <span class="variable">$final_dump_file</span> <span class="variable">$dump_file</span></span><br><span class="line">    <span class="built_in">mv</span> <span class="variable">$final_dump_file</span> <span class="variable">$DUMP_FILE_PATH</span></span><br><span class="line">    <span class="built_in">rm</span> -rf <span class="variable">$dump_file</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">echo</span> -en <span class="string">&quot;\n\033[32m==&gt;\033[0m 备份完成，生成备份文件：<span class="variable">$DUMP_FILE_PATH</span>/<span class="variable">$final_dump_file</span>\n&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行</span></span><br><span class="line">main <span class="variable">$1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用说明"><a href="#2-使用说明" class="headerlink" title="2. 使用说明"></a>2. 使用说明</h3><ol>
+<li><p>使用前先设置数据库连接参数</p>
+</li>
+<li><p>设置待备份的数据库名称</p>
+<ul>
+<li>方式一：在脚本文件里修改变量 DB_NAME</li>
+<li>方式二：运行脚本时动态传参，如 <code>./mysqlDump.sh db_name</code></li>
+</ul>
+<blockquote>
+<p>注意：脚本运行参数优先级高于脚本文件中的设置；待备份的数据库名称支持多个，以 <code>,</code> 分隔。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="3-示例"><a href="#3-示例" class="headerlink" title="3. 示例"></a>3. 示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ./mysqlDump.sh online_v3.0</span><br><span class="line"></span><br><span class="line">==&gt; 开始备份数据库：online_v3.0</span><br><span class="line">Warning: Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">online_v3.0_20181012164400.sql</span><br><span class="line"></span><br><span class="line">==&gt; 备份完成，生成备份文件：/opt/backup/online_v3.0_20181012164400.sql.tar.gz</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/3905919184.html" title="Linux 下 MySQL 自动备份脚本">https://sqiang.net/post/3905919184.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+              <a href="/tags/Shell/" rel="tag"># Shell</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3997579074.html" rel="prev" title="使用 Shell 备份远程服务器上的 MySQL 数据库到本机">
+                  <i class="fa fa-angle-left"></i> 使用 Shell 备份远程服务器上的 MySQL 数据库到本机
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/1938539149.html" rel="next" title="Hexo最佳实践推荐">
+                  Hexo最佳实践推荐 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d8b120327c43b53836871a09d335702d"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

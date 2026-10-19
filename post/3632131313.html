@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="之前写的内容已过时，并不一定对最新版本生效，直接下载 jetbra.zip (240701) ，解压后按照 readme.txt 里的步骤操作。 已测试：2024.2.5 及以下版本。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个NB闪闪的开源库ja-netfilter">
+<meta property="og:url" content="https://sqiang.net/post/3632131313.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="之前写的内容已过时，并不一定对最新版本生效，直接下载 jetbra.zip (240701) ，解压后按照 readme.txt 里的步骤操作。 已测试：2024.2.5 及以下版本。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-22T02:35:40.000Z">
+<meta property="article:modified_time" content="2024-05-15T11:24:06.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="IDEA">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="JetBrains">
+<meta property="article:tag" content="开发工具">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/3632131313.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/3632131313.html","path":"post/3632131313.html","title":"一个NB闪闪的开源库ja-netfilter"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一个NB闪闪的开源库ja-netfilter | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BD"><span class="nav-text">1. 下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%A7%A3%E5%8E%8B%E5%90%8E%E5%BC%80%E5%A7%8B%E9%85%8D%E7%BD%AE"><span class="nav-text">2. 解压后开始配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E9%85%8D%E7%BD%AE-xx-vmoptions"><span class="nav-text">2.1. 配置 xx.vmoptions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%BF%AE%E6%94%B9-config-%E7%9B%AE%E5%BD%95%E4%B8%AD%E5%AF%B9%E5%BA%94%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">2.2. 修改 config 目录中对应的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E5%90%AF%E5%8A%A8%E8%BD%AF%E4%BB%B6%E6%BF%80%E6%B4%BB"><span class="nav-text">2.3. 启动软件激活</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3632131313.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一个NB闪闪的开源库ja-netfilter | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一个NB闪闪的开源库ja-netfilter
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2022-02-22 上午 10:35:40" itemprop="dateCreated datePublished" datetime="2022-02-22T10:35:40+08:00">2022-02-22 上午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2024-05-15 晚上 19:24:06" itemprop="dateModified" datetime="2024-05-15T19:24:06+08:00">2024-05-15 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>之前写的内容已过时，并不一定对最新版本生效，直接下载 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://ipfs.io/ipfs/bafybeih65no5dklpqfe346wyeiak6wzemv5d7z2ya7nssdgwdz4xrmdu6i/files/jetbra-8f6785eac5e6e7e8b20e6174dd28bb19d8da7550.zip">jetbra.zip (240701)</a> ，解压后按照 <code>readme.txt</code> 里的步骤操作。</p>
+<p>已测试：<code>2024.2.5</code> 及以下版本。</p>
+<span id="more"></span>
+
+<hr>
+<p>正如标题，这是一个NB闪闪的开源库，名字为 <code>ja-netfilter</code>，关于这个开源库的详细说明，参见这里 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://zhile.io/2021/11/29/ja-netfilter-javaagent-lib.html">zhile.io</a></p>
+<p>本文以 IDEA 为例，说一下这个工具怎么用：</p>
+<blockquote>
+<p>适用版本：jb 2021.3.x +<br>这之前的版本，还可以继续使用 <a href="/post/1904459089.html">IDE Eval Reset</a> 插件。</p>
+</blockquote>
+<h3 id="1-下载"><a href="#1-下载" class="headerlink" title="1. 下载"></a>1. 下载</h3><p>从仓库下载最新程序包 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/ja-netfilter/ja-netfilter/releases">https://gitee.com/ja-netfilter/ja-netfilter/releases</a></p>
+<h3 id="2-解压后开始配置"><a href="#2-解压后开始配置" class="headerlink" title="2. 解压后开始配置"></a>2. 解压后开始配置</h3><h4 id="2-1-配置-xx-vmoptions"><a href="#2-1-配置-xx-vmoptions" class="headerlink" title="2.1. 配置 xx.vmoptions"></a>2.1. 配置 xx.vmoptions</h4><p>以下两种方式可选：</p>
+<ul>
+<li>方式一：手动定位到对应软件的 <code>xx.vmoptions</code> 文件，添加下面这一行 <code>-javaagent:/absolute/path/to/ja-netfilter/ja-netfilter.jar</code>；</li>
+<li>方式二：执行命令 <code>java -jar /path/to/ja-netfilter.jar</code> 进行注入；</li>
+</ul>
+<p>较新版本的 IDE (内置jdk17+)，还需要添加以下两行：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED</span><br><span class="line">--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-修改-config-目录中对应的配置文件"><a href="#2-2-修改-config-目录中对应的配置文件" class="headerlink" title="2.2. 修改 config 目录中对应的配置文件"></a>2.2. 修改 config 目录中对应的配置文件</h4><blockquote>
+<p>上面下载的压缩包，最新版本中已经包含了下面的设置，可以跳过。</p>
+</blockquote>
+<p>这里以 jb 软件为例，主要修改如下：</p>
+<p><strong>dns.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[DNS]</span></span><br><span class="line">EQUAL,jetbrains.com</span><br><span class="line">EQUAL,brucege.com</span><br><span class="line">EQUAL,plugin.obroom.com</span><br></pre></td></tr></table></figure>
+
+<p><strong>power.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Result]</span></span><br><span class="line"><span class="comment">; Suit 220701</span></span><br><span class="line">EQUAL,108391492724719606277191711676038310454333436786970899072879934267610324870870961974305689698304529291751931883693569275416671653649715395540162187908455880751887548211257780817773830153477469379663893839249632010489688404104740814832791608983255964373246023808678041003248593298915323068020141515280275870731964298697511434302901212533563571472947179437111243030002421474283363073021442715554541318313064598900684758246291687123240210640543678544269324094608551763049140564128299834843381841274260516105408318037686490277144538983963856617365418526798235932271319705894170543971766101775628884107261100637290512593943587295268337137890353216997114446658051251047509442298463526766678103653729776506979657957966027949436493606289520405331110453990512846697802196701678785414928082416405650857741201229183421400567636999723106788808933737428330992184832395299929033666381663232693108552887968738513151493044369308652310586803160326722967115451573652070286501044484503083240302303438554529551204609089966636092666792347623413483134664670641246129954999815529917163967761617333572567787618346281658716181608204191963817312534492517480248086896060880038259592723773361709406277837609546030729611710076711450268767610513506889086815865283,65537,860106576952879101192782278876319243486072481962999610484027161162448933268423045647258145695082284265933019120714643752088997312766689988016808929265129401027490891810902278465065056686129972085119605237470899952751915070244375173428976413406363879128531449407795115913715863867259163957682164040613505040314747660800424242248055421184038777878268502955477482203711835548014501087778959157112423823275878824729132393281517778742463067583320091009916141454657614089600126948087954465055321987012989937065785013284988096504657892738536613208311013047138019418152103262155848541574327484510025594166239784429845180875774012229784878903603491426732347994359380330103328705981064044872334790365894924494923595382470094461546336020961505275530597716457288511366082299255537762891238136381924520749228412559219346777184174219999640906007205260040707839706131662149325151230558316068068139406816080119906833578907759960298749494098180107991752250725928647349597506532778539709852254478061194098069801549845163358315116260915270480057699929968468068015735162890213859113563672040630687357054902747438421559817252127187138838514773245413540030800888215961904267348727206110582505606182944023582459006406137831940959195566364811905585377246353-&gt;31872219281407242025505148642475109331663948030010491344733687844358944945421064967310388547820970408352359213697487269225694990179009814674781374751323403257628081559561462351695605167675284372388551941279783515209238245831229026662363729380633136520288327292047232179909791526492877475417113579821717193807584807644097527647305469671333646868883650312280989663788656507661713409911267085806708237966730821529702498972114194166091819277582149433578383639532136271637219758962252614390071122773223025154710411681628917523557526099053858210363406122853294409830276270946292893988830514538950951686480580886602618927728470029090747400687617046511462665469446846624685614084264191213318074804549715573780408305977947238915527798680393538207482620648181504876534152430149355791756374642327623133843473947861771150672096834149014464956451480803326284417202116346454345929350148770746553056995922154382822307758515805142704373984019252210715650875853634697920708113806880196144197384637328982263167395073688501517286678083973976140696077590122053014085412828620051470085033364773099146103525313018873319293728800442101520384088109603555959893639842091339193857485407672132882577840295039058621747654642202620767068924079813640067442975</span><br><span class="line">EQUAL,820563695837794062003013052431566406311160519459527861500703856031109754642079235583817632608600538427437617602262999609013304012507897813563718719720856177652850327961467224291449089135680755288577504536702620359129295482393325960269624080511269764101665311320956470015613044808066402568798693281462244978128867910557946603386047729514659336854309276651962414690113978708520364504328849058883417158186751315886080272834506502242438553969507697483002851232580211232007222134718334176577725640440791904351641362718652452524224349310214787836932692511798322090590491010282507213990514918561984012596822561474687437143,65537,24521566609765666164947017540032021599255701751860227819512057581863724253675446227963662825786216373422117712052647819939094618512591273903731385388945941620956494535886991119537555521717683289574562412249381695575366776196301290570457146763799416784211789775179394339350479765228864277544252534115220169733628333836919758657866915165201332480467127194998195481209996470680276955438320553419743409285076366446411459237915876713514676197204668785300100857270615348770478845912795954436677863461158442534283102154396294509903255539003316675136070586165787963286744036831353098283719024130881707718857451774498022915819-&gt;986236757547332986472011617696226561292849812918563355472727826767720188564083584387121625107510786855734801053524719833194566624465665316622563244215340671405971599343902468620306327831715457360719532421388780770165778156818229863337344187575566725786793391480600129482653072861971002459947277805295727097226389568776499707662505334062639449916265137796823793276300221537201727072401742985542559596685092673521228140822200236743113743661549252453726123450722876929538747702356573783116366629850199080495560991841329893037291900147497007197055572787780928474439121332736213562021554409579596714683101113281773829</span><br><span class="line"></span><br><span class="line"><span class="section">[Args]</span></span><br><span class="line">EQUAL,65537,24773058818499217187577663886010908531303294206336895556072197892590450942803807164562754911175164262596715237551312004078542654996496301487027034803410086499747369353221485073240039340641397198525027728751956658900801359887190562885573922317930300068615009483578963467556425525328780085523172495307229112069939166202511721671904748968934606589702999279663332403655662225374084460291376706916679151764149324177444374590606643838366605181996272409014933080082205048098737253668016260658830645459388519595314928290853199112791333551144805347785109465401055719331231478162870216035573012645710763533896540021550083104281-&gt;3,24773058818499217187577663886010908531303294206336895556072197892590450942803807164562754911175164262596715237551312004078542654996496301487027034803410086499747369353221485073240039340641397198525027728751956658900801359887190562885573922317930300068615009483578963467556425525328780085523172495307229112069939166202511721671904748968934606589702999279663332403655662225374084460291376706916679151764149324177444374590606643838366605181996272409014933080082205048098737253668016260658830645459388519595314928290853199112791333551144805347785109465401055719331231478162870216035573012645710763533896540021550083104281</span><br><span class="line">EQUAL,65537,112990544699464667379805164176191940546242208117491544203358534026745357579006792084392734842374059845912387257283707238075863959850326589016727302942528968334782467185179054600102556548201786183972872728459057873984508534595649484729912852626347880177196897414735118804133099744542685440257890337513274043513-&gt;3,112990544699464667379805164176191940546242208117491544203358534026745357579006792084392734842374059845912387257283707238075863959850326589016727302942528968334782467185179054600102556548201786183972872728459057873984508534595649484729912852626347880177196897414735118804133099744542685440257890337513274043513</span><br></pre></td></tr></table></figure>
+
+<p><strong>url.conf</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[URL]</span></span><br><span class="line">PREFIX,https://account.jetbrains.com/lservice/rpc/validateKey.action</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-启动软件激活"><a href="#2-3-启动软件激活" class="headerlink" title="2.3. 启动软件激活"></a>2.3. 启动软件激活</h4><p>打开软件后，从这里 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://jetbra.in/s">https://jetbra.in/s</a> 找到对应软件的 key 进行激活（需要梯子）。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/3632131313.html" title="一个NB闪闪的开源库ja-netfilter">https://sqiang.net/post/3632131313.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag"># 开发工具</a>
+              <a href="/tags/JetBrains/" rel="tag"># JetBrains</a>
+              <a href="/tags/IDEA/" rel="tag"># IDEA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2109815221.html" rel="prev" title="JetBrains系软件设置和使用技巧笔记">
+                  <i class="fa fa-angle-left"></i> JetBrains系软件设置和使用技巧笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/585889217.html" rel="next" title="MySQL 转 PostgreSQL 笔记">
+                  MySQL 转 PostgreSQL 笔记 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"56b4188afc199876df9ea3168a130a05"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

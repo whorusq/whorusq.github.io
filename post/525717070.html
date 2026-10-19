@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。 基于 Markdown 解析出文章内容，快速生成静态页面文件。 本文以当前博客为例，介绍 Hexo 如何快速建立一个静态博客，并部署在 Github Pages 上（如果是部署在 Gitee 或 Coding 上，可自行修改本文中不一样的地方）。 关于 Hexo 的更多信息，详见官网：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Hexo 快速构建个人静态博客系统">
+<meta property="og:url" content="https://sqiang.net/post/525717070.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="Hexo 是一个快速、简洁且高效的博客框架。 基于 Markdown 解析出文章内容，快速生成静态页面文件。 本文以当前博客为例，介绍 Hexo 如何快速建立一个静态博客，并部署在 Github Pages 上（如果是部署在 Gitee 或 Coding 上，可自行修改本文中不一样的地方）。 关于 Hexo 的更多信息，详见官网：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sqiang.net/images/posts/other/hexo_init.png">
+<meta property="article:published_time" content="2020-03-01T03:19:18.000Z">
+<meta property="article:modified_time" content="2020-03-01T03:19:18.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
+<meta property="article:tag" content="其它">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sqiang.net/images/posts/other/hexo_init.png">
+
+
+<link rel="canonical" href="https://sqiang.net/post/525717070.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/525717070.html","path":"post/525717070.html","title":"基于 Hexo 快速构建个人静态博客系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于 Hexo 快速构建个人静态博客系统 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Hexo"><span class="nav-text">1. Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%AE%89%E8%A3%85"><span class="nav-text">1.1. 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">1.2. 初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E4%B8%AA%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="nav-text">1.3. 个性配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E5%90%AF%E5%8A%A8%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-text">1.4. 启动本地预览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE"><span class="nav-text">1.5. 浏览器访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%B8%BB%E9%A2%98-NexT"><span class="nav-text">2. 主题 NexT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E5%AE%89%E8%A3%85"><span class="nav-text">2.1. 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9AGit"><span class="nav-text">方式一：Git</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD"><span class="nav-text">方式二：直接下载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E4%B8%AA%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="nav-text">2.2. 个性配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88"><span class="nav-text">2.3. 本地预览</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%8F%91%E5%B8%83"><span class="nav-text">3. 发布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%88%9B%E5%BB%BA-Github-%E4%BB%93%E5%BA%93"><span class="nav-text">3.1. 创建 Github 仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6"><span class="nav-text">3.2. 安装插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="nav-text">3.3. 修改配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="nav-text">3.4. 执行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE"><span class="nav-text">3.5. 浏览器访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%99%84%E5%BD%95"><span class="nav-text">4. 附录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-Hexo-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">4.1. Hexo 常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E6%8E%A8%E8%8D%90%E6%8F%92%E4%BB%B6"><span class="nav-text">4.2. 推荐插件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo-abbrlink"><span class="nav-text">hexo-abbrlink</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo-filter-nofollow"><span class="nav-text">hexo-filter-nofollow</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo-generator-searchdb"><span class="nav-text">hexo-generator-searchdb</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#hexo-generator-sitemap"><span class="nav-text">hexo-generator-sitemap</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/525717070.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于 Hexo 快速构建个人静态博客系统 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 Hexo 快速构建个人静态博客系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-03-01 上午 11:19:18" itemprop="dateCreated datePublished" datetime="2020-03-01T11:19:18+08:00">2020-03-01 上午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Hexo 是一个快速、简洁且高效的博客框架。</p>
+<p>基于 <code>Markdown</code> 解析出文章内容，快速生成静态页面文件。</p>
+<p>本文以当前博客为例，介绍 Hexo 如何快速建立一个静态博客，并部署在 <code>Github Pages</code> 上（如果是部署在 Gitee 或 Coding 上，可自行修改本文中不一样的地方）。</p>
+<p>关于 Hexo 的更多信息，详见官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/">https://hexo.io/zh-cn</a></p>
+<span id="more"></span>
+
+<h3 id="1-Hexo"><a href="#1-Hexo" class="headerlink" title="1. Hexo"></a>1. Hexo</h3><h4 id="1-1-安装"><a href="#1-1-安装" class="headerlink" title="1.1. 安装"></a>1.1. 安装</h4><p>依赖：</p>
+<ul>
+<li>NodeJs <code>v10.0+</code><ul>
+<li>这是官方建议，最小不低于 <code>v8.10</code></li>
+<li>没有安装 NodeJs 环境，可以参见<a href="/post/3176262256.html">借助 nvm 安装、管理多个 NodeJS 版本</a></li>
+</ul>
+</li>
+<li>Git</li>
+</ul>
+<p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 全局安装</span></span><br><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-初始化"><a href="#1-2-初始化" class="headerlink" title="1.2. 初始化"></a>1.2. 初始化</h4><p>新建一个目录，用于存放 Hexo 初始化之后的所有文件，之后安装主题、写文章、网站配置等都在这个目录下。</p>
+<p>目录名称建议取博客地址，比如：<a href="xxxxx.github.io">xxxxx.github.io</a>（因为我的博客是部署在 Github Pages 上的，<code>xxxxx</code> 对应 Github 用户名，详见 <a href="#31-%E5%88%9B%E5%BB%BA-github-%E4%BB%93%E5%BA%93">3.1. 创建 Github 仓库</a>）。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init xxxxx.github.io</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-个性配置"><a href="#1-3-个性配置" class="headerlink" title="1.3. 个性配置"></a>1.3. 个性配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入上一步初始化好的主目录</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>文件 <code>_config.yml</code> 对应整个站点的配置，Hexo 的详细配置参数说明<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/docs/configuration">见官网</a>。</p>
+<p>下面是部分主要配置的说明：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">whoru</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">&#x27;学习、分享、交流、沉淀&#x27;</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">&#x27;Talk is cheap, just do IT.&#x27;</span></span><br><span class="line"><span class="attr">keywords:</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">whoru.S.Q</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## If your site is put in a subdirectory, set url as &#x27;http://yoursite.com/child&#x27; and root as &#x27;/child/&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://blog.sqiang.net</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 代码高亮设置</span></span><br><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页分页设置</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 归档页分页设置</span></span><br><span class="line"><span class="attr">per_page:</span> <span class="number">20</span></span><br><span class="line"><span class="attr">pagination_dir:</span> <span class="string">page</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主题</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">landscape</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 博客发布地址（对应 Github 上创建的 Pages 仓库）</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/whorusq/xxxxx.github.io.git</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-启动本地预览"><a href="#1-4-启动本地预览" class="headerlink" title="1.4. 启动本地预览"></a>1.4. 启动本地预览</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-5-浏览器访问"><a href="#1-5-浏览器访问" class="headerlink" title="1.5. 浏览器访问"></a>1.5. 浏览器访问</h4><p>地址栏输入 <code>http://localhost:4000</code> 访问，如下图：</p>
+<p><img data-src="/images/posts/other/hexo_init.png"></p>
+<h3 id="2-主题-NexT"><a href="#2-主题-NexT" class="headerlink" title="2. 主题 NexT"></a>2. 主题 NexT</h3><blockquote>
+<p><code>NexT</code> 是 <code>Hexo</code> 下一个优雅且强大的主题，详见官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://theme-next.org/docs">https://theme-next.org/docs/</a></p>
+</blockquote>
+<h4 id="2-1-安装"><a href="#2-1-安装" class="headerlink" title="2.1. 安装"></a>2.1. 安装</h4><h5 id="方式一：Git"><a href="#方式一：Git" class="headerlink" title="方式一：Git"></a>方式一：Git</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 进入初始化好的 Hexo 根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> whorusq.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 拉取 NexT 最新代码（默认分支 master）</span></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有分支</span></span><br><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line">$ git tag -l</span><br><span class="line">...</span><br><span class="line">v7.5.0</span><br><span class="line">v7.6.0</span><br><span class="line">v7.7.0</span><br><span class="line">v7.7.1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换主题到不同版本</span></span><br><span class="line">$ git checkout tags/v7.5.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切回最新的 master</span></span><br><span class="line">$ git checkout master</span><br></pre></td></tr></table></figure>
+
+<h5 id="方式二：直接下载"><a href="#方式二：直接下载" class="headerlink" title="方式二：直接下载"></a>方式二：直接下载</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 进入初始化好的 Hexo 根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> whorusq.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 手动创建主题目录</span></span><br><span class="line">$ <span class="built_in">mkdir</span> themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 下载主题源码并解压</span></span><br><span class="line">$ curl -L https://api.github.com/repos/theme-next/hexo-theme-next/tarball | tar -zxv -C themes/next --strip-components=1</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-个性配置"><a href="#2-2-个性配置" class="headerlink" title="2.2. 个性配置"></a>2.2. 个性配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入主题目录</span></span><br><span class="line">$ <span class="built_in">cd</span> themes/next</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打开配置文件</span></span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>⚠️ 注意：主题下的 <code>_config.yml</code> 文件是当前主题定制的配置项，涉及页面样式、单页面、菜单等具体展示层的东西，与 Hexo 根目录下的 <code>_config.yml</code> 功能和适用范围不同，要区别开。</p>
+<p>详细的主题配置说明<a target="_blank" rel="noopener external nofollow noreferrer" href="https://theme-next.org/docs/theme-settings">见官网</a>，下面是当前博客的一份示例配置，同样<strong>只摘取了部分配置，只用于举例说明各主要配置项</strong>。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 页面底部设置</span></span><br><span class="line"><span class="attr">footer:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章版权展示设置</span></span><br><span class="line"><span class="attr">creative_commons:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 主题的四种风格</span></span><br><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment"># scheme: Muse</span></span><br><span class="line"><span class="comment"># scheme: Mist</span></span><br><span class="line"><span class="comment"># scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 菜单设置</span></span><br><span class="line"><span class="comment"># 对应的单页需使用 hexo new page &quot;about&quot; 创建</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment"># commonweal: /404/ || heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 侧边栏设置</span></span><br><span class="line"><span class="attr">sidebar:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 侧边栏头像</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 侧边栏底部社交链接</span></span><br><span class="line"><span class="attr">social:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 友情连接</span></span><br><span class="line"><span class="attr">links:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章索引设置</span></span><br><span class="line"><span class="attr">toc:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 首页展示「阅读全文」链接</span></span><br><span class="line"><span class="attr">read_more_btn:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章尾部赞赏设置</span></span><br><span class="line"><span class="attr">reward_settings:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 展示相关文章</span></span><br><span class="line"><span class="attr">related_posts:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 标签云样式</span></span><br><span class="line"><span class="attr">tagcloud:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Multiple Comment System Support</span></span><br><span class="line"><span class="comment"># 是否开启多评论切换</span></span><br><span class="line"><span class="attr">comments:</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启本地搜索</span></span><br><span class="line"><span class="attr">local_search:</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-本地预览"><a href="#2-3-本地预览" class="headerlink" title="2.3. 本地预览"></a>2.3. 本地预览</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
+
+<p>启动后，地址栏再次输入 <code>http://localhost:4000</code> 访问。</p>
+<h3 id="3-发布"><a href="#3-发布" class="headerlink" title="3. 发布"></a>3. 发布</h3><h4 id="3-1-创建-Github-仓库"><a href="#3-1-创建-Github-仓库" class="headerlink" title="3.1. 创建 Github 仓库"></a>3.1. 创建 Github 仓库</h4><p>在 Github 创建一个新仓库，名称为 <code>xxxxx.github.io</code>，其中 <code>xxxxx</code> 是你的 Github 用户名。如果要开启 Pages 服务，则必须遵守这个规则。</p>
+<p>创建好之后，浏览器直接输入 <code>xxxxx.github.io</code> 访问。</p>
+<p>进入仓库设置，找到 <code>GitHub Pages</code> 部分，可自定义域名和开启 <code>HTTPS</code> 支持。</p>
+<h4 id="3-2-安装插件"><a href="#3-2-安装插件" class="headerlink" title="3.2. 安装插件"></a>3.2. 安装插件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-修改配置"><a href="#3-3-修改配置" class="headerlink" title="3.3. 修改配置"></a>3.3. 修改配置</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 进入根目录，打开 Hexo 全局配置文件</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io</span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<p>修改如下配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/xxxxx/xxxxx.github.io.git</span></span><br></pre></td></tr></table></figure>
+
+<p>关于该该插件的更多详细配置，参见 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-deployer-git">https://github.com/hexojs/hexo-deployer-git</a></p>
+<h4 id="3-4-执行命令"><a href="#3-4-执行命令" class="headerlink" title="3.4. 执行命令"></a>3.4. 执行命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo deploy</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者直接执行这条命令（常用）</span></span><br><span class="line"><span class="comment"># 相当于为文章生成静态文件，然后部署到指定的仓库</span></span><br><span class="line"><span class="comment"># g ---&gt; generate</span></span><br><span class="line"><span class="comment"># d ---&gt; deploy</span></span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-浏览器访问"><a href="#3-5-浏览器访问" class="headerlink" title="3.5. 浏览器访问"></a>3.5. 浏览器访问</h4><p>输入地址：<code>https://xxxxx.github.io</code></p>
+<h3 id="4-附录"><a href="#4-附录" class="headerlink" title="4. 附录"></a>4. 附录</h3><h4 id="4-1-Hexo-常用命令"><a href="#4-1-Hexo-常用命令" class="headerlink" title="4.1. Hexo 常用命令"></a>4.1. Hexo 常用命令</h4><p>完整的命令列表及说明参见官网<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io/zh-cn/docs/commands">指令</a>部分。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以指定目录初始化 Hexo，不指定到话则使用当前目录</span></span><br><span class="line">$ hexo init xxxxx.github.io</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建单页</span></span><br><span class="line">$ hexo new page <span class="string">&quot;about&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建文章</span></span><br><span class="line">$ hexo new post <span class="string">&quot;一篇新文章的标题&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动本地服务</span></span><br><span class="line">$ hexo s</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除缓存文件 (db.json) 和已生成的静态文件 (public)。</span></span><br><span class="line"><span class="comment"># 在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，可能需要运行该命令。</span></span><br><span class="line">$ hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为文章生成静态文件</span></span><br><span class="line">$ hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为文章生成静态文件，然后部署到指定仓库</span></span><br><span class="line">$ hexo g -d</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-推荐插件"><a href="#4-2-推荐插件" class="headerlink" title="4.2. 推荐插件"></a>4.2. 推荐插件</h4><h5 id="hexo-abbrlink"><a href="#hexo-abbrlink" class="headerlink" title="hexo-abbrlink"></a>hexo-abbrlink</h5><p>为每篇文章生成一个唯一 ID，详见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Rozbo/hexo-abbrlink#readme">https://github.com/Rozbo/hexo-abbrlink#readme</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装</span></span><br><span class="line">$ npm install hexo-abbrlink --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加 Hexo 配置</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io</span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注释掉默认配置</span></span><br><span class="line"><span class="comment"># permalink: :year/:title/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改、添加以下内容</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">post/:abbrlink.html</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>   <span class="comment"># 算法： crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">dec</span>     <span class="comment"># 进制： dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="hexo-filter-nofollow"><a href="#hexo-filter-nofollow" class="headerlink" title="hexo-filter-nofollow"></a>hexo-filter-nofollow</h5><p>为外链添加 <code>rel=&quot;external nofollow noreferrer&quot;</code>，详见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-filter-nofollow">https://github.com/hexojs/hexo-filter-nofollow</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装</span></span><br><span class="line">$ npm install hexo-filter-nofollow --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加 Hexo 配置</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io</span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加以下配置</span></span><br><span class="line"><span class="attr">nofollow:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">site</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="comment"># - &#x27;exclude1.com&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="hexo-generator-searchdb"><a href="#hexo-generator-searchdb" class="headerlink" title="hexo-generator-searchdb"></a>hexo-generator-searchdb</h5><p>开启 NexT 主题的本地搜索需要此插件，详见<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/theme-next/hexo-generator-searchdb">https://github.com/theme-next/hexo-generator-searchdb</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装</span></span><br><span class="line">$ npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 修改 NexT 主题配置</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io/themes/next/</span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改如下部分</span></span><br><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/theme-next/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="hexo-generator-sitemap"><a href="#hexo-generator-sitemap" class="headerlink" title="hexo-generator-sitemap"></a>hexo-generator-sitemap</h5><p>部署的时候自动生成 <code>sitemap.xml</code> 文件，便于爬虫抓取或手手动提交，插件的使用详见：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-generator-sitemap">https://github.com/hexojs/hexo-generator-sitemap</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/coneycode/hexo-generator-baidu-sitemap">https://github.com/coneycode/hexo-generator-baidu-sitemap</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装</span></span><br><span class="line">$ npm install hexo-generator-sitemap --save</span><br><span class="line">$ npm install hexo-generator-baidu-sitemap --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 添加 NexT 主题配置</span></span><br><span class="line">$ <span class="built_in">cd</span> xxxxx.github.io/themes/next/</span><br><span class="line">$ vim _config.yml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加如下部分</span></span><br><span class="line"><span class="attr">sitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">sitemap.xml</span></span><br><span class="line"><span class="attr">baidusitemap:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">baidusitemap.xml</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 注意：百度爬虫由于操作生猛，已经被 Github 屏蔽，所以部署在 Github Pages 上的网站无法被收录，需要借助其它平台的 Pages 服务，可自行搜索。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/525717070.html" title="基于 Hexo 快速构建个人静态博客系统">https://sqiang.net/post/525717070.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%B6%E5%AE%83/" rel="tag"># 其它</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3800214565.html" rel="prev" title="基于 CentOS6.x 源码编译安装 LNMP 环境">
+                  <i class="fa fa-angle-left"></i> 基于 CentOS6.x 源码编译安装 LNMP 环境
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/218213306.html" rel="next" title="如何设置 oh-my-zsh 主题 agnoster">
+                  如何设置 oh-my-zsh 主题 agnoster <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"c3555c0c7abc2805804a1c70a32bd290"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

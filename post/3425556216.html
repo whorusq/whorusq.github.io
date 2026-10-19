@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="本文主要介绍基于 Docker 的 Redis 服务基本使用，涉及服务创建、客户端连接测试等。  1. 相关资源 官网：https:&#x2F;&#x2F;redis.io 镜像地址：https:&#x2F;&#x2F;hub.docker.com&#x2F;_&#x2F;redis 配置文件下载：https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 Docker 的 Redis 服务">
+<meta property="og:url" content="https://sqiang.net/post/3425556216.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="本文主要介绍基于 Docker 的 Redis 服务基本使用，涉及服务创建、客户端连接测试等。  1. 相关资源 官网：https:&#x2F;&#x2F;redis.io 镜像地址：https:&#x2F;&#x2F;hub.docker.com&#x2F;_&#x2F;redis 配置文件下载：https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;co">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-10T08:06:58.000Z">
+<meta property="article:modified_time" content="2024-10-20T08:06:58.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="redis-cli">
+<meta property="article:tag" content="redis-server">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/3425556216.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/3425556216.html","path":"post/3425556216.html","title":"基于 Docker 的 Redis 服务"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基于 Docker 的 Redis 服务 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%9B%B8%E5%85%B3%E8%B5%84%E6%BA%90"><span class="nav-text">1. 相关资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-text">2. 拉取镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8"><span class="nav-text">3. 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E9%BB%98%E8%AE%A4%E5%90%AF%E5%8A%A8"><span class="nav-text">3.1. 默认启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8-redis-cli-%E8%BF%9E%E6%8E%A5%E5%AE%B9%E5%99%A8%EF%BC%9F"><span class="nav-text">3.2. 怎么使用 redis-cli 连接容器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E5%A6%82%E4%BD%95%E5%B0%86%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8%E5%88%B0%E5%AE%BF%E4%B8%BB%E6%9C%BA%EF%BC%9F"><span class="nav-text">3.3. 如何将数据持久化存储到宿主机？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">3.4. 自定义配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-docker-compose-%E7%BC%96%E6%8E%92"><span class="nav-text">4. 使用 docker compose 编排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%88%9B%E5%BB%BA"><span class="nav-text">4.1. 创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E5%90%AF%E5%8A%A8"><span class="nav-text">4.2. 启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E8%BF%9E%E6%8E%A5%E6%B5%8B%E8%AF%95"><span class="nav-text">4.3. 连接测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-text">5. 常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5"><span class="nav-text">5.1. 客户端无法连接</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%B8%80%EF%BC%9A%E5%9C%B0%E5%9D%80%E3%80%81%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="nav-text">情况一：地址、端口号</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C%EF%BC%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">情况二：配置文件</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/3425556216.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="基于 Docker 的 Redis 服务 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于 Docker 的 Redis 服务
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-04-10 下午 16:06:58" itemprop="dateCreated datePublished" datetime="2020-04-10T16:06:58+08:00">2020-04-10 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2024-10-20 下午 16:06:58" itemprop="dateModified" datetime="2024-10-20T16:06:58+08:00">2024-10-20 下午</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>本文主要介绍基于 Docker 的 Redis 服务基本使用，涉及服务创建、客户端连接测试等。</p>
+</blockquote>
+<h3 id="1-相关资源"><a href="#1-相关资源" class="headerlink" title="1. 相关资源"></a>1. 相关资源</h3><ul>
+<li>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://redis.io/">https://redis.io</a></li>
+<li>镜像地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://hub.docker.com/_/redis">https://hub.docker.com/_&#x2F;redis</a></li>
+<li>配置文件下载：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://redis.io/docs/latest/operate/oss_and_stack/management/config/">https://redis.io/docs/latest/operate/oss_and_stack&#x2F;management&#x2F;config&#x2F;</a></li>
+<li>Redis 发布地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/antirez/redis">https://github.com/antirez/redis</a></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-拉取镜像"><a href="#2-拉取镜像" class="headerlink" title="2. 拉取镜像"></a>2. 拉取镜像</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 默认拉取最新稳定版本，目前是 5.x</span></span><br><span class="line">➜  docker pull redis</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或指定版本</span></span><br><span class="line">➜  docker pull redis:5</span><br></pre></td></tr></table></figure>
+<p>检查镜像是否拉取成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">redis               5                   4cdbec704e47        9 days ago          98.2MB</span><br><span class="line">redis               latest              44d36d2c2374        2 months ago        98.2MB</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-使用"><a href="#3-使用" class="headerlink" title="3. 使用"></a>3. 使用</h3><h4 id="3-1-默认启动"><a href="#3-1-默认启动" class="headerlink" title="3.1. 默认启动"></a>3.1. 默认启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  docker run --name myredis -d redis</span><br><span class="line">41f9c2e8fb86c415257c0342eb58435c3a5bbaf10f888a2cb3c7243d08ec796c</span><br></pre></td></tr></table></figure>
+<p>之后就可以通过客户端程序连接 <code>127.0.0.1:6379</code> 来访问了。</p>
+<h4 id="3-2-怎么使用-redis-cli-连接容器？"><a href="#3-2-怎么使用-redis-cli-连接容器？" class="headerlink" title="3.2. 怎么使用 redis-cli 连接容器？"></a>3.2. 怎么使用 redis-cli 连接容器？</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">➜  docker run -it --<span class="built_in">link</span> myredis --<span class="built_in">rm</span> redis redis-cli -h myredis -p 6379</span><br><span class="line">myredis:6379&gt; KEYS *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line">myredis:6379&gt; SET name <span class="string">&#x27;xiaoming&#x27;</span></span><br><span class="line">OK</span><br><span class="line">myredis:6379&gt; GET name</span><br><span class="line"><span class="string">&quot;xiaoming&quot;</span></span><br><span class="line">myredis:6379&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-如何将数据持久化存储到宿主机？"><a href="#3-3-如何将数据持久化存储到宿主机？" class="headerlink" title="3.3. 如何将数据持久化存储到宿主机？"></a>3.3. 如何将数据持久化存储到宿主机？</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  docker run --name myredis2 -d -v ~/data/redis:/data redis redis-server --appendonly <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li><code>--appendonly yes</code> 用于打开 redis 的数据持久化存储</li>
+<li><code>-v ~/data/redis:/data</code> 用于将宿主机的目录映射到容器对应的数据存储目录</li>
+</ul>
+<h4 id="3-4-自定义配置文件"><a href="#3-4-自定义配置文件" class="headerlink" title="3.4. 自定义配置文件"></a>3.4. 自定义配置文件</h4><p>建议<a target="_blank" rel="noopener external nofollow noreferrer" href="https://redis.io/">官网</a>下载指定版本的 Redis 源码包，解压后获取默认配置文件 <code>redis.conf</code></p>
+<p>然后在 Redis 容器启动时如下操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ~/myredis/conf/redis.conf 对应宿主机配置文件位置</span></span><br><span class="line">➜  docker run -v ~/myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis3 redis redis-server /usr/local/etc/redis/redis.conf</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-使用-docker-compose-编排"><a href="#4-使用-docker-compose-编排" class="headerlink" title="4. 使用 docker compose 编排"></a>4. 使用 docker compose 编排</h3><p>上面是基本使用方式，为便于管理，我们一般使用 <code>docker compose</code> 来统一创建、管理各服务。</p>
+<h4 id="4-1-创建"><a href="#4-1-创建" class="headerlink" title="4.1. 创建"></a>4.1. 创建</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个目录 redi 存放，结构如下</span></span><br><span class="line">➜  tree -L 2 redis</span><br><span class="line">.</span><br><span class="line">├── conf</span><br><span class="line">│   └── redis.conf &lt;-- 默认配置文件</span><br><span class="line">├── data</span><br><span class="line">│   └── dump.rdb &lt;-- 数据持久化文件</span><br><span class="line">└── docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<p><code>docker-compose.yml</code> 文件如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis</span></span><br><span class="line"><span class="comment"># https://redis.io</span></span><br><span class="line"><span class="comment"># https://hub.docker.com/_/redis</span></span><br><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">redis:5</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;56379:6379&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./data:/data:rw</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./conf/redis.conf:/usr/local/etc/redis/redis.conf</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">redis-server</span> <span class="string">/usr/local/etc/redis/redis.conf</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-启动"><a href="#4-2-启动" class="headerlink" title="4.2. 启动"></a>4.2. 启动</h4><blockquote>
+<p>⚠️ 注意：启动前，注意修改配置文件中的连接密码（requirepass）和 IP 绑定（bind）两个属性，尤其是当使用 <code>redis-cli</code> 或其它客户端工具连接发生异常时。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">➜  docker compose up</span><br><span class="line">Creating network <span class="string">&quot;redis_default&quot;</span> with the default driver</span><br><span class="line">Creating redis_redis_1 ... <span class="keyword">done</span></span><br><span class="line">Attaching to redis_redis_1</span><br><span class="line">redis_1  | 1:C 10 Apr 2020 07:24:54.884 <span class="comment"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span></span><br><span class="line">redis_1  | 1:C 10 Apr 2020 07:24:54.885 <span class="comment"># Redis version=5.0.8, bits=64, commit=00000000, modified=0, pid=1, just started</span></span><br><span class="line">redis_1  | 1:C 10 Apr 2020 07:24:54.885 <span class="comment"># Configuration loaded</span></span><br><span class="line">redis_1  |                 _._</span><br><span class="line">redis_1  |            _.-``__ <span class="string">&#x27;&#x27;</span>-._</span><br><span class="line">redis_1  |       _.-``    `.  `_.  <span class="string">&#x27;&#x27;</span>-._           Redis 5.0.8 (00000000/0) 64 bit</span><br><span class="line">redis_1  |   .-`` .-```.  ```\/    _.,_ <span class="string">&#x27;&#x27;</span>-._</span><br><span class="line">redis_1  |  (    <span class="string">&#x27;      ,       .-`  | `,    )     Running in standalone mode</span></span><br><span class="line"><span class="string">redis_1  |  |`-._`-...-` __...-.``-._|&#x27;</span>` _.-<span class="string">&#x27;|     Port: 6379</span></span><br><span class="line"><span class="string">redis_1  |  |    `-._   `._    /     _.-&#x27;</span>    |     PID: 1</span><br><span class="line">redis_1  |   `-._    `-._  `-./  _.-<span class="string">&#x27;    _.-&#x27;</span></span><br><span class="line">redis_1  |  |`-._`-._    `-.__.-<span class="string">&#x27;    _.-&#x27;</span>_.-<span class="string">&#x27;|</span></span><br><span class="line"><span class="string">redis_1  |  |    `-._`-._        _.-&#x27;</span>_.-<span class="string">&#x27;    |           http://redis.io</span></span><br><span class="line"><span class="string">redis_1  |   `-._    `-._`-.__.-&#x27;</span>_.-<span class="string">&#x27;    _.-&#x27;</span></span><br><span class="line">redis_1  |  |`-._`-._    `-.__.-<span class="string">&#x27;    _.-&#x27;</span>_.-<span class="string">&#x27;|</span></span><br><span class="line"><span class="string">redis_1  |  |    `-._`-._        _.-&#x27;</span>_.-<span class="string">&#x27;    |</span></span><br><span class="line"><span class="string">redis_1  |   `-._    `-._`-.__.-&#x27;</span>_.-<span class="string">&#x27;    _.-&#x27;</span></span><br><span class="line">redis_1  |       `-._    `-.__.-<span class="string">&#x27;    _.-&#x27;</span></span><br><span class="line">redis_1  |           `-._        _.-<span class="string">&#x27;</span></span><br><span class="line"><span class="string">redis_1  |               `-.__.-&#x27;</span></span><br><span class="line">redis_1  |</span><br><span class="line">redis_1  | 1:M 10 Apr 2020 07:24:54.890 <span class="comment"># WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.</span></span><br><span class="line">redis_1  | 1:M 10 Apr 2020 07:24:54.891 <span class="comment"># Server initialized</span></span><br><span class="line">redis_1  | 1:M 10 Apr 2020 07:24:54.891 <span class="comment"># WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &#x27;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&#x27; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.</span></span><br><span class="line">redis_1  | 1:M 10 Apr 2020 07:24:54.901 * DB loaded from disk: 0.009 seconds</span><br><span class="line">redis_1  | 1:M 10 Apr 2020 07:24:54.901 * Ready to accept connections</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-3-连接测试"><a href="#4-3-连接测试" class="headerlink" title="4.3. 连接测试"></a>4.3. 连接测试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  docker <span class="built_in">exec</span> -it <span class="variable">$&#123;Redis 容器 ID&#125;</span> redis-cli -h 127.0.0.1 -p 6379</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-常见问题"><a href="#5-常见问题" class="headerlink" title="5. 常见问题"></a>5. 常见问题</h3><h4 id="5-1-客户端无法连接"><a href="#5-1-客户端无法连接" class="headerlink" title="5.1. 客户端无法连接"></a>5.1. 客户端无法连接</h4><h5 id="情况一：地址、端口号"><a href="#情况一：地址、端口号" class="headerlink" title="情况一：地址、端口号"></a>情况一：地址、端口号</h5><p>连接时确保填写正确的<strong>连接地址</strong>和<strong>端口号</strong>。</p>
+<ul>
+<li>从另一个容器连接到当前 Redis 服务，需要使用 <code>--link</code> 连接两个容器，并且连接地址使用 Redis 对应的服务名；</li>
+<li>从物理机连接到当前 Redis 服务，确保端口是<strong>暴露出来的端口号</strong>，而不是默认的端口号。</li>
+</ul>
+<h5 id="情况二：配置文件"><a href="#情况二：配置文件" class="headerlink" title="情况二：配置文件"></a>情况二：配置文件</h5><p>在较高版本的 <code>redis.conf</code> 配置文件中，属性 <code>protected-mode yes</code> 被默认开启，以保证 Redis 的安全性。</p>
+<p>所以必须给 Redis 设置密码才可以连接。</p>
+<p>如果只是测试用而不需要密码，则修改此属性的值为 <code>no</code> ，并且属性 <code>requirepass xxx</code> 不要打开即可。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/3425556216.html" title="基于 Docker 的 Redis 服务">https://sqiang.net/post/3425556216.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Redis/" rel="tag"># Redis</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+              <a href="/tags/redis-server/" rel="tag"># redis-server</a>
+              <a href="/tags/redis-cli/" rel="tag"># redis-cli</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/1938539149.html" rel="prev" title="Hexo最佳实践推荐">
+                  <i class="fa fa-angle-left"></i> Hexo最佳实践推荐
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/2719612904.html" rel="next" title="JavaScript 中 undefined 与 null 的用法区别">
+                  JavaScript 中 undefined 与 null 的用法区别 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"1ee58f6ced5cd9fca54b9e52849b77a2"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

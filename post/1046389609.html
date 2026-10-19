@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1. PM2 是什么？PM2 &#x3D; Process Manager 2  ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS   PM2 is a daemon process manager that will help you manage and keep your application online 24&#x2F;7  上面是官网给">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PM2 入门指南">
+<meta property="og:url" content="https://sqiang.net/post/1046389609.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="1. PM2 是什么？PM2 &#x3D; Process Manager 2  ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS   PM2 is a daemon process manager that will help you manage and keep your application online 24&#x2F;7  上面是官网给">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-06-19T13:11:19.000Z">
+<meta property="article:modified_time" content="2020-06-19T13:11:19.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Node.js">
+<meta property="article:tag" content="PM2">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1046389609.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/1046389609.html","path":"post/1046389609.html","title":"PM2 入门指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>PM2 入门指南 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-PM2-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">1. PM2 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%AE%89%E8%A3%85"><span class="nav-text">2. 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-text">3. 基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%90%AF%E5%8A%A8"><span class="nav-text">3.1. 启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E6%9F%A5%E7%9C%8B"><span class="nav-text">3.2. 查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E7%AE%A1%E7%90%86%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81"><span class="nav-text">3.3. 管理应用状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-%E9%9D%99%E6%80%81%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">3.4. 静态服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-5-%E9%9B%86%E7%BE%A4%E6%A8%A1%E5%BC%8F%EF%BC%88%E8%87%AA%E5%8A%A8%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%89"><span class="nav-text">3.5. 集群模式（自动负载均衡）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-6-%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8"><span class="nav-text">3.6. 开机自启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-7-%E5%BA%94%E7%94%A8%E5%88%97%E8%A1%A8"><span class="nav-text">3.7. 应用列表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">4. 配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%85%B6%E4%BB%96"><span class="nav-text">5. 其他</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1-%E5%8D%87%E7%BA%A7-PM2"><span class="nav-text">5.1. 升级 PM2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2-%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2"><span class="nav-text">5.2. 日志切割</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1046389609.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="PM2 入门指南 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          PM2 入门指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-06-19 晚上 21:11:19" itemprop="dateCreated datePublished" datetime="2020-06-19T21:11:19+08:00">2020-06-19 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaScript/" itemprop="url" rel="index"><span itemprop="name">JavaScript</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="1-PM2-是什么？"><a href="#1-PM2-是什么？" class="headerlink" title="1. PM2 是什么？"></a>1. PM2 是什么？</h3><p>PM2 &#x3D; Process Manager 2</p>
+<blockquote>
+<p>ADVANCED, PRODUCTION PROCESS MANAGER FOR NODE.JS</p>
+</blockquote>
+<blockquote>
+<p>PM2 is a daemon process manager that will help you manage and keep your application online 24&#x2F;7</p>
+</blockquote>
+<p>上面是官网给出的 title，简单来说：<strong>它是在后台运行的 <code>Node.js</code> 进程管理器，提供一套针对生产环境运行时的工具集，可以保障你的程序 7 * 24 小时在线。</strong></p>
+<p>官网：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/">https://pm2.keymetrics.io</a></p>
+<p>文档：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/docs/usage/quick-start">https://pm2.keymetrics.io/docs/usage/quick-start</a></p>
+<p>总结其主要特性如下：</p>
+<ul>
+<li>日志管理：应用程序日志保存在服务器的硬盘中 <code>~/.pm2/logs/</code></li>
+<li>负载均衡：使用 <code>Node cluster</code> 集群模块，可以通过创建共享同一服务器端口的多个子进程来扩展您的应用程序。这样做还允许您以零秒停机时间重新启动应用程序，实现热重载。</li>
+<li>终端监控：可以在终端中监控您的应用程序运行状况，包括CPU使用率，使用的内存，请求&#x2F;分钟等。</li>
+<li>自动停止不稳定的进程（避免无限循环）</li>
+<li>支持静态服务器功能</li>
+<li>提供 <code>HTTP API</code></li>
+</ul>
+<span id="more"></span>
+
+<h3 id="2-安装"><a href="#2-安装" class="headerlink" title="2. 安装"></a>2. 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">$ yarn global add pm2</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以使用工具 <code>nvm</code> 安装管理 <code>Node.js</code> 和 <code>npm</code> ，参见我的另一篇文章：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.sqiang.net/post/3176262256.html">借助 nvm 安装、管理多个 NodeJS 版本</a></p>
+</blockquote>
+<p>检查是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 --version</span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">__/\\\\\\\\\\\\\____/\\\\____________/\\\\____/\\\\\\\\\_____</span><br><span class="line"> _\/\\\/////////\\\_\/\\\\\\________/\\\\\\__/\\\///////\\\___</span><br><span class="line">  _\/\\\_______\/\\\_\/\\\//\\\____/\\\//\\\_\///______\//\\\__</span><br><span class="line">   _\/\\\\\\\\\\\\\/__\/\\\\///\\\/\\\/_\/\\\___________/\\\/___</span><br><span class="line">    _\/\\\/////////____\/\\\__\///\\\/___\/\\\________/\\\//_____</span><br><span class="line">     _\/\\\_____________\/\\\____\///_____\/\\\_____/\\\//________</span><br><span class="line">      _\/\\\_____________\/\\\_____________\/\\\___/\\\/___________</span><br><span class="line">       _\/\\\_____________\/\\\_____________\/\\\__/\\\\\\\\\\\\\\\_</span><br><span class="line">        _\///______________\///______________\///__\///////////////__</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          Runtime Edition</span><br><span class="line"></span><br><span class="line">        PM2 is a Production Process Manager <span class="keyword">for</span> Node.js applications</span><br><span class="line">                     with a built-in Load Balancer.</span><br><span class="line"></span><br><span class="line">                Start and Daemonize any application:</span><br><span class="line">                $ pm2 start app.js</span><br><span class="line"></span><br><span class="line">                Load Balance 4 instances of api.js:</span><br><span class="line">                $ pm2 start api.js -i 4</span><br><span class="line"></span><br><span class="line">                Monitor <span class="keyword">in</span> production:</span><br><span class="line">                $ pm2 monitor</span><br><span class="line"></span><br><span class="line">                Make pm2 auto-boot at server restart:</span><br><span class="line">                $ pm2 startup</span><br><span class="line"></span><br><span class="line">                To go further checkout:</span><br><span class="line">                http://pm2.io/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                        -------------</span><br><span class="line"></span><br><span class="line">[PM2] Spawning PM2 daemon with pm2_home=/Users/sunqiang/.pm2</span><br><span class="line">[PM2] PM2 Successfully daemonized</span><br><span class="line">4.4.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-基本使用"><a href="#3-基本使用" class="headerlink" title="3. 基本使用"></a>3. 基本使用</h3><h4 id="3-1-启动"><a href="#3-1-启动" class="headerlink" title="3.1. 启动"></a>3.1. 启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以指定的 Node server 入口文件启动应用</span></span><br><span class="line">$ pm2 start app.js</span><br><span class="line">[PM2] Starting /Users/sunqiang/mydev/NodeProjects/demo/demo-koa2/app.js <span class="keyword">in</span> fork_mode (1 instance)</span><br><span class="line">[PM2] Done.</span><br><span class="line">┌─────┬────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐</span><br><span class="line">│ <span class="built_in">id</span>  │ name   │ namespace   │ version │ mode    │ pid      │ <span class="built_in">uptime</span> │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │</span><br><span class="line">├─────┼────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤</span><br><span class="line">│ 0   │ app    │ default     │ 0.1.0   │ fork    │ 28381    │ 0s     │ 0    │ online    │ 0%       │ 11.9mb   │ sunqiang │ disabled │</span><br><span class="line">└─────┴────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动时，指定应用名</span></span><br><span class="line">$ pm2 start app.js --name demo</span><br></pre></td></tr></table></figure>
+
+<p>其它可用选项：</p>
+<ul>
+<li><code>--watch</code> 以监听模式启动，当文件发生变化时自动重启</li>
+<li><code>--max-memory-restart &lt;200MB&gt;</code> 设置应用重载占用的最大内存</li>
+<li><code>--log &lt;log_path&gt;</code> 指定日志文件</li>
+<li><code>-- arg1 arg2 arg3</code> 给启动脚本传递额外的参数</li>
+<li><code>--restart-delay &lt;delay in ms&gt;</code> 延时 x 毫秒自动重启</li>
+<li><code>--time</code> 日志里添加时间前缀</li>
+<li><code>--no-autorestart</code> 不自动重启</li>
+<li><code>--cron &lt;cron_pattern&gt;</code> 按指定的定时任务规则强制重启</li>
+<li><code>--no-daemon</code> 以非守护进程模式启动</li>
+</ul>
+<h4 id="3-2-查看"><a href="#3-2-查看" class="headerlink" title="3.2. 查看"></a>3.2. 查看</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有已启动应用的基本信息</span></span><br><span class="line"><span class="comment"># 同 pm2 ls 或 pm2 status</span></span><br><span class="line">$ pm2 list</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有应用的日志（历史 + 实时）</span></span><br><span class="line">$ pm2 logs</span><br><span class="line">$ pm2 logs www <span class="comment"># 只查看应用 www 的日志</span></span><br><span class="line">$ pm2 logs --lines 10 <span class="comment"># 查看最后10条历史，默认 15 条</span></span><br><span class="line">$ pm2 logs --timestamp <span class="comment"># 实时日志添加时间前缀</span></span><br><span class="line">$ pm2 logs www --lines 10 --err <span class="comment"># 只查看应用 www 的最新 10 条错误日志</span></span><br><span class="line">$ pm2 flush <span class="comment"># ❗️清空所有日志文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看进程详情</span></span><br><span class="line">$ pm2 show app_name|app_id</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看每个应用的CPU和内存资源实时占用情况</span></span><br><span class="line">$ pm2 monit</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在线的 Web 诊断系统，跨服务器</span></span><br><span class="line"><span class="comment"># 需要注册登录或使用 Github、Google 账户授权登录</span></span><br><span class="line">$ pm2 monitor</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-管理应用状态"><a href="#3-3-管理应用状态" class="headerlink" title="3.3. 管理应用状态"></a>3.3. 管理应用状态</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重启 ❗️</span></span><br><span class="line"><span class="comment"># 同时杀死并重启所有进程，短时间内服务不可用。</span></span><br><span class="line"><span class="comment"># 生成环境推荐使用 reload</span></span><br><span class="line">$ pm2 restart app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载 👍</span></span><br><span class="line"><span class="comment"># 始终保持一个进程在线，避免宕机</span></span><br><span class="line">$ pm2 reload app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">$ pm2 stop app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭并删除</span></span><br><span class="line">$ pm2 delete app_id|app_name|all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接杀死 pm2 守护进程</span></span><br><span class="line">$ pm2 <span class="built_in">kill</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-静态服务器"><a href="#3-4-静态服务器" class="headerlink" title="3.4. 静态服务器"></a>3.4. 静态服务器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将目录 dist 作为静态服务器根目录，端口为 3333</span></span><br><span class="line">$ pm2 serve ./dist 3333</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-集群模式（自动负载均衡）"><a href="#3-5-集群模式（自动负载均衡）" class="headerlink" title="3.5. 集群模式（自动负载均衡）"></a>3.5. 集群模式（自动负载均衡）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># max 表示 PM2 将自动检测可用 CPU 的数量并运行尽可能多的进程</span></span><br><span class="line"><span class="comment"># max 可以自定义，如果是 4 核 CPU，设置为 2 则只占用 2 核</span></span><br><span class="line">pm2 start app.js -i max</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-开机自启动"><a href="#3-6-开机自启动" class="headerlink" title="3.6. 开机自启动"></a>3.6. 开机自启动</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 startup</span><br><span class="line">$ pm2 unstartup</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-7-应用列表"><a href="#3-7-应用列表" class="headerlink" title="3.7. 应用列表"></a>3.7. 应用列表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存当前应用列表，以后可以恢复</span></span><br><span class="line">$ pm2 save  <span class="comment"># 同 pm2 dump</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载之前保存的应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除保存的应用列表</span></span><br><span class="line">$ pm2 cleardump</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置文件"><a href="#4-配置文件" class="headerlink" title="4. 配置文件"></a>4. 配置文件</h3><p>生成示例配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 ecosystem <span class="comment"># 或 pm2 init</span></span><br></pre></td></tr></table></figure>
+
+<p>示例配置如下（根据实际项目需要添加、删除配置项）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  apps : [&#123;</span><br><span class="line">  name      : <span class="string">&#x27;demo&#x27;</span>,      <span class="comment">// 应用名</span></span><br><span class="line">  script    : <span class="string">&#x27;app.js&#x27;</span>,   <span class="comment">// 应用文件位置</span></span><br><span class="line">  <span class="attr">env</span>: &#123;</span><br><span class="line">    <span class="title class_">PM2</span><span class="attr">_SERVE_PATH</span>: <span class="string">&quot;.&quot;</span>,    <span class="comment">// 静态服务路径</span></span><br><span class="line">    <span class="title class_">PM2</span><span class="attr">_SERVE_PORT</span>: <span class="number">8080</span>,   <span class="comment">// 静态服务器访问端口</span></span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;development&#x27;</span> <span class="comment">// 设置开发环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  env_production : &#123;</span><br><span class="line">    <span class="attr">NODE_ENV</span>: <span class="string">&#x27;production&#x27;</span>  <span class="comment">// 设置生产环境运行时</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">instances</span>: <span class="string">&quot;max&quot;</span>,         <span class="comment">// 将应用程序分布在所有CPU核心上,可以是整数或负数</span></span><br><span class="line">  <span class="attr">watch</span>: <span class="literal">true</span>,              <span class="comment">// 监听模式</span></span><br><span class="line">  <span class="attr">output</span>: <span class="string">&#x27;./out.log&#x27;</span>,      <span class="comment">// 指定日志标准输出文件及位置</span></span><br><span class="line">  <span class="attr">error</span>: <span class="string">&#x27;./error.log&#x27;</span>,     <span class="comment">// 错误输出日志文件及位置</span></span><br><span class="line">  <span class="attr">merge_logs</span>: <span class="literal">true</span>,         <span class="comment">// 集群情况下，可以合并日志</span></span><br><span class="line">  <span class="attr">log_type</span>: <span class="string">&quot;json&quot;</span>,         <span class="comment">// 日志类型</span></span><br><span class="line">  <span class="attr">log_date_format</span>: <span class="string">&quot;DD-MM-YYYY&quot;</span>,  <span class="comment">// 日志的日期格式</span></span><br><span class="line">  &#125;],</span><br><span class="line">  deploy : &#123;</span><br><span class="line">    production : &#123;</span><br><span class="line">      user : <span class="string">&#x27;SSH_USERNAME&#x27;</span>,</span><br><span class="line">      host : <span class="string">&#x27;SSH_HOSTMACHINE&#x27;</span>,</span><br><span class="line">      ref  : <span class="string">&#x27;origin/master&#x27;</span>,</span><br><span class="line">      repo : <span class="string">&#x27;GIT_REPOSITORY&#x27;</span>,</span><br><span class="line">      path : <span class="string">&#x27;DESTINATION_PATH&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-deploy-local&#x27;</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;post-deploy&#x27;</span> : <span class="string">&#x27;npm install &amp;&amp; pm2 reload ecosystem.config.js --env production&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;pre-setup&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以配置文件启动示例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start ecosystem.config.js --<span class="built_in">env</span> production</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 注意：配置文件支持 js 和 yaml 格式，还有一些没有列举的参数项，详见官方文档：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://pm2.keymetrics.io/docs/usage/application-declaration">https://pm2.keymetrics.io/docs/usage/application-declaration</a></p>
+</blockquote>
+<h3 id="5-其他"><a href="#5-其他" class="headerlink" title="5. 其他"></a>5. 其他</h3><h4 id="5-1-升级-PM2"><a href="#5-1-升级-PM2" class="headerlink" title="5.1. 升级 PM2"></a>5.1. 升级 PM2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新前推荐先保存当前应用列表，方便更新后直接恢复</span></span><br><span class="line">$ pm2 save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新主程序</span></span><br><span class="line">$ npm install pm2 -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 紧接着更新内存中的程序</span></span><br><span class="line">$ pm2 update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复应用列表</span></span><br><span class="line">$ pm2 resurrect</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-日志切割"><a href="#5-2-日志切割" class="headerlink" title="5.2. 日志切割"></a>5.2. 日志切割</h4><p>安装 <code>pm2-logrotate-ext</code> 扩展模块</p>
+<p>项目地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Lujo5/pm2-logrotate-ext">https://github.com/Lujo5/pm2-logrotate-ext</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 install pm2-logrotate-ext</span><br></pre></td></tr></table></figure>
+
+<p>重新启动应用后，<code>pm2-logrotate-ext</code> 以模块的形式被加载、启动。</p>
+<p>可以通过以下命令对其配置进行修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 当文件大小超过此设置则执行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:max_size 1M</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保留最新的几个日志文件</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:retain 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否开启 gzip 压缩</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:compress <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件名的日期部分格式</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:dateFormat YYYY-MM-DD_HH-mm-ss</span><br><span class="line"></span><br><span class="line"><span class="comment"># 几秒钟检查一次日志文件大小</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:workerInterval 30</span><br><span class="line"></span><br><span class="line"><span class="comment"># 类似于系统的定时任务，当满足指定规则时，</span></span><br><span class="line"><span class="comment"># 不管日志文件大小是否达到设置的最大值，直接对日志文件进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateInterval 0 0 * * *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对 pm2 模块产生的日志同样进行切割处理</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:rotateModule <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否按定时任务设置规则强制执行</span></span><br><span class="line"><span class="comment"># 如果设置为否，则只有当日志文件大小超过设置时才进行切割</span></span><br><span class="line">$ pm2 <span class="built_in">set</span> pm2-logrotate-ext:forced <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1046389609.html" title="PM2 入门指南">https://sqiang.net/post/1046389609.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Node-js/" rel="tag"># Node.js</a>
+              <a href="/tags/PM2/" rel="tag"># PM2</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2119054721.html" rel="prev" title="Redis 的基本特性和 5 个常用数据结构">
+                  <i class="fa fa-angle-left"></i> Redis 的基本特性和 5 个常用数据结构
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/895189460.html" rel="next" title="一堂技术管理课">
+                  一堂技术管理课 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"642515e3a27d740a3b887827ec0bec25"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

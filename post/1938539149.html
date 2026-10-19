@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="该实践其实是一个目录操作规范，以易于使用为最终目的，将需要个性化和经常会变动的目录或文件独立出来，借助简单的 Shell 脚本进行 Hexo 的初始化及 NexT 主题的升级。 说明：来源于个人使用过程中的总结，可能并不适合所有人，仅供参考。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo最佳实践推荐">
+<meta property="og:url" content="https://sqiang.net/post/1938539149.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="该实践其实是一个目录操作规范，以易于使用为最终目的，将需要个性化和经常会变动的目录或文件独立出来，借助简单的 Shell 脚本进行 Hexo 的初始化及 NexT 主题的升级。 说明：来源于个人使用过程中的总结，可能并不适合所有人，仅供参考。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-14T13:02:06.000Z">
+<meta property="article:modified_time" content="2020-03-14T13:02:06.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="NexT">
+<meta property="article:tag" content="其它">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sqiang.net/post/1938539149.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/1938539149.html","path":"post/1938539149.html","title":"Hexo最佳实践推荐"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Hexo最佳实践推荐 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9C%80%E7%BB%88%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-text">1. 最终目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E5%9C%A8-Github-%E4%B8%8A%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E5%BB%BA%E7%AB%8B%E4%B8%A4%E4%B8%AA%E4%BB%93%E5%BA%93"><span class="nav-text">1.1. 在 Github 上我们需要建立两个仓库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="nav-text">1.2. 如何使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6"><span class="nav-text">2. 脚本文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#init-sh"><span class="nav-text">init.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#update-next-sh"><span class="nav-text">update_next.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#deploy-sh"><span class="nav-text">deploy.sh</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/1938539149.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo最佳实践推荐 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo最佳实践推荐
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-03-14 晚上 21:02:06" itemprop="dateCreated datePublished" datetime="2020-03-14T21:02:06+08:00">2020-03-14 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%85%B6%E5%AE%83/" itemprop="url" rel="index"><span itemprop="name">其它</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>该实践其实是一个目录操作规范，以易于使用为最终目的，将需要个性化和经常会变动的目录或文件独立出来，借助简单的 Shell 脚本进行 Hexo 的初始化及 NexT 主题的升级。</p>
+<p>说明：来源于个人使用过程中的总结，可能并不适合所有人，仅供参考。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-最终目录结构"><a href="#1-最终目录结构" class="headerlink" title="1. 最终目录结构"></a>1. 最终目录结构</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── config_hexo.yml <span class="comment"># 软链接到 Hexo 配置文件</span></span><br><span class="line">├── config_next.yml <span class="comment"># 软链接到 NexT 主题配置文件</span></span><br><span class="line">├── core <span class="comment"># Hexo 根目录，可自定义</span></span><br><span class="line">│   ├── _config.yml -&gt; ../config_hexo.yml <span class="comment"># 个人修改后的配置文件</span></span><br><span class="line">│   ├── _config.yml.bak <span class="comment"># 原 Hexo 配置文件</span></span><br><span class="line">│   ├── db.json</span><br><span class="line">│   ├── node_modules</span><br><span class="line">│   ├── package-lock.json</span><br><span class="line">│   ├── package.json</span><br><span class="line">│   ├── public</span><br><span class="line">│   ├── scaffolds</span><br><span class="line">│   ├── <span class="built_in">source</span> -&gt; ../source_hexo <span class="comment"># 个人变动后的资源目录</span></span><br><span class="line">│   ├── source_bak <span class="comment"># 原 Hexo 资源目录的备份</span></span><br><span class="line">│   └── themes</span><br><span class="line">│       ├── landscape <span class="comment"># Hexo 默认主题根目录</span></span><br><span class="line">│       └── next <span class="comment"># NexT 主题根目录</span></span><br><span class="line">│          ├── LICENSE.md</span><br><span class="line">│          ├── README.md</span><br><span class="line">│          ├── _config.yml -&gt; ../../../config_next.yml <span class="comment"># 个人修改后的配置文件</span></span><br><span class="line">│          ├── _config.yml.bak <span class="comment"># 原主题配置文件的备份</span></span><br><span class="line">│          ├── crowdin.yml</span><br><span class="line">│          ├── docs</span><br><span class="line">│          ├── gulpfile.js</span><br><span class="line">│          ├── languages</span><br><span class="line">│          ├── layout</span><br><span class="line">│          ├── package.json</span><br><span class="line">│          ├── scripts</span><br><span class="line">│          └── <span class="built_in">source</span> <span class="comment"># 主题下的资源目录</span></span><br><span class="line">├── deploy.sh <span class="comment"># 3. 同步远程服务器脚本</span></span><br><span class="line">├── init.sh <span class="comment"># 1. Hexo 初始化脚本</span></span><br><span class="line">├── source_hexo <span class="comment"># 软链接到 Hexo 下的资源目录</span></span><br><span class="line">├── source_next <span class="comment"># 需要添加到 NexT 下资源目录的文件放这里</span></span><br><span class="line">└── update_next.sh <span class="comment"># 2. NexT 主题升级脚本</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-在-Github-上我们需要建立两个仓库"><a href="#1-1-在-Github-上我们需要建立两个仓库" class="headerlink" title="1.1. 在 Github 上我们需要建立两个仓库"></a>1.1. 在 Github 上我们需要建立两个仓库</h4><ul>
+<li><code>username/username.github.io</code> 对应 Hexo 部署的目标目录，在 Hexo 根目录下的配置文件中进行设置。</li>
+<li><code>username/blog.xxx.com</code> 名字随意，对应上面的目录。其中 <code>core</code> 目录需要添加到 <code>.gitignore</code> 文件。</li>
+</ul>
+<h4 id="1-2-如何使用"><a href="#1-2-如何使用" class="headerlink" title="1.2. 如何使用"></a>1.2. 如何使用</h4><blockquote>
+<p>⚠️ 说明：每次写文章只需要步骤 3 ~ 5，只有当切换到一个新的工作环境时，才需要执行完整的步骤 1 ～ 5。</p>
+</blockquote>
+<ol>
+<li><p>从 Github 拉下来环境仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  git <span class="built_in">clone</span> https://github.com/username/blog.xxx.com.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化 Hexo 环境</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ⚠️ 前提：你已经安装好了 NodeJS 环境 和 hexo-cli</span></span><br><span class="line"><span class="comment"># 如果需要，可以自行修改 shell 文件</span></span><br><span class="line">➜  <span class="built_in">chmod</span> u+x init.sh</span><br><span class="line">➜  ./init.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进入 Hexo 根目录</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># core 的名字可以在脚本 init.sh 中修改</span></span><br><span class="line">➜  <span class="built_in">cd</span> core</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一篇文章</span></span><br><span class="line">➜  hexo new post <span class="string">&quot;一篇新文章&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Hexo 发布部署</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将本次修改推送到仓库</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先退回到 core 目录到上一级，即仓库根目录</span></span><br><span class="line">➜  git add .</span><br><span class="line">➜  git commit -m <span class="string">&quot;新增文章&quot;</span></span><br><span class="line">➜  git push</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-脚本文件"><a href="#2-脚本文件" class="headerlink" title="2. 脚本文件"></a>2. 脚本文件</h3><h4 id="init-sh"><a href="#init-sh" class="headerlink" title="init.sh"></a><code>init.sh</code></h4><p>当切换到一个新的工作环境时，使用该脚本初始化 Hexo 及基于原数据的工作环境，之后便可以继续写文章、发布了。</p>
+<p>示例文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化 Hexo</span></span><br><span class="line"><span class="comment"># 注意，这里并没有检查 NodeJS 环境 和 hexo-cli</span></span><br><span class="line"><span class="comment"># 如果需要，可自行扩展</span></span><br><span class="line">hexo init core</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖，修改配置</span></span><br><span class="line"><span class="built_in">cd</span> core</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line">npm install hexo-abbrlink --save</span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line">npm install hexo-generator-baidu-sitemap --save</span><br><span class="line">npm install hexo-filter-nofollow --save</span><br><span class="line"><span class="built_in">mv</span> _config.yml _config.yml.bak</span><br><span class="line"><span class="built_in">ln</span> -s ../config_hexo.yml _config.yml</span><br><span class="line"><span class="built_in">mv</span> <span class="built_in">source</span> source_bak</span><br><span class="line"><span class="built_in">ln</span> -s ../source_hexo <span class="built_in">source</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装、配置主题</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/theme-next/hexo-theme-next themes/next</span><br><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line"><span class="built_in">mv</span> _config.yml _config.yml.bak</span><br><span class="line"><span class="built_in">ln</span> -s ../../../config_next.yml _config.yml</span><br><span class="line">\<span class="built_in">cp</span> -rp ../../../source_next/* <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="update-next-sh"><a href="#update-next-sh" class="headerlink" title="update_next.sh"></a><code>update_next.sh</code></h4><p>当需要升级 NexT 主题时使用，示例文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 还原本地修改</span></span><br><span class="line"><span class="built_in">cd</span> core/themes/next</span><br><span class="line">git checkout . &amp;&amp; git clean -xdf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新源码</span></span><br><span class="line">git pull</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复修改</span></span><br><span class="line"><span class="built_in">mv</span> _config.yml _config.yml.bak</span><br><span class="line"><span class="built_in">ln</span> -s ../../../config_next.yml _config.yml</span><br><span class="line">\<span class="built_in">cp</span> -rp ../../../source_next/* <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="deploy-sh"><a href="#deploy-sh" class="headerlink" title="deploy.sh"></a><code>deploy.sh</code></h4><p>该脚本非必须，只有需要将最终部署好的文件分发到不同服务器时才用得到。</p>
+<p>同步方式推荐使用 <code>rsync</code> 命令，这里不再具体举例。关于该工具到使用，可以参阅：<a href="/post/1236124429.html">rsync 的基本使用入门</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/1938539149.html" title="Hexo最佳实践推荐">https://sqiang.net/post/1938539149.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%85%B6%E5%AE%83/" rel="tag"># 其它</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3905919184.html" rel="prev" title="Linux 下 MySQL 自动备份脚本">
+                  <i class="fa fa-angle-left"></i> Linux 下 MySQL 自动备份脚本
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/3425556216.html" rel="next" title="基于 Docker 的 Redis 服务">
+                  基于 Docker 的 Redis 服务 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"2dffa53ffb95c3a674db123989b69ee8"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

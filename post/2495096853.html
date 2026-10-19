@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/site/site/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/site/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/site/favicon-16x16.png">
+  <meta name="google-site-verification" content="9fbnI9qd8ceAW3H50MNfsp2jdEyN54wqdDi5NngTTTs">
+  <meta name="msvalidate.01" content="2CE0D2DDCBD604C1368D1AFF14769FD8">
+  <meta name="baidu-site-verification" content="code-uJeNCPmSQP">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha256-4Lad8m4ZWW1Lgb9+sMVLYEfnIh7BjV1NQMEe79Pviks=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.css" integrity="sha256-mdaMxrItEW6hMIVJJNPKuX0B7KCSJQVEv3mVY4N2we4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/orange/pace-theme-material.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sqiang.net","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.29.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12,"onmobile":true},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null,"show_result":true},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Docker 是一款针对程序开发人员和系统管理员来开发、部署、运行应用的一款虚拟化平台。它可以让你像使用集装箱一样快速的组合成应用，并且可以像运输标准集装箱一样 Vagrant 是另一款虚拟化工具，与 Docker 的区别参见这里。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker 安装及基础入门">
+<meta property="og:url" content="https://sqiang.net/post/2495096853.html">
+<meta property="og:site_name" content="whoru">
+<meta property="og:description" content="Docker 是一款针对程序开发人员和系统管理员来开发、部署、运行应用的一款虚拟化平台。它可以让你像使用集装箱一样快速的组合成应用，并且可以像运输标准集装箱一样 Vagrant 是另一款虚拟化工具，与 Docker 的区别参见这里。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sqiang.net/images/posts/docker_commands.png">
+<meta property="article:published_time" content="2020-02-13T15:09:53.000Z">
+<meta property="article:modified_time" content="2022-07-23T12:02:53.000Z">
+<meta property="article:author" content="whoru.S.Q">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sqiang.net/images/posts/docker_commands.png">
+
+
+<link rel="canonical" href="https://sqiang.net/post/2495096853.html">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sqiang.net/post/2495096853.html","path":"post/2495096853.html","title":"Docker 安装及基础入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Docker 安装及基础入门 | whoru</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script size="100" alpha="0.5" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/6.1.14/fancybox/fancybox.umd.js" integrity="sha256-QnJV4HT5r8i89ovZGRD86iynZqHerEbT2xt69vDM36I=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+  <script src="/js/third-party/fancybox.js" defer></script>
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+
+
+
+
+
+<meta name="keywords" content="whoru,whoru.S.Q,PHP,Java,SQL,JavaScript,Linux,技术博客">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-search popup-trigger" aria-label="搜索" role="button">
+      <i class="fa fa-search fa-fw fa-lg"></i>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">whoru</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">学习、分享、交流、沉淀</p>
+  </div>
+
+  <div class="site-nav-toggle" aria-label="切换导航栏" role="button">
+      <i class="fa fa-ellipsis fa-fw fa-lg"></i>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">122</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">103</span></a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  
+  <template id="search-popup-template"><div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div></template>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85%E7%AF%87"><span class="nav-text">1. 安装篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E7%B3%BB%E7%BB%9F%E8%A6%81%E6%B1%82"><span class="nav-text">1.1. 系统要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC"><span class="nav-text">1.2. 一键安装脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E5%AE%98%E6%96%B9%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-text">1.3. 手动安装官方参考文档</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E7%AF%87"><span class="nav-text">2. 基础入门篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E9%95%9C%E5%83%8F"><span class="nav-text">2.1. 镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-1-%E4%BB%8B%E7%BB%8D"><span class="nav-text">2.1.1. 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-2-%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8"><span class="nav-text">2.1.2. 镜像加速器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-1-3-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">2.1.3. 常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E5%AE%B9%E5%99%A8"><span class="nav-text">2.2. 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-1-%E4%BB%8B%E7%BB%8D"><span class="nav-text">2.2.1. 介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-2-2-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">2.2.2. 常用操作命令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-Docker-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%9B%BE%E8%A7%A3"><span class="nav-text">2.3. Docker 常用命令图解</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="whoru.S.Q"
+      src="/images/site/avatar.png?v=20201027001">
+  <p class="site-author-name" itemprop="name">whoru.S.Q</p>
+  <div class="site-description" itemprop="description">Talk is cheap, just do IT.</div>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whorusq" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whorusq" rel="noopener me external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:whoru@sqiang.net" title="E-Mail → mailto:whoru@sqiang.net" rel="noopener me"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+<!--<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=6abf9b&w=167&t=tt&d=D8v2lg7pZpkbXxgRulMDNa7YTmySYLH0ibuDgabBgbI&co=ffffff&cmn=369fde&ct=fd6423&cmo=fd6423'></script>-->
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sqiang.net/post/2495096853.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/site/avatar.png?v=20201027001">
+      <meta itemprop="name" content="whoru.S.Q">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="whoru">
+      <meta itemprop="description" content="Talk is cheap, just do IT.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Docker 安装及基础入门 | whoru">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker 安装及基础入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表</span>
+
+      <time title="创建时间：2020-02-13 晚上 23:09:53" itemprop="dateCreated datePublished" datetime="2020-02-13T23:09:53+08:00">2020-02-13 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新</span>
+      <time title="修改时间：2022-07-23 晚上 20:02:53" itemprop="dateModified" datetime="2022-07-23T20:02:53+08:00">2022-07-23 晚上</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p><strong>Docker</strong> 是一款针对程序开发人员和系统管理员来开发、部署、运行应用的一款虚拟化平台。它可以让你像使用集装箱一样快速的组合成应用，并且可以像运输标准集装箱一样</p>
+<p><strong>Vagrant</strong> 是另一款虚拟化工具，与 Docker 的区别<a href="/post/3519953407.html">参见这里</a>。</p>
+</blockquote>
+<span id="more"></span>
+
+<h3 id="1-安装篇"><a href="#1-安装篇" class="headerlink" title="1. 安装篇"></a>1. 安装篇</h3><h4 id="1-1-系统要求"><a href="#1-1-系统要求" class="headerlink" title="1.1. 系统要求"></a>1.1. 系统要求</h4><blockquote>
+<p>可通过命令 uname -a 查看系统基本信息</p>
+</blockquote>
+<p>❗️要求：<strong>x64 位、内核版本 &gt;&#x3D; 3.10</strong></p>
+<p>推荐：</p>
+<ul>
+<li>Ubuntu 16.04 Xenial +</li>
+<li>Debian 8 Jessie +</li>
+<li>CentOS7 +</li>
+</ul>
+<blockquote>
+<p>提示：如果你要安装 Docker 的操作系统是图形界面，macOS、Windows、Linux 都有对应的桌面客户端 GUI 程序，各自下载地址如下：</p>
+<ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/desktop/install/mac-install/">Docker Desktop for Mac</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/desktop/install/windows-install/">Docker Desktop for Windows</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/desktop/install/linux-install/">Docker Desktop for Linux</a></li>
+</ul>
+</blockquote>
+<blockquote>
+<p>说明：Docker Desktop 包含了 Docker 的所有东西，安装了这个就不需要看后续安装步骤了。<strong>后续的安装说明，适用于非图形界面的服务器系统</strong>。</p>
+</blockquote>
+<h4 id="1-2-一键安装脚本"><a href="#1-2-一键安装脚本" class="headerlink" title="1.2. 一键安装脚本"></a>1.2. 一键安装脚本</h4><p>此脚本适用于 Ubuntu、Debian、CentOS 系统，其中：官方版在某些情况下可能安装比较慢，阿里云的脚本在 CentOS7.4 下多次尝试都失败，所以推荐 DaoCloud 版。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 官方</span></span><br><span class="line">➜  curl -sSL https://get.docker.com/ | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># DaoCloud（推荐）</span></span><br><span class="line">➜  curl -sSL https://get.daocloud.io/docker | sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 阿里云</span></span><br><span class="line">➜  curl -sSL http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh</span><br><span class="line">或</span><br><span class="line">➜  wget -qO- http://acs-public-mirror.oss-cn-hangzhou.aliyuncs.com/docker-engine/internet | sh</span><br></pre></td></tr></table></figure>
+
+<p>检查是否安装成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  docker --version</span><br><span class="line">Docker version 18.02.0-ce, build fc4de44</span><br></pre></td></tr></table></figure>
+
+<p>启动 Docker，并加入自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜  systemctl start docker</span><br><span class="line">➜  systemctl <span class="built_in">enable</span> docker</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.</span><br></pre></td></tr></table></figure>
+
+<p>提示：</p>
+<blockquote>
+<p>安装成功之后，如果想让普通用户拥有 docker 的所有权限，需执行 <code>sudo usermod -aG docker your-user</code> 将普通用户加入到 docker 组，否则需要使用 <code>sudo docker commands</code> 的形式执行所有 docker 命令。</p>
+<p>加入 docker 组后，需重启系统才能生效。</p>
+</blockquote>
+<h4 id="1-3-手动安装官方参考文档"><a href="#1-3-手动安装官方参考文档" class="headerlink" title="1.3. 手动安装官方参考文档"></a>1.3. 手动安装官方参考文档</h4><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/engine/install/debian/">Debian</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://docs.docker.com/engine/install/centos/">CentOS</a></li>
+</ul>
+<h3 id="2-基础入门篇"><a href="#2-基础入门篇" class="headerlink" title="2. 基础入门篇"></a>2. 基础入门篇</h3><h4 id="2-1-镜像"><a href="#2-1-镜像" class="headerlink" title="2.1. 镜像"></a>2.1. 镜像</h4><h5 id="2-1-1-介绍"><a href="#2-1-1-介绍" class="headerlink" title="2.1.1. 介绍"></a>2.1.1. 介绍</h5><p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。<strong>镜像不包含任何动态数据，其内容在构建之后也不会被改变。</strong></p>
+<p>Docker 镜像是怎么实现增量的修改和维护的？ 每个镜像都由很多层次构成，Docker 使用 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://en.wikipedia.org/wiki/Union_mount">Union FS</a> 将这些不同的层结合到一个镜像中去。</p>
+<p>通常 Union FS 有两个用途：</p>
+<ul>
+<li>实现不借助 LVM、RAID 将多个 disk 挂到同一个目录下；</li>
+<li>将一个只读的分支和一个可写的分支联合在一起，Live CD 正是基于此方法可以允许在镜像不变的基础上允许用户在其上进行一些写操作。</li>
+</ul>
+<p>Docker 在 AUFS 上构建的容器也是利用了类似的原理。</p>
+<h5 id="2-1-2-镜像加速器"><a href="#2-1-2-镜像加速器" class="headerlink" title="2.1.2. 镜像加速器"></a>2.1.2. 镜像加速器</h5><p>由于国内访问 Docker Hub 有时会遇到困难，所以需要配置镜像加速器，推荐如下两个，需登录后获取自己的镜像加速地址。</p>
+<ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.daocloud.io/mirror">DaoCloud</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://cr.console.aliyun.com/#/accelerator">阿里云</a></p>
+</li>
+</ul>
+<h5 id="2-1-3-常用操作命令"><a href="#2-1-3-常用操作命令" class="headerlink" title="2.1.3. 常用操作命令"></a>2.1.3. 常用操作命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索镜像</span></span><br><span class="line">$ docker search ubuntu:16.04</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取镜像</span></span><br><span class="line">$ docker pull [选项] [Docker Registry地址]&lt;仓库名&gt;:&lt;标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出镜像（只会显示顶层镜像）</span></span><br><span class="line">$ docker images</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除镜像（需要先删除依赖该镜像的容器）</span></span><br><span class="line">$ docker rmi [选项] &lt;镜像1&gt; [&lt;镜像2&gt; ...]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有虚悬镜像</span></span><br><span class="line">$ docker rmi $(docker images -q -f dangling=<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有仓库名包含 redis 的镜像</span></span><br><span class="line">$ docker rmi $(docker images -q redis)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改镜像标签</span></span><br><span class="line">$ <span class="built_in">sudo</span> docker tag &lt;镜像ID&gt; &lt;标签名&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出镜像存储文件</span></span><br><span class="line">$ docker save -o 导出镜像名.tar.gz &lt;镜像ID 或 镜像名:tag&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入镜像存储文件（包含镜像以及相关元数据信息，比如标签等）</span></span><br><span class="line">$ docker load &lt; 导出镜像名.tar.gz</span><br><span class="line">或</span><br><span class="line">$ docker load --input 导出镜像名.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 其它</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-容器"><a href="#2-2-容器" class="headerlink" title="2.2. 容器"></a>2.2. 容器</h4><h5 id="2-2-1-介绍"><a href="#2-2-1-介绍" class="headerlink" title="2.2.1. 介绍"></a>2.2.1. 介绍</h5><p>镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。</p>
+<ul>
+<li>容器可以被创建、启动、停止、删除、暂停等。</li>
+<li>容器的实质是<strong>进程</strong>，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的 命名空间。因此<em>容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间</em>。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。也因为这种隔离的特性，很多人初学 Docker 时常常会把容器和虚拟机搞混。</li>
+<li>按照 Docker 最佳实践的要求，<strong>容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化</strong>。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主(或网络存储)发生读写，其性能和稳定性更高。</li>
+</ul>
+<h5 id="2-2-2-常用操作命令"><a href="#2-2-2-常用操作命令" class="headerlink" title="2.2.2. 常用操作命令"></a>2.2.2. 常用操作命令</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出一个“hello world”后终止容器</span></span><br><span class="line">$ docker run ubuntu:16.04 /bin/echo <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动一个 bash 终端，允许用户进行交互</span></span><br><span class="line">$ docker run -it ubuntu:16.04 /bin/bash</span><br><span class="line">root@0eb917598209:/# <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">$</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台运行，主要使用 -d 参数</span></span><br><span class="line">$ docker run -d ubuntu:16.04 /bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看运行中的容器</span></span><br><span class="line">$ docker ps</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看所有容器</span></span><br><span class="line">$ docker ps -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 格式化输出：容器ID ｜ 容器名称 ｜ 容器端口映射 ｜ 容器状态</span></span><br><span class="line"><span class="comment"># 更多格式参考官方文档：https://docs.docker.com/engine/reference/commandline/ps/#formatting</span></span><br><span class="line">$ docker ps -a --format <span class="string">&quot;table &#123;&#123;.ID&#125;&#125;\t&#123;&#123;.Names&#125;&#125;\t&#123;&#123;.Ports&#125;&#125;\t&#123;&#123;.Status&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line"><span class="comment"># 方法一：attach 此方法会受命令阻塞影响，并且 exit 退出后将同时关闭容器</span></span><br><span class="line">$ docker attach &lt;容器<span class="built_in">id</span>&gt;</span><br><span class="line"><span class="comment"># 方法二：exec（推荐）</span></span><br><span class="line">$ docker <span class="built_in">exec</span> -it <span class="variable">$CONTAINER_ID</span> /bin/bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭容器</span></span><br><span class="line">$ docker stop <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动已关闭的容器</span></span><br><span class="line">$ docker start <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取容器的输出信息（-f 选项用于持续获取）</span></span><br><span class="line">$ docker logs <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看容器的最新100条日志</span></span><br><span class="line">$ docker logs -f --<span class="built_in">tail</span>=100 <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 清空对应容器的日志文件</span></span><br><span class="line">$ docker ps -a | grep <span class="variable">$CONTAINER_NAME</span></span><br><span class="line">$ find /var/lib/docker/containers/ -name *-json.log | grep 959a80270bbc</span><br><span class="line">$ <span class="built_in">cat</span> /dev/null &gt; /absolute/path/to/959a80270bbc.<span class="built_in">log</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看容器的相关信息</span></span><br><span class="line">$ docker inspect <span class="variable">$CONTAINER_ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除容器</span></span><br><span class="line">$ docker <span class="built_in">rm</span> <span class="variable">$CONTAINER_ID</span>-1 <span class="variable">$CONTAINER_ID</span>-2 <span class="variable">$CONTAINER_ID</span>-3 ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除所有未运行的容器</span></span><br><span class="line">$ docker <span class="built_in">rm</span> $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导出容器快照（将丢弃历史记录和元数据信息）</span></span><br><span class="line">$ docker <span class="built_in">export</span> &lt;容器ID&gt; &gt; &lt;导出文件名&gt;.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从容器快照导入镜像</span></span><br><span class="line">$ <span class="built_in">cat</span> &lt;导出文件名&gt;.tar | docker import - &lt;导入之后的镜像名:标签&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在宿主机与容器之间相互拷贝文件</span></span><br><span class="line">$ docker <span class="built_in">cp</span> [OPTIONS] <span class="variable">$CONTAINER_ID</span>:容器中的文件路径 本地目标路径</span><br><span class="line">$ docker <span class="built_in">cp</span> [OPTIONS] 本地文件路径 <span class="variable">$CONTAINER_ID</span>:容器中的目标路径</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-Docker-常用命令图解"><a href="#2-3-Docker-常用命令图解" class="headerlink" title="2.3. Docker 常用命令图解"></a>2.3. Docker 常用命令图解</h4><p><img data-src="/images/posts/docker_commands.png"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer"><div class="post-body-end">
+  
+    <div class="tips">
+      <span>— 完 —</span>
+      <!-- <i class="fab fa-leanpub"></i> 
+      <span></span> -->
+    </div>
+  
+</div>
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>whoru.S.Q
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sqiang.net/post/2495096853.html" title="Docker 安装及基础入门">https://sqiang.net/post/2495096853.html</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Docker/" rel="tag"># Docker</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/2159656190.html" rel="prev" title="Chrome 浏览器最新稳定版完整离线安装包下载">
+                  <i class="fa fa-angle-left"></i> Chrome 浏览器最新稳定版完整离线安装包下载
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/404938395.html" rel="next" title="Docker 之 Dockerfile 介绍">
+                  Docker 之 Dockerfile 介绍 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">whoru.S.Q</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"whorusq","repo":"whorusq.github.io","client_id":"f44a924ab4f6c0cb2361","client_secret":"1943379c1e177136881043495e8db6caab823791","admin_user":"whorusq","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","body":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f1c9c8ad4e6ab4876ce13481c631ea01"}</script>
+<script src="/js/third-party/comments/gitalk.js" defer></script>
+<script>
+  /**
+   * 图片懒加载完成标记
+   * lozad 的 data-loaded 只能表示“已触发加载”，拿不到“加载完成”，
+   * 这里监听 img 原生的 load / error 事件，补上真正完成时的 .img-loaded 类，
+   * 供 styles.styl 中的占位与淡入样式使用。
+   */
+  (function () {
+    var SEL = '.post-body img';
+
+    function mark(el) {
+      if (el && el.tagName === 'IMG' && el.matches(SEL)) {
+        el.classList.add('img-loaded');
+      }
+    }
+
+    // img 的 load / error 不冒泡，只能监听捕获阶段
+    document.addEventListener('load', function (e) { mark(e.target); }, true);
+    // 加载失败也要摘掉占位，避免一直显示加载中
+    document.addEventListener('error', function (e) { mark(e.target); }, true);
+
+    // 兜底：本脚本执行前已经加载完的图片（如命中浏览器缓存）
+    document.querySelectorAll(SEL).forEach(function (img) {
+      if (img.complete && img.naturalWidth > 0) {
+        img.classList.add('img-loaded');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
